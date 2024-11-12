@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/{type}/update/{id}', [PostController::class, 'update'])->name('admin.post.update');
         Route::get('/{type}/delete/{id}', [PostController::class, 'destroy'])->name('admin.post.destroy');
     });
-    // Danh mục bài viết
+    // Danh mục
     Route::prefix('category')->group(function () {
         Route::get('/{type}', [CategoryController::class, 'index'])->name('admin.category.index');
         Route::get('/{type}/add', [CategoryController::class, 'create'])->name('admin.category.add');
