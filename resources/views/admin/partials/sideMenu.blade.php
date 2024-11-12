@@ -101,7 +101,7 @@
             </a>
             <ul class="">
                 <li>
-                    <a href="#" class="side-menu {{isset($page) ? $page =='files-manager'? 'side-menu--active' : '' : ''}}">
+                    <a href="{{ route('admin.media.files.index') }}" class="side-menu {{isset($page) ? $page =='files-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="hard-drive"></i> </div>
                         <div class="side-menu__title"> Files </div>
                     </a>

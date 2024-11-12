@@ -11,4 +11,9 @@
     </nav>
 @endsection
 @section('content')
+    
+    <textarea id="content">
+        Welcome to TinyMCE!
+    </textarea>    
+
 @endsection

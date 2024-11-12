@@ -119,7 +119,21 @@ Route::middleware('auth')->group(function () {
             Route::post('/update/{id}', [LanguageController::class, 'update'])->name('admin.setting.language.update');
             Route::get('/delete/{id}', [LanguageController::class, 'destroy'])->name('admin.setting.language.destroy');
         });
+
     });
+
+    Route::prefix('media')->group(function (){
+        Route::get('/files', function(){
+            return view('admin.content.media.files', [
+                'page' => 'files-manager'
+            ]);
+        })->name('admin.media.files.index');
+    });
+
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
+
 });
 
 
