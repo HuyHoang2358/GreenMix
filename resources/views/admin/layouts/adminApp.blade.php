@@ -1,7 +1,12 @@
+<!DOCTYPE html>
 <html lang="en" class="light">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@yield('title') | GreenMix</title>
         @include('admin.partials.head')
+        @include('admin.partials.tiny_MCE_ini')
+        
     </head>
 
     <body class="py-5 md:py-0">
@@ -17,7 +22,9 @@
 
             <!-- Content -->
             <div class="content">
-                @yield('content')
+                <div class="p-10">
+                    @yield('content')
+                </div>
             </div>
         </div>
 
