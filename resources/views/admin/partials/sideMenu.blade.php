@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('admin.post.index', 'new')}}" class="side-menu {{isset($page) ? $page =='post-new-manager'? 'side-menu--active' : '' : ''}}">
+                    <a href="{{route('admin.post.index', 'news')}}" class="side-menu {{isset($page) ? $page =='post-new-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="side-menu__title"> Tin tức </div>
                     </a>

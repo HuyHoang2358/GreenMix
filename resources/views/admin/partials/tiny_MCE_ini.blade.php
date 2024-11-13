@@ -40,5 +40,16 @@
             });
         }
     };
+
+    tinymce.init({
+            selector: '#post-description',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+
+    tinymce.init({
+        selector: '#seo-description',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+
     tinymce.init(editor_config);
 </script>
