@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/{type}/store', [PostController::class, 'store'])->name('admin.post.store');
         Route::get('/{type}/edit/{id}', [PostController::class, 'edit'])->name('admin.post.edit');
         Route::post('/{type}/update/{id}', [PostController::class, 'update'])->name('admin.post.update');
-        Route::get('/{type}/delete/{id}', [PostController::class, 'destroy'])->name('admin.post.destroy');
+        Route::get('/{type}/delete', [PostController::class, 'destroy'])->name('admin.post.destroy');
     });
     // Danh mục
     Route::prefix('category')->group(function () {

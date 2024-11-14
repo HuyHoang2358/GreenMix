@@ -6,6 +6,8 @@
     var editor_config = {
         path_absolute: "/",
         selector: '#content',
+        resize: false,
+        height: 500,
         relative_urls: false,
         plugins: [
             "advlist autolink lists link image charmap print preview hr anchor pagebreak",
@@ -40,5 +42,19 @@
             });
         }
     };
+
+    tinymce.init({
+            selector: '#post-description',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+            resize: false,
+        });
+
+    tinymce.init({
+        selector: '#seo-description',
+        height: 270,
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        resize: false,
+    });
+
     tinymce.init(editor_config);
 </script>

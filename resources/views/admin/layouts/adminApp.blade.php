@@ -22,7 +22,7 @@
 
             <!-- Content -->
             <div class="content">
-                <div class="p-10">
+                <div class="p-2">
                     @yield('content')
                 </div>
             </div>
