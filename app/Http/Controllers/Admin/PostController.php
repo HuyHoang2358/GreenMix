@@ -13,22 +13,17 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
+
+    private $typeMap = [
+        'knowledge' => 1,
+        'recruitment' => 3,
+        'news' => 2,
+    ];
+
     public function index($type): Factory|Application|View
     {
 
-        switch($type){
-            case 'product':
-                $type_id = 1;
-                break;
-            case 'recruitmnet':
-                $type_id = 3;
-                break;
-            case 'news':
-                $type_id = 2;
-                break;
-            default:
-                $type_id = 0;
-        }
+        $type_id = $this->typeMap[$type] ?? 0;
 
         $posts = Post::where('type_id', $type_id)->get();
 
@@ -54,23 +49,9 @@ class PostController extends Controller
 
         // dd($request->all());
 
-        switch($type){
-            case 'product':
-                $type_id = 1;
-                break;
-            case 'recruitmnet':
-                $type_id = 3;
-                break;
-            case 'news':
-                $type_id = 2;
-                break;
-            default:
-                $type_id = 0;
-        }
+        $type_id = $this->typeMap[$type] ?? 0;
 
         try {
-
-            //dd($seo->id);
 
             $post = Post::create([
                 'name' => $request->input('name'),
@@ -89,25 +70,99 @@ class PostController extends Controller
             //dd($request->input('post-thumbnail'));
 
             // Create a new News instance
-            $news = News::create([
-                'name' => $request->input('name'),
-                'slug' => $request->input('slug'),
-                // 'category_id' => $request->input('category'),
-                'post_id' => $post->id,
-            ]);
-
-            DB::commit();
+            if($type == 'news'){
+                $news = News::create([
+                    'name' => $request->input('name'),
+                    'slug' => $request->input('slug'),
+                    // 'category_id' => $request->input('category'),
+                    'post_id' => $post->id,
+                ]);
+            }
 
             return redirect()->route('admin.post.index', [
                 'type' => $type,
+                'page' => 'post-'.$type.'-manager'
             ])->with('success', 'Post created successfully.');
             
         } catch (\Exception $e) 
         {       
-                DB::rollBack();
                 return redirect()->route('admin.post.index', [
                     'type' => $type,
+                    'page' => 'post-'.$type.'-manager'
             ])->with('error', 'Failed to create post: ' . $e->getMessage());
+        }
+
+    }
+
+    public function edit($type, $id){
+
+        $post = Post::findOrFail($id);
+        return view('admin.content.post.update', [
+            'post' => $post, 
+            'type' => $type,
+            'page' => 'post-'.$type.'-manager'
+        ]);
+
+    }
+
+    public function update(Request $request, $type, $id){
+
+
+        $type_id = $this->typeMap[$request->input('type')] ?? 0;
+
+        try {
+            
+            $post = Post::findOrFail($id);
+
+            $post->title = $request->input('title');
+            $post->images = $request->input('post-thumbnail');
+            $post->name = $request->input('name');
+            $post->slug = $request->input('slug');
+            $post->type_id = $type_id;
+            $post->description = $request->input('post-description');
+            $post->seo_title = $request->input('seo-title');
+            $post->seo_keyword = $request->input('seo-keyword');
+            $post->seo_description = $request->input('seo-description');
+            $post->content = $request->input('content');
+
+            // Save the updated post
+            $post->save();
+           
+            return redirect()->route('admin.post.index', [
+                'type' => $type,
+                'page' => 'post-'.$type.'-manager'
+            ])->with('success', 'Cập nhật bài viết thành công.');
+            
+        } catch (\Exception $e) {
+            return redirect()->route('admin.post.index', [
+                'type' => $type,
+                'page' => 'post-'.$type.'-manager'
+            ])->with('error', 'Cập nhật bài viết thất bại: ' . $e->getMessage());
+        }
+
+    }
+
+    public function destroy(Request $request, $type){
+
+        $id = $request->input('del-post-id');
+        
+        try {
+
+            $post = Post::findOrFail($id);
+            $post->delete();
+            
+            return redirect()->route('admin.post.index', [
+                'type' => $type,
+                'page' => 'post-'.$type.'-manager'
+            ])->with('success', 'Xóa bài viết thành công.');
+
+        } catch (\Exception $e) {
+
+            return redirect()->route('admin.post.index', [
+                'type' => $type,
+                'page' => 'post-'.$type.'-manager'
+            ])->with('error', 'Xóa bài viết thất bại: ' . $e->getMessage());
+
         }
 
     }

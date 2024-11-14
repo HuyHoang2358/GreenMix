@@ -15,6 +15,7 @@
 @section('content')
 
     @include('admin.partials.action_alerts')
+    @include('admin.content.post.delete')
 
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
@@ -67,27 +68,25 @@
                             @foreach ($posts as $post)
                                 <tr>
                                     <td>{{ $post->id }}</td>
-                                    <td> 
+                                    <td>
                                         <img class="h-10 w-full" src="{{ $post->images }}"
-                                            alt="post_{{ $post->title }}_image"> 
+                                            alt="post_{{ $post->title }}_image">
                                     </td>
                                     <td>{{ $post->name }}</td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->slug }}</td>
                                     <td>
                                         <div class="">
-                                            <a href="" class="mr-1">
-                                                <button type="button" class="btn btn-outline-warning">
-                                                    <i class="fa-solid fa-pen-to-square"></i></i>
-                                                    <button>
+                                            <a href="{{ route('admin.post.edit', ['id' => $post->id, 'type' => $type]) }}" class="mr-1">
+                                                <button class="btn btn-primary mr-1 mb-2"> 
+                                                    <i data-lucide="edit" class="w-5 h-5"></i> 
+                                                </button>
                                             </a>
 
                                             <a class="mr-1">
-                                                <button data-tw-toggle="modal" data-tw-target="#delete-post-form"
-                                                    type="button" class="btn btn-outline-danger"
-                                                    onclick='getPostForDelete("{{ $post->title }}", {{ $post->id }})'>
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
+                                                <button data-tw-toggle="modal" data-tw-target="#delete-post-form" class="btn btn-danger mr-1 mb-2" onclick='getPostForDelete("{{ $post->title }}", {{ $post->id }})'>
+                                                    <i data-lucide="trash" class="w-5 h-5"></i> 
+                                                </button> 
                                             </a>
                                         </div>
                                     </td>
@@ -99,4 +98,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+        function getPostForDelete(name, id){
+                document.getElementById('del-post-name').textContent = name;
+                document.getElementById('del-post-id').value = id;
+        }
+    
+    </script>
+
 @endsection
