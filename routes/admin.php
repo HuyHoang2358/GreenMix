@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\Setting\AddressController;
 use App\Http\Controllers\Admin\Setting\BannerController;
 use App\Http\Controllers\Admin\Setting\ConfigController;
@@ -79,6 +80,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{id}', [FieldController::class, 'edit'])->name('admin.field.edit');
         Route::post('/update/{id}', [FieldController::class, 'update'])->name('admin.field.update');
         Route::get('/delete/{id}', [FieldController::class, 'destroy'])->name('admin.field.destroy');
+    });
+
+    // Quản lý tài khoản
+    Route::prefix('account')->group(function () {
+
+        Route::get('/', [AccountController::class, 'index'])->name('admin.account.index');
+        Route::get('/add', [AccountController::class, 'create'])->name('admin.account.add');
+        Route::post('/store', [AccountController::class, 'store'])->name('admin.account.store');
+        Route::get('/edit/{id}', [AccountController::class, 'edit'])->name('admin.account.edit');
+        Route::patch('/update/{id}', [AccountController::class, 'update'])->name('admin.account.update');
+        Route::delete('/delete', [AccountController::class, 'destroy'])->name('admin.account.destroy');
     });
 
 

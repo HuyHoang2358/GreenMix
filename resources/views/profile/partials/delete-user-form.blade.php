@@ -9,10 +9,17 @@
         </p>
     </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Xóa tài khoản') }}</x-danger-button>
+    @if($currentUserId != 1)
+        <x-danger-button
+            x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+            {{ __('Xóa tài khoản') }}
+        </x-danger-button>
+    @else
+    <p class="mt-1 text-sm text-gray-600">
+        {{ __('Bạn đang đăng nhập với tư cách là người dùng mặc định nên không thể xóa tài khoản!') }}
+    </p>
+    @endif
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
