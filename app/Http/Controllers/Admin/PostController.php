@@ -82,14 +82,14 @@ class PostController extends Controller
             return redirect()->route('admin.post.index', [
                 'type' => $type,
                 'page' => 'post-'.$type.'-manager'
-            ])->with('success', 'Post created successfully.');
+            ])->with('success', 'Thêm mới bài viết thành công.');
             
         } catch (\Exception $e) 
         {       
                 return redirect()->route('admin.post.index', [
                     'type' => $type,
                     'page' => 'post-'.$type.'-manager'
-            ])->with('error', 'Failed to create post: ' . $e->getMessage());
+            ])->with('error', 'Thêm mới bài viết thất bại: ' . $e->getMessage());
         }
 
     }
@@ -150,7 +150,7 @@ class PostController extends Controller
 
             $post = Post::findOrFail($id);
             $post->delete();
-            
+
             return redirect()->route('admin.post.index', [
                 'type' => $type,
                 'page' => 'post-'.$type.'-manager'
