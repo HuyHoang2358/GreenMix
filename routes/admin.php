@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [ProjectController::class, 'store'])->name('admin.project.store');
         Route::get('/edit/{id}', [ProjectController::class, 'edit'])->name('admin.project.edit');
         Route::post('/update/{id}', [ProjectController::class, 'update'])->name('admin.project.update');
-        Route::get('/delete/{id}', [ProjectController::class, 'destroy'])->name('admin.project.destroy');
+        Route::get('/delete', [ProjectController::class, 'destroy'])->name('admin.project.destroy');
     });
 
     // Quản lý lĩnh vực kinh doanh
