@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\Setting\AddressController;
 use App\Http\Controllers\Admin\Setting\BannerController;
 use App\Http\Controllers\Admin\Setting\ConfigController;
-use App\Http\Controllers\Admin\Setting\LanguageController;
+use App\Http\Controllers\Admin\Setting\LanguagueController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
@@ -123,13 +123,13 @@ Route::middleware('auth')->group(function () {
         });
 
         // Ngôn ngữ
-        Route::prefix('language')->group(function () {
-            Route::get('/', [LanguageController::class, 'index'])->name('admin.setting.language.index');
-            Route::get('/add', [LanguageController::class, 'create'])->name('admin.setting.language.add');
-            Route::post('/store', [LanguageController::class, 'store'])->name('admin.setting.language.store');
-            Route::get('/edit/{id}', [LanguageController::class, 'edit'])->name('admin.setting.language.edit');
-            Route::post('/update/{id}', [LanguageController::class, 'update'])->name('admin.setting.language.update');
-            Route::get('/delete/{id}', [LanguageController::class, 'destroy'])->name('admin.setting.language.destroy');
+        Route::prefix('languague')->group(function () {
+            Route::get('/', [LanguagueController::class, 'index'])->name('admin.setting.language.index');
+            Route::get('/add', [LanguagueController::class, 'create'])->name('admin.setting.language.add');
+            Route::post('/store', [LanguagueController::class, 'store'])->name('admin.setting.language.store');
+            Route::get('/edit/{id}', [LanguagueController::class, 'edit'])->name('admin.setting.language.edit');
+            Route::post('/update/{id}', [LanguagueController::class, 'update'])->name('admin.setting.language.update');
+            Route::get('/delete/{id}', [LanguagueController::class, 'destroy'])->name('admin.setting.language.destroy');
         });
 
     });
