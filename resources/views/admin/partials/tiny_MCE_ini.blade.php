@@ -45,14 +45,16 @@
 
     tinymce.init({
             selector: '#post-description',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+            toolbar: false,
+            menubar: false,
             resize: false,
         });
 
     tinymce.init({
         selector: '#seo-description',
         height: 270,
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        toolbar: false,
+        menubar: false,
         resize: false,
     });
 
