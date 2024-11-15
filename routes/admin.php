@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\Setting\AddressController;
 use App\Http\Controllers\Admin\Setting\BannerController;
 use App\Http\Controllers\Admin\Setting\ConfigController;
@@ -29,7 +30,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/{type}/store', [PostController::class, 'store'])->name('admin.post.store');
         Route::get('/{type}/edit/{id}', [PostController::class, 'edit'])->name('admin.post.edit');
         Route::post('/{type}/update/{id}', [PostController::class, 'update'])->name('admin.post.update');
-        Route::get('/{type}/delete/{id}', [PostController::class, 'destroy'])->name('admin.post.destroy');
+        Route::get('/{type}/delete', [PostController::class, 'destroy'])->name('admin.post.destroy');
     });
     // Danh mục
     Route::prefix('category')->group(function () {
@@ -81,6 +82,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete/{id}', [FieldController::class, 'destroy'])->name('admin.field.destroy');
     });
 
+    // Quản lý tài khoản
+    Route::prefix('account')->group(function () {
+
+        Route::get('/', [AccountController::class, 'index'])->name('admin.account.index');
+        Route::get('/add', [AccountController::class, 'create'])->name('admin.account.add');
+        Route::post('/store', [AccountController::class, 'store'])->name('admin.account.store');
+        Route::get('/edit/{id}', [AccountController::class, 'edit'])->name('admin.account.edit');
+        Route::patch('/update/{id}', [AccountController::class, 'update'])->name('admin.account.update');
+        Route::delete('/delete', [AccountController::class, 'destroy'])->name('admin.account.destroy');
+    });
+
 
     // setting route group
     Route::prefix('settings')->group(function () {
@@ -119,7 +131,21 @@ Route::middleware('auth')->group(function () {
             Route::post('/update/{id}', [LanguageController::class, 'update'])->name('admin.setting.language.update');
             Route::get('/delete/{id}', [LanguageController::class, 'destroy'])->name('admin.setting.language.destroy');
         });
+
     });
+
+    Route::prefix('media')->group(function (){
+        Route::get('/files', function(){
+            return view('admin.content.media.files', [
+                'page' => 'files-manager'
+            ]);
+        })->name('admin.media.files.index');
+    });
+
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
+
 });
 
 

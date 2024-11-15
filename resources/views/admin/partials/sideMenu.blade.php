@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('admin.post.index', 'new')}}" class="side-menu {{isset($page) ? $page =='post-new-manager'? 'side-menu--active' : '' : ''}}">
+                    <a href="{{route('admin.post.index', 'news')}}" class="side-menu {{isset($page) ? $page =='post-news-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="side-menu__title"> Tin tức </div>
                     </a>
@@ -87,6 +87,13 @@
                 </li>
             </ul>
         </li>
+        
+        <li>
+            <a href="{{route('admin.account.index')}}" class="side-menu {{isset($page) ? $page =='account-manager'? 'side-menu--active' : '' : ''}}">
+                <div class="side-menu__icon"> <i data-lucide="user"></i> </div>
+                <div class="side-menu__title">Tài khoản</div>
+            </a>
+        </li>
 
         <li class="side-nav__devider my-6"></li>
 
@@ -101,7 +108,7 @@
             </a>
             <ul class="">
                 <li>
-                    <a href="#" class="side-menu {{isset($page) ? $page =='files-manager'? 'side-menu--active' : '' : ''}}">
+                    <a href="{{ route('admin.media.files.index') }}" class="side-menu {{isset($page) ? $page =='files-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="hard-drive"></i> </div>
                         <div class="side-menu__title"> Files </div>
                     </a>
