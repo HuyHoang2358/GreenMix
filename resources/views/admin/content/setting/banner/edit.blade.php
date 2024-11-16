@@ -1,6 +1,6 @@
 @extends('admin.layouts.adminApp')
 @section('title')
-    Thêm mới banner
+    Chỉnh sửa banner
 @endsection
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
@@ -37,8 +37,8 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="category-name" type="text" class="form-control" placeholder="Nhập tên banner" name="name" value="{{$banner->name}}" required autofocus>
-                            <div class="form-help text-right">Tối đa 0/255 ký tự</div>
+                            <input id="banner-name" type="text" class="form-control" placeholder="Nhập tên banner" onkeyup="handleCountNumberCharacter('banner-name', 'number-character-banner-name', 255)" name="name" value="{{$banner->name}}" required autofocus>
+                            <div class="form-help text-right">Tối đa <span id="number-character-banner-name">0</span>/255 ký tự</div>
                         </div>
                     </div>
 
@@ -53,8 +53,8 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="category-slug" type="text" class="form-control" placeholder="Nhập tiêu đề của banner" name="title" value="{{$banner->title}}" required>
-                            <div class="form-help text-right">Tối đa 0/200 ký tự</div>
+                            <input id="banner-title" type="text" class="form-control" placeholder="Nhập tiêu đề của banner" onkeyup="handleCountNumberCharacter('banner-title', 'number-character-banner-title', 255)" name="title" value="{{$banner->title}}" required>
+                            <div class="form-help text-right">Tối đa <span id="number-character-banner-title">0</span>/200 ký tự</div>
                         </div>
                     </div>
 
@@ -72,9 +72,9 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <div class="editor">
-                                <textarea class="form-control" rows="3" name="description">{{$banner->description}}</textarea>
+                                <textarea id="banner-description" class="form-control" rows="3" onkeyup="handleCountNumberCharacter('banner-description', 'number-character-banner-description', 255)" name="description">{{$banner->description}}</textarea>
                             </div>
-                            <div class="form-help text-right">Tối đa 0/255 ký tự</div>
+                            <div class="form-help text-right">Tối đa <span id="number-character-banner-description">0</span>/255 ký tự</div>
                         </div>
                     </div>
 
@@ -89,8 +89,8 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="category-slug" type="text" class="form-control" placeholder="Nhập đường dẫn đính kèm của banner" name="attach_link" value="{{$banner->attach_link}}" required>
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <input id="banner-attach_link" type="text" class="form-control" placeholder="Nhập đường dẫn đính kèm của banner" onkeyup="handleCountNumberCharacter('banner-attach_link', 'number-character-banner-attach_link', 255)" name="attach_link" value="{{$banner->attach_link}}" required>
+                            <div class="form-help text-right">Tối đa <span id="number-character-banner-attach_link">0</span>/100 ký tự</div>
                         </div>
                     </div>
 

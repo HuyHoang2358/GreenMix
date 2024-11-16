@@ -27,7 +27,7 @@ class BannerController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $input = $request->all();
         $item = new Banner();
@@ -43,7 +43,7 @@ class BannerController extends Controller
 
         return redirect()->route('admin.setting.banner.index');
     }
-    public function edit($id, Request $request)
+    public function edit($id, Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $banner = Banner::find($id);
         $banners = $request->all();

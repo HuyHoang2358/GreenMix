@@ -37,8 +37,8 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="category-name" type="text" class="form-control" placeholder="Nhập tên banner" name="name" required autofocus>
-                            <div class="form-help text-right">Tối đa 0/255 ký tự</div>
+                            <input id="banner-name" type="text" class="form-control" placeholder="Nhập tên banner" onkeyup="handleCountNumberCharacter('banner-name', 'number-character-banner-name', 255)" name="name" required autofocus>
+                            <div class="form-help text-right">Tối đa <span id="number-character-banner-name">0</span>/255 ký tự</div>
                         </div>
                     </div>
 
@@ -53,8 +53,8 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="category-slug" type="text" class="form-control" placeholder="Nhập tiêu đề của banner" name="title" required>
-                            <div class="form-help text-right">Tối đa 0/200 ký tự</div>
+                            <input id="banner-title" type="text" class="form-control" placeholder="Nhập tiêu đề của banner" onkeyup="handleCountNumberCharacter('banner-title', 'number-character-banner-title', 200)" name="title" required>
+                            <div class="form-help text-right">Tối đa <span id="number-character-banner-title">0</span>/200 ký tự</div>
                         </div>
                     </div>
 
@@ -72,9 +72,9 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <div class="editor">
-                                <textarea class="form-control" rows="3" name="description"></textarea>
+                                <textarea id="banner-description" class="form-control" rows="3" onkeyup="handleCountNumberCharacter('banner-description', 'number-character-banner-description', 255)" name="description"></textarea>
                             </div>
-                            <div class="form-help text-right">Tối đa 0/255 ký tự</div>
+                            <div class="form-help text-right">Tối đa <span id="number-character-banner-description">0</span>/255 ký tự</div>
                         </div>
                     </div>
 
@@ -89,8 +89,8 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="category-slug" type="text" class="form-control" placeholder="Nhập đường dẫn đính kèm của banner" name="attach_link" required>
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <input id="banner-attach-link" type="text" class="form-control" placeholder="Nhập đường dẫn đính kèm của banner" onkeyup="handleCountNumberCharacter('banner-attach-link', 'number-character-banner-attach-link', 255)" name="attach_link" required>
+                            <div class="form-help text-right">Tối đa <span id="number-character-banner-attach-link">0</span>/100 ký tự</div>
                         </div>
                     </div>
 
@@ -146,12 +146,11 @@
                                     <div class="font-medium">Số thứ tự hiển thị</div>
                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
-                                <div class="leading-relaxed text-slate-500 text-xs mt-3">Số thứ tự hiển thị không trùng lặp và không được để trống</div>
+                                <div class="leading-relaxed text-slate-500 text-xs mt-3">Số thứ tự hiển thị không được để trống</div>
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="category-slug" type="number" class="form-control" placeholder="Nhập số thứ tự hiển thị của tên banner" name="order" required>
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <input id="banner-order" type="number" class="form-control" placeholder="Nhập số thứ tự hiển thị của banner" name="order" required>
                         </div>
                     </div>
                 </div>
@@ -163,7 +162,6 @@
                 </a>
                 <button type="submit" class="btn py-3 btn-primary w-full md:w-52">Lưu thông tin</button>
             </div>
-        </div>
     </form>
     @include('admin.partials.stand_alone_lfm')
 @endsection
