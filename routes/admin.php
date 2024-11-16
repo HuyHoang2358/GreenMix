@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [ProductController::class, 'store'])->name('admin.product.store');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::post('/update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
-        Route::get('/delete/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+        Route::get('/delete', [ProductController::class, 'destroy'])->name('admin.product.destroy');
     });
 
     // Quản lý đối tác
