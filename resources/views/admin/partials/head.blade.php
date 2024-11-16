@@ -6,5 +6,8 @@
 <meta name="author" content="GreenMix">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- BEGIN: CSS Assets-->
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 <link rel="stylesheet" href="{{asset('backend/dist/css/app.css')}}" />
+
+
 <!-- END: CSS Assets-->

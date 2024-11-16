@@ -11,7 +11,7 @@
     </nav>
 @endsection
 @section('content')
-    <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+    <div class="intro-y flex flex-col sm:flex-row items-center my-7 ">
         <h2 class="text-lg font-medium mr-auto">
             {{$type_name}}
         </h2>
@@ -37,8 +37,8 @@
         </div>
     </div>
     <!-- BEGIN: HTML Table Data -->
-    <div class="intro-y col-span-12 lg:col-span-12 mt-2">
-        <div class="intro-y box py-2 px-4">
+    <div class="intro-y col-span-12 lg:col-span-12">
+        <div class="intro-y box p-5 rounded-xl">
             <div class="overflow-x-auto">
                 <table class="table">
                     <thead class="table-dark">
