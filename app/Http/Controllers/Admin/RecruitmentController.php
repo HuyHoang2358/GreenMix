@@ -136,8 +136,21 @@ class RecruitmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
         //
+        try{
+
+            Recruitment::findOrFail($request->input('del-recruitment-id'))->delete();
+
+            return redirect()->route('admin.recruitment.index')->with('success', 'Xóa vị trí ứng tuyển thành công.');
+
+        }catch (\Exception $e) {
+
+            return redirect()->route('admin.recruitment.index')->with('error', 'Xóa vị trí ứng tuyển thất bại: ' . $e->getMessage());
+
+        }
+
+
     }
 }

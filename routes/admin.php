@@ -101,7 +101,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [RecruitmentController::class, 'store'])->name('admin.recruitment.store');
         Route::get('/edit/{id}', [RecruitmentController::class, 'edit'])->name('admin.recruitment.edit');
         Route::patch('/update/{id}', [RecruitmentController::class, 'update'])->name('admin.recruitment.update');
-
+        Route::delete('/delete', [RecruitmentController::class, 'destroy'])->name('admin.recruitment.destroy');
     });
 
     // setting route group
