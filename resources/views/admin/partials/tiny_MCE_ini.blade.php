@@ -47,6 +47,8 @@
             selector: '#post-description',
             toolbar: false,
             menubar: false,
+            toolbar: false,
+            menubar: false,
             resize: false,
         });
 
