@@ -42,7 +42,7 @@
                     <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                 </div>
             </a>
-            <ul class="{{isset($page) ? ( $page =='category-post-manager' || $page =='post-new-manager' || $page =='post-knowledge-manager')? 'side-menu__sub-open' : '' : ''}}">
+            <ul class="{{isset($page) ? ( $page =='category-post-manager' || $page =='post-news-manager' || $page =='post-knowledge-manager')? 'side-menu__sub-open' : '' : ''}}">
                 <li>
                     <a href="{{route('admin.category.index', 'post')}}" class="side-menu {{isset($page) ? $page =='category-post-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="list"></i> </div>
@@ -65,16 +65,16 @@
             </ul>
         </li>
         <li>
-            <a class="side-menu {{isset($page) ? ($page =='post-recruitment-manager' || $page =='category-recruitment-manager') ? 'side-menu--active' : '' : ''}}">
+            <a class="side-menu {{isset($page) ? ($page =='post-recruitment-manager' || $page =='recruitment-manager') ? 'side-menu--active' : '' : ''}}">
                 <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
                 <div class="side-menu__title">
                     Tuyển dụng
                     <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                 </div>
             </a>
-            <ul class="{{isset($page) ? ($page =='post-recruitment-manager' || $page =='category-recruitment-manager') ? 'side-menu__sub-open' : '' : ''}}">
+            <ul class="{{isset($page) ? ($page =='post-recruitment-manager' || $page =='recruitment-manager') ? 'side-menu__sub-open' : '' : ''}}">
                 <li>
-                    <a href="{{route('admin.category.index', 'recruitment')}}" class="side-menu {{isset($page) ? $page =='category-recruitment-manager'? 'side-menu--active' : '' : ''}}">
+                    <a href="{{route('admin.recruitment.index')}}" class="side-menu {{isset($page) ? $page =='recruitment-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="github"></i> </div>
                         <div class="side-menu__title"> Vị trí tuyển dụng </div>
                     </a>

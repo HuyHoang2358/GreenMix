@@ -1,4 +1,5 @@
 @foreach($categories as $category)
+
     @if($parent_id && $parent_id == $category->id)
         <option value="{{$category->id}}" selected>{{str_repeat("----", $level).$category->name}}</option>
     @else
