@@ -52,11 +52,11 @@
                     </div>
                     <label for="image" class="form-label">Icon</label>
                     <div id="image" class="input-group flex gap-2">
-                    <span class="input-group-btn pr-3">
-                        <a id="post-img-preview" data-input="post-thumbnail" data-preview="holder" class="btn btn-primary">
-                            <i class="fa fa-picture-o"></i> Chọn
-                        </a>
-                    </span>
+                        <span class="input-group-btn pr-3">
+                            <a id="post-img-preview" data-input="post-thumbnail" data-preview="holder" class="btn btn-primary">
+                                <i class="fa fa-picture-o"></i> Chọn
+                            </a>
+                        </span>
                         <input required="" readonly="" id="post-thumbnail" class="form-control" type="text" name="icon">
                     </div>
                 </div>
