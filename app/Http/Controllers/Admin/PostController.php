@@ -56,7 +56,7 @@ class PostController extends Controller
             $post = Post::create([
                 'name' => $request->input('name'),
                 'title' => $request->input('title'),
-                'slug' => $request->input('title'),
+                'slug' => $request->input('slug'),
                 'description' => $request->input('post-description'),
                 'content' => $request->input('content'),
                 'type_id' => $type_id,
