@@ -33,7 +33,7 @@
                                     <div class="font-medium">Tên Banner</div>
                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
-                                <div class="leading-relaxed text-slate-500 text-xs mt-3"> Tên banner ngắn gọn và không trùng lặp, và không được để trống</div>
+                                <div class="leading-relaxed text-slate-500 text-xs mt-3"> Tên đối tác ngắn gọn không trùng lặp và không được để trống</div>
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
