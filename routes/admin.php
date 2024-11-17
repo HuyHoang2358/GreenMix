@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\RecruitmentController;
 use App\Http\Controllers\Admin\Setting\AddressController;
 use App\Http\Controllers\Admin\Setting\BannerController;
 use App\Http\Controllers\Admin\Setting\ConfigController;
@@ -49,7 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [ProductController::class, 'store'])->name('admin.product.store');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::post('/update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
-        Route::get('/delete/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+        Route::get('/delete', [ProductController::class, 'destroy'])->name('admin.product.destroy');
     });
 
     // Quản lý đối tác
@@ -93,6 +94,15 @@ Route::middleware('auth')->group(function () {
         Route::delete('/delete', [AccountController::class, 'destroy'])->name('admin.account.destroy');
     });
 
+    Route::prefix('recruitment')->group(function () {
+
+        Route::get('/', [RecruitmentController::class, 'index'])->name('admin.recruitment.index');
+        Route::get('/add', [RecruitmentController::class, 'create'])->name('admin.recruitment.add');
+        Route::post('/store', [RecruitmentController::class, 'store'])->name('admin.recruitment.store');
+        Route::get('/edit/{id}', [RecruitmentController::class, 'edit'])->name('admin.recruitment.edit');
+        Route::patch('/update/{id}', [RecruitmentController::class, 'update'])->name('admin.recruitment.update');
+        Route::delete('/delete', [RecruitmentController::class, 'destroy'])->name('admin.recruitment.destroy');
+    });
 
     // setting route group
     Route::prefix('settings')->group(function () {
