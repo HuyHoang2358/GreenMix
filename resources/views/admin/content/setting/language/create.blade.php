@@ -52,7 +52,7 @@
                     </div>
                     <label for="image" class="form-label">Icon</label>
                     <div id="image" class="input-group flex gap-2">
-                        <span class="input-group-btn pr-3">
+                        <span class="input-group-btn pr-3" id="changeColorBtn">
                             <a id="post-img-preview" data-input="post-thumbnail" data-preview="holder" class="btn btn-primary">
                                 <i class="fa fa-picture-o"></i> Chọn
                             </a>
@@ -62,7 +62,9 @@
                 </div>
                 <div class="col-span-1">
                     <label for="holder" class="form-label">Hình ảnh xem trước</label>
-                    <div id="holder" style="margin-top:15px;"></div>
+                    <div class="bg-gray-300 w-96 h-44 rounded-lg" id="holder" style="margin-top:15px;">
+
+                    </div>
                 </div>
             </div>
             <div class="w-full text-end mt-10">
@@ -72,4 +74,15 @@
         </form>
     </div>
     @include('admin.partials.stand_alone_lfm')
+
+    <script>
+        const button = document.getElementById('post-img-preview');
+        const holder = document.getElementById('holder');
+
+        // Thêm sự kiện click vào button
+        button.addEventListener('click', () => {
+            // Toggle class Tailwind để thay đổi màu nền
+            holder.classList.remove('bg-gray-300');
+        });
+    </script>
 @endsection

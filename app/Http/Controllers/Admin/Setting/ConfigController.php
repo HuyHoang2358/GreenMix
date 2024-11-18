@@ -30,11 +30,6 @@ class ConfigController extends Controller
         file_put_contents(config_path('website.php'), $config);
         Artisan::call('config:clear');
         return redirect()->route('admin.setting.config.index');
-
-        echo '<pre>';
-        print_r($config);
-        echo '</pre>';
-        exit;
     }
 
 }
