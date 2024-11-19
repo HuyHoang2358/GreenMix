@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                    <input id="partner-url" type="text" class="form-control" placeholder="Nhập URL của đối tác" onkeyup="handleCountNumberCharacter('partner-url', 'number-character-partner-url', 200)" name="url" required>
+                                    <input id="partner-url" type="text" class="form-control" placeholder="Nhập URL của đối tác" onkeyup="handleCountNumberCharacter('partner-url', 'number-character-partner-url', 200)" name="url">
                                     <div class="form-help text-right">Tối đa <span id="number-character-partner-url">0</span>/200 ký tự</div>
                                 </div>
                             </div>

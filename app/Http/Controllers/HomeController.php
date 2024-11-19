@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Partner;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('homepage');
+        $partners = Partner::all();
+        return view('homepage', [
+            'partners' => $partners,
+        ]);
     }
 }

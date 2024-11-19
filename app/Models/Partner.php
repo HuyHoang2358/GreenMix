@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static find($id)
  * @method static orderBy(string $string, string $string1)
+ * @method static request()
  */
 class Partner extends Model
 {

@@ -58,6 +58,7 @@
                     </table>
                 </div>
             </div>
+            <div>{{$partners->links()}}</div>
         </div>
     </div>
 @endsection
