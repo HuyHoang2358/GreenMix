@@ -265,7 +265,7 @@
                                 <div>
                                     <label for="content" class="form-label">Nội dung bài viết<span style="color: red;">
                                             *</span></label>
-                                    <textarea required id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ $product->post ? $product->post->content : '' }}</textarea>
+                                    <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ $product->post ? $product->post->content : '' }}</textarea>
                                 </div>
                             </div>
                         </div>
