@@ -30,7 +30,7 @@
             Thêm mới vị trí tuyển dụng
         </h2>
     </div>
-    <form action="{{ route('admin.recruitment.store') }}" method="POST">
+    <form id="recruitment-form" action="{{ route('admin.recruitment.store') }}" method="POST">
         @csrf
         <div class="intro-y box p-5 mt-5">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">

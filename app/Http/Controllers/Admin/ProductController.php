@@ -37,12 +37,22 @@ class ProductController extends Controller
         DB::beginTransaction();
 
         try {
+            
+            $images = $request->input('images');
+
+            if ($images) {
+                $imageArray = explode(',', $images);
+            } else {
+                $imageArray = [];
+            }
+
+            $jsonEncodedImages = json_encode($imageArray);
 
             $product = Product::create([
                 'name' => $request->input('name'),
                 'slug' => $request->input('slug'),
                 'description' => $request->input('description'),
-                'images' => $request->input('images'), 
+                'images' => $jsonEncodedImages, 
             ]);
 
             if($request->input('togglePostFields')){
@@ -79,10 +89,12 @@ class ProductController extends Controller
     public function edit($id){
 
         $product = Product::with('post')->findOrFail($id);
+        $decodedImages = json_decode($product->images, true);
 
         return view('admin.content.product.update', [
             'page' => 'product-manager', 
             'product' => $product,
+            'images' => $decodedImages,
         ]);
 
     }
@@ -95,10 +107,14 @@ class ProductController extends Controller
 
             $product = Product::findOrFail($id);
 
+            $images = $request->input('images');
+            $imageArray = explode(',', $images);
+            $jsonEncodedImages = json_encode($imageArray);
+
             $product->name = $request->input('name');
             $product->slug = $request->input('slug');
             $product->description = $request->input('description');
-            $product->images = $request->input('images');
+            $product->images = $jsonEncodedImages;
 
             if($request->input('togglePostFields')){
 

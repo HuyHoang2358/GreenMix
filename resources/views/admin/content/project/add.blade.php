@@ -89,14 +89,15 @@
                                             <i class="fa fa-picture-o"></i> Chọn
                                         </a>
                                     </span>
-                                    <input id="image" readonly name="image" type="text" class="form-control flex-1 h-fit" placeholder="Tải hình ảnh lên" required autofocus>
+                                    <input id="image" name="image" type="text" class="form-control flex-1 h-fit readonly" placeholder="Tải hình ảnh lên" required autofocus>
                                 </div>
                             </div>
                             
-                            <div>
+                            <div class="flex flex-row gap-2 items-center">
                                 <div>
                                     <div id="holder" class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>
                                 </div>
+                                <button type="button" class="btn btn-danger images-eraser" input-to-clear="image" holder-to-clear="holder" style="height: fit-content;">Bỏ ảnh</button>
                             </div>
                         </div>
                     </div>

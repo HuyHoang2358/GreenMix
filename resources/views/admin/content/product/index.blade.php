@@ -57,10 +57,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if(count($products) == 0)
-                        <tr>
-                            <td class="text-center" colspan="6">Hiện tại không có sản phẩm   nào.</td>
-                        </tr>
+                        @if (count($products) == 0)
+                            <tr>
+                                <td class="text-center" colspan="6">Hiện tại không có sản phẩm nào.</td>
+                            </tr>
                         @endif
                         @foreach ($products as $product)
                             <tr>
@@ -68,9 +68,20 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->slug }}</td>
                                 <td>
-                                    @if($product->images)
-                                        <img class="h-10 w-full" src="{{ asset($product->images) }}"
-                                        alt="post_{{ $product->name }}_image">
+                                    @php
+                                        $images = json_decode($product->images, true);
+                                    @endphp
+                                    @if (count($images) > 0)
+                                        <div class="flex flex-row gap-2 h-full">
+                                            @if ($images)
+                                                @foreach (array_slice($images, 0, 2) as $image)
+                                                    <img src="{{ asset($image) }}" alt="Image" class="h-20 w-40 rounded">
+                                                @endforeach
+                                                @if (count($images) > 2)
+                                                    <p class="text-center flex items-center">Và {{ count($images) - 2 }} ảnh khác...</p>
+                                                @endif
+                                            @endif
+                                        </div>
                                     @else
                                         <div>Chưa có hình ảnh</div>
                                     @endif

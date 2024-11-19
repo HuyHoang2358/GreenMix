@@ -7,16 +7,6 @@
 <script src="https://unpkg.com/lucide"></script>
 
 <script>
-    // document.addEventListener('DOMContentLoaded', function () {
-
-    //     function countWords(content) {
-    //         return content.length;
-    //     }
-
-    //     var inputElement = $(".toggle-password")
-
-    // })
-
     function handleCountNumberCharacter(inputId, countId, maxLength) {
         const input = document.getElementById(inputId);
         let str = input.value;
@@ -30,36 +20,45 @@
         }
     }
 
-    // $(".perfect-sight").each(function() {
+    // $(".required-form").on('submit', function(event) {
+    //     var content = tinymce.get('content').getContent();
 
-    //     var input_id = $(this).attr('perfect-sight-for');
+    //     var toggleField = $('#togglePostFields');
 
-    //     $(".toggle-password-on").click(function() {
+    //     if (toggleField) {
+    //         if (toggleField.is(':checked')) {
+    //             if (content.trim() === '') {
+    //                 event.preventDefault(); // Prevent form submission
+    //                 alert('Xin hãy điền đầy đủ các có dấu sao.');
+    //             }
+    //         } else {
+    //             return;
+    //         }
+    //     }
 
-    //         $('#' + input_id).attr('type', 'text');
-    //         $(this).addClass('hidden');
-    //         $('.toggle-password-off').removeClass('hidden');
+    //     if (content.trim() === '') {
+    //         event.preventDefault(); // Prevent form submission
+    //         alert('Xin hãy điền đầy đủ các có dấu sao.');
+    //     }
 
-    //     });
+    // });
 
-    //     $(".toggle-password-off").click(function() {
+    $('#recruitment-form').on('submit', function(e) {
+        var startDate = new Date($('#start_date').val());
+        var endDate = new Date($('#end_date').val());
+        var num_people = $('#num_people').val()
 
-    //         $('#' + input_id).attr('type', 'text');
-    //         $(this).addClass('hidden');
-    //         $('.toggle-password-on').removeClass('hidden');
-
-    //     });
-
-    // })
-
-    $(".required-form").on('submit', function(event) {
-        var content = tinymce.get('content').getContent();
-        if (content.trim() === '') {
-            event.preventDefault(); // Prevent form submission
-            alert('Xin hãy điền đầy đủ các có dấu sao.');
+        if (endDate <= startDate) {
+            e.preventDefault(); // Prevent form submission
+            alert('Hạn cuối phải sau ngày bắt đầu tuyển dụng.');
+        }
+        if(num_people <= 0) {
+            e.preventDefault(); // Prevent form submission
+            alert('Số lượng nhân sự phải lớn hơn 0.');
         }
     });
 
+    // toggle post field on the product page
     $('#togglePostFields').change(function() {
         if ($(this).is(':checked')) {
             $('#postFields').removeClass('hidden').addClass('flex');
@@ -79,6 +78,7 @@
             $('#product-post').removeClass('required-form');
         }
     });
+    //end toggle post field on the product page
 
     $(document).ready(function() {
 
@@ -86,6 +86,7 @@
             $('#postFields').removeClass('hidden').addClass('flex');
         }
 
+        // start word counter
         function updateWordCounter() {
             $('.word-counter').each(function() {
                 var inputId = $(this).attr('input-to-count');
@@ -102,14 +103,15 @@
             });
         }
 
-        // Initial update when the DOM is loaded
         updateWordCounter();
 
         $('input').on('input', function() {
             updateWordCounter();
         });
+        // end word counter
 
-        function togglePasswordButton(){
+        // start toggle password
+        function togglePasswordButton() {
 
             $('.perfect-sight').each(function() {
 
@@ -117,7 +119,7 @@
                 var togglePasswordOn = $(this).find('.toggle-password-on');
                 if (passwordInput.val()) {
                     togglePasswordOn.removeClass('hidden');
-                }else {
+                } else {
                     togglePasswordOn.addClass('hidden');
                 }
 
@@ -140,6 +142,30 @@
             $(this).addClass('hidden');
             $(this).siblings('.toggle-password-on').removeClass('hidden');
         });
+        // end toggle password
 
+        // image eraser button
+        $('.images-eraser').click(function() {
+            // Clear the input value
+            var input = $('#' + $(this).attr('input-to-clear'));
+            input.val('');
+
+            // Remove all img tags inside the holder div
+            var holder = $('#' + $(this).attr('holder-to-clear'));
+            holder.find('img').remove();
+
+            holder.append(
+                '<div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>'
+            );
+        });
+        //end image eraser button
+
+        // add readonly function for img tags
+        $(".readonly").on('keydown paste focus mousedown', function(e) {
+            if (e.keyCode != 9) // ignore tab
+                e.preventDefault();
+        });
+        //end add readonly function for img tags
     });
 </script>
+

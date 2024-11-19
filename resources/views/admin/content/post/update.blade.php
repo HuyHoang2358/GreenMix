@@ -42,13 +42,13 @@
                                         <i class="fa fa-picture-o"></i> Chọn
                                     </a>
                                 </span>
-                                <input required readonly id="post-thumbnail" class="form-control" type="text" name="post-thumbnail" value="{{ $post->images }}">
+                                <input id="post-thumbnail" class="form-control readonly" type="text" name="post-thumbnail" value="{{ $post->images }}" placeholder="Thêm hình ảnh cho bài viết">
                             </div>
                         </div>
                     </div>
                     <div>
                         <label for="holder" class="form-label">Hình ảnh xem trước</label>
-                        <div style="margin-top:15px;">
+                        <div style="margin-top:15px;" class="flex flex-row gap-2 items-center">
                             <div id="holder" class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden">
                                 @if($post->images)
                                     <img class="h-20 w-40" src="{{ asset($post->images) }}" alt="">
@@ -56,6 +56,7 @@
                                     Chưa có hình ảnh nào
                                 @endif
                             </div>
+                            <button type="button" class="btn btn-danger images-eraser" input-to-clear="post-thumbnail" holder-to-clear="holder" style="height: fit-content;">Bỏ ảnh</button>
                         </div>
                     </div>
                 </div>
@@ -106,7 +107,7 @@
                     <div class="p-5 flex flex-col gap-2">
                         <div>
                             <label for="content" class="form-label">Nội dung bài viết<span style="color: red;"> *</span></label>
-                            <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96">
+                            <textarea required id="content" name="content" placeholder="Nhập nội dung" class="h-96">
                                 {{ $post->content }}
                             </textarea>
                         </div>

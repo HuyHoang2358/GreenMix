@@ -30,7 +30,7 @@
             Thêm mới sản phẩm
         </h2>
     </div>
-    <form id="product-post" action="{{ route('admin.product.store') }}" method="POST">
+    <form id="product-post" action="{{ route('admin.product.store') }}" method="POST" class="required-form">
         @csrf
         <div class="intro-y box p-5 mt-5">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
@@ -79,7 +79,7 @@
                                 <div class="leading-relaxed text-slate-500 text-xs mt-3">Hình ảnh sẽ giúp bài đăng của bạn ấn tượng hơn</div>
                             </div>
                         </div>
-                        <div class="w-full flex flex-row gap-2">
+                        <div class="w-full flex flex-col gap-2">
                             <div class="flex-1">
                                 <div class="w-full mt-3 xl:mt-0 flex-1 flex gap-2">
                                     <span class="input-group-btn">
@@ -87,14 +87,17 @@
                                             <i class="fa fa-picture-o"></i> Chọn
                                         </a>
                                     </span>
-                                    <input id="image" readonly name="images" type="text" class="form-control flex-1 w-2" placeholder="Tải hình ảnh lên" required autofocus />
+                                    <input id="image" name="images" type="text" class="form-control flex-1 w-2 readonly" placeholder="Tải hình ảnh lên" required autofocus />
                                 </div>
                             </div>
 
-                            <div>
-                                <div>
-                                    <div id="holder" class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>
+                            <div class="flex flex-row gap-2 items-center">
+                                <div id="holder" class="flex flex-row gap-2 items-center">
+                                    <div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">
+                                        Chưa có hình ảnh xem trước
+                                    </div>
                                 </div>
+                                <button type="button" class="btn btn-danger images-eraser" input-to-clear="image" holder-to-clear="holder" style="height: fit-content;">Bỏ ảnh</button>
                             </div>
 
                         </div>
@@ -143,14 +146,15 @@
                                                 <i data-lucide="image"></i> Chọn
                                             </a>
                                         </span>
-                                        <input readonly id="add-post-thumbnail" class="form-control" type="text" name="post-thumbnail">
+                                        <input id="add-post-thumbnail" class="form-control readonly" type="text" name="post-thumbnail" placeholder="Thêm ảnh cho bài viết">
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <label for="holder" class="form-label">Hình ảnh xem trước</label>
-                                <div style="margin-top:15px;">
+                                <div style="margin-top:15px;" class="flex flex-row gap-2 items-center">
                                     <div id="add-post-holder" class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden">Chưa có hình ảnh nào</div>
+                                    <button type="button" class="btn btn-danger images-eraser" input-to-clear="add-post-thumbnail" holder-to-clear="add-post-holder" style="height: fit-content;">Bỏ ảnh</button>
                                 </div>
                             </div>
                         </div>
@@ -201,7 +205,7 @@
                             <div class="p-5 flex flex-col gap-2">
                                 <div>
                                     <label for="content" class="form-label">Nội dung bài viết<span style="color: red;"> *</span></label>
-                                    <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control"></textarea>
+                                    <textarea required id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control"></textarea>
                                 </div>
                             </div>
                         </div>

@@ -55,9 +55,9 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input id="name" name="name" type="text" class="form-control"
-                                placeholder="Nhập tên sản phẩm" required autofocus
-                                value="{{ $product->name }}">
-                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="name" max-characters="255">0</span>/255 ký tự
+                                placeholder="Nhập tên sản phẩm" required autofocus value="{{ $product->name }}">
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="name"
+                                    max-characters="255">0</span>/255 ký tự
                             </div>
                         </div>
                     </div>
@@ -74,9 +74,9 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input id="slug" name="slug" type="text" class="form-control"
-                                placeholder="Nhập slug sản phẩm" autofocus
-                                value="{{ $product->slug }}">
-                            <div class="form-help text-right">Tối đa <span id="number-character-slug" class="word-counter" input-to-count="slug" max-characters="100">0</span>/100 ký tự
+                                placeholder="Nhập slug sản phẩm" autofocus value="{{ $product->slug }}">
+                            <div class="form-help text-right">Tối đa <span id="number-character-slug" class="word-counter"
+                                    input-to-count="slug" max-characters="100">0</span>/100 ký tự
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                                     ấn tượng hơn</div>
                             </div>
                         </div>
-                        <div class="w-full flex flex-row gap-2">
+                        <div class="w-full flex flex-col gap-2">
                             <div class="flex-1">
                                 <div class="w-full mt-3 xl:mt-0 flex-1 flex gap-2">
                                     <span class="input-group-btn">
@@ -103,23 +103,25 @@
                                             <i class="fa fa-picture-o"></i> Chọn
                                         </a>
                                     </span>
-                                    <input id="image" readonly name="images" type="text"
+                                    <input id="images" readonly name="images" type="text"
                                         class="form-control flex-1 w-2" placeholder="Tải hình ảnh lên" required autofocus
-                                        value="{{ $product->images }}" />
+                                        value="{{ count($images) > 0 ? $product->images : '' }}" />
                                 </div>
                             </div>
 
-                            <div>
-                                <div>
-                                    <div id="holder"
-                                        class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">
-                                        @if ($product->images)
-                                            <img class="h-20 w-40" src="{{ asset($product->images) }}" alt="">
-                                        @else
+                            <div class="flex flex-row gap-2 items-center">
+                                <div id="holder" class="flex flex-row gap-2">
+                                    @if (count($images) > 0)
+                                        @foreach ($images as $image)
+                                            <img class="h-20 w-40 rounded" src="{{ asset($image) }}" alt="">
+                                        @endforeach
+                                    @else
+                                        <div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">
                                             Chưa có hình ảnh xem trước
-                                        @endif
-                                    </div>
+                                        </div>
+                                    @endif
                                 </div>
+                                <button type="button" class="btn btn-danger images-eraser" input-to-clear="images" holder-to-clear="holder" style="height: fit-content;">Bỏ ảnh</button>
                             </div>
 
                         </div>
@@ -139,8 +141,8 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <textarea id="recruitment-description" name="description" class="form-control h-64 resize-none" placeholder="Nhập mô tả"
-                                required autofocus>{{ $product->description }}</textarea>
+                            <textarea id="recruitment-description" name="description" class="form-control h-64 resize-none"
+                                placeholder="Nhập mô tả" required autofocus>{{ $product->description }}</textarea>
                         </div>
                     </div>
 
@@ -181,13 +183,13 @@
                                         </span>
                                         <input readonly id="add-post-thumbnail" class="form-control" type="text"
                                             name="post-thumbnail"
-                                            value="{{ $product->post ? $product->post->images : '' }}">
+                                            value="{{ $product->post ? $product->post->images : '' }}" placeholder="Thêm ảnh cho bài viết">
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <label for="holder" class="form-label">Hình ảnh xem trước</label>
-                                <div style="margin-top:15px;">
+                                <div style="margin-top:15px;" class="flex flex-row gap-2 items-center">
                                     <div id="add-post-holder"
                                         class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">
                                         @if ($product->post && $product->post->images)
@@ -197,6 +199,7 @@
                                             Chưa có hình ảnh xem trước
                                         @endif
                                     </div>
+                                    <button type="button" class="btn btn-danger images-eraser" input-to-clear="add-post-thumbnail" holder-to-clear="add-post-holder" style="height: fit-content;">Bỏ ảnh</button>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +265,7 @@
                                 <div>
                                     <label for="content" class="form-label">Nội dung bài viết<span style="color: red;">
                                             *</span></label>
-                                    <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ $product->post ? $product->post->content : '' }}</textarea>
+                                    <textarea required id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ $product->post ? $product->post->content : '' }}</textarea>
                                 </div>
                             </div>
                         </div>
