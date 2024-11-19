@@ -64,8 +64,8 @@
                             <input required id="title" name="title" type="text" class="form-control" placeholder="Nhập tiêu đề">
                         </div>
                         <div>
-                            <label for="slug" class="form-label">Slug bài viết<span style="color: red;"> *</span></label>
-                            <input required required id="slug" name="slug" type="text" class="form-control" placeholder="Nhập slug">
+                            <label for="slug" class="form-label">Slug bài viết</label>
+                            <input id="slug" name="slug" type="text" class="form-control" placeholder="Nhập slug">
                         </div>
                         <div>
                             <label for="description" class="form-label">Mô tả<span style="color: red;"> *</span></label>

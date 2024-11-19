@@ -74,8 +74,8 @@
                             <input required id="title" name="title" type="text" class="form-control" placeholder="Nhập tiêu đề" value="{{ $post->title }}">
                         </div>
                         <div>
-                            <label for="slug" class="form-label">Slug bài viết<span style="color: red;"> *</span></label>
-                            <input required required id="slug" name="slug" type="text" class="form-control" placeholder="Nhập slug" value="{{ $post->slug }}">
+                            <label for="slug" class="form-label">Slug bài viết</label>
+                            <input id="slug" name="slug" type="text" class="form-control" placeholder="Nhập slug" value="{{ $post->slug }}">
                         </div>
                         <div>
                             <label for="description" class="form-label">Mô tả<span style="color: red;"> *</span> </label>

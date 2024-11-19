@@ -222,14 +222,12 @@
                                         value="{{ $product->post ? $product->post->title : '' }}">
                                 </div>
                                 <div>
-                                    <label for="slug" class="form-label">Slug bài viết<span style="color: red;">
-                                            *</span></label>
+                                    <label for="slug" class="form-label">Slug bài viết</label>
                                     <input id="post-slug" name="post-slug" type="text" class="form-control"
                                         placeholder="Nhập slug" value="{{ $product->post ? $product->post->slug : '' }}">
                                 </div>
                                 <div>
-                                    <label for="description" class="form-label">Mô tả<span style="color: red;">
-                                            *</span></label>
+                                    <label for="description" class="form-label">Mô tả</label>
                                     <textarea id="post-description" class="form-control h-20" name="post-description" placeholder="Nhập mô tả"
                                         style="resize: none;">{{ $product->post ? $product->post->description : '' }}</textarea>
                                 </div>

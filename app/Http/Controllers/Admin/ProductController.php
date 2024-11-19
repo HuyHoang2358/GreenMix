@@ -108,7 +108,7 @@ class ProductController extends Controller
             $product = Product::findOrFail($id);
 
             $images = $request->input('images');
-            
+
             if ($images) {
                 $imageArray = explode(',', $images);
             } else {
@@ -118,7 +118,7 @@ class ProductController extends Controller
             $jsonEncodedImages = json_encode($imageArray);
 
             $product->name = $request->input('name');
-            $product->slug = $request->input('slug');
+            $product->slug = $request->input('slug') ?? Str::slug($request->input('name'));
             $product->description = $request->input('description');
             $product->images = $jsonEncodedImages;
 
@@ -130,7 +130,7 @@ class ProductController extends Controller
                     $post->title = $request->input('title');
                     $post->images = $request->input('post-thumbnail');
                     $post->name = $request->input('post-name');
-                    $post->slug = $request->input('post-slug');
+                    $post->slug = $request->input('post-slug') ?? Str::slug($request->input('post-name'));
                     $post->type_id = 4;
                     $post->description = $request->input('post-description');
                     $post->seo_title = $request->input('seo-title');
@@ -143,7 +143,7 @@ class ProductController extends Controller
                     $post = Post::create([
                         'name' => $request->input('post-name'),
                         'title' => $request->input('title'),
-                        'slug' => $request->input('post-slug'),
+                        'slug' => $request->input('post-slug') ?? Str::slug($request->input('post-name')),
                         'description' => $request->input('post-description'),
                         'content' => $request->input('content'),
                         'type_id' => 4,
