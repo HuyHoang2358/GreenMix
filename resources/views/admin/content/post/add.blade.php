@@ -97,7 +97,7 @@
                     <div class="p-5 flex flex-col gap-2">
                         <div>
                             <label for="content" class="form-label">Nội dung bài viết<span style="color: red;"> *</span></label>
-                            <textarea required id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control"></textarea>
+                            <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control"></textarea>
                         </div>
                     </div>
                 </div>

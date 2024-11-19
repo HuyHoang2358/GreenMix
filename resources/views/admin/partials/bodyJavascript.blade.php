@@ -68,15 +68,15 @@
             $('#postFields input[name="title"]').attr('required', 'required');
             $('#postFields input[name="post-slug"]').attr('required', 'required');
             $('#postFields input[name="post-description"]').attr('required', 'required');
-            $('#product-post').addClass('required-form');
+            $('#content').attr('required', 'required');
         } else {
             $('#postFields').removeClass('flex').addClass('hidden');
             $('#postFields input[name="post-thumbnail"]').removeAttr('required');;
             $('#postFields input[name="post-name"]').removeAttr('required');;
             $('#postFields input[name="title"]').removeAttr('required');;
             $('#postFields input[name="post-slug"]').removeAttr('required');;
-            $('#postFields input[name="post-description"]').removeAttr('required');;
-            $('#product-post').removeClass('required-form');
+            $('#postFields input[name="post-description"]').removeAttr('required');
+            $('#content').removeAttr('required');
         }
     });
     //end toggle post field on the product page

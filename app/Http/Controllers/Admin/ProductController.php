@@ -108,7 +108,13 @@ class ProductController extends Controller
             $product = Product::findOrFail($id);
 
             $images = $request->input('images');
-            $imageArray = explode(',', $images);
+            
+            if ($images) {
+                $imageArray = explode(',', $images);
+            } else {
+                $imageArray = [];
+            }
+
             $jsonEncodedImages = json_encode($imageArray);
 
             $product->name = $request->input('name');

@@ -98,13 +98,13 @@
                             <div class="flex-1">
                                 <div class="w-full mt-3 xl:mt-0 flex-1 flex gap-2">
                                     <span class="input-group-btn">
-                                        <a id="post-img-preview" data-input="image" data-preview="holder"
+                                        <a id="post-img-preview" data-input="images" data-preview="holder"
                                             class="btn btn-primary">
                                             <i class="fa fa-picture-o"></i> Chọn
                                         </a>
                                     </span>
-                                    <input id="images" readonly name="images" type="text"
-                                        class="form-control flex-1 w-2" placeholder="Tải hình ảnh lên" required autofocus
+                                    <input id="images" name="images" type="text"
+                                        class="form-control flex-1 w-2 readonly" placeholder="Tải hình ảnh lên" required autofocus
                                         value="{{ count($images) > 0 ? $product->images : '' }}" />
                                 </div>
                             </div>
