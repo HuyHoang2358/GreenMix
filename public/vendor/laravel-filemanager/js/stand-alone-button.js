@@ -10,7 +10,9 @@
       window.open(route_prefix + '?type=' + type, 'FileManager', 'width=900,height=600');
       window.SetUrl = function (items) {
         var file_path = items.map(function (item) {
-          return item.url;
+          //return item.url;
+          console.log("/storage/" + item.url.split("storage/")[1]);
+          return "/storage/" + item.url.split("storage/")[1];
         }).join(',');
 
         // set the value of the desired input to image url
@@ -22,7 +24,7 @@
         // set or change the preview image src
         items.forEach(function (item) {
           target_preview.append(
-            $('<img>').css('height', '5rem').attr('src', item.thumb_url)
+            $('<img>').css('height', '5rem').css('width', '10rem').attr('src', item.thumb_url)
           );
         });
 

@@ -66,11 +66,15 @@
                             <tr>
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>
-                                    <img class="h-10 w-full" src="{{ $product->images }}"
-                                        alt="post_{{ $product->name }}_image">
-                                </td>
                                 <td>{{ $product->slug }}</td>
+                                <td>
+                                    @if($product->images)
+                                        <img class="h-10 w-full" src="{{ asset($product->images) }}"
+                                        alt="post_{{ $product->name }}_image">
+                                    @else
+                                        <div>Chưa có hình ảnh</div>
+                                    @endif
+                                </td>
                                 <td>{!! $product->description !!}</td>
                                 <td>
                                     <div class="">

@@ -8,7 +8,7 @@
                     <input type="hidden" id="del-product-id" name="del-product-id">
                     <div class="text-3xl mt-5">Bạn chắc chứ?</div>
                     <div class="text-slate-500 mt-2">
-                        Bạn có muốn xóa sản phẩm "<span id="del-product-name"></span>" khỏi bảng ghi? 
+                        Bạn có muốn xóa sản phẩm "<span id="del-product-name"></span>" và bài viết liên quan khỏi bảng ghi? 
                         <br>
                         Hành động này sẽ không thể hoàn tác.
                     </div>

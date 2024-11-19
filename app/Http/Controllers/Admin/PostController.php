@@ -18,6 +18,7 @@ class PostController extends Controller
         'knowledge' => 1,
         'recruitment' => 3,
         'news' => 2,
+        'product' => 4
     ];
 
     public function index($type): Factory|Application|View

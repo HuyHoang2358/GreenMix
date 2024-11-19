@@ -43,44 +43,5 @@
         }
     };
 
-    tinymce.init({
-            selector: '#post-description',
-            toolbar: false,
-            menubar: false,
-            resize: false,
-     });
-
-    tinymce.init({
-        selector: '#seo-description',
-        height: 270,
-        toolbar: false,
-        menubar: false,
-        resize: false,
-    });
-
-    tinymce.init({
-        selector: '#recruitment-description',
-        height: 250,
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        menubar: false,
-        resize: false,
-    });
-
-    tinymce.init({
-        selector: '#recruitment-requirement',
-        height: 250,
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        menubar: false,
-        resize: false,
-    });
-
-    tinymce.init({
-        selector: '#recruitment-benefit',
-        height: 250,
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        menubar: false,
-        resize: false,
-    });
-
     tinymce.init(editor_config);
 </script>

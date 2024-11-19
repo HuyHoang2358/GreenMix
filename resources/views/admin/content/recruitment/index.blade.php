@@ -55,7 +55,9 @@
                             <th class="whitespace-nowrap">#</th>
                             <th class="whitespace-nowrap">Tên</th>
                             <th class="whitespace-nowrap">Thời gian</th>
-                            <th class="whitespace-nowrap">Danh mục</th>
+                            <th class="whitespace-nowrap">Địa chỉ</th>
+                            <th class="whitespace-nowrap">Số lượng</th>
+                            <th class="whitespace-nowrap">Trạng thái</th>
                             <th class="whitespace-nowrap">Hành động</th>
                         </tr>
                     </thead>
@@ -75,16 +77,22 @@
                                                     Ngày kết thúc: {{ $recruitment->end_date }}
                                                 </div>
                                             </div>
-                                            <div>
-                                                @if (Carbon::parse($recruitment->end_date)->isPast())
-                                                    <div
-                                                        class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Đã
-                                                        hết thời gian tuyển dụng</div>
-                                                @endif
-                                            </div>
                                         </div>
                                     </td>
-                                    <td>{{ $recruitment->category->name }}</td>
+                                    <td>{{ $recruitment->address }}</td>
+                                    <td>{{ $recruitment->num_people }}</td>
+                                    <td>
+                                        @if (Carbon::parse($recruitment->end_date)->isPast())
+                                            <span
+                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md w-fit">
+                                                Đã
+                                                hết thời gian tuyển dụng</span>
+                                        @else
+                                            <span
+                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md w-fit">
+                                                Đang tuyển dụng</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="">
                                             <a href="{{ route('admin.recruitment.edit', ['id' => $recruitment->id]) }}"

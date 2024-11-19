@@ -53,7 +53,6 @@ class AccountController extends Controller
             $user = User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'email_verified_at' => $request->input('email-verified'),
                 'password' => bcrypt($request->input('password')),
             ]);
 
@@ -115,7 +114,6 @@ class AccountController extends Controller
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->email_verified_at = $request->input('email-verified');
 
         if($request->filled('password')){
 

@@ -12,7 +12,7 @@
     </nav>
 @endsection
 @section('content')
-    
+    @include('admin.partials.action_alerts')
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible show flex items-center mb-2 fixed right-60" style="z-index: 9999; top: 6.75rem;">
             <ul>
@@ -35,7 +35,6 @@
         <div class="intro-y box p-5 mt-5">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                 <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                    <i data-lucide="chevron-down"></i>
                     Thông tin tài khoản
                 </div>
                 <div class="mt-5">
@@ -43,15 +42,15 @@
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
                                 <div class="flex items-center">
-                                    <div class="font-medium">Tên tài khoản</div>
+                                    <div class="font-medium">Họ và tên</div>
                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
                                 <div class="leading-relaxed text-slate-500 text-xs mt-3"> Tên tài khoản không được để trống</div>
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="name" name="name" type="text" class="form-control" placeholder="Nhập tên danh mục" required autofocus>
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <input id="name" name="name" type="text" class="form-control" placeholder="Nhập họ và tên" required autofocus>
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="name" max-characters="100">0</span>/100 ký tự</div>
                         </div>
                     </div>
 
@@ -67,23 +66,7 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input required id="email" name="email" type="email" class="form-control" placeholder="Nhập email của tài khoản">
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
-                        </div>
-                    </div>
-
-                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                        <div class="form-label xl:w-64 xl:!mr-10">
-                            <div class="text-left">
-                                <div class="flex items-center">
-                                    <div class="font-medium">Email xác thực</div>
-                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Không bắt buộc</div>
-                                </div>
-                                <div class="leading-relaxed text-slate-500 text-xs mt-3"> Bạn có thể để trống ô này</div>
-                            </div>
-                        </div>
-                        <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="email-verified" name="email-verified" type="email" class="form-control" placeholder="Nhập email xác thực của tài khoản">
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="email" max-characters="100">0</span>/100 ký tự</div>
                         </div>
                     </div>
 
@@ -97,8 +80,10 @@
                                 <div class="leading-relaxed text-slate-500 text-xs mt-3">Nhập mật khẩu, tối thiểu 8 ký tự</div>
                             </div>
                         </div>
-                        <div class="w-full mt-3 xl:mt-0 flex-1">
+                        <div class="w-full mt-3 xl:mt-0 flex-1 relative perfect-sight">
                             <input required id="password" name="password" type="password" class="form-control" placeholder="Nhập mật khẩu của tài khoản">
+                            <i class="absolute toggle-password-on hidden" style="top: 19%; right: 1%; cursor: pointer;" data-lucide="eye"></i>
+                            <i class="absolute toggle-password-off hidden" style="top: 19%; right: 1%; cursor: pointer;" data-lucide="eye-off"></i>
                         </div>
                     </div>
 
@@ -106,14 +91,19 @@
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
                                 <div class="flex items-center">
-                                    <div class="font-medium">Xác nhận mật khẩu</div>
+                                    <div class="font-medium">Nhập lại mật khẩu</div>
                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
                                 <div class="leading-relaxed text-slate-500 text-xs mt-3">Nhập lại mật khẩu của bạn</div>
                             </div>
                         </div>
-                        <div class="w-full mt-3 xl:mt-0 flex-1">
+                        {{-- <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input required id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Xác nhận mật khẩu của tài khoản">
+                        </div> --}}
+                        <div class="w-full mt-3 xl:mt-0 flex-1 relative perfect-sight">
+                            <input required id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Xác nhận mật khẩu của tài khoản">
+                            <i class="absolute toggle-password-on hidden" style="top: 19%; right: 1%; cursor: pointer;" data-lucide="eye"></i>
+                            <i class="absolute toggle-password-off hidden" style="top: 19%; right: 1%; cursor: pointer;" data-lucide="eye-off"></i>
                         </div>
                     </div>
 
