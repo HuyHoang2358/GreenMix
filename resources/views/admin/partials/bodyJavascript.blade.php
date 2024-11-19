@@ -43,6 +43,7 @@
 
     // });
 
+    // check recruitment-form fields condition before submitting
     $('#recruitment-form').on('submit', function(e) {
         var startDate = new Date($('#start_date').val());
         var endDate = new Date($('#end_date').val());
@@ -154,9 +155,11 @@
             var holder = $('#' + $(this).attr('holder-to-clear'));
             holder.find('img').remove();
 
-            holder.append(
-                '<div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>'
-            );
+            if (holder.children().length === 0) {
+                holder.append(
+                    '<div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>'
+                );
+            }
         });
         //end image eraser button
 
