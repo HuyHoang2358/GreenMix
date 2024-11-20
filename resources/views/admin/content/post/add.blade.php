@@ -7,7 +7,7 @@
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.category.index', $type) }}">
-                Thêm mới bài viết {{ $type == 'news' ? 'tin tức' : ($type == 'knowledge' ? 'kiến thức' : 'tuyển dụng') }}</a>
+                Thêm mới bài viết {{ $type == 'news' ? 'tin tức' : ($type == 'knowledge' ? 'kiến thức' : ($type == 'product' ? 'sản phẩm' : 'tuyển dụng')) }}</a>
             </li>
         </ol>
     </nav>
@@ -15,36 +15,39 @@
 @section('content')
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Thêm mới {{ $type == 'news' ? 'bài viết tin tức' : ($type == 'knowledge' ? 'bài viết kiến thức' : 'bài viết tuyển dụng') }}
+            Thêm mới {{ $type == 'news' ? 'bài viết tin tức' : ($type == 'knowledge' ? 'bài viết kiến thức' : ($type == 'product' ? 'bài viết sản phẩm' : 'bài viết tuyển dụng')) }}
         </h2>
     </div>
     <!-- BEGIN: HTML Table Data -->
     <div class="intro-y col-span-12 lg:col-span-12 mt-2">
-        <form method="POST" action="{{ route('admin.post.store', $type) }}" class="overflow-x-auto flex flex-col mt-2">
+        <form method="POST" action="{{ route('admin.post.store', $type) }}" class="overflow-x-auto flex flex-col mt-2 required-form">
             @csrf
             {{-- BEGIN --}}
             <div class="intro-y box">
                 <div id="input" class="p-5 grid grid-cols-2 gap-5">
                     <div class="preview flex flex-col gap-2">
                         <div>
-                            <label for="title" class="form-label">Loại bài viết</label>
-                            <input readonly required id="title" name="title" type="text" class="form-control" value="{{ $type == 'news' ? 'Tin tức' : ($type == 'knowledge' ? 'Kiến thức' : 'Tuyển dụng') }}">
+                            <label for="type" class="form-label">Loại bài viết<span style="color: red;"> *</span></label>
+                            <input readonly required id="type" name="type" type="text" class="form-control" value="{{ $type == 'news' ? 'Tin tức' : ($type == 'knowledge' ? 'Kiến thức' : ($type == 'product' ? 'Sản phẩm' : 'Tuyển dụng')) }}">
                         </div>
                         <div>
-                            <label for="image" class="form-label">Hình ảnh</label>
+                            <label for="image" class="form-label">Hình ảnh<span style="color: red;"> *</span></label>
                             <div id="image" class="input-group flex gap-2">
                                 <span class="input-group-btn">
-                                    <a id="post-img-preview" data-input="post-thumbnail" data-preview="holder" class="btn btn-primary">
-                                        <i class="fa fa-picture-o"></i> Chọn
+                                    <a id="post-img-preview" data-input="post-thumbnail" data-preview="holder" class="btn btn-primary flex gap-1">
+                                        <i data-lucide="image"></i> Chọn
                                     </a>
                                 </span>
-                                <input required readonly id="post-thumbnail" class="form-control" type="text" name="post-thumbnail">
+                                <input required id="post-thumbnail" class="form-control readonly" type="text" name="post-thumbnail" placeholder="Thêm hình ảnh cho bài viết">
                             </div>
                         </div>
                     </div>
                     <div>
                         <label for="holder" class="form-label">Hình ảnh xem trước</label>
-                        <div id="holder" style="margin-top:15px;"></div>
+                        <div style="margin-top:15px;" class="flex flex-row gap-2 items-center">
+                            <div id="holder" class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden">Chưa có hình ảnh nào</div>
+                            <button type="button" class="btn btn-danger images-eraser" input-to-clear="post-thumbnail" holder-to-clear="holder" style="height: fit-content;">Bỏ ảnh</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,21 +56,20 @@
                 <div class="intro-y box">
                     <div class="p-5 flex flex-col gap-2">
                         <div>
-                            <label for="name" class="form-label">Tên bài viết</label>
+                            <label for="name" class="form-label">Tên bài viết<span style="color: red;"> *</span></label>
                             <input required id="name" name="name" type="text" class="form-control" placeholder="Nhập tên">
                         </div>
                         <div>
-                            <label for="title" class="form-label">Tiêu đề bài viết</label>
+                            <label for="title" class="form-label">Tiêu đề bài viết <span style="color: red;"> *</span></label>
                             <input required id="title" name="title" type="text" class="form-control" placeholder="Nhập tiêu đề">
                         </div>
                         <div>
                             <label for="slug" class="form-label">Slug bài viết</label>
-                            <input required required id="slug" name="slug" type="text" class="form-control" placeholder="Nhập slug">
+                            <input id="slug" name="slug" type="text" class="form-control" placeholder="Nhập slug">
                         </div>
                         <div>
-                            <label for="description" class="form-label">Mô tả </label>
-                            <textarea required id="post-description" name="post-description" placeholder="Nhập mô tả">
-                            </textarea>
+                            <label for="description" class="form-label">Mô tả<span style="color: red;"> *</span></label>
+                            <textarea required id="post-description" class="form-control h-20" name="post-description" placeholder="Nhập mô tả" style="resize: none;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -75,16 +77,15 @@
                     <div class="p-5 flex flex-col gap-2">
                         <div>
                             <label for="seo-title" class="form-label">Tiêu đề SEO</label>
-                            <input required id="seo-title" name="seo-title" type="text" class="form-control" placeholder="Nhập tiêu đề seo">
+                            <input id="seo-title" name="seo-title" type="text" class="form-control" placeholder="Nhập tiêu đề seo">
                         </div>
                         <div>
                             <label for="seo-keyword" class="form-label">Từ khóa SEO</label>
-                            <input required id="seo-keyword" name="seo-keyword" type="text" class="form-control" placeholder="Nhập slug">
+                            <input id="seo-keyword" name="seo-keyword" type="text" class="form-control" placeholder="Nhập slug">
                         </div>
                         <div>
                             <label for="seo-description" class="form-label">Mô tả SEO</label>
-                            <textarea required id="seo-description" name="seo-description" placeholder="Nhập mô tả">
-                            </textarea>
+                            <textarea id="seo-description" class="form-control h-40" name="seo-description" placeholder="Nhập mô tả" style="resize: none;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -95,9 +96,8 @@
                 <div class="intro-y box">
                     <div class="p-5 flex flex-col gap-2">
                         <div>
-                            <label for="content" class="form-label">Nội dung bài viết</label>
-                            <textarea required id="content" name="content" placeholder="Nhập nội dung" class="h-96">
-                            </textarea>
+                            <label for="content" class="form-label">Nội dung bài viết<span style="color: red;"> *</span></label>
+                            <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control"></textarea>
                         </div>
                     </div>
                 </div>

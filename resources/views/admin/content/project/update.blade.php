@@ -51,7 +51,7 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input id="name" name="name" type="text" class="form-control" placeholder="Nhập tên tên dự án" required autofocus value="{{ $project->name }}">
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="name" max-characters="100">0</span>/100 ký tự</div>
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input id="address" name="address" type="text" class="form-control" placeholder="Nhập địa chỉ" required autofocus value="{{ $project->address }}">
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="address" max-characters="200">0</span>/200 ký tự</div>
                         </div>
                     </div>
 
@@ -81,21 +81,28 @@
                                 <div class="leading-relaxed text-slate-500 text-xs mt-3">Hình ảnh sẽ giúp bài đăng của bạn ấn tượng hơn</div>
                             </div>
                         </div>
-                        <div class="w-full flex flex-col gap-2">
-                            <div class="w-full mt-3 xl:mt-0 flex-1 flex gap-2">
-                                <span class="input-group-btn">
-                                    <a id="post-img-preview" data-input="image" data-preview="holder" class="btn btn-primary">
-                                        <i class="fa fa-picture-o"></i> Chọn
-                                    </a>
-                                </span>
-                                <input id="image" readonly name="image" type="text" class="form-control flex-1 w-2" placeholder="Tải hình ảnh lên" required autofocus value="{{ $project->image }}">
+                        <div class="w-full flex flex-row gap-2">
+                            <div class="flex-1">
+                                <div class="w-full mt-3 xl:mt-0 flex-1 flex gap-2">
+                                    <span class="input-group-btn">
+                                        <a id="post-img-preview" data-input="image" data-preview="holder" class="btn btn-primary">
+                                            <i class="fa fa-picture-o"></i> Chọn
+                                        </a>
+                                    </span>
+                                    <input id="image" name="image" type="text" class="form-control flex-1 w-2 readonly" placeholder="Tải hình ảnh lên" required autofocus value="{{ $project->image }}">
+                                </div>
                             </div>
+
                             <div>
-                                <label for="holder" class="form-label">Hình ảnh xem trước</label>
-                                <div id="holder" style="margin-top:15px;">
-                                    @if($project->image)
-                                        <img class="h-20 w-fit" src="{{ $project->image }}" alt="">
-                                    @endif
+                                <div class="flex flex-row gap-2 items-center">
+                                    <div id="holder" class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">
+                                        @if($project->image)
+                                            <img class="h-20 w-40" src="{{ asset($project->image) }}" alt="">
+                                        @else
+                                            Chưa có hình ảnh xem trước
+                                        @endif
+                                    </div>
+                                    <button type="button" class="btn btn-danger images-eraser" input-to-clear="image" holder-to-clear="holder" style="height: fit-content;">Bỏ ảnh</button>
                                 </div>
                             </div>
                         </div>

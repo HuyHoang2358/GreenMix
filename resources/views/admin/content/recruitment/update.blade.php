@@ -43,15 +43,15 @@
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
                                 <div class="flex items-center">
-                                    <div class="font-medium">Tên vị trí</div>
+                                    <div class="font-medium">Vị trí tuyển dụng</div>
                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
-                                <div class="leading-relaxed text-slate-500 text-xs mt-3"> Tên vị trí không được để trống</div>
+                                <div class="leading-relaxed text-slate-500 text-xs mt-3">Vị trí tuyển dụng không được để trống</div>
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="name" name="name" type="text" class="form-control" placeholder="Nhập tên tên dự án" required autofocus value="{{ $recruitment->name }}">
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <input id="name" name="name" type="text" class="form-control" placeholder="Nhập vị trí tuyển dụng" required autofocus value="{{ $recruitment->name }}">
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="name" max-characters="100">0</span>/100 ký tự</div>
                         </div>
                     </div>
 
@@ -59,7 +59,7 @@
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
                                 <div class="flex items-center">
-                                    <div class="font-medium">Ngày bắt đầu</div>
+                                    <div class="font-medium">Ngày tiếp nhận hồ sơ</div>
                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
                                 <div class="leading-relaxed text-slate-500 text-xs mt-3"> Ngày bắt đầu tuyển dụng</div>
@@ -74,7 +74,7 @@
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
                                 <div class="flex items-center">
-                                    <div class="font-medium">Ngày kết thúc</div>
+                                    <div class="font-medium">Hạn cuối tiếp nhận hồ sơ</div>
                                 </div>
                                 <div class="leading-relaxed text-slate-500 text-xs mt-3"> Ngày kết thúc tuyển dụng</div>
                             </div>
@@ -89,7 +89,7 @@
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
                                 <div class="flex items-center">
-                                    <div class="font-medium">Danh mục</div>
+                                    <div class="font-medium">Nhóm công việc</div>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
                                 <div class="flex items-center">
-                                    <div class="font-medium">Địa chỉ</div>
+                                    <div class="font-medium">Địa chỉ tuyển dụng</div>
                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
                                 <div class="leading-relaxed text-slate-500 text-xs mt-3">Địa chỉ tuyển dụng không được để trống</div>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input id="address" name="address" type="text" class="form-control" placeholder="Nhập địa chỉ" required autofocus value="{{ $recruitment->address }}">
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="address" max-characters="200">0</span>/200 ký tự</div>
                         </div>
                     </div>
 
@@ -120,7 +120,7 @@
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
                                 <div class="flex items-center">
-                                    <div class="font-medium">Số lượng</div>
+                                    <div class="font-medium">Số lượng nhân sự</div>
                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
                                 <div class="leading-relaxed text-slate-500 text-xs mt-3">Số lượng người cần tuyển phải lớn hơn 0</div>
@@ -142,9 +142,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <textarea id="recruitment-description" name="description" class="form-control" placeholder="Nhập mô tả" required autofocus>
-                                {{ $recruitment->description }}
-                            </textarea>
+                            <textarea id="recruitment-description" name="description" class="form-control  h-64 resize-none" placeholder="Nhập mô tả" required autofocus>{{ $recruitment->description }}</textarea>
                         </div>
                     </div>
 
@@ -159,9 +157,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <textarea id="recruitment-requirement" name="requirements" class="form-control" placeholder="Nhập yêu cầu" required autofocus>
-                                {{ $recruitment->requirements }}
-                            </textarea>
+                            <textarea id="recruitment-requirement" name="requirements" class="form-control  h-64 resize-none" placeholder="Nhập yêu cầu" required autofocus>{{ $recruitment->requirements }}</textarea>
                         </div>
                     </div>
 
@@ -176,9 +172,22 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <textarea id="recruitment-benefit" name="benefit" class="form-control" placeholder="Nhập quyền lợi" required autofocus>
-                                {{ $recruitment->benefit }}
-                            </textarea>
+                            <textarea id="recruitment-benefit" name="benefit" class="form-control  h-64 resize-none" placeholder="Nhập quyền lợi" required autofocus value>{{ $recruitment->benefit }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                        <div class="form-label xl:w-64 xl:!mr-10">
+                            <div class="text-left">
+                                <div class="flex items-center">
+                                    <div class="font-medium">Nội dung</div>
+                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Không bắt buộc</div>
+                                </div>
+                                <div class="leading-relaxed text-slate-500 text-xs mt-3">Cung cấp thông tin khác cho người ứng tuyển</div>
+                            </div>
+                        </div>
+                        <div class="w-full mt-3 xl:mt-0 flex-1">
+                            <textarea id="recruit-content" name="content" class="form-control h-64 resize-none" placeholder="Nhập nội dung" autofocus>{{ $recruitment->content }}</textarea>
                         </div>
                     </div>
 

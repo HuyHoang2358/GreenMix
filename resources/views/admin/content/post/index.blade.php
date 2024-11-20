@@ -69,7 +69,7 @@
                                 <tr>
                                     <td>{{ $post->id }}</td>
                                     <td>
-                                        <img class="h-10 w-full" src="{{ $post->images }}"
+                                        <img class="h-20 w-40 rounded" src="{{ asset($post->images) }}"
                                             alt="post_{{ $post->title }}_image">
                                     </td>
                                     <td>{{ $post->name }}</td>

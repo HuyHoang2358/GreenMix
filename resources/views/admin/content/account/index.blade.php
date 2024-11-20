@@ -7,13 +7,12 @@
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.account.index') }}">
-                   Quản lý tài khoản</a>
+                    Quản lý tài khoản</a>
             </li>
         </ol>
     </nav>
 @endsection
 @section('content')
-
     @include('admin.partials.action_alerts')
     @include('admin.content.account.delete')
 
@@ -53,7 +52,7 @@
                             <th class="whitespace-nowrap">#</th>
                             <th class="whitespace-nowrap">Tên</th>
                             <th class="whitespace-nowrap">Email</th>
-                            <th class="whitespace-nowrap">Email xác thực</th>
+                            <th class="whitespace-nowrap">Trạng thái</th>
                             <th class="whitespace-nowrap">Thao tác</th>
                         </tr>
                     </thead>
@@ -63,29 +62,35 @@
                                 <td>{{ $account->id }}</td>
                                 <td>{{ $account->name }}</td>
                                 <td>{{ $account->email }}</td>
-                                <td>{{ $account->email_verified_at }}</td>
                                 <td>
+                                    @if ($account->id == 1)
+                                        <span
+                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Tài
+                                            khoản mặc định</span>
+                                    @endif
+
+                                    @if ($account->id == $current_user_id)
+                                        <span
+                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Tài
+                                            khoản hiện tại</span>
+                                    @endif
+                                </td>
+                                <td style="width: fit-content;">
                                     <div class="">
                                         <a href="{{ route('admin.account.edit', ['id' => $account->id]) }}" class="mr-1">
-                                            <button class="btn btn-primary mr-1 mb-2"> 
-                                                <i data-lucide="edit" class="w-5 h-5"></i> 
+                                            <button class="btn btn-primary mr-1 mb-2">
+                                                <i data-lucide="edit" class="w-5 h-5"></i>
                                             </button>
                                         </a>
 
-                                        @if($account->id != 1 && $account->id != $current_user_id)
+                                        @if ($account->id != 1 && $account->id != $current_user_id)
                                             <a class="mr-1">
-                                                <button data-tw-toggle="modal" data-tw-target="#delete-account-form" class="btn btn-danger mr-1 mb-2" onclick='getAccountForDelete("{{ $account->name }}", {{ $account->id }})'>
-                                                    <i data-lucide="trash" class="w-5 h-5"></i> 
-                                                </button> 
+                                                <button data-tw-toggle="modal" data-tw-target="#delete-account-form"
+                                                    class="btn btn-danger mr-1 mb-2"
+                                                    onclick='getAccountForDelete("{{ $account->name }}", {{ $account->id }})'>
+                                                    <i data-lucide="trash" class="w-5 h-5"></i>
+                                                </button>
                                             </a>
-                                        @endif
-
-                                        @if($account->id == 1)
-                                            <span class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Tài khoản mặc định</span>
-                                        @endif
-
-                                        @if($account->id == $current_user_id)
-                                            <span class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Tài khoản hiện tại</span>
                                         @endif
 
                                     </div>
@@ -99,12 +104,9 @@
     </div>
 
     <script>
-
-        function getAccountForDelete(name, id){
-                document.getElementById('del-account-name').textContent = name;
-                document.getElementById('del-account-id').value = id;
+        function getAccountForDelete(name, id) {
+            document.getElementById('del-account-name').textContent = name;
+            document.getElementById('del-account-id').value = id;
         }
-    
     </script>
-
 @endsection

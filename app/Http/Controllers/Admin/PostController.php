@@ -10,6 +10,7 @@ use Illuminate\Foundation\Application;
 use App\Models\Post;
 use App\Models\News;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -18,6 +19,7 @@ class PostController extends Controller
         'knowledge' => 1,
         'recruitment' => 3,
         'news' => 2,
+        'product' => 4
     ];
 
     public function index($type): Factory|Application|View
@@ -56,7 +58,7 @@ class PostController extends Controller
             $post = Post::create([
                 'name' => $request->input('name'),
                 'title' => $request->input('title'),
-                'slug' => $request->input('slug'),
+                'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
                 'description' => $request->input('post-description'),
                 'content' => $request->input('content'),
                 'type_id' => $type_id,
@@ -73,7 +75,7 @@ class PostController extends Controller
             if($type == 'news'){
                 $news = News::create([
                     'name' => $request->input('name'),
-                    'slug' => $request->input('slug'),
+                    'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
                     // 'category_id' => $request->input('category'),
                     'post_id' => $post->id,
                 ]);
@@ -117,7 +119,7 @@ class PostController extends Controller
             $post->title = $request->input('title');
             $post->images = $request->input('post-thumbnail');
             $post->name = $request->input('name');
-            $post->slug = $request->input('slug');
+            $post->slug = $request->input('slug') ?? Str::slug($request->input('name'));
             $post->type_id = $type_id;
             $post->description = $request->input('post-description');
             $post->seo_title = $request->input('seo-title');

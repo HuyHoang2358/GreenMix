@@ -1,6 +1,5 @@
 <script src="https://cdn.tiny.cloud/1/af6s904lyfpr5w3pids1ap9ei06381sfv7ne6e6eju3fpwis/tinymce/5/tinymce.min.js"
-        referrerpolicy="origin">
-</script>
+    referrerpolicy="origin"></script>
 
 <script>
     var editor_config = {
@@ -9,6 +8,11 @@
         resize: false,
         height: 500,
         relative_urls: false,
+        setup: function(editor) {
+            editor.on('change', function() {
+                tinymce.triggerSave();
+            });
+        },
         plugins: [
             "advlist autolink lists link image charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars code fullscreen",
@@ -42,45 +46,6 @@
             });
         }
     };
-
-    tinymce.init({
-            selector: '#post-description',
-            toolbar: false,
-            menubar: false,
-            resize: false,
-     });
-
-    tinymce.init({
-        selector: '#seo-description',
-        height: 270,
-        toolbar: false,
-        menubar: false,
-        resize: false,
-    });
-
-    tinymce.init({
-        selector: '#recruitment-description',
-        height: 250,
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        menubar: false,
-        resize: false,
-    });
-
-    tinymce.init({
-        selector: '#recruitment-requirement',
-        height: 250,
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        menubar: false,
-        resize: false,
-    });
-
-    tinymce.init({
-        selector: '#recruitment-benefit',
-        height: 250,
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        menubar: false,
-        resize: false,
-    });
 
     tinymce.init(editor_config);
 </script>

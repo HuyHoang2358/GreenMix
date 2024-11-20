@@ -38,7 +38,7 @@
                                 <td>{{$key + 1}}</td>
                                 <td>{{$partner -> name}}</td>
                                 <td>
-                                    <img class="max-w-32" src="{{$partner -> logo}}" alt="">
+                                    <img class="max-w-32" src="{{ asset($partner->logo)}}" alt="">
                                 </td>
                                 <td>{{$partner -> url}}</td>
                                 <td>{{$partner -> order}}</td>
