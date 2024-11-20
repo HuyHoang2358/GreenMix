@@ -13,8 +13,10 @@
                         <br>
                         Hành động này sẽ không thể hoàn tác.
                     </div>
-                    <div class="px-5">
+                    <div class="px-5 relative perfect-sight">
                         <input required id="password" name="password" type="password" class="form-control mt-2" placeholder="Nhập mật khẩu hiện tại để tiếp tục">
+                        <i class="absolute toggle-password-on hidden" style="top: 30%; right: 6%; cursor: pointer;" data-lucide="eye"></i>
+                        <i class="absolute toggle-password-off hidden" style="top: 30%; right: 6%; cursor: pointer;" data-lucide="eye-off"></i>
                     </div>
                 </div>
                 <div class="px-5 pb-8 text-center">

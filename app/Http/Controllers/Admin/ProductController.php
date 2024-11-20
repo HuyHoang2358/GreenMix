@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
 use App\Models\Product;
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -25,61 +26,150 @@ class ProductController extends Controller
 
     public function create(){
 
-        $posts = Post::all();
-
         return view('admin.content.product.add',  [
             'page' => 'product-manager', // dùng để active menu
-            'posts' => $posts
         ]);
 
     }
 
     public function store(Request $request){
 
+        DB::beginTransaction();
+
         try {
+            
+            $images = $request->input('images');
+
+            if ($images) {
+                $imageArray = explode(',', $images);
+            } else {
+                $imageArray = [];
+            }
+
+            $jsonEncodedImages = json_encode($imageArray);
 
             $product = Product::create([
                 'name' => $request->input('name'),
                 'slug' => $request->input('slug'),
                 'description' => $request->input('description'),
-                'post_id' => $request->input('post_id'),
-                'images' => $request->input('images'), 
+                'images' => $jsonEncodedImages, 
             ]);
 
+            if($request->input('togglePostFields')){
+
+                $post = Post::create([
+                    'name' => $request->input('post-name'),
+                    'title' => $request->input('title'),
+                    'slug' => $request->input('post-slug'),
+                    'description' => $request->input('post-description'),
+                    'content' => $request->input('content'),
+                    'type_id' => 4,
+                    'images' => $request->input('post-thumbnail'), 
+                    'seo_keyword' => $request->input('seo-keyword'),
+                    'seo_title' => $request->input('seo-title'),
+                    'seo_description' => $request->input('seo-description')
+                ]);
+
+                $product->post_id = $post->id;
+
+            }
+
+            DB::commit();
 
             return redirect()->route('admin.product.index')->with('success', 'Thêm mới sản phẩm thành công.');
             
         } catch (\Exception $e) 
         {       
-                return redirect()->route('admin.product.index')->with('error', 'Thêm mới sản phẩm thất bại: ' . $e->getMessage());
+            DB::rollBack();
+            return redirect()->route('admin.product.index')->with('error', 'Thêm mới sản phẩm thất bại: ' . $e->getMessage());
         }
 
     }
 
     public function edit($id){
 
-        $product = Product::findOrFail($id);
-        $posts = Post::all();
+        $product = Product::with('post')->findOrFail($id);
+        $decodedImages = json_decode($product->images, true);
 
         return view('admin.content.product.update', [
             'page' => 'product-manager', 
             'product' => $product,
-            'posts' => $posts
+            'images' => $decodedImages,
         ]);
 
     }
 
     public function update(Request $request, $id){
 
+        // dd($request->all());
+
         try {
 
             $product = Product::findOrFail($id);
 
+            $images = $request->input('images');
+
+            if ($images) {
+                $imageArray = explode(',', $images);
+            } else {
+                $imageArray = [];
+            }
+
+            $jsonEncodedImages = json_encode($imageArray);
+
             $product->name = $request->input('name');
-            $product->slug = $request->input('slug');
+            $product->slug = $request->input('slug') ?? Str::slug($request->input('name'));
             $product->description = $request->input('description');
-            $product->post_id = $request->input('post_id');
-            $product->images = $request->input('images');
+            $product->images = $jsonEncodedImages;
+
+            if($request->input('togglePostFields')){
+
+                $post = Post::find($product->post_id);
+
+                if($post){
+                    $post->title = $request->input('title');
+                    $post->images = $request->input('post-thumbnail');
+                    $post->name = $request->input('post-name');
+                    $post->slug = $request->input('post-slug') ?? Str::slug($request->input('post-name'));
+                    $post->type_id = 4;
+                    $post->description = $request->input('post-description');
+                    $post->seo_title = $request->input('seo-title');
+                    $post->seo_keyword = $request->input('seo-keyword');
+                    $post->seo_description = $request->input('seo-description');
+                    $post->content = $request->input('content');    
+                } else{
+                    DB::beginTransaction();
+
+                    $post = Post::create([
+                        'name' => $request->input('post-name'),
+                        'title' => $request->input('title'),
+                        'slug' => $request->input('post-slug') ?? Str::slug($request->input('post-name')),
+                        'description' => $request->input('post-description'),
+                        'content' => $request->input('content'),
+                        'type_id' => 4,
+                        'images' => $request->input('post-thumbnail'), 
+                        'seo_keyword' => $request->input('seo-keyword'),
+                        'seo_title' => $request->input('seo-title'),
+                        'seo_description' => $request->input('seo-description')
+                    ]);
+    
+                    $product->post_id = $post->id;
+
+                    DB::commit();
+
+                }
+                
+
+            } else {
+
+                if($product->post_id){
+                    $post = Post::findOrFail($product->post_id);
+                    $product->post_id = null;
+                    $product->save();
+                    $post->delete();
+                }
+            
+            }
 
             $product->save();
 
@@ -87,7 +177,8 @@ class ProductController extends Controller
             
         } catch (\Exception $e) 
         {       
-                return redirect()->route('admin.product.index')->with('error', 'Cập nhật sản phẩm thất bại: ' . $e->getMessage());
+            DB::rollBack();
+            return redirect()->route('admin.product.index')->with('error', 'Cập nhật sản phẩm thất bại: ' . $e->getMessage());
         }
 
     }

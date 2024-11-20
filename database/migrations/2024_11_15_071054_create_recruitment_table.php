@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longText('description');
             $table->longText('requirements');
             $table->longText('benefit');
+            $table->longText('content')->nullable();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('restrict');

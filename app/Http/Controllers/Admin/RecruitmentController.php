@@ -66,6 +66,7 @@ class RecruitmentController extends Controller
                 'description' => $request->input('description'),
                 'requirements' => $request->input('requirements'),
                 'benefit' => $request->input('benefit'),
+                'content' => $request->input('content'),
             ]);
 
             return redirect()->route('admin.recruitment.index')->with('success', 'Thêm mới vị trí ứng tuyển thành công.');
@@ -122,6 +123,7 @@ class RecruitmentController extends Controller
             $recruitment->description = $request->input('description');
             $recruitment->requirements = $request->input('requirements');
             $recruitment->benefit = $request->input('benefit');
+            $recruitment->content = $request->input('content');
 
             $recruitment->save();
 

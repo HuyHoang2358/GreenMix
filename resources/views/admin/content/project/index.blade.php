@@ -60,7 +60,7 @@
                                 <td>{{ $project->id }}</td>
                                 <td>{{ $project->name }}</td>
                                 <td>
-                                    <img class="h-10 w-full" src="{{ $project->image }}"
+                                    <img class="h-20 w-40 rounded" src="{{ asset($project->image) }}"
                                             alt="post_{{ $project->name }}_image">
                                 </td>
                                 <td>{{ $project->address }}</td>

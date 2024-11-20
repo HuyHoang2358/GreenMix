@@ -20,9 +20,9 @@ return new class extends Migration
             $table->unsignedBigInteger('type_id')->default(0);
             $table->longText('content');
             $table->longText('images');
-            $table->text('seo_keyword');
-            $table->text('seo_title');
-            $table->longText('seo_description');
+            $table->text('seo_keyword')->nullable();
+            $table->text('seo_title')->nullable();
+            $table->longText('seo_description')->nullable();
             $table->integer('viewer')->default(0);
             $table->timestamps();
         });

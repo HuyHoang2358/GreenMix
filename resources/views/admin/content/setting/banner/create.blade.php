@@ -94,48 +94,96 @@
                         </div>
                     </div>
 
-                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                        <div class="form-label xl:w-64 xl:!mr-10">
-                            <div class="text-left">
-                                <div class="flex items-center">
-                                    <div class="font-medium">Trạng thái hiển thị</div>
-                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <select id="banner-is-show" class="form-select" name="is_show" required>
-                                <option value="1">Có hiển thị </option>
-                                <option value="0">Không hiển thị</option>
-                            </select>
-                        </div>
-                    </div>
+{{--                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">--}}
+{{--                        <div class="form-label xl:w-64 xl:!mr-10">--}}
+{{--                            <div class="text-left">--}}
+{{--                                <div class="flex items-center">--}}
+{{--                                    <div class="font-medium">Trạng thái hiển thị</div>--}}
+{{--                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="w-full mt-3 xl:mt-0 flex-1">--}}
+{{--                            <select id="banner-is-show" class="form-select" name="is_show" required>--}}
+{{--                                <option value="1">Có hiển thị </option>--}}
+{{--                                <option value="0">Không hiển thị</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                        <div class="form-label xl:w-64 xl:!mr-10">
-                            <div class="text-left">
-                                <div class="flex items-center">
-                                    <div class="font-medium">Đường dẫn ảnh</div>
-                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
+{{--                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">--}}
+{{--                        <div class="form-label xl:w-64 xl:!mr-10">--}}
+{{--                            <div class="text-left">--}}
+{{--                                <div class="flex items-center">--}}
+{{--                                    <div class="font-medium">Đường dẫn ảnh</div>--}}
+{{--                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>--}}
+{{--                                </div>--}}
+{{--                                <div class="leading-relaxed text-slate-500 text-xs mt-3">Đường dẫn ảnh không trùng lặp và không được để trống</div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="w-full mt-3 xl:mt-0 grid grid-cols-4 gap-10">--}}
+{{--                            <div class="col-span-3">--}}
+{{--                                <div id="image" class="input-group flex gap-2">--}}
+{{--                                <span class="input-group-btn pr-3">--}}
+{{--                                    <a id="post-img-preview" data-input="banner-path" data-preview="holder" class="btn btn-primary">--}}
+{{--                                        <i class="fa fa-picture-o"></i> Chọn--}}
+{{--                                    </a>--}}
+{{--                                </span>--}}
+{{--                                    <input id="banner-path" readonly="" type="text" class="form-control" name="path" required>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-span-1">--}}
+{{--                                <label for="holder" class="form-label">Hình ảnh xem trước</label>--}}
+{{--                                <div id="holder" class="w-56" style="margin-top:15px"></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+                    <div class="grid grid-cols-4 gap-12 mt-8">
+                        <div class="col-span-3">
+                            <div class="flex">
+                                <div class="form-label xl:w-64 xl:!mr-10">
+                                    <div class="text-left">
+                                        <div class="flex items-center">
+                                            <div class="font-medium">Đường dẫn ảnh</div>
+                                            <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
+                                        </div>
+                                        <div class="leading-relaxed text-slate-500 text-xs mt-3">Đường dẫn ảnh không trùng lặp và không được để trống</div>
+                                    </div>
                                 </div>
-                                <div class="leading-relaxed text-slate-500 text-xs mt-3">Đường dẫn ảnh không trùng lặp và không được để trống</div>
+                                <div class="w-full mt-3 xl:mt-0 gap-10">
+                                    <div class="">
+                                        <div id="image" class="input-group flex gap-2">
+                                            <span class="input-group-btn pr-3">
+                                                <a id="post-img-preview" data-input="banner-path" data-preview="holder" class="btn btn-primary">
+                                                    <i class="fa fa-picture-o"></i> Chọn
+                                                </a>
+                                            </span>
+                                            <input id="banner-path" readonly="" type="text" class="form-control" name="path" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-inline items-start flex-col xl:flex-row mt-5 first:mt-0 first:pt-0">
+                                <div class="form-label xl:w-64 xl:!mr-10">
+                                    <div class="text-left">
+                                        <div class="flex items-center">
+                                            <div class="font-medium">Trạng thái hiển thị</div>
+                                            <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                    <select id="banner-is-show" class="form-select" name="is_show" required>
+                                        <option value="1">Có hiển thị </option>
+                                        <option value="0">Không hiển thị</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div class="w-full mt-3 xl:mt-0 grid grid-cols-4 gap-10">
-                            <div class="col-span-3">
-                                <div id="image" class="input-group flex gap-2">
-                                <span class="input-group-btn pr-3">
-                                    <a id="post-img-preview" data-input="banner-path" data-preview="holder" class="btn btn-primary">
-                                        <i class="fa fa-picture-o"></i> Chọn
-                                    </a>
-                                </span>
-                                    <input id="banner-path" readonly="" type="text" class="form-control" name="path" required>
-                                </div>
-                            </div>
-                            <div class="col-span-1">
-                                <label for="holder" class="form-label">Hình ảnh xem trước</label>
-                                <div id="holder" style="margin-top:15px"></div>
-                            </div>
+                        <div class="col-span-1">
+                            <label for="holder" class="form-label">Hình ảnh xem trước</label>
+                            <div id="holder" class="w-72 h-28 bg-gray-300" style="margin-top:15px"></div>
                         </div>
                     </div>
 
@@ -164,4 +212,14 @@
             </div>
     </form>
     @include('admin.partials.stand_alone_lfm')
+    <script>
+        const button = document.getElementById('post-img-preview');
+        const holder = document.getElementById('holder');
+
+        // Thêm sự kiện click vào button
+        button.addEventListener('click', () => {
+            // Toggle class Tailwind để thay đổi màu nền
+            holder.classList.remove('bg-gray-300');
+        });
+    </script>
 @endsection
