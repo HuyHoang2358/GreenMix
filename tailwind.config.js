@@ -19,6 +19,7 @@ export default {
                 'primary-dark': '#238351',
                 'light-primary': '#3EBA79',
                 'secondary': '#1C4B91',
+                'footer-gray': '#747474'
             }
         },
     },
