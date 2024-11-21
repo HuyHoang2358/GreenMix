@@ -6,6 +6,7 @@
 @section('content')
     <!-- Banner -->
     @include('partials.frontendBanner')
+    
 
     <!-- Section Lĩnh vực kinh doanh -->
     <h3 class="text-3xl font-bold text-center mt-16">LĨNH VỰC KINH DOANH</h3>

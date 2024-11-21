@@ -50,6 +50,38 @@
     <!-- End Top header -->
 
     <!-- Menu -->
-    <div class="bg-green-400 h-12 text-center"> Menu </div>
+    <div class="bg-white"> 
+        
+        <div class="flex justify-between">
+            <!-- Logo -->
+            <div class="px-12">
+                <img src="{{ asset('images/logo/green-mix-logo-new.png') }}" alt="">
+            </div>
+            
+            <!-- Link nav -->
+            <div class="px-14">   
+                <div class="uppercase flex gap-x-10 font-semibold h-full">
+                    <div class="flex justify-center items-center h-full gap-2">
+                        Về green mix <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="flex justify-center items-center h-full gap-2">
+                        Lĩnh vực kinh doanh <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="flex justify-center items-center h-full gap-2">
+                        Truyền thông <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="flex justify-center items-center h-full">
+                        Tuyển dụng 
+                    </div>
+                    <div class="flex justify-center items-center h-full">
+                        Liên hệ
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
     <!-- End Menu -->
+
 </div>
