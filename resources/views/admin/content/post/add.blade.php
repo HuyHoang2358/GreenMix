@@ -13,6 +13,11 @@
     </nav>
 @endsection
 @section('content')
+
+    <!-- View validate form error -->
+    @include('admin.partials.validateFormError')
+    <!-- End view validate form error -->
+
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
             Thêm mới {{ $type == 'news' ? 'bài viết tin tức' : ($type == 'knowledge' ? 'bài viết kiến thức' : ($type == 'product' ? 'bài viết sản phẩm' : 'bài viết tuyển dụng')) }}
@@ -43,10 +48,12 @@
                         </div>
                     </div>
                     <div>
-                        <label for="holder" class="form-label">Hình ảnh xem trước</label>
-                        <div style="margin-top:15px;" class="flex flex-row gap-2 items-center">
-                            <div id="holder" class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden">Chưa có hình ảnh nào</div>
-                            <button type="button" class="btn btn-danger images-eraser" input-to-clear="post-thumbnail" holder-to-clear="holder" style="height: fit-content;">Bỏ ảnh</button>
+                        <label for="holder">Hình ảnh xem trước</label>
+                        <div style="margin-top:15px;" class="relative flex flex-row gap-2 items-center w-fit">
+                            <div id="holder">
+                                <div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden">Chưa có hình ảnh nào</div>
+                            </div>
+                            <button type="button" class="absolute border-red-600 border bg-white -right-4 -top-1 rounded-lg p-1 images-eraser text-red-700 hover:bg-red-600 hover:text-white" input-to-clear="post-thumbnail" holder-to-clear="holder" style="height: fit-content;"><i data-lucide="trash-2" class="w-6 h-6"></i></button>
                         </div>
                     </div>
                 </div>

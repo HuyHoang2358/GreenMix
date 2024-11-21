@@ -15,7 +15,7 @@ class AccountController extends Controller
     public function index()
     {
         
-        $accounts = User::all();
+        $accounts = User::orderBy('updated_at', 'desc')->paginate(6);
         $current_user_id = auth()->id();
 
         return view('admin.content.account.index', [
@@ -144,7 +144,7 @@ class AccountController extends Controller
     {
         //
 
-        $id = $request->input('del-account-id');
+        $id = $request->input('del-object-id');
         $user = User::findOrFail(auth()->id());
 
         try {

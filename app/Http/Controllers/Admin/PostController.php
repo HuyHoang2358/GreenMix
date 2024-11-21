@@ -27,7 +27,7 @@ class PostController extends Controller
 
         $type_id = $this->typeMap[$type] ?? 0;
 
-        $posts = Post::where('type_id', $type_id)->get();
+        $posts = Post::where('type_id', $type_id)->orderBy('updated_at', 'desc')->paginate(6);
 
         return view('admin.content.post.index', [
             'page' => 'post-'.$type.'-manager', // dùng để active menu
@@ -81,17 +81,11 @@ class PostController extends Controller
                 ]);
             }
 
-            return redirect()->route('admin.post.index', [
-                'type' => $type,
-                'page' => 'post-'.$type.'-manager'
-            ])->with('success', 'Thêm mới bài viết thành công.');
+            return redirect()->route('admin.post.index', ['type' => $type,])->with('success', 'Thêm mới bài viết thành công.');
             
         } catch (\Exception $e) 
         {       
-                return redirect()->route('admin.post.index', [
-                    'type' => $type,
-                    'page' => 'post-'.$type.'-manager'
-            ])->with('error', 'Thêm mới bài viết thất bại: ' . $e->getMessage());
+                return redirect()->route('admin.post.index', ['type' => $type,])->with('error', 'Thêm mới bài viết thất bại: ' . $e->getMessage());
         }
 
     }
@@ -130,40 +124,28 @@ class PostController extends Controller
             // Save the updated post
             $post->save();
            
-            return redirect()->route('admin.post.index', [
-                'type' => $type,
-                'page' => 'post-'.$type.'-manager'
-            ])->with('success', 'Cập nhật bài viết thành công.');
+            return redirect()->route('admin.post.index', ['type' => $type,])->with('success', 'Cập nhật bài viết thành công.');
             
         } catch (\Exception $e) {
-            return redirect()->route('admin.post.index', [
-                'type' => $type,
-                'page' => 'post-'.$type.'-manager'
-            ])->with('error', 'Cập nhật bài viết thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.post.index', ['type' => $type,])->with('error', 'Cập nhật bài viết thất bại: ' . $e->getMessage());
         }
 
     }
 
     public function destroy(Request $request, $type){
 
-        $id = $request->input('del-post-id');
+        $id = $request->input('del-object-id');
         
         try {
 
             $post = Post::findOrFail($id);
             $post->delete();
 
-            return redirect()->route('admin.post.index', [
-                'type' => $type,
-                'page' => 'post-'.$type.'-manager'
-            ])->with('success', 'Xóa bài viết thành công.');
+            return redirect()->route('admin.post.index', ['type' => $type,])->with('success', 'Xóa bài viết thành công.');
 
         } catch (\Exception $e) {
 
-            return redirect()->route('admin.post.index', [
-                'type' => $type,
-                'page' => 'post-'.$type.'-manager'
-            ])->with('error', 'Xóa bài viết thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.post.index', ['type' => $type,])->with('error', 'Xóa bài viết thất bại: ' . $e->getMessage());
 
         }
 

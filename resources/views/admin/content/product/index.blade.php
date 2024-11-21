@@ -1,19 +1,18 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Sản phẩm
-@endsection
+@section('title', 'Sản phẩm')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang Quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.product.index') }}">Sản phẩm </a>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Sản phẩm </a>
             </li>
         </ol>
     </nav>
 @endsection
+@php
+    $routeDelete = route('admin.product.destroy');
+@endphp
 @section('content')
-    @include('admin.partials.action_alerts')
-    @include('admin.content.product.delete')
 
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
@@ -45,15 +44,15 @@
     <div class="intro-y col-span-12 lg:col-span-12 mt-2">
         <div class="intro-y box py-2 px-4">
             <div class="overflow-x-auto">
-                <table class="table">
+                <table class="table table-hover table-bordered">
                     <thead class="table-dark">
                         <tr>
-                            <th class="whitespace-nowrap">#</th>
+                            <th class="whitespace-nowrap text-center">STT</th>
                             <th class="whitespace-nowrap">Tên</th>
                             <th class="whitespace-nowrap">Slug</th>
                             <th class="whitespace-nowrap">Hình ảnh</th>
                             <th class="whitespace-nowrap">Mô tả</th>
-                            <th class="whitespace-nowrap">Thao tác</th>
+                            <th class="whitespace-nowrap text-center">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,7 +63,9 @@
                         @endif
                         @foreach ($products as $product)
                             <tr>
-                                <td>{{ $product->id }}</td>
+                                <td class="text-center">
+                                    {{ ($products->currentPage() - 1) * $products->perPage() + $loop->index + 1 }}
+                                </td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->slug }}</td>
                                 <td>
@@ -78,7 +79,8 @@
                                                     <img src="{{ asset($image) }}" alt="Image" class="h-20 w-40 rounded">
                                                 @endforeach
                                                 @if (count($images) > 2)
-                                                    <p class="text-center flex items-center">Và {{ count($images) - 2 }} ảnh khác...</p>
+                                                    <p class="text-center flex items-center">Và {{ count($images) - 2 }} ảnh
+                                                        khác...</p>
                                                 @endif
                                             @endif
                                         </div>
@@ -88,18 +90,18 @@
                                 </td>
                                 <td>{!! $product->description !!}</td>
                                 <td>
-                                    <div class="">
+                                    <div class="flex justify-center items-center">
                                         <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}" class="mr-1">
-                                            <button class="btn btn-primary mr-1 mb-2">
-                                                <i data-lucide="edit" class="w-5 h-5"></i>
-                                            </button>
+                                            <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i
+                                                    data-lucide="edit-3"></i></button>
                                         </a>
 
                                         <a class="mr-1">
-                                            <button data-tw-toggle="modal" data-tw-target="#delete-product-form"
-                                                class="btn btn-danger mr-1 mb-2"
-                                                onclick='getProductForDelete("{{ $product->name }}", {{ $product->id }})'>
-                                                <i data-lucide="trash" class="w-5 h-5"></i>
+                                            <button data-tw-toggle="modal" type="button"
+                                                class="btn btn-outline-danger p-1 w-8 h-8"
+                                                data-tw-target="#delete-object-confirm-form"
+                                                onclick='openConfirmDeleteObjectForm("{{ $product->name }}", {{ $product->id }})'>
+                                                <i data-lucide="trash-2"></i>
                                             </button>
                                         </a>
                                     </div>
@@ -109,13 +111,8 @@
                     </tbody>
                 </table>
             </div>
+            <!-- Pagination -->
+            <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{ $products->links() }}</div>
         </div>
     </div>
-
-    <script>
-        function getProductForDelete(name, id) {
-            document.getElementById('del-product-name').textContent = name;
-            document.getElementById('del-product-id').value = id;
-        }
-    </script>
 @endsection
