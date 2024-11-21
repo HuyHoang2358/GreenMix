@@ -25,7 +25,7 @@
         role="alert"
         style="z-index: 9999; top: 6.75rem;"
     >
-        <i data-lucide="thumbs-down" class="w-4 h-4 mr-2"></i> Thêm mới dự án thất bại!
+        <i data-lucide="thumbs-down" class="w-4 h-4 mr-2"></i> {{ Session::get('error') }}
         <button type="button" class="btn-close" data-tw-dismiss="alert" aria-label="Close">
             <i data-lucide="x" class="w-4 h-4"></i>
         </button>
