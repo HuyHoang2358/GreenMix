@@ -1,35 +1,28 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Thêm mới dự án
-@endsection
+@section('title', 'Thêm mới dự án')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item"><a href="{{route('admin.project.index')}}">Dự án</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.project.add')}}">Thêm mới</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.project.index')}}">Dự án hợp tác</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Thêm mới</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
-    
-    @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible show flex items-center mb-2 fixed right-60" style="z-index: 9999; top: 6.75rem;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            <button type="button" class="btn-close" data-tw-dismiss="alert" aria-label="Close"> <i data-lucide="x"
-                class="w-4 h-4"></i> </button>
-        </div>
-    @endif
 
+    <!-- View validate form error -->
+    @include('admin.partials.validateFormError')
+    <!-- End view validate form error -->
+
+    <!-- Title page -->
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
             Thêm mới dự án
         </h2>
     </div>
+
+    <!-- Form add -->
     <form action="{{ route('admin.project.store') }}" method="POST">
         @csrf
         <div class="intro-y box p-5 mt-5">
@@ -66,7 +59,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="address" name="address" type="text" class="form-control" placeholder="Nhập địa chỉ" required autofocus>
+                            <input id="address" name="address" type="text" class="form-control" placeholder="Nhập địa chỉ" required>
                             <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="address" max-characters="200">0</span>/200 ký tự</div>
                         </div>
                     </div>
@@ -76,28 +69,33 @@
                             <div class="text-left">
                                 <div class="flex items-center">
                                     <div class="font-medium">Hình ảnh</div>
-                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Khuyến nghị</div>
+                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
                                 <div class="leading-relaxed text-slate-500 text-xs mt-3">Hình ảnh sẽ giúp bài đăng của bạn ấn tượng hơn</div>
                             </div>
                         </div>
-                        <div class="w-full flex flex-row gap-2">
-                            <div class="flex-1">
-                                <div class="w-full mt-3 xl:mt-0 flex-1 flex gap-2">
-                                    <span class="input-group-btn">
-                                        <a id="post-img-preview" data-input="image" data-preview="holder" class="btn btn-primary">
-                                            <i class="fa fa-picture-o"></i> Chọn
-                                        </a>
-                                    </span>
-                                    <input id="image" name="image" type="text" class="form-control flex-1 h-fit readonly" placeholder="Tải hình ảnh lên" required autofocus>
+                        <div class="w-full  mt-3 xl:mt-0 flex-1 gap-2">
+                            <div class="grid grid-cols-4 gap-2">
+                                <div class="col-span-3">
+                                    <div class="w-full mt-3 xl:mt-0 flex-1 flex gap-2">
+                                        <p class="input-group-btn mb-2">
+                                            <a id="post-img-preview" data-input="image" data-preview="holder" class="btn btn-primary">
+                                                <i class="fa fa-picture-o"></i> Chọn
+                                            </a>
+                                        </p>
+                                        <input id="image" name="image" type="text" class="form-control flex-1 h-fit readonly" placeholder="Tải hình ảnh lên" required>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="flex flex-row gap-2 items-center">
-                                <div>
-                                    <div id="holder" class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>
+                                <div class="col-span-1">
+                                    <div class="relative">
+                                        <div>
+                                            <div id="holder" class="placeholder-text text-gray-600 p-2 flex items-center justify-center rounded bg-slate-300 w-full h-24 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>
+                                        </div>
+                                        <button type="button" class="rounded-lg p-1 images-eraser absolute top-0 right-0 mt-[-20px] mr-[-20px] text-red-700 hover:bg-red-600 hover:text-white" input-to-clear="image" holder-to-clear="holder" style="height: fit-content">
+                                            <i data-lucide="trash-2" class="w-6 h-6"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                                <button type="button" class="btn btn-danger images-eraser" input-to-clear="image" holder-to-clear="holder" style="height: fit-content;">Bỏ ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -106,14 +104,16 @@
 
             </div>
         </div>
+
+        <!-- Buttons cancel and save -->
         <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
-            <a href="{{ route('admin.account.index') }}">
+            <a href="{{ route('admin.project.index') }}">
                 <button type="button" class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">Hủy</button>
             </a>
             <button type="submit" class="btn py-3 btn-primary w-full md:w-52">Lưu thông tin</button>
         </div>
     </form>
 
+    <!-- JS code for handle import a image -->
     @include('admin.partials.stand_alone_lfm')
-
 @endsection

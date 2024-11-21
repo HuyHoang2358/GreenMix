@@ -7,12 +7,12 @@
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item"><a href="{{route('admin.account.index')}}">Tài khoản</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.account.add')}}">Chỉnh sửa</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Chỉnh sửa</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
-    
+
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible show flex items-center mb-2 fixed right-60" style="z-index: 9999; top: 6.75rem;">
             <ul>
@@ -70,64 +70,7 @@
                     </div>
 
                 </div>
-
             </div>
-
-            <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5 mt-4">
-                <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                    Thay đổi mật khẩu
-                </div>
-
-                <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                    <div class="form-label xl:w-64 xl:!mr-10">
-                        <div class="text-left">
-                            <div class="flex items-center">
-                                <div class="font-medium">Mật khẩu hiện tại</div>
-                            </div>
-                            <div class="leading-relaxed text-slate-500 text-xs mt-3">Nhập mật khẩu của tài khoản hiện tại</div>
-                        </div>
-                    </div>
-                    <div class="w-full mt-3 xl:mt-0 flex-1 relative perfect-sight">
-                        <input id="current-password" name="current-password" type="password" class="form-control" placeholder="Nhập mật khẩu của tài khoản">
-                        <i class="absolute toggle-password-on hidden" style="top: 19%; right: 1%; cursor: pointer;" data-lucide="eye"></i>
-                        <i class="absolute toggle-password-off hidden" style="top: 19%; right: 1%; cursor: pointer;" data-lucide="eye-off"></i>
-                    </div>
-                </div>
-
-                <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                    <div class="form-label xl:w-64 xl:!mr-10">
-                        <div class="text-left">
-                            <div class="flex items-center">
-                                <div class="font-medium">Mật khẩu mới</div>
-                            </div>
-                            <div class="leading-relaxed text-slate-500 text-xs mt-3">Nhập mật khẩu, tối thiểu 8 ký tự</div>
-                        </div>
-                    </div>
-                    <div class="w-full mt-3 xl:mt-0 flex-1 relative perfect-sight">
-                        <input id="password" name="password" type="password" class="form-control" placeholder="Nhập mật khẩu mới">
-                        <i class="absolute toggle-password-on hidden" style="top: 19%; right: 1%; cursor: pointer;" data-lucide="eye"></i>
-                        <i class="absolute toggle-password-off hidden" style="top: 19%; right: 1%; cursor: pointer;" data-lucide="eye-off"></i>
-                    </div>
-                </div>
-
-                <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                    <div class="form-label xl:w-64 xl:!mr-10">
-                        <div class="text-left">
-                            <div class="flex items-center">
-                                <div class="font-medium">Xác nhận mật khẩu mới</div>
-                            </div>
-                            <div class="leading-relaxed text-slate-500 text-xs mt-3">Nhập lại mật khẩu của bạn</div>
-                        </div>
-                    </div>
-                    <div class="w-full mt-3 xl:mt-0 flex-1 relative perfect-sight">
-                        <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Xác nhận mật khẩu mới">
-                        <i class="absolute toggle-password-on hidden" style="top: 19%; right: 1%; cursor: pointer;" data-lucide="eye"></i>
-                        <i class="absolute toggle-password-off hidden" style="top: 19%; right: 1%; cursor: pointer;" data-lucide="eye-off"></i>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
         <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
             <a href="{{ route('admin.account.index') }}">

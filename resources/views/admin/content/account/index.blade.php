@@ -21,8 +21,9 @@
             Quản lý tài khoản
         </h2>
         <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <a href="{{ route('admin.account.add') }}"><button class="btn btn-primary shadow-md mr-2"> Thêm mới tài khoản
-                </button></a>
+            <a href="{{ route('admin.account.add') }}">
+                <button class="btn btn-primary shadow-md mr-2"> Thêm mới tài khoản</button>
+            </a>
             <div class="dropdown ml-auto sm:ml-0">
                 <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
                     <span class="w-5 h-5 flex items-center justify-center">
@@ -42,6 +43,7 @@
             </div>
         </div>
     </div>
+
     <!-- BEGIN: HTML Table Data -->
     <div class="intro-y col-span-12 lg:col-span-12 mt-2">
         <div class="intro-y box py-2 px-4">
@@ -64,18 +66,18 @@
                                 <td>{{ $account->email }}</td>
                                 <td>
                                     @if ($account->id == 1)
-                                        <span
-                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Tài
-                                            khoản mặc định</span>
+                                        <span class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                            Tài khoản mặc định
+                                        </span>
                                     @endif
 
                                     @if ($account->id == $current_user_id)
-                                        <span
-                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Tài
-                                            khoản hiện tại</span>
+                                        <span class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                            Tài khoản hiện tại
+                                        </span>
                                     @endif
                                 </td>
-                                <td style="width: fit-content;">
+                                <td style="width: fit-content">
                                     <div class="">
                                         <a href="{{ route('admin.account.edit', ['id' => $account->id]) }}" class="mr-1">
                                             <button class="btn btn-primary mr-1 mb-2">
