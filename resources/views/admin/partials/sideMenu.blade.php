@@ -6,6 +6,12 @@
                 <div class="side-menu__title"> Trang chủ </div>
             </a>
         </li>
+        <li>
+            <a href="{{route('admin.account.index')}}" class="side-menu {{isset($page) ? $page =='account-manager'? 'side-menu--active' : '' : ''}}">
+                <div class="side-menu__icon"> <i data-lucide="user"></i> </div>
+                <div class="side-menu__title">Tài khoản quản trị</div>
+            </a>
+        </li>
 
         <li class="side-nav__devider my-6"></li>
         <li>
@@ -35,20 +41,39 @@
         </li>
 
         <li>
-            <a class="side-menu {{isset($page) ? ( $page =='category-post-manager' || $page =='post-new-manager' || $page =='post-knowledge-manager')? 'side-menu--active' : '' : ''}}">
-                <div class="side-menu__icon"> <i data-lucide="edit"></i> </div>
+            <a class="side-menu {{isset($page) ? ( $page =='category-post-manager' || $page =='category-new-manager' )? 'side-menu--active' : '' : ''}}">
+                <div class="side-menu__icon"> <i data-lucide="menu"></i> </div>
                 <div class="side-menu__title">
-                    Bài viết
+                    Danh mục
                     <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                 </div>
             </a>
-            <ul class="{{isset($page) ? ( $page =='category-post-manager' || $page =='post-news-manager' || $page =='post-knowledge-manager')? 'side-menu__sub-open' : '' : ''}}">
+            <ul class="{{isset($page) ? ( $page =='category-post-manager' || $page =='category-news-manager') ? 'side-menu__sub-open' : '' : ''}}">
                 <li>
                     <a href="{{route('admin.category.index', 'post')}}" class="side-menu {{isset($page) ? $page =='category-post-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="list"></i> </div>
                         <div class="side-menu__title"> Danh mục bài viết </div>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('admin.post.index', 'news')}}" class="side-menu {{isset($page) ? $page =='category-news-manager'? 'side-menu--active' : '' : ''}}">
+                        <div class="side-menu__icon"> <i data-lucide="list"></i> </div>
+                        <div class="side-menu__title"> Danh mục tin tức</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a class="side-menu {{isset($page) ? ( $page =='post-new-manager' || $page =='post-knowledge-manager')? 'side-menu--active' : '' : ''}}">
+                <div class="side-menu__icon"> <i data-lucide="edit"></i> </div>
+                <div class="side-menu__title">
+                    Bài viết
+                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="{{isset($page) ? ($page =='post-news-manager' || $page =='post-knowledge-manager')? 'side-menu__sub-open' : '' : ''}}">
                 <li>
                     <a href="{{route('admin.post.index', 'news')}}" class="side-menu {{isset($page) ? $page =='post-news-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
@@ -72,34 +97,16 @@
             </a>
         </li>
 
-        <li>
-            <a href="{{route('admin.account.index')}}" class="side-menu {{isset($page) ? $page =='account-manager'? 'side-menu--active' : '' : ''}}">
-                <div class="side-menu__icon"> <i data-lucide="user"></i> </div>
-                <div class="side-menu__title">Tài khoản</div>
-            </a>
-        </li>
+
 
         <li class="side-nav__devider my-6"></li>
 
-
         <li>
-            <a class="side-menu">
-                <div class="side-menu__icon"> <i data-lucide="inbox"></i> </div>
-                <div class="side-menu__title">
-                    Media
-                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
-                </div>
+            <a href="{{route('admin.media.files.index')}}" class="side-menu {{isset($page) ? $page =='files-manager'? 'side-menu--active' : '' : ''}}">
+                <div class="side-menu__icon"> <i data-lucide="hard-drive"></i> </div>
+                <div class="side-menu__title">Quản lý Files</div>
             </a>
-            <ul class="">
-                <li>
-                    <a href="{{ route('admin.media.files.index') }}" class="side-menu {{isset($page) ? $page =='files-manager'? 'side-menu--active' : '' : ''}}">
-                        <div class="side-menu__icon"> <i data-lucide="hard-drive"></i> </div>
-                        <div class="side-menu__title"> Files </div>
-                    </a>
-                </li>
-            </ul>
         </li>
-
         <!-- Cấu hình -->
         <li>
             <a class="side-menu {{isset($page) ? ($page =='setting-config' || $page =='setting-language' || $page == 'setting-banner' || $page =='setting-address') ? 'side-menu--active' : '' : ''}}">

@@ -1,7 +1,5 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Thêm mới tài khoản
-@endsection
+@section('title', 'Thêm mới tài khoản')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">

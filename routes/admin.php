@@ -70,7 +70,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [ProjectController::class, 'store'])->name('admin.project.store');
         Route::get('/edit/{id}', [ProjectController::class, 'edit'])->name('admin.project.edit');
         Route::post('/update/{id}', [ProjectController::class, 'update'])->name('admin.project.update');
-        Route::get('/delete', [ProjectController::class, 'destroy'])->name('admin.project.destroy');
+        Route::post('/delete', [ProjectController::class, 'destroy'])->name('admin.project.destroy');
     });
 
     // Quản lý lĩnh vực kinh doanh
@@ -133,7 +133,7 @@ Route::middleware('auth')->group(function () {
         });
 
         // Ngôn ngữ
-        Route::prefix('languague')->group(function () {
+        Route::prefix('language')->group(function () {
             Route::get('/', [LanguagueController::class, 'index'])->name('admin.setting.language.index');
             Route::get('/add', [LanguagueController::class, 'create'])->name('admin.setting.language.add');
             Route::post('/store', [LanguagueController::class, 'store'])->name('admin.setting.language.store');
