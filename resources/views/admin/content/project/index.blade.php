@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang Quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.project.index') }}">Dự án hợp tác</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Dự án hợp tác</a></li>
         </ol>
     </nav>
 @endsection
@@ -41,7 +41,7 @@
     <div class="intro-y col-span-12 lg:col-span-12 mt-4">
         <div class="intro-y box">
             <div class="overflow-x-auto">
-                <table class="table table-hover  table-bordered">
+                <table class="table table-hover table-bordered">
                     <thead class="table-dark ">
                         <tr>
                             <th class="whitespace-nowrap text-center">STT</th>
