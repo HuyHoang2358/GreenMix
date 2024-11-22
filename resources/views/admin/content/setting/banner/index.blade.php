@@ -1,16 +1,18 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Cài đặt banner
-@endsection
+@section('title', 'Cài đặt banner')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.setting.banner.index')}}">Cài đặt banner</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Cài đặt banner</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
+    @include('admin.partials.action_alerts')
+    @include('admin.content.product.delete')
+    @php($routeDelete = route('admin.setting.banner.destroy'))
+
     <div class="intro-y flex flex-col sm:flex-row items-center my-7">
         <h2 class="text-xl font-medium mr-auto">
             Danh sách Banner
@@ -40,7 +42,7 @@
         <div class="p-5" id="head-options-table">
             <div >
                 <div class="overflow-x-auto">
-                    <table class="table">
+                    <table class="table table-hover table-bordered">
                         <thead class="table-dark">
                         <tr>
                             <th class="whitespace-nowrap">#</th>
@@ -57,7 +59,7 @@
                         <tbody>
                         @foreach($banners as $key => $banner)
                             <tr>
-                                <td>{{$key + 1}}</td>
+                                <td class="text-center">{{ ($banners->currentPage() - 1 ) * $banners->perPage() + $loop->index + 1 }}</td>
                                 <td>{{$banner->name}}</td>
                                 <td>{{$banner->title}}</td>
                                 <td>{{$banner->description}}</td>
@@ -72,12 +74,15 @@
                                 <td><img class="max-w-40" src="{{$banner->path}}" alt=""></td>
                                 <td>{{$banner->order}}</td>
                                 <td>
-                                    <div class="">
-                                        <a href="{{route('admin.setting.banner.edit', $banner->id)}}" class="mr-1">
+                                    <div class="flex justify-center items-center">
+                                        <a href="{{ route('admin.setting.banner.edit', ['id' => $banner->id]) }}" class="mr-1">
                                             <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i data-lucide="edit-3"></i></button>
                                         </a>
-                                        <a href="{{route('admin.setting.banner.destroy', $banner->id)}}" class="mr-1" onclick="return confirm('Bạn có muốn xóa banner {{$banner->name}}?');">
-                                            <button type="button" class="btn btn-outline-danger p-1 w-8 h-8"><i data-lucide="trash-2"></i></button>
+                                        <a class="mr-1">
+                                            <button data-tw-toggle="modal"  type="button" class="btn btn-outline-danger p-1 w-8 h-8" data-tw-target="#delete-object-confirm-form"
+                                                    onclick='openConfirmDeleteObjectForm("{{ $banner->name }}", {{ $banner->id }})'>
+                                                <i data-lucide="trash-2"></i>
+                                            </button>
                                         </a>
                                     </div>
                                 </td>
@@ -86,7 +91,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div>{{$banners->links()}}</div>
+                <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{$banners->links()}}</div>
             </div>
         </div>
     </div>

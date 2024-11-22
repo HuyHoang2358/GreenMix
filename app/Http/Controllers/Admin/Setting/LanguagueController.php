@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Setting;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Languague;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
@@ -18,12 +19,8 @@ class LanguagueController extends Controller
     public function index(Request $request): Factory|Application|View
     {
         $languagues = Languague::all();
-        //echo "<pre>";
-        //print_r($languagues);
-        //echo"</pre>";
-        //exit;
         return view('admin.content.setting.language.index', [
-            'page' => 'setting-language', // dùng để active menu
+            'page' => 'setting-language',
             'languagues' => $languagues,
         ]);
     }
@@ -35,19 +32,21 @@ class LanguagueController extends Controller
     }
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $input = $request-> all();
-     /*   echo "<pre>";
-        echo print_r($input);
-        echo "</pre>";
-        exit;*/
+        try {
+            // Tạo mới dự án với dữ liệu được gửi lên từ form
+            Languague::create([
+                'name' => $request->input('name'),
+                'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
+                'icon' => $request->input('icon')
+            ]);
 
-        $item = new Languague();
-        $item["name"] = $input["name"];
-        $item["slug"] = $input["slug"] ?? Str::slug($input["name"]);
-        $item["icon"] = $input["icon"] ?? null;
-        $item -> save();
+            // Chuyển hướng về trang danh sách dự án và kèm theo thông báo thành công
+            return redirect()->route('admin.setting.language.index')->with('success', 'Thêm mới dự án thành công!');
 
-        return redirect()->route('admin.setting.language.index');
+        } catch (Exception $e) {
+            // Trường hợp có lỗi xảy ra, chuyển hướng về trang danh sách dự án và kèm theo thông báo lỗi
+            return redirect()->route('admin.setting.language.index')->with('error', 'Thêm mới dự án thất bại: ' . $e->getMessage());
+        }
     }
     public function edit($id, Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
@@ -61,21 +60,29 @@ class LanguagueController extends Controller
     }
     public function update($id, Request $request): \Illuminate\Http\RedirectResponse
     {
-        $input = $request->all();
-        $item = Languague::find($id);
+        try {
+            $languague = Languague::findOrFail($id);
 
-        $item["name"] = $input["name"];
-        $item["slug"] = $input["slug"] ?? Str::slug($input["name"]);
-        $item["icon"] = $input["icon"] ?? null;
+            $languague->name = $request->input('name');
+            $languague->slug = $request->input('slug') ?? Str::slug($request->input('name'));
+            $languague->icon = $request->input('icon');
+            $languague->save();
 
-        $item->save();
-        return redirect()->route('admin.setting.language.index');
+            return redirect()->route('admin.setting.language.index')->with('success', 'Cập nhật dự án thành công!');
+        } catch (Exception $e) {
+            return redirect()->route('admin.setting.language.index')->with('error', 'Cập nhật dự án thất bại: ' . $e->getMessage());
+        }
     }
 
-    public function destroy($id): \Illuminate\Http\RedirectResponse
+    public function destroy(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $item = Languague::find($id);
-        $item -> delete();
-        return redirect()->route('admin.setting.language.index');
+        try {
+            $languague = Languague::findOrFail($request->input('del-object-id'));
+            $languague->delete();
+
+            return redirect()->route('admin.setting.language.index')->with('success', 'Xóa dự án thành công.');
+        } catch (Exception $e) {
+            return redirect()->route('admin.setting.language.index')->with('error', 'Xóa dự án thất bại: ' . $e->getMessage());
+        }
     }
 }

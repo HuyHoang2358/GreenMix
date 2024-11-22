@@ -1,17 +1,16 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Chỉnh sửa {{$languague->name}}
-@endsection
+@section('title', 'Chỉnh sửa ngôn ngữ')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item" aria-current="page"><a href="{{route('admin.setting.language.index')}}">Cài đặt ngôn ngữ</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.setting.language.edit',$languague->id)}}">Chỉnh sửa thông tin</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Chỉnh sửa thông tin</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
+    @include('admin.partials.validateFormError')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-xl font-medium mr-auto mb-10">
             Chỉnh sửa ngôn ngữ {{$languague->name}}
@@ -71,8 +70,8 @@
             </div>
         </div>
         <div class="w-full text-end mt-10">
-            <a href="{{route('admin.setting.language.index')}}"><button type="button" class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">Cancel</button></a>
-            <button type="submit" class="btn py-3 btn-primary w-full md:w-52 ml-3">Save</button>
+            <a href="{{route('admin.setting.language.index')}}"><button type="button" class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">Hủy</button></a>
+            <button type="submit" class="btn py-3 btn-primary w-full md:w-52 ml-3">Lưu thông tin</button>
         </div>
     </form>
     @include('admin.partials.stand_alone_lfm')

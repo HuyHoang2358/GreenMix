@@ -1,17 +1,16 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Cài đặt ngôn ngữ
-@endsection
+@section('title', 'Cài đặt ngôn ngữ')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item" aria-current="page"><a href="{{route('admin.setting.language.index')}}">Cài đặt ngôn ngữ</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.setting.language.add')}}">Thêm mới</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Thêm mới</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
+    @include('admin.partials.validateFormError')
     <div>
         <h1 class="text-xl font-medium py-5">Thêm mới ngôn ngữ</h1>
     </div>
@@ -35,6 +34,7 @@
                             <div class="form-help text-right">Tối đa 0/100 ký tự</div>
                         </div>
                     </div>
+
                     <div class="form-inline items-start flex-col xl:flex-row mt-5 pb-3 first:mt-0 first:pt-0">
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
@@ -50,6 +50,7 @@
                             <div class="form-help text-right">Tối đa 0/100 kí tự</div>
                         </div>
                     </div>
+
                     <label for="image" class="form-label">Icon</label>
                     <div id="image" class="input-group flex gap-2">
                         <span class="input-group-btn pr-3" id="changeColorBtn">
@@ -68,8 +69,8 @@
                 </div>
             </div>
             <div class="w-full text-end mt-10">
-                <a href="{{route('admin.setting.language.index')}}"><button type="button" class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">Cancel</button></a>
-                <button type="submit" class="btn py-3 btn-primary w-full md:w-52 ml-3">Save</button>
+                <a href="{{route('admin.setting.language.index')}}"><button type="button" class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">Hủy</button></a>
+                <button type="submit" class="btn py-3 btn-primary w-full md:w-52 ml-3">lưu thông tin</button>
             </div>
         </form>
     </div>

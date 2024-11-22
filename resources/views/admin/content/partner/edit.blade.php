@@ -1,17 +1,16 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Chỉnh sửa đối tác
-@endsection
+@section('title', 'Chỉnh sửa đối tác')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item" aria-current="page"><a href="{{route('admin.partner.index')}}">Quản lý đối tác</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.partner.add')}}">Chỉnh sửa</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Chỉnh sửa</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
+    @include('admin.partials.validateFormError')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
             Chỉnh sửa đối tác

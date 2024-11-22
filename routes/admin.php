@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [PartnerController::class, 'store'])->name('admin.partner.store');
         Route::get('/edit/{id}', [PartnerController::class, 'edit'])->name('admin.partner.edit');
         Route::post('/update/{id}', [PartnerController::class, 'update'])->name('admin.partner.update');
-        Route::get('/delete/{id}', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
+        Route::post('/delete', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
     });
 
     // Quản lý dự án
@@ -119,7 +119,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', [BannerController::class, 'store'])->name('admin.setting.banner.store');
             Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('admin.setting.banner.edit');
             Route::post('/update/{id}', [BannerController::class, 'update'])->name('admin.setting.banner.update');
-            Route::get('/delete/{id}', [BannerController::class, 'destroy'])->name('admin.setting.banner.destroy');
+            Route::post('/delete/', [BannerController::class, 'destroy'])->name('admin.setting.banner.destroy');
         });
 
         // Địa chỉ
@@ -129,7 +129,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', [AddressController::class, 'store'])->name('admin.setting.address.store');
             Route::get('/edit/{id}', [AddressController::class, 'edit'])->name('admin.setting.address.edit');
             Route::post('/update/{id}', [AddressController::class, 'update'])->name('admin.setting.address.update');
-            Route::get('/delete/{id}', [AddressController::class, 'destroy'])->name('admin.setting.address.destroy');
+            Route::post('/delete/', [AddressController::class, 'destroy'])->name('admin.setting.address.destroy');
         });
 
         // Ngôn ngữ
@@ -139,7 +139,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', [LanguagueController::class, 'store'])->name('admin.setting.language.store');
             Route::get('/edit/{id}', [LanguagueController::class, 'edit'])->name('admin.setting.language.edit');
             Route::post('/update/{id}', [LanguagueController::class, 'update'])->name('admin.setting.language.update');
-            Route::get('/delete/{id}', [LanguagueController::class, 'destroy'])->name('admin.setting.language.destroy');
+            Route::post('/delete/', [LanguagueController::class, 'destroy'])->name('admin.setting.language.destroy');
         });
 
     });
