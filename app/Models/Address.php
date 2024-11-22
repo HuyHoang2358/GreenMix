@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static orderBy(string $string, string $string1)
  * @method static find($id)
+ * @method static findOrFail(mixed $input)
+ * @method static create(array $array)
  */
 class Address extends Model
 {

@@ -1,16 +1,18 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Cài đặt ngôn ngữ
-@endsection
+@section('title', 'Cài đặt ngôn ngữ')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.setting.language.index')}}">Cài đặt ngôn ngữ</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Cài đặt ngôn ngữ</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
+    @include('admin.partials.action_alerts')
+    @include('admin.content.product.delete')
+    @php($routeDelete = route('admin.setting.language.destroy'))
+
     <div class="intro-y box">
         <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
             <h2 class="font-medium text-xl mr-auto">
@@ -21,7 +23,7 @@
         <div class="p-5" id="head-options-table">
             <div class="preview">
                 <div class="overflow-x-auto">
-                    <table class="table">
+                    <table class="table table-hover table-bordered">
                         <thead class="table-dark">
                         <tr>
                             <th class="whitespace-nowrap">#</th>
@@ -41,12 +43,15 @@
                                     <img src="{{$languague -> icon}}" alt="">
                                 </td>
                                 <td>
-                                    <div class="">
-                                        <a href="{{route('admin.setting.language.edit', $languague->id)}}" class="mr-1">
+                                    <div class="flex justify-center items-center">
+                                        <a href="{{ route('admin.setting.language.edit', ['id' => $languague->id]) }}" class="mr-1">
                                             <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i data-lucide="edit-3"></i></button>
                                         </a>
-                                        <a href="{{route('admin.setting.language.destroy', $languague->id)}}" class="mr-1" onclick="return confirm('Bạn có muốn xóa ngôn ngữ {{$languague->name}}?');">
-                                            <button type="button" class="btn btn-outline-danger p-1 w-8 h-8"><i data-lucide="trash-2"></i></button>
+                                        <a class="mr-1">
+                                            <button data-tw-toggle="modal"  type="button" class="btn btn-outline-danger p-1 w-8 h-8" data-tw-target="#delete-object-confirm-form"
+                                                    onclick='openConfirmDeleteObjectForm("{{ $languague->name }}", {{ $languague->id }})'>
+                                                <i data-lucide="trash-2"></i>
+                                            </button>
                                         </a>
                                     </div>
                                 </td>

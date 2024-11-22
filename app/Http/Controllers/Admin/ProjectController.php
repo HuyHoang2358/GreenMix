@@ -50,7 +50,6 @@ class ProjectController extends Controller
             // Trường hợp có lỗi xảy ra, chuyển hướng về trang danh sách dự án và kèm theo thông báo lỗi
             return redirect()->route('admin.project.index')->with('error', 'Thêm mới dự án thất bại: ' . $e->getMessage());
         }
-
     }
 
 
@@ -78,7 +77,6 @@ class ProjectController extends Controller
         } catch (Exception $e) {
             return redirect()->route('admin.project.index')->with('error', 'Cập nhật dự án thất bại: ' . $e->getMessage());
         }
-
     }
 
     public function destroy(Request $request): \Illuminate\Http\RedirectResponse

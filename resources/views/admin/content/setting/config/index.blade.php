@@ -1,16 +1,15 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Cấu hình hệ thống
-@endsection
+@section('title', 'Cấu hình hệ thống')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.setting.config.index')}}">Cấu hình hệ thống</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Cấu hình hệ thống</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
+    @include('admin.partials.validateFormError')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
             Chỉnh sửa cấu hình
@@ -141,7 +140,7 @@
             </div>
         </div>
         <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
-            <a href="{{route('admin.setting.banner.index')}}">
+            <a href="{{route('admin.setting.config.index')}}">
                 <button type="button" class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">Hủy</button>
             </a>
             <button type="submit" class="btn py-3 btn-primary w-full md:w-52">Lưu thông tin</button>

@@ -65,7 +65,6 @@
                                         <a href="{{ route('admin.project.edit', ['id' => $project->id]) }}" class="mr-1">
                                             <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i data-lucide="edit-3"></i></button>
                                         </a>
-
                                         <a class="mr-1">
                                             <button data-tw-toggle="modal"  type="button" class="btn btn-outline-danger p-1 w-8 h-8" data-tw-target="#delete-object-confirm-form"
                                                     onclick='openConfirmDeleteObjectForm("{{ $project->name }}", {{ $project->id }})'>

@@ -1,17 +1,16 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Thêm mới địa chỉ
-@endsection
+@section('title', 'Thêm mới địa chỉ')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item" aria-current="page"><a href="{{route('admin.setting.address.index')}}">Quản lý địa chỉ</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.setting.address.add')}}">Thêm mới</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Thêm mới</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
+    @include('admin.partials.validateFormError')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
             Thêm mới địa chỉ

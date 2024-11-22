@@ -1,16 +1,18 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Cài đặt địa chỉ
-@endsection
+@section('title', 'Cài đặt địa chỉ')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.setting.address.index')}}">Cài đặt địa chỉ</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Cài đặt địa chỉ</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
+    @include('admin.partials.action_alerts')
+    @include('admin.content.product.delete')
+    @php($routeDelete = route('admin.setting.address.destroy'))
+
     <div class="intro-y flex flex-col sm:flex-row items-center my-7">
         <h2 class="text-xl font-medium mr-auto">
             Danh sách địa chỉ
@@ -40,7 +42,7 @@
         <div class="p-5" id="head-options-table">
             <div >
                 <div class="overflow-x-auto">
-                    <table class="table">
+                    <table class="table table-hover table-bordered">
                         <thead class="table-dark">
                         <tr>
                             <th class="whitespace-nowrap">#</th>
@@ -55,7 +57,7 @@
                         <tbody>
                         @foreach($addresses as $key => $address)
                             <tr>
-                                <td>{{$key + 1}}</td>
+                                <td class="text-center">{{ ($addresses->currentPage() - 1 ) * $addresses->perPage() + $loop->index + 1 }}</td>
                                 <td>{{$address->name}}</td>
                                 <td>{{$address->detail}}</td>
                                 <td>
@@ -70,12 +72,15 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <div class="">
-                                        <a href="{{route('admin.setting.address.edit', $address->id)}}" class="mr-1">
+                                    <div class="flex justify-center items-center">
+                                        <a href="{{ route('admin.setting.address.edit', ['id' => $address->id]) }}" class="mr-1">
                                             <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i data-lucide="edit-3"></i></button>
                                         </a>
-                                        <a href="{{route('admin.setting.address.destroy', $address->id)}}" class="mr-1" onclick="return confirm('Bạn có muốn xóa địa chỉ {{$address->name}}?');">
-                                            <button type="button" class="btn btn-outline-danger p-1 w-8 h-8"><i data-lucide="trash-2"></i></button>
+                                        <a class="mr-1">
+                                            <button data-tw-toggle="modal"  type="button" class="btn btn-outline-danger p-1 w-8 h-8" data-tw-target="#delete-object-confirm-form"
+                                                    onclick='openConfirmDeleteObjectForm("{{ $address->name }}", {{ $address->id }})'>
+                                                <i data-lucide="trash-2"></i>
+                                            </button>
                                         </a>
                                     </div>
                                 </td>
@@ -84,7 +89,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div>{{$addresses->links()}}</div>
+                <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{$addresses->links()}}</div>
             </div>
         </div>
     </div>

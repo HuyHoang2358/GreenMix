@@ -1,16 +1,18 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Đối tác
-@endsection
+@section('title', 'Đối tác')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang Quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.partner.index')}}">Đối tác </a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Đối tác </a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
+    @include('admin.partials.action_alerts')
+    @include('admin.content.product.delete')
+    @php($routeDelete = route('admin.partner.destroy'))
+
     <div class="intro-y box">
         <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
             <h2 class="font-medium text-xl mr-auto">
@@ -21,7 +23,7 @@
         <div class="p-5" id="head-options-table">
             <div class="preview">
                 <div class="overflow-x-auto">
-                    <table class="table">
+                    <table  class="table table-hover table-bordered">
                         <thead class="table-dark">
                         <tr>
                             <th class="whitespace-nowrap">#</th>
@@ -33,9 +35,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($partners as $key => $partner)
+                        @foreach ($partners as $partner)
                             <tr>
-                                <td>{{$key + 1}}</td>
+                                <td class="text-center">{{ ($partners->currentPage() - 1 ) * $partners->perPage() + $loop->index + 1 }}</td>
                                 <td>{{$partner -> name}}</td>
                                 <td>
                                     <img class="max-w-32" src="{{ asset($partner->logo)}}" alt="">
@@ -43,12 +45,15 @@
                                 <td>{{$partner -> url}}</td>
                                 <td>{{$partner -> order}}</td>
                                 <td>
-                                    <div class="">
-                                        <a href="{{route('admin.partner.edit', $partner->id)}}" class="mr-1">
+                                    <div class="flex justify-center items-center">
+                                        <a href="{{ route('admin.partner.edit', ['id' => $partner->id]) }}" class="mr-1">
                                             <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i data-lucide="edit-3"></i></button>
                                         </a>
-                                        <a href="{{route('admin.partner.destroy', $partner->id)}}" class="mr-1" onclick="return confirm('Bạn có muốn xóa đối tác {{$partner->name}}?');">
-                                            <button type="button" class="btn btn-outline-danger p-1 w-8 h-8"><i data-lucide="trash-2"></i></button>
+                                        <a class="mr-1">
+                                            <button data-tw-toggle="modal"  type="button" class="btn btn-outline-danger p-1 w-8 h-8" data-tw-target="#delete-object-confirm-form"
+                                                    onclick='openConfirmDeleteObjectForm("{{ $partner->name }}", {{ $partner->id }})'>
+                                                <i data-lucide="trash-2"></i>
+                                            </button>
                                         </a>
                                     </div>
                                 </td>
@@ -57,8 +62,8 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{$partners->links()}}</div>
             </div>
-            <div>{{$partners->links()}}</div>
         </div>
     </div>
 @endsection
