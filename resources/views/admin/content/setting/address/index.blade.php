@@ -9,8 +9,6 @@
     </nav>
 @endsection
 @section('content')
-    @include('admin.partials.action_alerts')
-    @include('admin.content.product.delete')
     @php($routeDelete = route('admin.setting.address.destroy'))
 
     <div class="intro-y flex flex-col sm:flex-row items-center my-7">
