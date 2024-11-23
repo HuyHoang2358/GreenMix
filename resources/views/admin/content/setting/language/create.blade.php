@@ -10,9 +10,12 @@
     </nav>
 @endsection
 @section('content')
+    <!-- Define validateFormError partial -->
     @include('admin.partials.validateFormError')
+
+    <!-- Title -->
     <div>
-        <h1 class="text-xl font-medium py-5">Thêm mới ngôn ngữ</h1>
+        <h2 class="text-xl font-medium py-5">Thêm mới ngôn ngữ</h2>
     </div>
     <div class="bg-white rounded-lg px-10 py-5">
         <form action="{{ route('admin.setting.language.store') }}" method="POST">
@@ -30,8 +33,11 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="language-name" type="text" class="form-control" placeholder="Nhập tên ngôn ngữ" name="name" required>
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <input id="language-name" type="text"
+                                   class="form-control" placeholder="Nhập tên ngôn ngữ" name="name" required
+                                   onkeyup="handleCountNumberCharacter('language-name', 'number-character-language-name', 100)"
+                            >
+                            <div class="form-help text-right">Tối đa <span id="number-character-language-name">0</span>/100 ký tự</div>
                         </div>
                     </div>
 
@@ -46,8 +52,10 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="language-slug" type="text" class="form-control" placeholder="Nhập slug" name="slug">
-                            <div class="form-help text-right">Tối đa 0/100 kí tự</div>
+                            <input id="language-slug" type="text" class="form-control" placeholder="Nhập slug" name="slug"
+                                   onkeyup="handleCountNumberCharacter('language-slug', 'number-character-language-slug', 100)"
+                            >
+                            <div class="form-help text-right">Tối đa <span id="number-character-language-slug">0</span>/100 ký tự</div>
                         </div>
                     </div>
 

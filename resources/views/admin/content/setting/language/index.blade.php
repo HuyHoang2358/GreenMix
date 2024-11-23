@@ -9,10 +9,10 @@
     </nav>
 @endsection
 @section('content')
-    @include('admin.partials.action_alerts')
-    @include('admin.content.product.delete')
+    <!-- Define route for delete action -->
     @php($routeDelete = route('admin.setting.language.destroy'))
 
+    <!-- Table title -->
     <div class="intro-y box">
         <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
             <h2 class="font-medium text-xl mr-auto">
