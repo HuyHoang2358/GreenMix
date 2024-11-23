@@ -8,6 +8,7 @@
         </ol>
     </nav>
 @endsection
+
 <!-- Define route for delete action -->
 @php($routeDelete = route('admin.account.destroy'))
 
