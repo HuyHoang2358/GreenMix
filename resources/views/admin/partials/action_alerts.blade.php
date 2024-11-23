@@ -7,7 +7,7 @@
         }, 3000); // 3 seconds
     </script>
     <div
-        class="alert alert-dismissible success-msg show flex items-center right-80 mt-1 fixed bg-green-700 text-white"
+        class="alert alert-dismissible success-msg show flex items-center right-80 mr-8  mt-1 fixed bg-green-700 text-white"
         role="alert"
         style="z-index: 9999; top: 6.75rem;"
     >
@@ -21,7 +21,7 @@
 <!-- Thông báo thất bai với key error  -->
 @if (Session::has('error'))
     <div
-        class="alert alert-dismissible show flex items-center mb-2 fixed right-60 bg-red-700 text-white"
+        class="alert alert-dismissible show flex items-center mb-2 fixed right-80 mr-8  bg-red-700 text-white"
         role="alert"
         style="z-index: 9999; top: 6.75rem;"
     >
