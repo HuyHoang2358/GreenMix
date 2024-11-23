@@ -44,8 +44,4 @@
     </div>
 </div>
 
-<script src="{{ asset('/vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
-<script>
-    let route_prefix = "/admin/laravel-filemanager";
-    $('#choose-img').filemanager('files', {prefix: route_prefix});
-</script>
+@include('admin.partials.stand_alone_lfm_js')

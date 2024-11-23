@@ -90,7 +90,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/add', [AccountController::class, 'create'])->name('admin.account.add');
         Route::post('/store', [AccountController::class, 'store'])->name('admin.account.store');
         Route::get('/edit/{id}', [AccountController::class, 'edit'])->name('admin.account.edit');
-        Route::patch('/update/{id}', [AccountController::class, 'update'])->name('admin.account.update');
+        Route::post('/update/{id}', [AccountController::class, 'update'])->name('admin.account.update');
         Route::post('/delete', [AccountController::class, 'destroy'])->name('admin.account.destroy');
     });
 
@@ -100,8 +100,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/add', [RecruitmentController::class, 'create'])->name('admin.recruitment.add');
         Route::post('/store', [RecruitmentController::class, 'store'])->name('admin.recruitment.store');
         Route::get('/edit/{id}', [RecruitmentController::class, 'edit'])->name('admin.recruitment.edit');
-        Route::patch('/update/{id}', [RecruitmentController::class, 'update'])->name('admin.recruitment.update');
+        Route::post('/update/{id}', [RecruitmentController::class, 'update'])->name('admin.recruitment.update');
         Route::post('/delete', [RecruitmentController::class, 'destroy'])->name('admin.recruitment.destroy');
+        
     });
 
     // setting route group

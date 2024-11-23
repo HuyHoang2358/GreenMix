@@ -34,9 +34,11 @@ class RecruitmentController extends Controller
     {
         //
         $categories = $this->getCategories('recruitment');
-        return view('admin.content.recruitment.add',[
-            'page' => 'recruitment-manager',
-            'categories' => $categories     
+        return view('admin.content.recruitment.createOrUpdateForm', [
+            'isUpdate' => false, 
+            'item' => null, 
+            'page' => 'recruitment-manager', 
+            'categories' => $categories
         ]);
 
     }
@@ -83,15 +85,16 @@ class RecruitmentController extends Controller
     public function edit($id)
     {
         //
-
+        
         $recruitment = Recruitment::with('category')->findOrFail($id);
 
         $categories = $this->getCategories('recruitment');
 
-        return view('admin.content.recruitment.update',[
+        return view('admin.content.recruitment.createOrUpdateForm',[
             'page' => 'recruitment-manager',
-            'recruitment' => $recruitment,
-            'categories' => $categories     
+            'item' => $recruitment,
+            'categories' => $categories,
+            'isUpdate' => true,   
         ]);
 
     }
