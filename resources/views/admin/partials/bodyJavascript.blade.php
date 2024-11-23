@@ -155,9 +155,9 @@
             var holder = $('#' + $(this).attr('holder-to-clear'));
             holder.find('img').remove();
 
-            if (holder.children().length === 0) {
+            if (holder.children().length == 0) {
                 holder.append(
-                    '<div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>'
+                    '<div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>'
                 );
             }
         });

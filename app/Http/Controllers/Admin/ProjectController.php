@@ -15,7 +15,7 @@ class ProjectController extends Controller
     public function index(): Factory|Application|View
     {
         // Lấy ra danh sách dự án có phân trang và săp xếp theo thời gian cập nhật mới nhất
-        $projects = Project::orderBy('updated_at', 'desc')->paginate(2);
+        $projects = Project::orderBy('updated_at', 'desc')->paginate(6);
 
         // Trả về view index và truyền biến projects chứa danh sách dự án
         return view('admin.content.project.index', [

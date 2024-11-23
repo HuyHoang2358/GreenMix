@@ -24,7 +24,7 @@
         // set or change the preview image src
         items.forEach(function (item) {
           target_preview.append(
-            $('<img>').css('height', '5rem').css('width', '10rem').css('border-radius', '0.25rem').attr('src', item.thumb_url)
+            $('<img>').css('height', '7rem').css('width', '12rem').css('border-radius', '0.25rem').attr('src', item.thumb_url)
           );
         });
 

@@ -8,7 +8,6 @@
         </ol>
     </nav>
 @endsection
-
 @section('content')
     <!-- Define route for delete action -->
     @php($routeDelete = route('admin.project.destroy'))
@@ -66,7 +65,7 @@
                                             <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i data-lucide="edit-3"></i></button>
                                         </a>
                                         <a class="mr-1">
-                                            <button data-tw-toggle="modal"  type="button" class="btn btn-outline-danger p-1 w-8 h-8" data-tw-target="#delete-object-confirm-form"
+                                            <button data-tw-toggle="modal" type="button" class="btn btn-outline-danger p-1 w-8 h-8" data-tw-target="#delete-object-confirm-form"
                                                     onclick='openConfirmDeleteObjectForm("{{ $project->name }}", {{ $project->id }})'>
                                                 <i data-lucide="trash-2"></i>
                                             </button>
@@ -79,7 +78,7 @@
                 </table>
             </div>
             <!-- Pagination -->
-            <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{$projects->links()}}</div>
+            <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{ $projects->links()}}</div>
         </div>
     </div>
 @endsection

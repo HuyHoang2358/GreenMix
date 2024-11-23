@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/{type}/store', [PostController::class, 'store'])->name('admin.post.store');
         Route::get('/{type}/edit/{id}', [PostController::class, 'edit'])->name('admin.post.edit');
         Route::post('/{type}/update/{id}', [PostController::class, 'update'])->name('admin.post.update');
-        Route::get('/{type}/delete', [PostController::class, 'destroy'])->name('admin.post.destroy');
+        Route::post('/{type}/delete', [PostController::class, 'destroy'])->name('admin.post.destroy');
     });
     // Danh mục
     Route::prefix('category')->group(function () {
@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [ProductController::class, 'store'])->name('admin.product.store');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::post('/update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
-        Route::get('/delete', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+        Route::post('/delete', [ProductController::class, 'destroy'])->name('admin.product.destroy');
     });
 
     // Quản lý đối tác
@@ -91,7 +91,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [AccountController::class, 'store'])->name('admin.account.store');
         Route::get('/edit/{id}', [AccountController::class, 'edit'])->name('admin.account.edit');
         Route::patch('/update/{id}', [AccountController::class, 'update'])->name('admin.account.update');
-        Route::delete('/delete', [AccountController::class, 'destroy'])->name('admin.account.destroy');
+        Route::post('/delete', [AccountController::class, 'destroy'])->name('admin.account.destroy');
     });
 
     Route::prefix('recruitment')->group(function () {
@@ -101,7 +101,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [RecruitmentController::class, 'store'])->name('admin.recruitment.store');
         Route::get('/edit/{id}', [RecruitmentController::class, 'edit'])->name('admin.recruitment.edit');
         Route::patch('/update/{id}', [RecruitmentController::class, 'update'])->name('admin.recruitment.update');
-        Route::delete('/delete', [RecruitmentController::class, 'destroy'])->name('admin.recruitment.destroy');
+        Route::post('/delete', [RecruitmentController::class, 'destroy'])->name('admin.recruitment.destroy');
     });
 
     // setting route group

@@ -19,7 +19,7 @@ class RecruitmentController extends Controller
     {
         //
         
-        $recruitments = Recruitment::with('category')->get();
+        $recruitments = Recruitment::orderBy('updated_at', 'desc')->paginate(6);
          
         return view('admin.content.recruitment.index',[
             'recruitments' => $recruitments,
@@ -143,7 +143,7 @@ class RecruitmentController extends Controller
         //
         try{
 
-            Recruitment::findOrFail($request->input('del-recruitment-id'))->delete();
+            Recruitment::findOrFail($request->input('del-object-id'))->delete();
 
             return redirect()->route('admin.recruitment.index')->with('success', 'Xóa vị trí ứng tuyển thành công.');
 

@@ -10,6 +10,7 @@
     </nav>
 @endsection
 @section('content')
+
     <!-- View validate form error -->
     @include('admin.partials.validateFormError')
     <!-- End view validate form error -->
@@ -86,17 +87,17 @@
                                     </div>
                                 </div>
                                 <div class="col-span-1">
-                                    <div class="relative">
+                                    <div class="relative w-fit">
                                         <div>
-                                            <div id="holder" class="placeholder-text text-gray-600 p-2 flex items-center justify-center rounded bg-slate-300 w-full h-24 overflow-hidden text-center">
+                                            <div id="holder" class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden text-center">
                                                 @if($project->image)
-                                                    <img class="h-20 w-40" src="{{ asset($project->image) }}" alt="">
+                                                    <img class="h-28 w-48" src="{{ asset($project->image) }}" alt="">
                                                 @else
                                                     Chưa có hình ảnh xem trước
                                                 @endif
                                             </div>
                                         </div>
-                                        <button type="button" class="rounded-lg p-1 images-eraser absolute top-0 right-0 mt-[-15px] mr-[-15px] text-red-700 hover:bg-red-600 hover:text-white" input-to-clear="image" holder-to-clear="holder" style="height: fit-content">
+                                        <button type="button" class="absolute border-red-600 border bg-white -right-4 -top-1 rounded-lg p-1 images-eraser text-red-700 hover:bg-red-600 hover:text-white" input-to-clear="image" holder-to-clear="holder" style="height: fit-content">
                                             <i data-lucide="trash-2" class="w-6 h-6"></i>
                                         </button>
                                     </div>

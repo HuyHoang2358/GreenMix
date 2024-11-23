@@ -7,24 +7,15 @@
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item"><a href="{{ route('admin.product.index') }}">Sản phẩm</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="#">Thêm mới</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Cập nhật</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
 
-    @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible show flex items-center mb-2 fixed right-60"
-            style="z-index: 9999; top: 6.75rem;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            <button type="button" class="btn-close" data-tw-dismiss="alert" aria-label="Close"> <i data-lucide="x"
-                    class="w-4 h-4"></i> </button>
-        </div>
-    @endif
+    <!-- View validate form error -->
+    @include('admin.partials.validateFormError')
+    <!-- End view validate form error -->
 
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
@@ -94,7 +85,7 @@
                                     ấn tượng hơn</div>
                             </div>
                         </div>
-                        <div class="w-full flex flex-col gap-2">
+                        <div class="w-full flex flex-col gap-2 flex-1">
                             <div class="flex-1">
                                 <div class="w-full mt-3 xl:mt-0 flex-1 flex gap-2">
                                     <span class="input-group-btn">
@@ -109,11 +100,11 @@
                                 </div>
                             </div>
 
-                            <div class="flex flex-row gap-2 items-center">
+                            <div class="flex flex-row gap-2 items-center relative w-fit">
                                 <div id="holder" class="flex flex-row gap-2">
                                     @if (count($images) > 0)
                                         @foreach ($images as $image)
-                                            <img class="h-20 w-40 rounded" src="{{ asset($image) }}" alt="">
+                                            <img class="h-28 w-48 rounded" src="{{ asset($image) }}" alt="">
                                         @endforeach
                                     @else
                                         <div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">
@@ -121,7 +112,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <button type="button" class="btn btn-danger images-eraser" input-to-clear="images" holder-to-clear="holder" style="height: fit-content;">Bỏ ảnh</button>
+                                <button type="button" class="absolute border-red-600 border bg-white -right-4 -top-1 rounded-lg p-1 images-eraser text-red-700 hover:bg-red-600 hover:text-white" input-to-clear="images" holder-to-clear="holder" style="height: fit-content;"><i data-lucide="trash-2" class="w-6 h-6"></i></button>
                             </div>
 
                         </div>
@@ -188,18 +179,18 @@
                                 </div>
                             </div>
                             <div>
-                                <label for="holder" class="form-label">Hình ảnh xem trước</label>
-                                <div style="margin-top:15px;" class="flex flex-row gap-2 items-center">
+                                <label for="holder">Hình ảnh xem trước</label>
+                                <div style="margin-top:15px;" class="relative flex flex-row gap-2 items-center w-fit">
                                     <div id="add-post-holder"
-                                        class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">
+                                        class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden text-center">
                                         @if ($product->post && $product->post->images)
-                                            <img class="h-20 w-40" src="{{ asset($product->post->images) }}"
+                                            <img class="h-28 w-48" src="{{ asset($product->post->images) }}"
                                                 alt="">
                                         @else
                                             Chưa có hình ảnh xem trước
                                         @endif
                                     </div>
-                                    <button type="button" class="btn btn-danger images-eraser" input-to-clear="add-post-thumbnail" holder-to-clear="add-post-holder" style="height: fit-content;">Bỏ ảnh</button>
+                                    <button type="button" class="absolute border-red-600 border bg-white -right-4 -top-1 rounded-lg p-1 images-eraser text-red-700 hover:bg-red-600 hover:text-white" input-to-clear="add-post-thumbnail" holder-to-clear="add-post-holder" style="height: fit-content;"><i data-lucide="trash-2" class="w-6 h-6"></i></button>
                                 </div>
                             </div>
                         </div>

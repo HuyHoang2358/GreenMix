@@ -1,22 +1,19 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Vị trí tuyển dụng
-@endsection
+@section('title', 'Vị trí tuyển dụng')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang Quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.project.index') }}">Vị trí tuyển
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Vị trí tuyển
                     dụng</a></li>
         </ol>
     </nav>
 @endsection
 @php
     use Carbon\Carbon;
+    $routeDelete = route('admin.recruitment.destroy');
 @endphp
 @section('content')
-    @include('admin.partials.action_alerts')
-    @include('admin.content.recruitment.delete')
 
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
@@ -49,23 +46,25 @@
     <div class="intro-y col-span-12 lg:col-span-12 mt-2">
         <div class="intro-y box py-2 px-4">
             <div class="overflow-x-auto">
-                <table class="table">
+                <table class="table table-hover table-bordered">
                     <thead class="table-dark">
                         <tr>
-                            <th class="whitespace-nowrap">#</th>
+                            <th class="whitespace-nowrap text-center">STT</th>
                             <th class="whitespace-nowrap">Tên</th>
                             <th class="whitespace-nowrap">Thời gian</th>
                             <th class="whitespace-nowrap">Địa chỉ</th>
                             <th class="whitespace-nowrap">Số lượng</th>
                             <th class="whitespace-nowrap">Trạng thái</th>
-                            <th class="whitespace-nowrap">Hành động</th>
+                            <th class="whitespace-nowrap text-center">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (count($recruitments) > 0)
                             @foreach ($recruitments as $recruitment)
                                 <tr>
-                                    <td>{{ $recruitment->id }}</td>
+                                    <td class="text-center">
+                                        {{ ($recruitments->currentPage() - 1) * $recruitments->perPage() + $loop->index + 1 }}
+                                    </td>
                                     <td>{{ $recruitment->name }}</td>
                                     <td style="max-width: 16rem;">
                                         <div class="flex flex-row items-center gap-2">
@@ -94,19 +93,19 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="">
+                                        <div class="flex justify-center items-center">
                                             <a href="{{ route('admin.recruitment.edit', ['id' => $recruitment->id]) }}"
                                                 class="mr-1">
-                                                <button class="btn btn-primary mr-1 mb-2">
-                                                    <i data-lucide="edit" class="w-5 h-5"></i>
-                                                </button>
+                                                <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i
+                                                        data-lucide="edit-3"></i></button>
                                             </a>
 
                                             <a class="mr-1">
-                                                <button data-tw-toggle="modal" data-tw-target="#delete-recruitment-form"
-                                                    class="btn btn-danger mr-1 mb-2"
-                                                    onclick='getRecruitmentForDelete("{{ $recruitment->name }}", {{ $recruitment->id }})'>
-                                                    <i data-lucide="trash" class="w-5 h-5"></i>
+                                                <button data-tw-toggle="modal" type="button"
+                                                    class="btn btn-outline-danger p-1 w-8 h-8"
+                                                    data-tw-target="#delete-object-confirm-form"
+                                                    onclick='openConfirmDeleteObjectForm("{{ $recruitment->name }}", {{ $recruitment->id }})'>
+                                                    <i data-lucide="trash-2"></i>
                                                 </button>
                                             </a>
                                         </div>
@@ -121,6 +120,7 @@
                     </tbody>
                 </table>
             </div>
+            <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{ $recruitments->links() }}</div>
         </div>
     </div>
 

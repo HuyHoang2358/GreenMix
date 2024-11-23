@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index(): Factory|Application|View
     {
 
-        $products = Product::all();
+        $products = Product::orderBy('updated_at', 'desc')->paginate(6);
 
         return view('admin.content.product.index', [
             'page' => 'product-manager', // dùng để active menu
@@ -185,22 +185,18 @@ class ProductController extends Controller
 
     public function destroy(Request $request){
 
-        $id = $request->input('del-product-id');
+        $id = $request->input('del-object-id');
         
         try {
 
             $product = Product::findOrFail($id);
             $product->delete();
 
-            return redirect()->route('admin.product.index', [
-                'page' => 'product-manager'
-            ])->with('success', 'Xóa sản phẩm thành công.');
+            return redirect()->route('admin.product.index')->with('success', 'Xóa sản phẩm thành công.');
 
         } catch (\Exception $e) {
 
-            return redirect()->route('admin.product.index', [
-                'page' => 'product-manager'
-            ])->with('error', 'Xóa sản phẩm thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.product.index')->with('error', 'Xóa sản phẩm thất bại: ' . $e->getMessage());
 
         }
 
