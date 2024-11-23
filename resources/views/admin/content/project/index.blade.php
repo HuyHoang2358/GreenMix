@@ -24,16 +24,16 @@
 
         <!-- BEGIN: HTML Table Data -->
         <div class="intro-y col-span-12 lg:col-span-12 mt-4">
-            <div class="intro-y box">
+            <div class="py-2 px-4">
                 <div class="overflow-x-auto">
                     <table class="table table-hover table-bordered">
                         <thead class="table-dark ">
                             <tr>
-                                <th class="whitespace-nowrap text-center">STT</th>
+                                <th class="whitespace-nowrap text-center w-8">STT</th>
                                 <th class="whitespace-nowrap">Tên</th>
                                 <th class="whitespace-nowrap">Hình ảnh</th>
                                 <th class="whitespace-nowrap">Địa chỉ</th>
-                                <th class="whitespace-nowrap text-center">Thao tác</th>
+                                <th class="whitespace-nowrap text-center w-24">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,15 +47,16 @@
                                     <td>{{ $project->address }}</td>
                                     <td>
                                         <div class="flex justify-center items-center">
-                                            <a href="{{ route('admin.project.edit', ['id' => $project->id]) }}" class="mr-1">
-                                                <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i data-lucide="edit-3"></i></button>
-                                            </a>
-                                            <a class="mr-1">
-                                                <button data-tw-toggle="modal" type="button" class="btn btn-outline-danger p-1 w-8 h-8" data-tw-target="#delete-object-confirm-form"
-                                                        onclick='openConfirmDeleteObjectForm("{{ $project->name }}", {{ $project->id }})'>
-                                                    <i data-lucide="trash-2"></i>
-                                                </button>
-                                            </a>
+                                            <!-- Edit button -->
+                                            @include('admin.common.editButton', [
+                                                'routeEdit' => route('admin.project.edit', ['id' => $project->id])
+                                            ])
+
+                                            <!-- Delete button -->
+                                            @include('admin.common.deleteButton', [
+                                                'deleteObjectName' => $project->name,
+                                                'deleteObjectId' => $project->id
+                                            ])
                                         </div>
                                     </td>
                                 </tr>

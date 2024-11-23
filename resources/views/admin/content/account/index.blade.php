@@ -28,7 +28,7 @@
                     <table class="table table-hover table-bordered">
                         <thead class="table-dark">
                             <tr>
-                                <th class="whitespace-nowrap text-center">STT</th>
+                                <th class="whitespace-nowrap text-center w-8">STT</th>
                                 <th class="whitespace-nowrap">Tên</th>
                                 <th class="whitespace-nowrap">Email</th>
                                 <th class="whitespace-nowrap">Trạng thái</th>
@@ -59,23 +59,19 @@
                                         @endif
                                     </td>
                                     <td class="flex justify-center items-center">
-                                        <div class="">
-                                            <a href="{{ route('admin.account.edit', ['id' => $account->id]) }}" class="mr-1">
-                                                <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i
-                                                        data-lucide="edit-3"></i></button>
-                                            </a>
-
+                                        <div class="flex justify-center items-center gap-2">
+                                            <!-- Edit button -->
+                                            @include('admin.common.editButton', [
+                                             'routeEdit' => route('admin.account.edit', ['id' => $account->id])
+                                            ])
+                                            <!-- Delete button -->
+                                            <!-- kiểm tra nếu tài khoản không phải là tài khoản mặc định và tài khoản hiện tại thì hiển thị nút xóa -->
                                             @if ($account->id != 1 && $account->id != $current_user_id)
-                                                <a class="mr-1">
-                                                    <button data-tw-toggle="modal" type="button"
-                                                        class="btn btn-outline-danger p-1 w-8 h-8"
-                                                        data-tw-target="#delete-object-confirm-form"
-                                                        onclick='openConfirmDeleteObjectForm("{{ $account->name }}", {{ $account->id }})'>
-                                                        <i data-lucide="trash-2"></i>
-                                                    </button>
-                                                </a>
+                                                @include('admin.common.deleteButton', [
+                                                    'deleteObjectName' => $account->name,
+                                                    'deleteObjectId' => $account->id
+                                                ])
                                             @endif
-
                                         </div>
                                     </td>
                                 </tr>
