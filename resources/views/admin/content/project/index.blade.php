@@ -8,10 +8,10 @@
         </ol>
     </nav>
 @endsection
-@section('content')
-    <!-- Define route for delete action -->
-    @php($routeDelete = route('admin.project.destroy'))
+<!-- Define route for delete action -->
+@php($routeDelete = route('admin.project.destroy'))
 
+@section('content')
     <!-- Table title -->
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-xl font-medium mr-auto">

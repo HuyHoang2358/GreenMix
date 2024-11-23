@@ -20,6 +20,7 @@
             </h2>
             <a href="{{route('admin.setting.language.add')}}"><button class="btn btn-primary w-56 h-12"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="plus" data-lucide="plus" class="lucide lucide-plus w-4 h-4 mr-2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Thêm mới ngôn ngữ </button></a>
         </div>
+
         <div class="p-5" id="head-options-table">
             <div class="preview">
                 <div class="overflow-x-auto">
