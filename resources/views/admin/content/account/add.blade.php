@@ -15,14 +15,16 @@
     @include('admin.partials.validateFormError')
     <!-- End view validate form error -->
 
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
+    <!-- Title page -->
+    <div class="intro-y box flex items-center mt-8">
+        <h2 class="p-5 text-lg font-medium mr-auto">
             Thêm mới tài khoản
         </h2>
     </div>
+
     <form action="{{ route('admin.account.store') }}" method="POST">
         @csrf
-        <div class="intro-y box p-5 mt-5">
+        <div class="intro-y box p-5 mt-2">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                 <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                     <i data-lucide="chevron-down"></i>
@@ -103,6 +105,7 @@
 
             </div>
         </div>
+
         <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
             <a href="{{ route('admin.account.index') }}">
                 <button type="button" class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">Hủy</button>

@@ -11,7 +11,7 @@
       window.SetUrl = function (items) {
         var file_path = items.map(function (item) {
           //return item.url;
-          console.log("/storage/" + item.url.split("storage/")[1]);
+          //console.log("/storage/" + item.url.split("storage/")[1]);
           return "/storage/" + item.url.split("storage/")[1];
         }).join(',');
 

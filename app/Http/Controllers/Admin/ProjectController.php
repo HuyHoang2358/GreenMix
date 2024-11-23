@@ -27,7 +27,9 @@ class ProjectController extends Controller
     public function create(): Factory|Application|View
     {
         // Trả về view thêm mới dự án
-        return view('admin.content.project.add', [
+        return view('admin.content.project.createOrUpdateForm', [
+            'isUpdate' => false, // dùng để hiển thị form thêm mới
+            'item' => null, // dùng để truyền dữ liệu vào form
             'page' => 'project-manager', // dùng để active menu
         ]);
 
@@ -57,9 +59,10 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        return view('admin.content.project.edit', [
+        return view('admin.content.project.createOrUpdateForm', [
             'page' => 'project-manager', // dùng để active menu
-            'project' => $project
+            'isUpdate' => true, // dùng để hiển thị form cập nhật
+            'item' => $project
         ]);
     }
 
