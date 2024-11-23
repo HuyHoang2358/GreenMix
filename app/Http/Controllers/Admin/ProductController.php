@@ -10,6 +10,7 @@ use Illuminate\Foundation\Application;
 use App\Models\Product;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -26,8 +27,10 @@ class ProductController extends Controller
 
     public function create(){
 
-        return view('admin.content.product.add',  [
-            'page' => 'product-manager', // dùng để active menu
+        return view('admin.content.product.createOrUpdateForm',  [
+            'page' => 'product-manager', 
+            'isUpdate' => false, 
+            'item' => null, 
         ]);
 
     }
@@ -89,11 +92,19 @@ class ProductController extends Controller
     public function edit($id){
 
         $product = Product::with('post')->findOrFail($id);
-        $decodedImages = json_decode($product->images, true);
 
-        return view('admin.content.product.update', [
+        $decodedImages = json_decode($product->images, true);
+        
+        // Check if the decoded value is an array
+        if (is_array($decodedImages)) {
+            // Join the array elements into a comma-separated string
+            $product->images = implode(',', $decodedImages);
+        } 
+
+        return view('admin.content.product.createOrUpdateForm', [
             'page' => 'product-manager', 
-            'product' => $product,
+            'item' => $product,
+            'isUpdate' => true,
             'images' => $decodedImages,
         ]);
 

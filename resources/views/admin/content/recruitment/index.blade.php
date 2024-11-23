@@ -4,8 +4,7 @@
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang Quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="#">Vị trí tuyển
-                    dụng</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Vị trí tuyển dụng</a></li>
         </ol>
     </nav>
 @endsection
@@ -15,47 +14,28 @@
 @endphp
 @section('content')
 
-    <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
-            Quản lý tuyển dụng
-        </h2>
-        <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <a href="{{ route('admin.recruitment.add') }}"><button class="btn btn-primary shadow-md mr-2"> Thêm mới vị trí
-                    tuyển dụng
-                </button></a>
-            <div class="dropdown ml-auto sm:ml-0">
-                <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                    <span class="w-5 h-5 flex items-center justify-center">
-                        <i data-lucide="printer"></i>
-                    </span>
-                </button>
-                <div class="dropdown-menu w-40">
-                    <ul class="dropdown-content">
-                        <li>
-                            <a href="#" class="dropdown-item"> In </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item"> Xuất file excel </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Table title -->
+    @include('admin.common.titleTable', [
+        'title' => 'Quản lý tuyển dụng',
+        'routeAdd' => route('admin.recruitment.add'),
+        'titleButton' => 'Thêm mới vị trí tuyển dụng'
+    ])
+    <!-- End Table title -->
+
     <!-- BEGIN: HTML Table Data -->
-    <div class="intro-y col-span-12 lg:col-span-12 mt-2">
+    <div class="intro-y col-span-12 lg:col-span-12 mt-4">
         <div class="intro-y box py-2 px-4">
             <div class="overflow-x-auto">
                 <table class="table table-hover table-bordered">
                     <thead class="table-dark">
                         <tr>
-                            <th class="whitespace-nowrap text-center">STT</th>
+                            <th class="whitespace-nowrap text-center w-8">STT</th>
                             <th class="whitespace-nowrap">Tên</th>
                             <th class="whitespace-nowrap">Thời gian</th>
                             <th class="whitespace-nowrap">Địa chỉ</th>
                             <th class="whitespace-nowrap">Số lượng</th>
                             <th class="whitespace-nowrap">Trạng thái</th>
-                            <th class="whitespace-nowrap text-center">Hành động</th>
+                            <th class="whitespace-nowrap text-center w-24">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,20 +74,17 @@
                                     </td>
                                     <td>
                                         <div class="flex justify-center items-center">
-                                            <a href="{{ route('admin.recruitment.edit', ['id' => $recruitment->id]) }}"
-                                                class="mr-1">
-                                                <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i
-                                                        data-lucide="edit-3"></i></button>
-                                            </a>
+                                            <!-- Edit button -->
+                                            @include('admin.common.editButton', [
+                                                'routeEdit' => route('admin.recruitment.edit', ['id' => $recruitment->id])
+                                            ])
 
-                                            <a class="mr-1">
-                                                <button data-tw-toggle="modal" type="button"
-                                                    class="btn btn-outline-danger p-1 w-8 h-8"
-                                                    data-tw-target="#delete-object-confirm-form"
-                                                    onclick='openConfirmDeleteObjectForm("{{ $recruitment->name }}", {{ $recruitment->id }})'>
-                                                    <i data-lucide="trash-2"></i>
-                                                </button>
-                                            </a>
+                                            <!-- Delete button -->
+                                            @include('admin.common.deleteButton', [
+                                                'deleteObjectName' => $recruitment->name,
+                                                'deleteObjectId' => $recruitment->id
+                                            ])
+
                                         </div>
                                     </td>
                                 </tr>
@@ -123,11 +100,4 @@
             <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{ $recruitments->links() }}</div>
         </div>
     </div>
-
-    <script>
-        function getRecruitmentForDelete(name, id) {
-            document.getElementById('del-recruitment-name').textContent = name;
-            document.getElementById('del-recruitment-id').value = id;
-        }
-    </script>
 @endsection

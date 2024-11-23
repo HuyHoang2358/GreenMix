@@ -39,9 +39,11 @@ class PostController extends Controller
 
     public function create($type){
 
-        return view('admin.content.post.add', [
+        return view('admin.content.post.createOrUpdateForm', [
             'page' => 'post-'.$type.'-manager', // dùng để active menu
             'type' => $type,
+            'isUpdate' => false, 
+            'item' => null, 
         ]);
 
     }
@@ -93,10 +95,11 @@ class PostController extends Controller
     public function edit($type, $id){
 
         $post = Post::findOrFail($id);
-        return view('admin.content.post.update', [
-            'post' => $post, 
+        return view('admin.content.post.createOrUpdateForm', [ 
             'type' => $type,
-            'page' => 'post-'.$type.'-manager'
+            'page' => 'post-'.$type.'-manager',
+            'isUpdate' => true, 
+            'item' => $post,
         ]);
 
     }

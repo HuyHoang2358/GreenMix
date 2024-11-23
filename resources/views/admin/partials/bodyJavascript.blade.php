@@ -66,7 +66,6 @@
             $('#postFields input[name="post-thumbnail"]').attr('required', 'required');
             $('#postFields input[name="post-name"]').attr('required', 'required');
             $('#postFields input[name="title"]').attr('required', 'required');
-            $('#postFields input[name="post-slug"]').attr('required', 'required');
             $('#postFields input[name="post-description"]').attr('required', 'required');
             $('#content').attr('required', 'required');
         } else {
@@ -74,7 +73,6 @@
             $('#postFields input[name="post-thumbnail"]').removeAttr('required');;
             $('#postFields input[name="post-name"]').removeAttr('required');;
             $('#postFields input[name="title"]').removeAttr('required');;
-            $('#postFields input[name="post-slug"]').removeAttr('required');;
             $('#postFields input[name="post-description"]').removeAttr('required');
             $('#content').removeAttr('required');
         }
@@ -157,7 +155,7 @@
 
             if (holder.children().length == 0) {
                 holder.append(
-                    '<div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>'
+                    '<div class="hihi placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden text-center">Chưa có hình ảnh xem trước</div>'
                 );
             }
         });
@@ -169,6 +167,32 @@
                 e.preventDefault();
         });
         //end add readonly function for img tags
+
+        // $('.input-json-decoder').each(function() {
+        //     var imageInput = $(this);
+        //     var imageValue = imageInput.val();
+
+        //     console.log(imageValue);
+
+        //     try {
+        //         // Parse the JSON-encoded array
+        //         var imageArray = JSON.parse(imageValue);
+
+        //         // Check if the parsed value is an array
+        //         if (Array.isArray(imageArray)) {
+
+        //             var imageString = imageArray.join(', ');
+        //             imageInput.val(imageString);
+
+        //         }
+
+        //     } catch (e) {
+        //         console.error('Invalid JSON format:', e);
+        //     }
+            
+        // });
+
     });
+
 </script>
 

@@ -1,13 +1,12 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Thêm mới sản phẩm
-@endsection
+@section('title', 'Thêm mới sản phẩm')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item"><a href="{{ route('admin.product.index') }}">Sản phẩm</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="#">Cập nhật</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a
+                    href="#">{{ $isUpdate ? 'Cập nhật' : 'Thêm mới' }}</a></li>
         </ol>
     </nav>
 @endsection
@@ -17,12 +16,15 @@
     @include('admin.partials.validateFormError')
     <!-- End view validate form error -->
 
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
-            Cập nhật sản phẩm
-        </h2>
-    </div>
-    <form id="product-post" action="{{ route('admin.product.update', ['id' => $product->id]) }}" method="POST">
+    <!-- Title page -->
+    @include('admin.common.titleForm', [
+        'titleForm' => $isUpdate ? 'Cập nhật thông tin sản phẩm' : 'Thêm mới sản phẩm',
+    ])
+
+    <!-- Form update information -->
+    @php($actionRoute = $isUpdate ? route('admin.product.update', ['id' => $item->id]) : route('admin.product.store'))
+
+    <form id="product-post" action="{{ $actionRoute }}" method="POST" class="required-form">
         @csrf
         <div class="intro-y box p-5 mt-5">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
@@ -46,10 +48,10 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input id="name" name="name" type="text" class="form-control"
-                                placeholder="Nhập tên sản phẩm" required autofocus value="{{ $product->name }}">
+                                placeholder="Nhập tên sản phẩm" required autofocus
+                                value="{{ isset($item) ? $item->name : '' }}">
                             <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="name"
-                                    max-characters="255">0</span>/255 ký tự
-                            </div>
+                                    max-characters="255">0</span>/255 ký tự</div>
                         </div>
                     </div>
 
@@ -65,10 +67,9 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input id="slug" name="slug" type="text" class="form-control"
-                                placeholder="Nhập slug sản phẩm" autofocus value="{{ $product->slug }}">
-                            <div class="form-help text-right">Tối đa <span id="number-character-slug" class="word-counter"
-                                    input-to-count="slug" max-characters="100">0</span>/100 ký tự
-                            </div>
+                                placeholder="Nhập slug sản phẩm" autofocus value="{{ isset($item) ? $item->slug : '' }}">
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="slug"
+                                    max-characters="100">0</span>/100 ký tự</div>
                         </div>
                     </div>
 
@@ -89,30 +90,33 @@
                             <div class="flex-1">
                                 <div class="w-full mt-3 xl:mt-0 flex-1 flex gap-2">
                                     <span class="input-group-btn">
-                                        <a id="post-img-preview" data-input="images" data-preview="holder"
-                                            class="btn btn-primary">
+                                        <a id="choose-img" data-input="image" data-preview="holder" class="btn btn-primary">
                                             <i class="fa fa-picture-o"></i> Chọn
                                         </a>
                                     </span>
-                                    <input id="images" name="images" type="text"
-                                        class="form-control flex-1 w-2 readonly" placeholder="Tải hình ảnh lên" required autofocus
-                                        value="{{ count($images) > 0 ? $product->images : '' }}" />
+                                    <input id="image" name="images" type="text"
+                                        class="form-control flex-1 w-2 readonly input-json-decoder" placeholder="Tải hình ảnh lên" required
+                                        autofocus value="{{ isset($item) ? $item->images : '' }}" />
                                 </div>
                             </div>
 
-                            <div class="flex flex-row gap-2 items-center relative w-fit">
-                                <div id="holder" class="flex flex-row gap-2">
-                                    @if (count($images) > 0)
+                            <div class="flex items-center gap-2 relative w-fit">
+                                <div id="holder" class="flex flex-row gap-2 items-center">
+                                    @if (isset($item) && count($images) > 0)
                                         @foreach ($images as $image)
                                             <img class="h-28 w-48 rounded" src="{{ asset($image) }}" alt="">
                                         @endforeach
                                     @else
-                                        <div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-40 h-20 overflow-hidden text-center">
+                                        <div
+                                            class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden text-center">
                                             Chưa có hình ảnh xem trước
                                         </div>
                                     @endif
                                 </div>
-                                <button type="button" class="absolute border-red-600 border bg-white -right-4 -top-1 rounded-lg p-1 images-eraser text-red-700 hover:bg-red-600 hover:text-white" input-to-clear="images" holder-to-clear="holder" style="height: fit-content;"><i data-lucide="trash-2" class="w-6 h-6"></i></button>
+                                <button type="button"
+                                    class="absolute border-red-600 border bg-white -right-4 -top-1 rounded-lg p-1 images-eraser text-red-700 hover:bg-red-600 hover:text-white"
+                                    input-to-clear="image" holder-to-clear="holder" style="height: fit-content;"><i
+                                        data-lucide="trash-2" class="w-6 h-6"></i></button>
                             </div>
 
                         </div>
@@ -133,7 +137,7 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <textarea id="recruitment-description" name="description" class="form-control h-64 resize-none"
-                                placeholder="Nhập mô tả" required autofocus>{{ $product->description }}</textarea>
+                                placeholder="Nhập mô tả" required autofocus>{{ isset($item) ? $item->description : '' }}</textarea>
                         </div>
                     </div>
 
@@ -147,8 +151,7 @@
                     Bài viết sản phẩm
                     <div>
                         <input class="mx-2" type="checkbox" id="togglePostFields" name="togglePostFields"
-                            @if ($product->post_id) checked @endif /> Liên kết
-                        bài viết
+                            @if (isset($item) && $item->post_id) checked @endif /> Liên kết bài viết
                     </div>
                 </div>
                 <div id="postFields" class="hidden flex-col mt-5 required-form">
@@ -159,38 +162,44 @@
                                 <div>
                                     <label for="type" class="form-label">Loại bài viết<span style="color: red;">
                                             *</span></label>
-                                    <input readonly required id="type" name="type" type="text"
-                                        class="form-control" value="Sản phẩm">
+                                    <input required id="type" name="type" type="text"
+                                        class="form-control readonly" value="Sản phẩm">
                                 </div>
                                 <div>
                                     <label for="add-post-image" class="form-label">Hình ảnh<span style="color: red;">
                                             *</span></label>
                                     <div id="add-post-image" class="input-group flex gap-2">
                                         <span class="input-group-btn">
-                                            <a id="add-post-img-preview" data-input="add-post-thumbnail"
+                                            <a id="choose-img-secondary" data-input="add-post-thumbnail"
                                                 data-preview="add-post-holder" class="btn btn-primary flex gap-1">
                                                 <i data-lucide="image"></i> Chọn
                                             </a>
                                         </span>
-                                        <input readonly id="add-post-thumbnail" class="form-control" type="text"
-                                            name="post-thumbnail"
-                                            value="{{ $product->post ? $product->post->images : '' }}" placeholder="Thêm ảnh cho bài viết">
+                                        <input id="add-post-thumbnail" class="form-control readonly" type="text"
+                                            name="post-thumbnail" placeholder="Thêm ảnh cho bài viết" value="{{ isset($item->post) ? $item->post->images : '' }}">
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <label for="holder">Hình ảnh xem trước</label>
                                 <div style="margin-top:15px;" class="relative flex flex-row gap-2 items-center w-fit">
-                                    <div id="add-post-holder"
-                                        class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden text-center">
-                                        @if ($product->post && $product->post->images)
-                                            <img class="h-28 w-48" src="{{ asset($product->post->images) }}"
-                                                alt="">
-                                        @else
-                                            Chưa có hình ảnh xem trước
-                                        @endif
+                                    <div id="add-post-holder">
+                                        <div
+                                            class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden">
+
+                                            @if (isset($item->post) && $item->post->images)
+                                                <img class="h-28 w-48" src="{{ asset($item->post->images) }}" alt="">
+                                            @else
+                                                Chưa có hình ảnh nào
+                                            @endif
+
+                                        </div>
                                     </div>
-                                    <button type="button" class="absolute border-red-600 border bg-white -right-4 -top-1 rounded-lg p-1 images-eraser text-red-700 hover:bg-red-600 hover:text-white" input-to-clear="add-post-thumbnail" holder-to-clear="add-post-holder" style="height: fit-content;"><i data-lucide="trash-2" class="w-6 h-6"></i></button>
+                                    <button type="button"
+                                        class="absolute border-red-600 border bg-white -right-4 -top-1 rounded-lg p-1 images-eraser text-red-700 hover:bg-red-600 hover:text-white"
+                                        input-to-clear="add-post-thumbnail" holder-to-clear="add-post-holder"
+                                        style="height: fit-content;"><i data-lucide="trash-2"
+                                            class="w-6 h-6"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -203,24 +212,26 @@
                                     <label for="name" class="form-label">Tên bài viết<span style="color: red;">
                                             *</span></label>
                                     <input id="post-name" name="post-name" type="text" class="form-control"
-                                        placeholder="Nhập tên" value="{{ $product->post ? $product->post->name : '' }}">
+                                        placeholder="Nhập tên" value="{{ isset($item->post) ? $item->post->name : '' }}">
                                 </div>
                                 <div>
                                     <label for="title" class="form-label">Tiêu đề bài viết <span style="color: red;">
                                             *</span></label>
                                     <input id="title" name="title" type="text" class="form-control"
                                         placeholder="Nhập tiêu đề"
-                                        value="{{ $product->post ? $product->post->title : '' }}">
+                                        value="{{ isset($item->post) ? $item->post->title : '' }}">
                                 </div>
                                 <div>
                                     <label for="slug" class="form-label">Slug bài viết</label>
                                     <input id="post-slug" name="post-slug" type="text" class="form-control"
-                                        placeholder="Nhập slug" value="{{ $product->post ? $product->post->slug : '' }}">
+                                        placeholder="Nhập slug"
+                                        value="{{ isset($item->post) ? $item->post->slug : '' }}">
                                 </div>
                                 <div>
-                                    <label for="description" class="form-label">Mô tả</label>
+                                    <label for="description" class="form-label">Mô tả<span style="color: red;">
+                                            *</span></label>
                                     <textarea id="post-description" class="form-control h-20" name="post-description" placeholder="Nhập mô tả"
-                                        style="resize: none;">{{ $product->post ? $product->post->description : '' }}</textarea>
+                                        style="resize: none;">{{ isset($item->post) ? $item->post->description : '' }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -230,18 +241,18 @@
                                     <label for="seo-title" class="form-label">Tiêu đề SEO</label>
                                     <input id="seo-title" name="seo-title" type="text" class="form-control"
                                         placeholder="Nhập tiêu đề seo"
-                                        value="{{ $product->post ? $product->post->seo_title : '' }}">
+                                        value="{{ isset($item->post) ? $item->post->seo_title : '' }}">
                                 </div>
                                 <div>
                                     <label for="seo-keyword" class="form-label">Từ khóa SEO</label>
                                     <input id="seo-keyword" name="seo-keyword" type="text" class="form-control"
                                         placeholder="Nhập slug"
-                                        value="{{ $product->post ? $product->post->seo_keyword : '' }}">
+                                        value="{{ isset($item->post) ? $item->post->seo_keyword : '' }}">
                                 </div>
                                 <div>
                                     <label for="seo-description" class="form-label">Mô tả SEO</label>
                                     <textarea id="seo-description" class="form-control h-40" name="seo-description" placeholder="Nhập mô tả"
-                                        style="resize: none;">{{ $product->post ? $product->post->seo_description : '' }}</textarea>
+                                        style="resize: none;">{{ isset($item->post) ? $item->post->seo_description : '' }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +265,7 @@
                                 <div>
                                     <label for="content" class="form-label">Nội dung bài viết<span style="color: red;">
                                             *</span></label>
-                                    <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ $product->post ? $product->post->content : '' }}</textarea>
+                                    <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ isset($item->post) ? $item->post->content : '' }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -263,15 +274,12 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
-            <a href="{{ route('admin.product.index') }}">
-                <button type="button"
-                    class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">Hủy</button>
-            </a>
-            <button type="submit" class="btn py-3 btn-primary w-full md:w-52">Lưu thông tin</button>
-        </div>
+
+        <!-- Buttons cancel and save -->
+        @include('admin.common.cancelAndSaveButtons', ['routeCancel' => route('admin.product.index')])
+
     </form>
 
-    @include('admin.partials.stand_alone_lfm')
+    @include('admin.partials.stand_alone_lfm_js')
 
 @endsection

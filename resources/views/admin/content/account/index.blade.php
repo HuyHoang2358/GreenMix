@@ -14,6 +14,7 @@
 
 @section('content')
     <div class="intro-y box">
+
         <!-- Table title -->
         @include('admin.common.titleTable', [
             'title' => 'Quản lý tài khoản',
@@ -22,7 +23,7 @@
         ])
 
         <!-- BEGIN: HTML Table Data -->
-        <div class="intro-y col-span-12 lg:col-span-12 mt-2">
+        <div class="intro-y col-span-12 lg:col-span-12 mt-4">
             <div class="intro-y box py-2 px-4">
                 <div class="overflow-x-auto">
                     <table class="table table-hover table-bordered">
@@ -32,7 +33,7 @@
                                 <th class="whitespace-nowrap">Tên</th>
                                 <th class="whitespace-nowrap">Email</th>
                                 <th class="whitespace-nowrap">Trạng thái</th>
-                                <th class="whitespace-nowrap text-center">Thao tác</th>
+                                <th class="whitespace-nowrap text-center w-24">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -15,46 +15,28 @@
 @endphp
 @section('content')
 
-    <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
-            Quản lý
-            {{ $type == 'news' ? 'bài viết tin tức' : ($type == 'knowledge' ? 'bài viết kiến thức' : 'bài viết tuyển dụng') }}
-        </h2>
-        <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <a href="{{ route('admin.post.add', $type) }}"><button class="btn btn-primary shadow-md mr-2"> Thêm mới bài viết
-                </button></a>
-            <div class="dropdown ml-auto sm:ml-0">
-                <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                    <span class="w-5 h-5 flex items-center justify-center">
-                        <i data-lucide="printer"></i>
-                    </span>
-                </button>
-                <div class="dropdown-menu w-40">
-                    <ul class="dropdown-content">
-                        <li>
-                            <a href="#" class="dropdown-item"> In </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item"> Xuất file excel </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <!-- Table title -->
+    @include('admin.common.titleTable', [
+        'title' => 'Quản lý ' . ($type == 'news' ? 'bài viết tin tức' : ($type == 'knowledge' ? 'bài viết kiến thức' : 'bài viết tuyển dụng')),
+        'routeAdd' => route('admin.post.add', ['type' => $type]),
+        'titleButton' => 'Thêm mới bài viết'
+    ])
+    <!-- End Table title -->
+
     <!-- BEGIN: HTML Table Data -->
-    <div class="intro-y col-span-12 lg:col-span-12 mt-2">
+    <div class="intro-y col-span-12 lg:col-span-12 mt-4">
         <div class="intro-y box py-2 px-4">
             <div class="overflow-x-auto">
                 <table class="table table-hover table-bordered">
                     <thead class="table-dark">
                         <tr>
-                            <th class="whitespace-nowrap text-center">#</th>
+                            <th class="whitespace-nowrap text-center w-8">#</th>
                             <th class="whitespace-nowrap">Hình ảnh</th>
                             <th class="whitespace-nowrap">Tên bài viết</th>
                             <th class="whitespace-nowrap">Tiêu đề</th>
                             <th class="whitespace-nowrap">Slug</th>
-                            <th class="whitespace-nowrap text-center">Thao tác</th>
+                            <th class="whitespace-nowrap text-center w-24">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,19 +59,17 @@
                                     <td>{{ $post->slug }}</td>
                                     <td>
                                         <div class="flex justify-center items-center">
-                                            <a href="{{ route('admin.post.edit', ['id' => $post->id, 'type' => $type]) }}" class="mr-1">
-                                                <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i
-                                                    data-lucide="edit-3"></i></button>
-                                            </a>
+                                            <!-- Edit button -->
+                                            @include('admin.common.editButton', [
+                                                'routeEdit' => route('admin.post.edit', ['id' => $post->id, 'type' => $type])
+                                            ])
 
-                                            <a class="mr-1">
-                                                <button data-tw-toggle="modal" type="button"
-                                                    class="btn btn-outline-danger p-1 w-8 h-8"
-                                                    data-tw-target="#delete-object-confirm-form"
-                                                    onclick='openConfirmDeleteObjectForm("{{ $post->name }}", {{ $post->id }})'>
-                                                    <i data-lucide="trash-2"></i>
-                                                </button>
-                                            </a>
+                                            <!-- Delete button -->
+                                            @include('admin.common.deleteButton', [
+                                                'deleteObjectName' => $post->name,
+                                                'deleteObjectId' => $post->id
+                                            ])
+
                                         </div>
                                     </td>
                                 </tr>
