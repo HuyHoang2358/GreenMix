@@ -29,8 +29,8 @@
                 <div class="overflow-x-auto">
                     <table  class="table table-hover table-bordered">
                         <thead class="table-dark">
-                        <tr>
-                            <th class="whitespace-nowrap text-center w-8">STT</th>
+                        <tr class=" text-center">
+                            <th class="whitespace-nowrap w-8">STT</th>
                             <th class="whitespace-nowrap">Tên Đối Tác</th>
                             <th class="whitespace-nowrap">Logo</th>
                             <th class="whitespace-nowrap">Đường Dẫn Của Đối Tác</th>
@@ -50,7 +50,7 @@
                                 <td>{{$partner -> url}}</td>
                                 <td>{{$partner -> order}}</td>
                                 <td>
-                                    <div class="flex justify-center items-center">
+                                    <div class="flex gap-2 justify-center items-center">
                                         <!-- Edit button -->
                                         @include('admin.common.editButton', [
                                             'routeEdit' => route('admin.partner.edit', ['id' => $partner->id])

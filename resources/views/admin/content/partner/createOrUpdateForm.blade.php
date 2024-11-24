@@ -4,9 +4,9 @@
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item"><a href="{{route('admin.partner.index')}}">Đối tác hợp tác</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.partner.index')}}">Cài đặt đối tác</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin' : 'Thêm mới thông tin' }}</a>
+                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin đối tác' : 'Thêm mới thông tin đối tác' }}</a>
             </li>
         </ol>
     </nav>

@@ -43,11 +43,11 @@ class PartnerController extends Controller
             ]);
 
             // Chuyển hướng về trang danh sách dự án và kèm theo thông báo thành công
-            return redirect()->route('admin.partner.index')->with('success', 'Thêm mới dự án thành công!');
+            return redirect()->route('admin.partner.index')->with('success', 'Thêm mới đối tác thành công!');
 
         } catch (Exception $e) {
             // Trường hợp có lỗi xảy ra, chuyển hướng về trang danh sách dự án và kèm theo thông báo lỗi
-            return redirect()->route('admin.partner.index')->with('error', 'Thêm mới dự án thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.partner.index')->with('error', 'Thêm mới đối tác thất bại: ' . $e->getMessage());
         }
     }
     public function edit($id, Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
@@ -71,9 +71,9 @@ class PartnerController extends Controller
             $partners->order = $request->input('order');
             $partners->save();
 
-            return redirect()->route('admin.partner.index')->with('success', 'Cập nhật dự án thành công!');
+            return redirect()->route('admin.partner.index')->with('success', 'Cập nhật đối tác thành công!');
         } catch (Exception $e) {
-            return redirect()->route('admin.partner.index')->with('error', 'Cập nhật dự án thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.partner.index')->with('error', 'Cập nhật đối tác thất bại: ' . $e->getMessage());
         }
     }
 
@@ -83,9 +83,9 @@ class PartnerController extends Controller
             $partner = Partner::findOrFail($request->input('del-object-id'));
             $partner->delete();
 
-            return redirect()->route('admin.partner.index')->with('success', 'Xóa dự án thành công.');
+            return redirect()->route('admin.partner.index')->with('success', 'Xóa đối tác thành công.');
         } catch (Exception $e) {
-            return redirect()->route('admin.partner.index')->with('error', 'Xóa dự án thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.partner.index')->with('error', 'Xóa đối tác thất bại: ' . $e->getMessage());
         }
     }
 }

@@ -43,11 +43,11 @@ class LanguagueController extends Controller
             ]);
 
             // Chuyển hướng về trang danh sách dự án và kèm theo thông báo thành công
-            return redirect()->route('admin.setting.language.index')->with('success', 'Thêm mới dự án thành công!');
+            return redirect()->route('admin.setting.language.index')->with('success', 'Thêm mới ngôn ngữ thành công!');
 
         } catch (Exception $e) {
             // Trường hợp có lỗi xảy ra, chuyển hướng về trang danh sách dự án và kèm theo thông báo lỗi
-            return redirect()->route('admin.setting.language.index')->with('error', 'Thêm mới dự án thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.setting.language.index')->with('error', 'Thêm mới ngôn ngữ thất bại: ' . $e->getMessage());
         }
     }
     public function edit($id, Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
@@ -69,9 +69,9 @@ class LanguagueController extends Controller
             $languague->icon = $request->input('icon');
             $languague->save();
 
-            return redirect()->route('admin.setting.language.index')->with('success', 'Cập nhật dự án thành công!');
+            return redirect()->route('admin.setting.language.index')->with('success', 'Cập nhật ngôn ngữ thành công!');
         } catch (Exception $e) {
-            return redirect()->route('admin.setting.language.index')->with('error', 'Cập nhật dự án thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.setting.language.index')->with('error', 'Cập nhật ngôn ngữ thất bại: ' . $e->getMessage());
         }
     }
 
@@ -81,9 +81,9 @@ class LanguagueController extends Controller
             $languague = Languague::findOrFail($request->input('del-object-id'));
             $languague->delete();
 
-            return redirect()->route('admin.setting.language.index')->with('success', 'Xóa dự án thành công.');
+            return redirect()->route('admin.setting.language.index')->with('success', 'Xóa ngôn ngữ thành công.');
         } catch (Exception $e) {
-            return redirect()->route('admin.setting.language.index')->with('error', 'Xóa dự án thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.setting.language.index')->with('error', 'Xóa ngôn ngữ thất bại: ' . $e->getMessage());
         }
     }
 }

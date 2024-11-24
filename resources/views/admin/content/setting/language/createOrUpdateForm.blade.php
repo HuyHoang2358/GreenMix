@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item"><a href="{{route('admin.setting.language.index')}}">Ngôn ngữ hợp tác</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.setting.language.index')}}">Cài đặt ngôn ngữ</a></li>
             <li class="breadcrumb-item active" aria-current="page">
                 <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin ngôn ngữ' : 'Thêm mới thông tin ngôn ngữ' }}</a>
             </li>

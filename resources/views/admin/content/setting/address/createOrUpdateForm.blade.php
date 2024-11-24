@@ -4,9 +4,9 @@
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item"><a href="{{route('admin.setting.address.index')}}">Địa chỉ hợp tác</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.setting.address.index')}}">Cài đặt địa chỉ</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin' : 'Thêm mới thông tin' }}</a>
+                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin địa chỉ' : 'Thêm mới thông tin địa chỉ' }}</a>
             </li>
         </ol>
     </nav>
@@ -17,7 +17,7 @@
     <!-- End view validate form error -->
 
     <!-- Title page -->
-    @include('admin.common.titleForm', ['titleForm' =>  $isUpdate ? 'Cập nhật thông tin dự án' : 'Thêm mới dự án'])
+    @include('admin.common.titleForm', ['titleForm' =>  $isUpdate ? 'Cập nhật thông tin địa chỉ' : 'Thêm mới địa chỉ'])
 
     <!-- Form update information -->
     @php($actionRoute = $isUpdate ? route('admin.setting.address.update', ['id' => $item->id]) : route('admin.setting.address.store'))
@@ -62,10 +62,7 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <div class="editor">
-                                <textarea class="form-control" rows="3" id="address-detail" name="detail"
-                                          onkeyup="handleCountNumberCharacter('address-detail', 'number-character-address-detail', 255)">
-                                    {{$item ?  $item->detail : ''}}
-                                </textarea>
+                                <textarea class="form-control" rows="3" id="address-detail" name="detail" onkeyup="handleCountNumberCharacter('address-detail', 'number-character-address-detail', 255)"> {{ $item ?  $item->detail : ''}} </textarea>
                             </div>
                             <div class="form-help text-right">Tối đa <span id="number-character-address-detail">0</span>/255 ký tự</div>
                         </div>

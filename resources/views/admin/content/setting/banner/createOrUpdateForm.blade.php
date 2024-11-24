@@ -4,9 +4,9 @@
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item"><a href="{{route('admin.setting.banner.index')}}">Đối tác hợp tác</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.setting.banner.index')}}">Cài đặt banner</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin' : 'Thêm mới thông tin' }}</a>
+                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin banner' : 'Thêm mới thông tin banner' }}</a>
             </li>
         </ol>
     </nav>
@@ -37,7 +37,7 @@
                                     <div class="font-medium">Tên Banner</div>
                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
-                                <div class="leading-relaxed text-slate-500 text-xs mt-3"> Tên đối tác ngắn gọn không trùng lặp và không được để trống</div>
+                                <div class="leading-relaxed text-slate-500 text-xs mt-3"> Tên Banner ngắn gọn không trùng lặp và không được để trống</div>
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
