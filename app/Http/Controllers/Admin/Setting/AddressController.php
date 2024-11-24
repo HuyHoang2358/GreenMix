@@ -24,8 +24,11 @@ class AddressController extends Controller
 
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.content.setting.address.create',[
-            'page' => 'setting-address',
+        // Trả về view thêm mới dự án
+        return view('admin.content.setting.address.createOrUpdateForm', [
+            'isUpdate' => false, // dùng để hiển thị form thêm mới
+            'item' => null, // dùng để truyền dữ liệu vào form
+            'page' => 'setting-address', // dùng để active menu
         ]);
     }
 
@@ -52,12 +55,11 @@ class AddressController extends Controller
     public function edit($id, Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $address = Address::find($id);
-        $addresses = $request->all();
 
-        return view('admin.content.setting.address.edit', [
+        return view('admin.content.setting.address.createOrUpdateForm', [
             'page' => 'setting-address',
-            'address' => $address,
-            'addresses' => $addresses,
+            'isUpdate' => true,
+            'item' => $address,
         ]);
     }
 

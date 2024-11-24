@@ -19,8 +19,7 @@
                     </p>
                     <input id="image" name="{{$inputImageName ?? 'image'}}" type="text" class="form-control flex-1 h-fit readonly"
                            placeholder="Tải hình ảnh lên"
-                           required
-                           value="{{ $selectedImage ?? '' }}"
+                           required value="{{ $selectedImage ?? '' }}"
                     >
                 </div>
             </div>
@@ -29,7 +28,7 @@
                     <div id="holder">
                         <div class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden text-center">
                             @if(isset($selectedImage) && $selectedImage)
-                                <img class="h-28 w-48" src="{{ asset($selectedImage) }}" alt="">
+                                <img class="h-28 w-48" src="{{ asset($selectedImage) }}" alt="" />
                             @else
                                 Chưa có hình ảnh xem trước
                             @endif

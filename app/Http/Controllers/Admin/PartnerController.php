@@ -24,8 +24,11 @@ class PartnerController extends Controller
 
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.content.partner.create',[
-            'page' => 'setting-partner',
+        // Trả về view thêm mới dự án
+        return view('admin.content.partner.createOrUpdateForm', [
+            'isUpdate' => false, // dùng để hiển thị form thêm mới
+            'item' => null, // dùng để truyền dữ liệu vào form
+            'page' => 'partner-manager', // dùng để active menu
         ]);
     }
 
@@ -50,12 +53,11 @@ class PartnerController extends Controller
     public function edit($id, Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $partner = Partner::find($id);
-        $partners = $request->all();
 
-        return view('admin.content.partner.edit', [
-            'page' => 'setting-address',
-            'partner' => $partner,
-            'partners' => $partners,
+        return view('admin.content.partner.createOrUpdateForm', [
+            'page' => 'partner-manager',
+            'isUpdate' => true,
+            'item' => $partner,
         ]);
     }
 

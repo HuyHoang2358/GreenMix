@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <div class="grid md:grid-cols-4 bg-[#747474] p-8 md:px-80 md:py-12 text-white">
     <div class="col-span-2 md:px-24">
         <img src="{{config('website.logo')}}" alt="">
@@ -59,3 +60,6 @@
         </div>
     </div>
 </div>
+=======
+    
+>>>>>>> Stashed changes

@@ -18,7 +18,7 @@ class LanguagueController extends Controller
 
     public function index(Request $request): Factory|Application|View
     {
-        $languagues = Languague::all();
+        $languagues = Languague::orderBy('updated_at', 'desc')->paginate(5);
         return view('admin.content.setting.language.index', [
             'page' => 'setting-language',
             'languagues' => $languagues,
@@ -26,8 +26,10 @@ class LanguagueController extends Controller
     }
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view ('admin.content.setting.language.create', [
-            'page' => 'setting-language',
+        return view('admin.content.setting.language.createOrUpdateForm', [
+            'isUpdate' => false, // dùng để hiển thị form thêm mới
+            'item' => null, // dùng để truyền dữ liệu vào form
+            'page' => 'setting-language', // dùng để active menu
         ]);
     }
     public function store(Request $request): \Illuminate\Http\RedirectResponse
@@ -51,11 +53,10 @@ class LanguagueController extends Controller
     public function edit($id, Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $languague = Languague::find($id);
-        $languagues = $request->all();
-        return view('admin.content.setting.language.edit', [
+        return view('admin.content.setting.language.createOrUpdateForm', [
             'page' => 'setting-language',
-            'languague' => $languague,
-            'languagues' => $languagues,
+            'isUpdate' => true,
+            'item' => $languague,
         ]);
     }
     public function update($id, Request $request): \Illuminate\Http\RedirectResponse
