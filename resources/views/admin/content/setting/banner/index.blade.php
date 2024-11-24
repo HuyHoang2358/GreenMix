@@ -8,46 +8,28 @@
         </ol>
     </nav>
 @endsection
+
+<!-- Define route for delete action -->
+@php($routeDelete = route('admin.setting.banner.destroy'))
+
 @section('content')
+    <div class="intro-y box">
+        <!-- Table title -->
+        @include('admin.common.titleTable', [
+            'title' => 'Quản lý Banner',
+            'routeAdd' => route('admin.setting.banner.add'),
+            'titleButton' => 'Thêm mới Banner'
+        ])
+        <!-- End Table title -->
 
-    @include('admin.partials.action_alerts')
-
-    <!-- Confirm Form delete -->
-    @php($routeDelete = route('admin.setting.banner.destroy'))
-
-    <div class="intro-y flex flex-col sm:flex-row items-center my-7">
-        <h2 class="text-xl font-medium mr-auto">
-            Danh sách Banner
-        </h2>
-        <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <a href="{{route('admin.setting.banner.add')}}"><button class="btn btn-primary shadow-md mr-2"> Thêm mới Banner </button></a>
-            <div class="dropdown ml-auto sm:ml-0">
-                <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                    <span class="w-5 h-5 flex items-center justify-center">
-                        <i data-lucide="printer"></i>
-                    </span>
-                </button>
-                <div class="dropdown-menu w-40">
-                    <ul class="dropdown-content">
-                        <li>
-                            <a href="#" class="dropdown-item"> In </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item"> Xuất file excel </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="p-2 bg-white rounded-xl">
+        <!-- BEGIN: HTML Table Data -->
         <div class="p-5" id="head-options-table">
-            <div >
+            <div class="py-2 px-4">
                 <div class="overflow-x-auto">
-                    <table class="table table-hover table-bordered">
+                    <table  class="table table-hover table-bordered">
                         <thead class="table-dark">
                         <tr>
-                            <th class="whitespace-nowrap">#</th>
+                            <th class="whitespace-nowrap text-center w-8">#</th>
                             <th class="whitespace-nowrap">Tên Banner</th>
                             <th class="whitespace-nowrap">Tiêu đề</th>
                             <th class="whitespace-nowrap">Mô tả</th>
@@ -59,7 +41,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($banners as $key => $banner)
+                        @if(count($banners) > 0)
+                            @foreach($banners as $key => $banner)
                             <tr>
                                 <td class="text-center">{{ ($banners->currentPage() - 1 ) * $banners->perPage() + $loop->index + 1 }}</td>
                                 <td>{{$banner->name}}</td>
@@ -77,23 +60,32 @@
                                 <td>{{$banner->order}}</td>
                                 <td>
                                     <div class="flex justify-center items-center">
-                                        <a href="{{ route('admin.setting.banner.edit', ['id' => $banner->id]) }}" class="mr-1">
-                                            <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i data-lucide="edit-3"></i></button>
-                                        </a>
-                                        <a class="mr-1">
-                                            <button data-tw-toggle="modal"  type="button" class="btn btn-outline-danger p-1 w-8 h-8" data-tw-target="#delete-object-confirm-form"
-                                                    onclick='openConfirmDeleteObjectForm("{{ $banner->name }}", {{ $banner->id }})'>
-                                                <i data-lucide="trash-2"></i>
-                                            </button>
-                                        </a>
+                                        <!-- Edit button -->
+                                        @include('admin.common.editButton', [
+                                            'routeEdit' => route('admin.setting.banner.edit', ['id' => $banner->id])
+                                        ])
+
+                                        <!-- Delete button -->
+                                        @include('admin.common.deleteButton', [
+                                            'deleteObjectName' => $banner->name,
+                                            'deleteObjectId' => $banner->id
+                                        ])
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                          @endforeach
+                        @else
+                            <tr>
+                                <td class="text-center" colspan="9">Hiện tại không có Banner nào.</td>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>
-                <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{$banners->links()}}</div>
+                <!-- Pagination -->
+                @if($banners->lastPage() > 1)
+                    <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{$banners->links()}}</div>
+                @endif
             </div>
         </div>
     </div>

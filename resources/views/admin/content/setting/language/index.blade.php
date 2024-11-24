@@ -8,26 +8,29 @@
         </ol>
     </nav>
 @endsection
-@section('content')
-    <!-- Define route for delete action -->
-    @php($routeDelete = route('admin.setting.language.destroy'))
 
+<!-- Define route for delete action -->
+@php($routeDelete = route('admin.setting.language.destroy'))
+
+@section('content')
     <!-- Table title -->
     <div class="intro-y box">
-        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60">
-            <h2 class="font-medium text-xl mr-auto">
-                Danh sách ngôn ngữ
-            </h2>
-            <a href="{{route('admin.setting.language.add')}}"><button class="btn btn-primary w-56 h-12"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="plus" data-lucide="plus" class="lucide lucide-plus w-4 h-4 mr-2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Thêm mới ngôn ngữ </button></a>
-        </div>
+        <!-- Table title -->
+        @include('admin.common.titleTable', [
+            'title' => 'Quản lý dự án',
+            'routeAdd' => route('admin.setting.language.add'),
+            'titleButton' => 'Thêm mới ngôn ngữ',
+        ])
+        <!-- End Table title -->
 
-        <div class="p-5" id="head-options-table">
-            <div class="preview">
+        <!-- BEGIN: HTML Table Data -->
+        <div class="intro-y col-span-12 lg:col-span-12 mt-2">
+            <div class="py-2 px-4">
                 <div class="overflow-x-auto">
-                    <table class="table table-hover table-bordered">
+                    <table  class="table table-hover table-bordered">
                         <thead class="table-dark">
                         <tr>
-                            <th class="whitespace-nowrap">#</th>
+                            <th class="whitespace-nowrap text-center w-8">#</th>
                             <th class="whitespace-nowrap">Tên Ngôn Ngữ</th>
                             <th class="whitespace-nowrap">Slug</th>
                             <th class="whitespace-nowrap">Icon</th>
@@ -35,6 +38,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @if(count($languagues) > 0)
                         @foreach ($languagues as $key => $languague)
                             <tr>
                                 <td>{{$key + 1}}</td>
@@ -45,22 +49,32 @@
                                 </td>
                                 <td>
                                     <div class="flex justify-center items-center">
-                                        <a href="{{ route('admin.setting.language.edit', ['id' => $languague->id]) }}" class="mr-1">
-                                            <button type="button" class="btn btn-outline-warning p-1 w-8 h-8"> <i data-lucide="edit-3"></i></button>
-                                        </a>
-                                        <a class="mr-1">
-                                            <button data-tw-toggle="modal"  type="button" class="btn btn-outline-danger p-1 w-8 h-8" data-tw-target="#delete-object-confirm-form"
-                                                    onclick='openConfirmDeleteObjectForm("{{ $languague->name }}", {{ $languague->id }})'>
-                                                <i data-lucide="trash-2"></i>
-                                            </button>
-                                        </a>
+                                        <!-- Edit button -->
+                                        @include('admin.common.editButton', [
+                                            'routeEdit' => route('admin.setting.language.edit', ['id' => $languague->id])
+                                        ])
+
+                                        <!-- Delete button -->
+                                        @include('admin.common.deleteButton', [
+                                            'deleteObjectName' => $languague->name,
+                                            'deleteObjectId' => $languague->id
+                                        ])
                                     </div>
                                 </td>
                             </tr>
                         @endforeach
+                        @else
+                            <tr>
+                                <td class="text-center" colspan="6">Hiện tại không có ngôn ngữ nào.</td>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>
+                <!-- Pagination -->
+                @if($languagues->lastPage() > 1)
+                    <div class="rounded-b bg-gray-100 p-2 pl-4 border">{{$languagues->links()}}</div>
+                @endif
             </div>
         </div>
     </div>

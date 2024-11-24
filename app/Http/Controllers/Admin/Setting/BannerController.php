@@ -23,8 +23,10 @@ class BannerController extends Controller
 
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.content.setting.banner.create',[
-           'page' => 'setting-banner',
+        return view('admin.content.setting.banner.createOrUpdateForm', [
+            'isUpdate' => false, // dùng để hiển thị form thêm mới
+            'item' => null, // dùng để truyền dữ liệu vào form
+            'page' => 'setting-banner', // dùng để active menu
         ]);
     }
 
@@ -52,12 +54,11 @@ class BannerController extends Controller
     public function edit($id, Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $banner = Banner::find($id);
-        $banners = $request->all();
 
-        return view('admin.content.setting.banner.edit', [
+        return view('admin.content.setting.banner.createOrUpdateForm', [
             'page' => 'setting-banner',
-            'banner' => $banner,
-            'banners' => $banners,
+            'isUpdate' => true,
+            'item' => $banner,
         ]);
     }
 
