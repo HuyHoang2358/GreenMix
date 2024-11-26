@@ -1,6 +1,6 @@
-<div>
+<div class="hidden md:block">
     <!-- Top header -->
-    <div class="bg-primary-dark text-center py-1 px-16 text-white hidden md:block">
+    <div class="bg-primary-dark text-center py-1 px-16 text-white">
         <div class="w-ful flex justify-between items-center">
             <!-- Hotline -->
             <div class="flex justify-start items-center gap-2">
@@ -29,16 +29,16 @@
                 <!-- Languages -->
                 <div class="flex justify-end items-center gap-2">
                     <div class="flex justify-start items-center gap-1 border-r border-white pr-2">
-                        <img src="{{asset('images/icons/usa.png')}}" alt="flag-english" class="w-8 h-8">
+                        <img src="{{ asset('images/icons/usa.png') }}" alt="flag-english" class="w-8 h-8">
                         <p>English</p>
                     </div>
                     <div class="flex justify-start items-center gap-1 border-r border-white pr-2">
-                        <img src="{{asset('images/icons/vietnam.png')}}" alt="flag-vn" class="w-8 h-8">
+                        <img src="{{ asset('images/icons/vietnam.png') }}" alt="flag-vn" class="w-8 h-8">
                         <p>Tiếng việt</p>
                     </div>
 
                     <div class="flex justify-start items-center gap-1">
-                        <img src="{{asset('images/icons/china.png')}}" alt="flag-china" class="w-8 h-8">
+                        <img src="{{ asset('images/icons/china.png') }}" alt="flag-china" class="w-8 h-8">
                         <p>Chinese</p>
                     </div>
                 </div>
@@ -50,16 +50,16 @@
     <!-- End Top header -->
 
     <!-- Menu -->
-    <div class="bg-white"> 
-        
+    <div class="bg-white">
+
         <div class="flex justify-between">
             <!-- Logo -->
             <div class="px-12">
                 <img src="{{ asset('images/logo/green-mix-logo-new.png') }}" alt="">
             </div>
-            
+
             <!-- Link nav -->
-            <div class="px-14">   
+            <div class="px-14">
                 <div class="uppercase flex gap-x-10 font-semibold h-full">
                     <div class="flex justify-center items-center h-full gap-2">
                         Về green mix <i class="fa-solid fa-chevron-down"></i>
@@ -71,7 +71,7 @@
                         Truyền thông <i class="fa-solid fa-chevron-down"></i>
                     </div>
                     <div class="flex justify-center items-center h-full">
-                        Tuyển dụng 
+                        Tuyển dụng
                     </div>
                     <div class="flex justify-center items-center h-full">
                         Liên hệ
@@ -83,5 +83,124 @@
 
     </div>
     <!-- End Menu -->
+</div>
+
+<div class="shadow-canvas w-full h-full bg-black">
 
 </div>
+
+<!-- Mobile menu -->
+<div class="block sm:hidden">
+
+    <div class="bg-primary-dark text-center py-2 px-5 flex justify-between text-white">
+
+        <div>
+            <img class="w-32" src="{{ asset('images/logo/green-mix-logo.png') }}" alt="">
+        </div>
+
+        <button onclick="openNav()"><i class="fa-solid fa-bars"></i></button>
+
+    </div>
+
+</div>
+
+<div class="relative">
+
+    <!-- Opacity Black Layer -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden"></div>
+
+    <div id="mySidenav"
+        class="sidenav h-full w-0 fixed z-50 top-0 right-0 bg-white overflow-x-hidden pt-10 duration-500">
+        <a href="javascript:void(0)" class="closebtn absolute top-0 right-2 text-3xl" onclick="closeNav()">&times;</a>
+        <nav class="flex flex-col font-semibold">
+            <a class="uppercase border-y  p-3 min-w-[250px] flex justify-between" href="#"><i
+                    class="fa-solid fa-chevron-down pt-1"></i> Về green mix</a>
+            <a class="uppercase border-b p-3 min-w-[250px] flex justify-between" href="#"><i
+                    class="fa-solid fa-chevron-down pt-1"></i> Lĩnh vực kinh doanh</a>
+            <a class="uppercase border-b p-3 min-w-[250px] flex justify-between" href="#"><i
+                    class="fa-solid fa-chevron-down pt-1"></i>Truyền thông</a>
+            <a class="uppercase border-b p-3 min-w-[250px] flex justify-end" href="#">Tuyển dụng</a>
+            <a class="uppercase border-b p-3 min-w-[250px] flex justify-end" href="#">Liên hệ</a>
+            <!--Language Accrodian button-->
+            <a class="accordion uppercase border-b p-3 min-w-[250px] flex justify-between duration-500" href="#"><i
+                    class="fa-solid fa-chevron-down pt-1"></i>Ngôn ngữ</a>
+            <!--Language Accrodian panel-->
+            <div class="panel overflow-hidden hidden font-normal border-b">
+                <div class="flex border-b justify-end items-center gap-1 p-2">
+                    <p>English</p>
+                    <img src="{{ asset('images/icons/usa.png') }}" alt="flag-english" class="w-5 h-5">
+                </div>
+                <div class="flex border-b justify-end items-center gap-1 p-2">
+                    <p>Tiếng việt</p>
+                    <img src="{{ asset('images/icons/vietnam.png') }}" alt="flag-vn" class="w-5 h-5">
+                </div>
+                <div class="flex justify-end items-center gap-1 p-2">
+                    <p>Chinese</p>
+                    <img src="{{ asset('images/icons/china.png') }}" alt="flag-china" class="w-5 h-5">
+                </div>
+            </div>
+            <!--End Language Accrodian panel-->
+        </nav>
+        <div class="flex justify-center min-w-[250px] gap-3 p-5">
+            <a href="#">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+        </div>
+        <div class="min-w-[250px]">
+            <div class="text-sm text-center font-semibold">
+                Hotline: <br>
+                0972 555 666 - 0972 555 666
+            </div>
+            <img src="{{ asset('images/logo/green-mix-logo.png') }}" alt="">
+        </div>
+    </div>
+</div>
+
+<script>
+    /* Set the width of the side navigation to 250px */
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        $('#overlay').toggleClass('hidden');
+    }
+
+    /* Set the width of the side navigation to 0 */
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        $('#overlay').toggleClass('hidden');
+    }
+
+    $('#overlay').click(function() {
+        closeNav();
+    });
+
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("accordion-active");
+
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+
+            /* Toggle the icon class */
+            var icon = this.querySelector("i");
+            icon.classList.toggle("fa-chevron-down");
+            icon.classList.toggle("fa-chevron-up");
+
+        });
+    }
+</script>
