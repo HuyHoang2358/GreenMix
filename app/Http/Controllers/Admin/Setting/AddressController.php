@@ -74,9 +74,9 @@ class AddressController extends Controller
             $address->is_show = $request->input('is_show');
             $address->save();
 
-        return redirect()->route('admin.setting.address.index')->with('success', 'Cập nhật dự án thành công!');
+        return redirect()->route('admin.setting.address.index')->with('success', 'Cập nhật địa chỉ thành công!');
     } catch (Exception $e) {
-        return redirect()->route('admin.setting.address.index')->with('error', 'Cập nhật dự án thất bại: ' . $e->getMessage());
+        return redirect()->route('admin.setting.address.index')->with('error', 'Cập nhật địa chỉ thất bại: ' . $e->getMessage());
     }
     }
 
@@ -86,9 +86,9 @@ class AddressController extends Controller
             $address = Address::findOrFail($request->input('del-object-id'));
             $address->delete();
 
-            return redirect()->route('admin.setting.address.index')->with('success', 'Xóa dự án thành công.');
+            return redirect()->route('admin.setting.address.index')->with('success', 'Xóa địa chỉ thành công.');
         } catch (Exception $e) {
-            return redirect()->route('admin.setting.address.index')->with('error', 'Xóa dự án thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.setting.address.index')->with('error', 'Xóa địa chỉ thất bại: ' . $e->getMessage());
         }
     }
 }

@@ -28,8 +28,8 @@
                 <div class="overflow-x-auto">
                     <table  class="table table-hover table-bordered">
                         <thead class="table-dark">
-                        <tr>
-                            <th class="whitespace-nowrap text-center w-8">#</th>
+                        <tr class="text-center">
+                            <th class="whitespace-nowrap w-8">STT</th>
                             <th class="whitespace-nowrap">Tên Banner</th>
                             <th class="whitespace-nowrap">Tiêu đề</th>
                             <th class="whitespace-nowrap">Mô tả</th>
@@ -59,7 +59,7 @@
                                 <td><img class="max-w-40" src="{{$banner->path}}" alt=""></td>
                                 <td>{{$banner->order}}</td>
                                 <td>
-                                    <div class="flex justify-center items-center">
+                                    <div class="flex gap-2 justify-center items-center">
                                         <!-- Edit button -->
                                         @include('admin.common.editButton', [
                                             'routeEdit' => route('admin.setting.banner.edit', ['id' => $banner->id])

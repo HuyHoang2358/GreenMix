@@ -17,7 +17,7 @@
     <div class="intro-y box">
         <!-- Table title -->
         @include('admin.common.titleTable', [
-            'title' => 'Quản lý dự án',
+            'title' => 'Quản lý ngôn ngữ',
             'routeAdd' => route('admin.setting.language.add'),
             'titleButton' => 'Thêm mới ngôn ngữ',
         ])
@@ -29,8 +29,8 @@
                 <div class="overflow-x-auto">
                     <table  class="table table-hover table-bordered">
                         <thead class="table-dark">
-                        <tr>
-                            <th class="whitespace-nowrap text-center w-8">#</th>
+                        <tr class="text-center">
+                            <th class="whitespace-nowrap w-8">STT</th>
                             <th class="whitespace-nowrap">Tên Ngôn Ngữ</th>
                             <th class="whitespace-nowrap">Slug</th>
                             <th class="whitespace-nowrap">Icon</th>
@@ -48,7 +48,7 @@
                                     <img src="{{$languague -> icon}}" alt="">
                                 </td>
                                 <td>
-                                    <div class="flex justify-center items-center">
+                                    <div class="flex gap-2 justify-center items-center">
                                         <!-- Edit button -->
                                         @include('admin.common.editButton', [
                                             'routeEdit' => route('admin.setting.language.edit', ['id' => $languague->id])
