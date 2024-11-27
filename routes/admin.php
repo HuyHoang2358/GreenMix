@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/{type}/store', [CategoryController::class, 'store'])->name('admin.category.store');
         Route::get('/{type}/edit/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
         Route::post('/{type}/update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
-        Route::get('/{type}/delete/{id}', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
+        Route::post('/{type}/delete', [CategoryController::class, 'destroy'])->name('admin.category.destroy');
     });
 
     // Quản lý sản phẩm
@@ -102,7 +102,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{id}', [RecruitmentController::class, 'edit'])->name('admin.recruitment.edit');
         Route::post('/update/{id}', [RecruitmentController::class, 'update'])->name('admin.recruitment.update');
         Route::post('/delete', [RecruitmentController::class, 'destroy'])->name('admin.recruitment.destroy');
-        
+
     });
 
     // setting route group

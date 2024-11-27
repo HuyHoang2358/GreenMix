@@ -1,10 +1,10 @@
 @extends('admin.layouts.adminApp')
-@section('title', 'Đối tác')
+@section('title', 'Quản lý đối tác')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang Quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="#">Đối tác </a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Quản lý Đối tác</a></li>
         </ol>
     </nav>
 @endsection
@@ -32,9 +32,9 @@
                         <tr class=" text-center">
                             <th class="whitespace-nowrap w-8">STT</th>
                             <th class="whitespace-nowrap">Tên Đối Tác</th>
-                            <th class="whitespace-nowrap">Logo</th>
+                            <th class="whitespace-nowrap w-32">Logo</th>
                             <th class="whitespace-nowrap">Đường Dẫn Của Đối Tác</th>
-                            <th class="whitespace-nowrap">Thứ Tự</th>
+                            <th class="whitespace-nowrap text-center w-8">Thứ Tự</th>
                             <th class="whitespace-nowrap text-center w-24">Thao Tác</th>
                         </tr>
                         </thead>
@@ -47,8 +47,14 @@
                                 <td>
                                     <img class="max-w-32" src="{{ asset($partner->logo)}}" alt="">
                                 </td>
-                                <td>{{$partner -> url}}</td>
-                                <td>{{$partner -> order}}</td>
+                                <td>
+                                    @if($partner->url && $partner->url != '#')
+                                        <a href="{{$partner->url}}" class="text-blue-600 hover:text-orange-500" target="_blank">Trang chủ {{$partner->name}}</a>
+                                    @else
+                                        <span class="text-gray-400"> Chưa có đường dẫn</span>
+                                    @endif
+                                </td>
+                                <td class="text-center">{{$partner -> order}}</td>
                                 <td>
                                     <div class="flex gap-2 justify-center items-center">
                                         <!-- Edit button -->
@@ -67,7 +73,7 @@
                         @endforeach
                         @else
                             <tr>
-                                <td class="text-center" colspan="6">Hiện tại không có đối tác nào.</td>
+                                <td class="text-center" colspan="6">Hiện tại không có đối tác nào trong hệ thống. <span class="font-semibold">Vui lòng thêm mới đối tác</span></td>
                             </tr>
                         @endif
                         </tbody>

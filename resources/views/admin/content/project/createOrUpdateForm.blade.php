@@ -1,12 +1,12 @@
 @extends('admin.layouts.adminApp')
-@section('title', $isUpdate ? 'Cập nhật dự án' : 'Thêm mới dự án')
+@section('title', $isUpdate ? 'Cập nhật thông tin dự án' : 'Thêm mới thông tin dự án')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item"><a href="{{route('admin.project.index')}}">Dự án hợp tác</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.project.index')}}">Quản lý dự án hợp tác</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin' : 'Thêm mới' }}</a>
+                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin' : 'Thêm mới thông tin' }}</a>
             </li>
         </ol>
     </nav>
@@ -17,7 +17,7 @@
     <!-- End view validate form error -->
 
     <!-- Title page -->
-    @include('admin.common.titleForm', ['titleForm' =>  $isUpdate ? 'Cập nhật thông tin dự án' : 'Thêm mới dự án'])
+    @include('admin.common.titleForm', ['titleForm' =>  $isUpdate ? 'Cập nhật thông tin dự án' : 'Thêm mới thông tin dự án'])
 
     <!-- Form update information -->
     @php($actionRoute = $isUpdate ? route('admin.project.update', ['id' => $item->id]) : route('admin.project.store'))
@@ -37,7 +37,7 @@
                                     <div class="font-medium">Tên dự án</div>
                                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Bắt buộc</div>
                                 </div>
-                                <div class="leading-relaxed text-slate-500 text-xs mt-3"> Tên dự án không được để trống</div>
+                                <div class="leading-relaxed text-slate-500 text-xs mt-3"> Tên dự án nên viết ngắn gọn</div>
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">

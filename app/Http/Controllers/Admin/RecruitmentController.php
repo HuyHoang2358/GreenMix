@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Recruitment;
-use Illuminate\Http\Request;
 use App\Traits\GroupCategoryTrait;
 
+use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Foundation\Application;
 class RecruitmentController extends Controller
 {
 
@@ -15,15 +18,13 @@ class RecruitmentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Factory|Application|View
     {
-        //
-        
         $recruitments = Recruitment::orderBy('updated_at', 'desc')->paginate(6);
-         
+
         return view('admin.content.recruitment.index',[
             'recruitments' => $recruitments,
-            'page' => 'recruitment-manager'        
+            'page' => 'recruitment-manager'
         ]);
     }
 
@@ -35,9 +36,9 @@ class RecruitmentController extends Controller
         //
         $categories = $this->getCategories('recruitment');
         return view('admin.content.recruitment.createOrUpdateForm', [
-            'isUpdate' => false, 
-            'item' => null, 
-            'page' => 'recruitment-manager', 
+            'isUpdate' => false,
+            'item' => null,
+            'page' => 'recruitment-manager',
             'categories' => $categories
         ]);
 
@@ -85,7 +86,7 @@ class RecruitmentController extends Controller
     public function edit($id)
     {
         //
-        
+
         $recruitment = Recruitment::with('category')->findOrFail($id);
 
         $categories = $this->getCategories('recruitment');
@@ -94,7 +95,7 @@ class RecruitmentController extends Controller
             'page' => 'recruitment-manager',
             'item' => $recruitment,
             'categories' => $categories,
-            'isUpdate' => true,   
+            'isUpdate' => true,
         ]);
 
     }

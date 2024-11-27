@@ -6,7 +6,7 @@
         <option value="{{$category->id}}">{{str_repeat("----", $level).$category->name}}</option>
     @endif
 
-    @if($category->childs)
+    @if($category->childs && ($parent_id == null || $parent_id != $category->id))
         @include('admin.content.category.option', ["categories" =>$category->childs, 'level' => $level+1, 'parent_id' => $parent_id])
     @endif
 @endforeach

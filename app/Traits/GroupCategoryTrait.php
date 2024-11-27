@@ -9,6 +9,7 @@ trait GroupCategoryTrait
     {
         return match ($group) {
             'post' => 'Danh mục bài viết',
+            'news' => 'Danh mục tin tức',
             'knowledge' => 'Danh mục kiến thức',
             'recruitment' => 'Vị trí tuyển dụng',
             default => '',
@@ -17,8 +18,9 @@ trait GroupCategoryTrait
     }
     // Phương thức lấy danh sách các danh mục theo type và có parent_id là 0
 
-    protected function getCategories($type){
+    protected function getCategories($type, $ignoreIds = []){
         return Category::where('type', '=', $type)
+            ->whereNotIn('id', $ignoreIds)
             ->where('parent_id', '=', 0)
             ->with('childs')
             ->get();

@@ -1,10 +1,10 @@
 @extends('admin.layouts.adminApp')
-@section('title', $isUpdate ? 'Cập nhật đối tác' : 'Thêm mới đối tác')
+@section('title', $isUpdate ? 'Cập nhật thông tin đối tác' : 'Thêm mới thông tin đối tác')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item"><a href="{{route('admin.partner.index')}}">Cài đặt đối tác</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.partner.index')}}">Quản lý đối tác</a></li>
             <li class="breadcrumb-item active" aria-current="page">
                 <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin đối tác' : 'Thêm mới thông tin đối tác' }}</a>
             </li>
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="mt-5">
-                    <!-- Tên  đối tac -->
+                    <!-- Tên  đối tác -->
                     <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
@@ -45,10 +45,31 @@
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input id="partner-name" type="text" class="form-control" placeholder="Nhập tên đối tác"
                                    onkeyup="handleCountNumberCharacter('partner-name', 'number-character-partner-name', 255)"
-                                   name="name" required autofocus
+                                   name="name"  required autofocus
                                    value="{{$item ?  $item->name : ''}}"
                             >
                             <div class="form-help text-right">Tối đa <span id="number-character-partner-name">0</span>/255 ký tự</div>
+                        </div>
+                    </div>
+
+                    <!-- URL đường dẫn đến trang chủ của đối tác -->
+                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                        <div class="form-label xl:w-64 xl:!mr-10">
+                            <div class="text-left">
+                                <div class="flex items-center">
+                                    <div class="font-medium">Website đối tác</div>
+                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Không bắt buộc</div>
+                                </div>
+                                <div class="leading-relaxed text-slate-500 text-xs mt-3"> Đường dẫn đến website của đối tác</div>
+                            </div>
+                        </div>
+                        <div class="w-full mt-3 xl:mt-0 flex-1">
+                            <input id="partner-url" type="text" class="form-control" placeholder="Nhập đường dẫn website của đối tác đối tác "
+                                   onkeyup="handleCountNumberCharacter('partner-url', 'number-character-partner-url', 1023)"
+                                   name="url"
+                                   value="{{$item ?  $item->url : ''}}"
+                            >
+                            <div class="form-help text-right">Tối đa <span id="number-character-partner-url">0</span>/1024 ký tự</div>
                         </div>
                     </div>
 

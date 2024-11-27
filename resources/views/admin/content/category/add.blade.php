@@ -1,25 +1,26 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Thêm mới {{$type_name}}
-@endsection
+@section('title', 'Thêm mới '.$type_name)
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item"><a href="{{route('admin.category.index', $type)}}">{{$type_name}}</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.category.add', $type)}}">Thêm mới</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Thêm mới</a></li>
         </ol>
     </nav>
 @endsection
 @section('content')
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
-            Thêm mới {{$type_name}}
-        </h2>
-    </div>
+    <!-- View validate form error -->
+    @include('admin.partials.validateFormError')
+    <!-- End view validate form error -->
+
+    <!-- Title page -->
+    @include('admin.common.titleForm', ['titleForm' =>  'Thêm mới '. $type_name])
+
+    <!-- Form create information -->
     <form action="{{route('admin.category.store', $type)}}" method="post">
         @csrf
-        <div class="intro-y box p-5 mt-5">
+        <div class="intro-y box p-5 mt-2">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                 <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                     <i data-lucide="chevron-down"></i>
@@ -38,7 +39,7 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input id="category-name" name="name" type="text" class="form-control" placeholder="Nhập tên danh mục" required autofocus>
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="category-name" max-characters="100">0</span>/100 ký tự</div>
                         </div>
                     </div>
 
@@ -54,7 +55,7 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <input id="category-slug" name="slug" type="text" class="form-control" placeholder="Nhập slug của tên danh mục">
-                            <div class="form-help text-right">Tối đa 0/100 ký tự</div>
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="category-slug" max-characters="100">0</span>/100 ký tự</div>
                         </div>
                     </div>
 
@@ -89,9 +90,9 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <div class="editor">
-                                <textarea class="form-control" rows="3" name="description"></textarea>
+                                <textarea class="form-control" rows="3" id="category-description" name="description"></textarea>
                             </div>
-                            <div class="form-help text-right">Tối đa 0/255 ký tự</div>
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="category-description" max-characters="255">0</span>/255 ký tự</div>
                         </div>
                     </div>
                 </div>

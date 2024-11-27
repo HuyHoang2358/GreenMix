@@ -12,7 +12,7 @@
     @include('admin.partials.validateFormError')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Chỉnh sửa cấu hình
+            Thông tin cấu hình hệ thống
         </h2>
     </div>
     <form action="{{route('admin.setting.config.store')}}" method="post">
@@ -26,7 +26,7 @@
                 <div class="grid grid-cols-2">
                     <div class="col-span-1 mr-10">
                         <div class="my-5">
-                            <div class="form-inline items-start flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label">
                                     <div class="text-left w-24">
                                         <div class="font-medium">Tên Website</div>
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="mb-5">
-                            <div class="form-inline items-start flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label">
                                     <div class="text-left w-24">
                                         <div class="font-medium">Tên Công ty</div>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="mb-5">
-                            <div class="form-inline items-start flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline  flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label">
                                     <div class="text-left w-24">
                                         <div class="font-medium">Số Hotline 1</div>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </div><div class="mb-5">
-                            <div class="form-inline items-start flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline  flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label">
                                     <div class="text-left w-24">
                                         <div class="font-medium">Số Hotline 2</div>
@@ -73,10 +73,10 @@
                             </div>
                         </div>
                         <div class="mb-5">
-                            <div class="form-inline items-start flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label">
                                     <div class="text-left w-24">
-                                        <div class="font-medium">Logo </div>
+                                        <div class="font-medium">Logo <span class="text-red-500"> --- Sửa thành button chọn ảnh từ filemanager</span></div>
                                     </div>
                                 </div>
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
@@ -88,7 +88,7 @@
 
                     <div class="col-span-1">
                         <div class="my-5">
-                            <div class="form-inline items-start flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label">
                                     <div class="text-left w-24">
                                         <div class="font-medium">Facebook</div>
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="mb-5">
-                            <div class="form-inline items-start flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label">
                                     <div class="text-left w-24">
                                         <div class="font-medium">Youtube</div>
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                         <div class="mb-5">
-                            <div class="form-inline items-start flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label">
                                     <div class="text-left w-24">
                                         <div class="font-medium">Tiktok</div>
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                         <div class="mb-5">
-                            <div class="form-inline items-start flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline flex-col items-center xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label">
                                     <div class="text-left w-24">
                                         <div class="font-medium">Email</div>

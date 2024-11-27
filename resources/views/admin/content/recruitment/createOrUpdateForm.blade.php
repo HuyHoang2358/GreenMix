@@ -1,12 +1,12 @@
 @extends('admin.layouts.adminApp')
-@section('title', $isUpdate ? 'Cập nhật vị trí tuyển dụng' : 'Thêm mới vị trí tuyển dụng')
+@section('title', $isUpdate ? 'Cập nhật thông tin tuyển dụng' : 'Thêm mới thông tin tuyển dụng')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item"><a href="{{route('admin.recruitment.index')}}">Tuyển dụng</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.recruitment.index')}}">Quản lý tuyển dụng</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin' : 'Thêm mới' }}</a>
+                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin tuyển dụng' : 'Thêm mới thông tin tuyển dụng' }}</a>
             </li>
         </ol>
     </nav>
@@ -18,19 +18,37 @@
     <!-- End view validate form error -->
 
     <!-- Title page -->
-    @include('admin.common.titleForm', ['titleForm' =>  $isUpdate ? 'Cập nhật thông tin tuyển dụng' : 'Thêm mới vị trí tuyển dụng'])
+    @include('admin.common.titleForm', ['titleForm' =>  $isUpdate ? 'Cập nhật thông tin tuyển dụng' : 'Thêm mới thông tin tuyển dụng'])
 
     <!-- Form update information -->
     @php($actionRoute = $isUpdate ? route('admin.recruitment.update', ['id' => $item->id]) : route('admin.recruitment.store'))
 
     <form id="recruitment-form" action="{{ $actionRoute }}" method="POST">
         @csrf
-        <div class="intro-y box p-5 mt-5">
+        <div class="intro-y box p-5 mt-2">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                 <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                    Thông tin vị trí tuyển dụng
+                    <i data-lucide="chevron-down"></i>
+                    Thông tin tuyển dụng
                 </div>
                 <div class="mt-5">
+                    <!-- Nhóm công việc -->
+                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                        <div class="form-label xl:w-64 xl:!mr-10">
+                            <div class="text-left">
+                                <div class="flex items-center">
+                                    <div class="font-medium">Nhóm công việc</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full mt-3 xl:mt-0 flex-1">
+                            <select id="category" name="category" class="form-control">
+                                @include('admin.content.category.option', ["categories" =>$categories, 'level' => 0, 'parent_id' => isset($item) ? $item->category->id : null])
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Tên vị trí tuyển dụng -->
                     <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                         <div class="form-label xl:w-64 xl:!mr-10">
                             <div class="text-left">
@@ -77,20 +95,7 @@
                     </div>
 
 
-                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                        <div class="form-label xl:w-64 xl:!mr-10">
-                            <div class="text-left">
-                                <div class="flex items-center">
-                                    <div class="font-medium">Nhóm công việc</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <select id="category" name="category" class="form-control">
-                                @include('admin.content.category.option', ["categories" =>$categories, 'level' => 0, 'parent_id' => isset($item) ? $item->category->id : null])
-                            </select>
-                        </div>
-                    </div>
+
 
                     <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                         <div class="form-label xl:w-64 xl:!mr-10">
@@ -190,7 +195,7 @@
 
         <!-- Buttons cancel and save -->
         @include('admin.common.cancelAndSaveButtons', ['routeCancel' => route('admin.recruitment.index')])
-        
+
     </form>
 
 @endsection
