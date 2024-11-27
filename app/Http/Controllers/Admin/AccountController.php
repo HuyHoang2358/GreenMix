@@ -15,7 +15,7 @@ class AccountController extends Controller
     public function index()
     {
         
-        $accounts = User::all();
+        $accounts = User::orderBy('updated_at', 'desc')->paginate(6);
         $current_user_id = auth()->id();
 
         return view('admin.content.account.index', [
@@ -31,8 +31,10 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('admin.content.account.add', [
+        return view('admin.content.account.createOrUpdateForm', [
             'page' => 'account-manager',
+            'isUpdate' => false, 
+            'item' => null, 
         ]);
     }
 
@@ -71,14 +73,6 @@ class AccountController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
@@ -90,9 +84,10 @@ class AccountController extends Controller
             return redirect()->route('profile.update');
         }
 
-        return view('admin.content.account.update', [
-            'account' => $user,
-            'page' => 'account-manager'
+        return view('admin.content.account.createOrUpdateForm', [
+            'page' => 'account-manager',
+            'isUpdate' => true, 
+            'item' => $user, 
         ]);
 
     }
@@ -115,19 +110,20 @@ class AccountController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
 
-        if($request->filled('password')){
+        // this used to check password but now deprecated
+        // if($request->filled('password')){
 
-            $request->validate([
-                'password' => 'nullable|string|min:6|confirmed',
-            ]);
+        //     $request->validate([
+        //         'password' => 'nullable|string|min:6|confirmed',
+        //     ]);
 
-            if(Hash::check($request->input('current-password'), $user->password)){
-                $user->password = bcrypt($request->input('password'));
-            } else {
-                return redirect()->back()->with('error', 'Mật khẩu hiện tại không chính xác');
-            }
+        //     if(Hash::check($request->input('current-password'), $user->password)){
+        //         $user->password = bcrypt($request->input('password'));
+        //     } else {
+        //         return redirect()->back()->with('error', 'Mật khẩu hiện tại không chính xác');
+        //     }
 
-        }
+        // }
 
         $user->save();
 
@@ -144,7 +140,7 @@ class AccountController extends Controller
     {
         //
 
-        $id = $request->input('del-account-id');
+        $id = $request->input('del-object-id');
         $user = User::findOrFail(auth()->id());
 
         try {

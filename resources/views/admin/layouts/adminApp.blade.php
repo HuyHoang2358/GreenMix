@@ -6,7 +6,7 @@
         <title>@yield('title') | GreenMix</title>
         @include('admin.partials.head')
         @include('admin.partials.tiny_MCE_ini')
-        
+
     </head>
 
     <body class="py-5 md:py-0">
@@ -28,6 +28,12 @@
             </div>
         </div>
 
+        <!-- Action Alerts -->
+        @include('admin.partials.action_alerts')
+        <!-- End Action Alerts -->
+
+        <!-- Confirm Form delete -->
+        @include('admin.partials.confirmDelete')
 
         <!-- JS Assets-->
         @include('admin.partials.bodyJavascript')

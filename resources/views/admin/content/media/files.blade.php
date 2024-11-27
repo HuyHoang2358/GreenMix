@@ -1,7 +1,5 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Quản lý file
-@endsection
+@section('title','Quản lý file')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
@@ -13,7 +11,5 @@
     </nav>
 @endsection
 @section('content')
-
-<iframe src="/admin/laravel-filemanager" style="width: 100%; height: 730px; overflow: hidden; border: none;"></iframe>
-
+    <iframe src="{{url('/admin/laravel-filemanager')}}" style="width: 100%; height: 650px; overflow: hidden; border: none;"></iframe>
 @endsection

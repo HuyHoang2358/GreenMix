@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/{type}/store', [PostController::class, 'store'])->name('admin.post.store');
         Route::get('/{type}/edit/{id}', [PostController::class, 'edit'])->name('admin.post.edit');
         Route::post('/{type}/update/{id}', [PostController::class, 'update'])->name('admin.post.update');
-        Route::get('/{type}/delete', [PostController::class, 'destroy'])->name('admin.post.destroy');
+        Route::post('/{type}/delete', [PostController::class, 'destroy'])->name('admin.post.destroy');
     });
     // Danh mục
     Route::prefix('category')->group(function () {
@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [ProductController::class, 'store'])->name('admin.product.store');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::post('/update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
-        Route::get('/delete', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+        Route::post('/delete', [ProductController::class, 'destroy'])->name('admin.product.destroy');
     });
 
     // Quản lý đối tác
@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [PartnerController::class, 'store'])->name('admin.partner.store');
         Route::get('/edit/{id}', [PartnerController::class, 'edit'])->name('admin.partner.edit');
         Route::post('/update/{id}', [PartnerController::class, 'update'])->name('admin.partner.update');
-        Route::get('/delete/{id}', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
+        Route::post('/delete', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
     });
 
     // Quản lý dự án
@@ -70,7 +70,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [ProjectController::class, 'store'])->name('admin.project.store');
         Route::get('/edit/{id}', [ProjectController::class, 'edit'])->name('admin.project.edit');
         Route::post('/update/{id}', [ProjectController::class, 'update'])->name('admin.project.update');
-        Route::get('/delete', [ProjectController::class, 'destroy'])->name('admin.project.destroy');
+        Route::post('/delete', [ProjectController::class, 'destroy'])->name('admin.project.destroy');
     });
 
     // Quản lý lĩnh vực kinh doanh
@@ -90,8 +90,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/add', [AccountController::class, 'create'])->name('admin.account.add');
         Route::post('/store', [AccountController::class, 'store'])->name('admin.account.store');
         Route::get('/edit/{id}', [AccountController::class, 'edit'])->name('admin.account.edit');
-        Route::patch('/update/{id}', [AccountController::class, 'update'])->name('admin.account.update');
-        Route::delete('/delete', [AccountController::class, 'destroy'])->name('admin.account.destroy');
+        Route::post('/update/{id}', [AccountController::class, 'update'])->name('admin.account.update');
+        Route::post('/delete', [AccountController::class, 'destroy'])->name('admin.account.destroy');
     });
 
     Route::prefix('recruitment')->group(function () {
@@ -100,8 +100,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/add', [RecruitmentController::class, 'create'])->name('admin.recruitment.add');
         Route::post('/store', [RecruitmentController::class, 'store'])->name('admin.recruitment.store');
         Route::get('/edit/{id}', [RecruitmentController::class, 'edit'])->name('admin.recruitment.edit');
-        Route::patch('/update/{id}', [RecruitmentController::class, 'update'])->name('admin.recruitment.update');
-        Route::delete('/delete', [RecruitmentController::class, 'destroy'])->name('admin.recruitment.destroy');
+        Route::post('/update/{id}', [RecruitmentController::class, 'update'])->name('admin.recruitment.update');
+        Route::post('/delete', [RecruitmentController::class, 'destroy'])->name('admin.recruitment.destroy');
+        
     });
 
     // setting route group
@@ -119,7 +120,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', [BannerController::class, 'store'])->name('admin.setting.banner.store');
             Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('admin.setting.banner.edit');
             Route::post('/update/{id}', [BannerController::class, 'update'])->name('admin.setting.banner.update');
-            Route::get('/delete/{id}', [BannerController::class, 'destroy'])->name('admin.setting.banner.destroy');
+            Route::post('/delete/', [BannerController::class, 'destroy'])->name('admin.setting.banner.destroy');
         });
 
         // Địa chỉ
@@ -129,17 +130,17 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', [AddressController::class, 'store'])->name('admin.setting.address.store');
             Route::get('/edit/{id}', [AddressController::class, 'edit'])->name('admin.setting.address.edit');
             Route::post('/update/{id}', [AddressController::class, 'update'])->name('admin.setting.address.update');
-            Route::get('/delete/{id}', [AddressController::class, 'destroy'])->name('admin.setting.address.destroy');
+            Route::post('/delete/', [AddressController::class, 'destroy'])->name('admin.setting.address.destroy');
         });
 
         // Ngôn ngữ
-        Route::prefix('languague')->group(function () {
+        Route::prefix('language')->group(function () {
             Route::get('/', [LanguagueController::class, 'index'])->name('admin.setting.language.index');
             Route::get('/add', [LanguagueController::class, 'create'])->name('admin.setting.language.add');
             Route::post('/store', [LanguagueController::class, 'store'])->name('admin.setting.language.store');
             Route::get('/edit/{id}', [LanguagueController::class, 'edit'])->name('admin.setting.language.edit');
             Route::post('/update/{id}', [LanguagueController::class, 'update'])->name('admin.setting.language.update');
-            Route::get('/delete/{id}', [LanguagueController::class, 'destroy'])->name('admin.setting.language.destroy');
+            Route::post('/delete/', [LanguagueController::class, 'destroy'])->name('admin.setting.language.destroy');
         });
 
     });

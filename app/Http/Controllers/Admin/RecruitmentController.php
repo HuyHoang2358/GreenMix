@@ -19,7 +19,7 @@ class RecruitmentController extends Controller
     {
         //
         
-        $recruitments = Recruitment::with('category')->get();
+        $recruitments = Recruitment::orderBy('updated_at', 'desc')->paginate(6);
          
         return view('admin.content.recruitment.index',[
             'recruitments' => $recruitments,
@@ -34,9 +34,11 @@ class RecruitmentController extends Controller
     {
         //
         $categories = $this->getCategories('recruitment');
-        return view('admin.content.recruitment.add',[
-            'page' => 'recruitment-manager',
-            'categories' => $categories     
+        return view('admin.content.recruitment.createOrUpdateForm', [
+            'isUpdate' => false, 
+            'item' => null, 
+            'page' => 'recruitment-manager', 
+            'categories' => $categories
         ]);
 
     }
@@ -83,15 +85,16 @@ class RecruitmentController extends Controller
     public function edit($id)
     {
         //
-
+        
         $recruitment = Recruitment::with('category')->findOrFail($id);
 
         $categories = $this->getCategories('recruitment');
 
-        return view('admin.content.recruitment.update',[
+        return view('admin.content.recruitment.createOrUpdateForm',[
             'page' => 'recruitment-manager',
-            'recruitment' => $recruitment,
-            'categories' => $categories     
+            'item' => $recruitment,
+            'categories' => $categories,
+            'isUpdate' => true,   
         ]);
 
     }
@@ -143,7 +146,7 @@ class RecruitmentController extends Controller
         //
         try{
 
-            Recruitment::findOrFail($request->input('del-recruitment-id'))->delete();
+            Recruitment::findOrFail($request->input('del-object-id'))->delete();
 
             return redirect()->route('admin.recruitment.index')->with('success', 'Xóa vị trí ứng tuyển thành công.');
 

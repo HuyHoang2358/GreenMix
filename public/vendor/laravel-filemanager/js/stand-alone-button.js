@@ -11,7 +11,7 @@
       window.SetUrl = function (items) {
         var file_path = items.map(function (item) {
           //return item.url;
-          console.log("/storage/" + item.url.split("storage/")[1]);
+          //console.log("/storage/" + item.url.split("storage/")[1]);
           return "/storage/" + item.url.split("storage/")[1];
         }).join(',');
 
@@ -24,7 +24,7 @@
         // set or change the preview image src
         items.forEach(function (item) {
           target_preview.append(
-            $('<img>').css('height', '5rem').css('width', '10rem').css('border-radius', '0.25rem').attr('src', item.thumb_url)
+            $('<img>').css('height', '7rem').css('width', '12rem').css('border-radius', '0.25rem').attr('src', item.thumb_url)
           );
         });
 

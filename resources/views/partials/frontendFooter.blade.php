@@ -1,83 +1,65 @@
-<div class="bg-footer-gray py-10 px-5 sm:pl-52 sm:pr-28">
-
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-16 sm:gap-20">
-        <div class="flex flex-col gap-4">
-            <img style="max-height: 57px; max-width: 180px;" src="{{ asset('images/logo/green-mix-logo.png') }}" alt="">
-            <h1 class="uppercase font-semibold text-primary text-base sm:text-xl">CÔNG TY CỔ PHẦN ĐẦU TƯ SX & TM GREEN MIX</h1>
-            <div class="text-white">
-                <h2 class="font-semibold "><i class="fa-solid fa-location-dot"></i>  Trụ sở Hà Nội</h2>
-                <ul class="list-disc ml-4 pl-4 text-sm sm:text-base">
-                    <li>Lầu 6, toà Lotte, Phạm Hùng, Thanh Xuân, Hà Nội</li>
-                </ul>
+<<<<<<< Updated upstream
+<div class="grid md:grid-cols-4 bg-[#747474] p-8 md:px-80 md:py-12 text-white">
+    <div class="col-span-2 md:px-24">
+        <img src="{{config('website.logo')}}" alt="">
+        <h3 class="font-semibold text-base md:text-lg text-primary pt-3">CÔNG TY CỔ PHẦN ĐẦU TƯ SX & TM GREEN MIX</h3>
+        @foreach($addresses as $address)
+        <div class="py-2 text-sm md:text-base">
+            <div class="flex gap-2">
+                <i class="fa-solid fa-location-dot"></i>
+                <p>{{$address -> name}}</p>
             </div>
-            <div class="text-white">
-                <h2 class="font-semibold "><i class="fa-solid fa-location-dot"></i>  Nhà máy Hải Dương</h2>
-                <ul class="list-disc ml-4 pl-4 text-sm sm:text-base">
-                    <li>Nhà máy Green Mix, Lô 4 - Cụm Công Nghiệp
-                        Thôn Xuân Mang, Tuấn Việt, Kim Thành, Hải Dương</li>
-                </ul>
-            </div>
-            <div class="text-white">
-                <h2 class="font-semibold "><i class="fa-solid fa-location-dot"></i>  Nhà máy Đà Nẵng</h2>
-                <ul class="list-disc ml-4 pl-4 text-sm sm:text-base">
-                    <li>Số 125 Nguyễn Tất Thành, Hoà Vang, TP. Đà Nẵng</li>
-                </ul>
-            </div>
-            <div class="text-white">
-                <h2 class="font-semibold "><i class="fa-solid fa-phone"></i>  Hotline</h2>
-                <ul class="list-disc ml-4 pl-4 text-sm sm:text-base">
-                    <li>0962 245 245 - Mr Ngoan</li>
-                    <li>0989 245 245 - Mr Hiếu</li>
-                    <li>0244668888 - CSKH</li>
-                </ul>
-            </div>
-            <div class="text-white">
-                <h2 class="font-semibold "><i class="fa-solid fa-phone"></i>  Email</h2>
-                <ul class="list-disc ml-4 pl-4 text-sm sm:text-base">
-                    <li>info.greenmixvietnam@gmail.com</li>
-                </ul>
-            </div>
-            <div class="flex flex-row text-white gap-5 text-2xl">
-                <a href="#">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-                <a href="#">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-                <a href="#">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="text-white items-center">
-            <h1 class="uppercase font-semibold text-xl">danh mục sản phẩm</h1>
-            <ul class="list-disc ml-4 mt-6 flex gap-5 flex-col text-sm sm:text-base">
-                <li>Dòng phụ gia hoá dẻo S300</li>
-                <li>Dòng phụ gia hoá dẻo S300</li>
-                <li>Dòng phụ gia hoá dẻo S300</li>
-                <li>Dòng phụ gia hoá dẻo S300</li>
+            <ul class="list-disc ml-8">
+                <li>{{$address -> detail}}</li>
             </ul>
         </div>
-    
-        <div class="text-white flex flex-col gap-5">
-            <h1 class="uppercase font-semibold text-xl">bản đồ</h1>
-            <div>
-                <h2 class="font-semibold "><i class="fa-solid fa-location-dot"></i>  Trụ sở Hà Nội</h2>
-                <div class="bg-gray-100 w-72 h-44">
-
-                </div>
-            </div>
-
-            <div>
-                <h2 class="font-semibold "><i class="fa-solid fa-location-dot"></i>  Trụ sở Hà Nội</h2>
-                <div class="bg-gray-100 w-72 h-44">
-
-                </div>
-            </div>
-            
+        @endforeach
+        <div class="py-2 text-sm md:text-base">
+            <h3><i class="fa-solid fa-phone mr-2"></i>Hotline</h3>
+            <ul class="list-disc ml-8">
+                <li>{{config('website.hotline_1')}}</li>
+                <li>{{config('website.hotline_2')}}</li>
+                <li>{{config('website.hotline_3')}}</li>
+            </ul>
         </div>
-    
+        <div class="py-2 text-sm md:text-base">
+            <h3><i class="fa-solid fa-envelope mr-2"></i>Email</h3>
+            <ul class="list-disc ml-8">
+                <li>{{config('website.email')}}</li>
+
+            </ul>
+        </div>
+        <div class="flex gap-5 md:gap-7 md:text-3xl pt-2 md:pt-5 text-2xl">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-youtube"></i>
+            <i class="fa-brands fa-tiktok"></i>
+        </div>
     </div>
-    
+    <div class="col-span-2 grid md:grid-cols-2 mt-10 md:mt-0">
+        <div class="col-span-1">
+            <h3 class="font-medium">DANH MỤC SẢN PHẨM</h3>
+            <ul class="list-disc ml-6 pt-5 flex flex-col gap-3 text-sm">
+                <li>Dòng phụ gia hoá dẻo S300</li>
+                <li>Dòng phụ gia siêu dẻo S500</li>
+                <li>Dòng phụ gia siêu dẻo 3000H</li>
+                <li>Dòng phụ gia siêu dẻo 5000S</li>
+                <li>Dòng phụ gia loại F CP5000</li>
+            </ul>
+        </div>
+        <div class="col-span-1 mt-10 md:mt-0">
+            <h3 class="pb-3">BẢN ĐỒ</h3>
+            @foreach($addresses as $address)
+                <div class="py-3">
+                    <div class="flex gap-2 mb-2">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>{{$address -> name}}</p>
+                    </div>
+                    <iframe src="{{$address -> iframe}}"></iframe>
+                </div>
+            @endforeach
+        </div>
+    </div>
 </div>
+=======
+    
+>>>>>>> Stashed changes

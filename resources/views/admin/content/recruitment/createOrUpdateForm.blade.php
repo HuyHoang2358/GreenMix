@@ -1,38 +1,30 @@
 @extends('admin.layouts.adminApp')
-@section('title')
-    Cập nhật vị trí tuyển dụng
-@endsection
+@section('title', $isUpdate ? 'Cập nhật vị trí tuyển dụng' : 'Thêm mới vị trí tuyển dụng')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item"><a href="{{route('admin.recruitment.index')}}">Tuyển dụng</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="#">Cập nhật</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                <a href="#"> {{ $isUpdate ? 'Cập nhật thông tin' : 'Thêm mới' }}</a>
+            </li>
         </ol>
     </nav>
 @endsection
 @section('content')
-    
-    @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible show flex items-center mb-2 fixed right-60" style="z-index: 9999; top: 6.75rem;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            <button type="button" class="btn-close" data-tw-dismiss="alert" aria-label="Close"> <i data-lucide="x"
-                class="w-4 h-4"></i> </button>
-        </div>
-    @endif
 
-    <div class="intro-y flex items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
-            Cập nhật trí tuyển dụng
-        </h2>
-    </div>
-    <form action="{{ route('admin.recruitment.update', ['id' => $recruitment->id]) }}" method="POST">
+    <!-- View validate form error -->
+    @include('admin.partials.validateFormError')
+    <!-- End view validate form error -->
+
+    <!-- Title page -->
+    @include('admin.common.titleForm', ['titleForm' =>  $isUpdate ? 'Cập nhật thông tin tuyển dụng' : 'Thêm mới vị trí tuyển dụng'])
+
+    <!-- Form update information -->
+    @php($actionRoute = $isUpdate ? route('admin.recruitment.update', ['id' => $item->id]) : route('admin.recruitment.store'))
+
+    <form id="recruitment-form" action="{{ $actionRoute }}" method="POST">
         @csrf
-        @method("PATCH")
         <div class="intro-y box p-5 mt-5">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                 <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
@@ -50,7 +42,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="name" name="name" type="text" class="form-control" placeholder="Nhập vị trí tuyển dụng" required autofocus value="{{ $recruitment->name }}">
+                            <input id="name" name="name" type="text" class="form-control" placeholder="Nhập vị trí tuyển dụng" required autofocus value="{{ isset($item) ? $item->name : ''}}">
                             <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="name" max-characters="100">0</span>/100 ký tự</div>
                         </div>
                     </div>
@@ -66,7 +58,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="start_date" name="start_date" type="date" class="form-control" required autofocus value="{{ $recruitment->start_date }}">
+                            <input id="start_date" name="start_date" type="date" class="form-control" required autofocus value="{{ isset($item) ? $item->start_date : ''}}">
                         </div>
                     </div>
 
@@ -80,7 +72,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="end_date" name="end_date" type="date" class="form-control" required autofocus value="{{ $recruitment->end_date }}">
+                            <input id="end_date" name="end_date" type="date" class="form-control" required autofocus value="{{ isset($item) ? $item->end_date : ''}}">
                         </div>
                     </div>
 
@@ -95,7 +87,7 @@
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
                             <select id="category" name="category" class="form-control">
-                                @include('admin.content.category.option', ["categories" =>$categories, 'level' => 0, 'parent_id' => $recruitment->category->id])
+                                @include('admin.content.category.option', ["categories" =>$categories, 'level' => 0, 'parent_id' => isset($item) ? $item->category->id : null])
                             </select>
                         </div>
                     </div>
@@ -111,8 +103,8 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="address" name="address" type="text" class="form-control" placeholder="Nhập địa chỉ" required autofocus value="{{ $recruitment->address }}">
-                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="address" max-characters="200">0</span>/200 ký tự</div>
+                            <input id="address" name="address" type="text" class="form-control" placeholder="Nhập địa chỉ" required autofocus value="{{ isset($item) ? $item->address : ''}}">
+                            <div class="form-help text-right">Tối đa <span class="word-counter" input-to-count="address" max-characters="255">0</span>/255 ký tự</div>
                         </div>
                     </div>
 
@@ -127,7 +119,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <input id="num_people" name="num_people" type="number" class="form-control" placeholder="Nhập số lượng" required autofocus value="{{ $recruitment->num_people }}">
+                            <input id="num_people" name="num_people" type="number" class="form-control" placeholder="Nhập số lượng" required autofocus value="{{ isset($item) ? $item->num_people : ''}}">
                         </div>
                     </div>
 
@@ -142,7 +134,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <textarea id="recruitment-description" name="description" class="form-control  h-64 resize-none" placeholder="Nhập mô tả" required autofocus>{{ $recruitment->description }}</textarea>
+                            <textarea id="recruitment-description" name="description" class="form-control h-64 resize-none" placeholder="Nhập mô tả" required autofocus>{{ isset($item) ? $item->description : ''}}</textarea>
                         </div>
                     </div>
 
@@ -157,7 +149,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <textarea id="recruitment-requirement" name="requirements" class="form-control  h-64 resize-none" placeholder="Nhập yêu cầu" required autofocus>{{ $recruitment->requirements }}</textarea>
+                            <textarea id="recruitment-requirement" name="requirements" class="form-control h-64 resize-none" placeholder="Nhập yêu cầu" required autofocus>{{ isset($item) ? $item->requirements : ''}}</textarea>
                         </div>
                     </div>
 
@@ -172,7 +164,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <textarea id="recruitment-benefit" name="benefit" class="form-control  h-64 resize-none" placeholder="Nhập quyền lợi" required autofocus value>{{ $recruitment->benefit }}</textarea>
+                            <textarea id="recruitment-benefit" name="benefit" class="form-control h-64 resize-none" placeholder="Nhập quyền lợi" required autofocus>{{ isset($item) ? $item->benefit : ''}}</textarea>
                         </div>
                     </div>
 
@@ -187,7 +179,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <textarea id="recruit-content" name="content" class="form-control h-64 resize-none" placeholder="Nhập nội dung" autofocus>{{ $recruitment->content }}</textarea>
+                            <textarea id="recruit-content" name="content" class="form-control h-64 resize-none" placeholder="Nhập nội dung" autofocus>{{ isset($item) ? $item->content : ''}}</textarea>
                         </div>
                     </div>
 
@@ -195,12 +187,10 @@
 
             </div>
         </div>
-        <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
-            <a href="{{ route('admin.recruitment.index') }}">
-                <button type="button" class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">Hủy</button>
-            </a>
-            <button type="submit" class="btn py-3 btn-primary w-full md:w-52">Lưu thông tin</button>
-        </div>
+
+        <!-- Buttons cancel and save -->
+        @include('admin.common.cancelAndSaveButtons', ['routeCancel' => route('admin.recruitment.index')])
+        
     </form>
 
 @endsection
