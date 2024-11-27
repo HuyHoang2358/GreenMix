@@ -88,8 +88,8 @@
         // start word counter
         function updateWordCounter() {
             $('.word-counter').each(function() {
-                var inputId = $(this).attr('input-to-count');
-                var maxLength = $(this).attr('max-characters');
+                const inputId = $(this).attr('input-to-count');
+                const maxLength = $(this).attr('max-characters');
                 var inputElement = $('#' + inputId);
                 var inputValue = $('#' + inputId).val();
 
@@ -189,7 +189,7 @@
         //     } catch (e) {
         //         console.error('Invalid JSON format:', e);
         //     }
-            
+
         // });
 
     });

@@ -1,10 +1,10 @@
 @extends('admin.layouts.adminApp')
-@section('title', 'Cài đặt ngôn ngữ')
+@section('title', 'Quản lý ngôn ngữ')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="#">Cài đặt ngôn ngữ</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Quản lý ngôn ngữ</a></li>
         </ol>
     </nav>
 @endsection
@@ -33,19 +33,19 @@
                             <th class="whitespace-nowrap w-8">STT</th>
                             <th class="whitespace-nowrap">Tên Ngôn Ngữ</th>
                             <th class="whitespace-nowrap">Slug</th>
-                            <th class="whitespace-nowrap">Icon</th>
-                            <th class="whitespace-nowrap">Thao Tác</th>
+                            <th class="whitespace-nowrap w-32">Icon</th>
+                            <th class="whitespace-nowrap w-24 text-center">Thao Tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         @if(count($languagues) > 0)
                         @foreach ($languagues as $key => $languague)
                             <tr>
-                                <td>{{$key + 1}}</td>
+                                <td class="text-center">{{$key + 1}}</td>
                                 <td>{{$languague -> name}}</td>
                                 <td>{{$languague -> slug}}</td>
                                 <td>
-                                    <img src="{{$languague -> icon}}" alt="">
+                                    <img src="{{$languague -> icon}}" alt="" class="w-24">
                                 </td>
                                 <td>
                                     <div class="flex gap-2 justify-center items-center">
@@ -65,7 +65,9 @@
                         @endforeach
                         @else
                             <tr>
-                                <td class="text-center" colspan="6">Hiện tại không có ngôn ngữ nào.</td>
+                                <td class="text-center" colspan="6">Hiện tại không có ngôn ngữ nào.
+                                    <span class="font-semibold"> Vui lòng thêm ngôn ngữ vào hệ thống!</span>
+                                </td>
                             </tr>
                         @endif
                         </tbody>

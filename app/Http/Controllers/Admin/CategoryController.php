@@ -58,7 +58,7 @@ class CategoryController extends Controller
         $category = new Category(); // Tạo đối tượng danh mục mới
         $this->fillDataToModel($category, $input, $type); // Điền dữ liệu và lưu lại
 
-        return redirect()->route("admin.category.index", $type); // Chuyển hướng về trang danh sách danh mục
+        return redirect()->route("admin.category.index", $type)->with('success', 'Thêm mới danh mục thành công.'); // Chuyển hướng về trang danh sách danh mục
     }
 
     // TODO: Phương thức hiển thị trang chỉnh sửa danh mục
@@ -85,17 +85,18 @@ class CategoryController extends Controller
         $input = $request->all(); // Lấy tất cả dữ liệu từ request
         $this->fillDataToModel($item, $input, $type); // Điền dữ liệu và lưu lại
 
-        return redirect()->route("admin.category.index", $type); // Chuyển hướng về trang danh sách danh mục
+        return redirect()->route("admin.category.index", $type)->with('success', 'Cập nhật thông tin danh mục thành công.'); // Chuyển hướng về trang danh sách danh mục
     }
 
     // TODO: Phương thức xóa danh mục
-    public function destroy($group,$id): RedirectResponse
+    public function destroy($group,Request $request): RedirectResponse
     {
+        $id = $request->input('del-object-id');
         $item = Category::find($id); // Tìm danh mục theo id
         if (!$item) return redirect()->back(); // Nếu không tìm thấy, quay lại trang trước
 
         $item->delete(); // Xóa danh mục
-        return redirect()->route("admin.category.index", $group); // Chuyển hướng về trang danh sách danh mục
+        return redirect()->route("admin.category.index", $group)->with('success', 'Xóa danh mục thành công!'); // Chuyển hướng về trang danh sách danh mục
     }
 
 }

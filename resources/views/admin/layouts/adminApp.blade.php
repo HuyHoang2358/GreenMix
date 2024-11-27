@@ -9,7 +9,7 @@
 
     </head>
 
-    <body class="py-5 md:py-0">
+    <body class="py-5 md:py-0 o">
         <!-- Mobile Menu -->
         @include('admin.partials.mobileMenu')
 

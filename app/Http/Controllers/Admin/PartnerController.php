@@ -34,20 +34,21 @@ class PartnerController extends Controller
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
+        $input = $request->all();
         try {
             Partner::create([
-                'name' => $request->input('name'),
-                'logo' => $request->input('logo'),
-                'url' => $request->input('url'),
-                'order' => $request->input('order'),
+                'name' => $input['name'],
+                'logo' => $input['logo'],
+                'url' => $input['url'] ?? '#',
+                'order' => $input['order'] ?? 0,
             ]);
 
             // Chuyển hướng về trang danh sách dự án và kèm theo thông báo thành công
-            return redirect()->route('admin.partner.index')->with('success', 'Thêm mới đối tác thành công!');
+            return redirect()->route('admin.partner.index')->with('success', 'Thêm mới thông tin đối tác thành công!');
 
         } catch (Exception $e) {
             // Trường hợp có lỗi xảy ra, chuyển hướng về trang danh sách dự án và kèm theo thông báo lỗi
-            return redirect()->route('admin.partner.index')->with('error', 'Thêm mới đối tác thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.partner.index')->with('error', 'Thêm mới thông tin đối tác thất bại: ' . $e->getMessage());
         }
     }
     public function edit($id, Request $request): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
@@ -63,17 +64,18 @@ class PartnerController extends Controller
 
     public function update($id, Request $request): \Illuminate\Http\RedirectResponse
     {
+        $input = $request->all();
         try {
             $partners = Partner::findOrFail($id);
-            $partners->name = $request->input('name');
-            $partners->logo = $request->input('logo');
-            $partners->url = $request->input('url');
-            $partners->order = $request->input('order');
+            $partners->name = $input['name'];
+            $partners->logo = $input['logo'] ?? $partners->logo;
+            $partners->url = $input['url'] ?? $partners->url;
+            $partners->order = $input['order'] ?? $partners->order;
             $partners->save();
 
-            return redirect()->route('admin.partner.index')->with('success', 'Cập nhật đối tác thành công!');
+            return redirect()->route('admin.partner.index')->with('success', 'Cập nhật thông tin đối tác thành công!');
         } catch (Exception $e) {
-            return redirect()->route('admin.partner.index')->with('error', 'Cập nhật đối tác thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.partner.index')->with('error', 'Cập nhật thông tin đối tác thất bại: ' . $e->getMessage());
         }
     }
 
@@ -83,9 +85,9 @@ class PartnerController extends Controller
             $partner = Partner::findOrFail($request->input('del-object-id'));
             $partner->delete();
 
-            return redirect()->route('admin.partner.index')->with('success', 'Xóa đối tác thành công.');
+            return redirect()->route('admin.partner.index')->with('success', 'Xóa thông tin đối tác thành công.');
         } catch (Exception $e) {
-            return redirect()->route('admin.partner.index')->with('error', 'Xóa đối tác thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.partner.index')->with('error', 'Xóa thông tin đối tác thất bại: ' . $e->getMessage());
         }
     }
 }

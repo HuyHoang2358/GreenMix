@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property mixed $childs
  * @method static where(string $string, string $string1, $type)
  * @method static find($id)
+ * @method static whereIn(string $string, $subChilds)
  */
 class Category extends Model
 {

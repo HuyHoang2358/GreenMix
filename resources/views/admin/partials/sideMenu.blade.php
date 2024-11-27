@@ -51,14 +51,20 @@
             <ul class="{{isset($page) ? ( $page =='category-post-manager' || $page =='category-news-manager') ? 'side-menu__sub-open' : '' : ''}}">
                 <li>
                     <a href="{{route('admin.category.index', 'post')}}" class="side-menu {{isset($page) ? $page =='category-post-manager'? 'side-menu--active' : '' : ''}}">
-                        <div class="side-menu__icon"> <i data-lucide="list"></i> </div>
+                        <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="side-menu__title"> Danh mục bài viết </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('admin.post.index', 'news')}}" class="side-menu {{isset($page) ? $page =='category-news-manager'? 'side-menu--active' : '' : ''}}">
-                        <div class="side-menu__icon"> <i data-lucide="list"></i> </div>
+                    <a href="{{route('admin.category.index', 'news')}}" class="side-menu {{isset($page) ? $page =='category-news-manager'? 'side-menu--active' : '' : ''}}">
+                        <div class="side-menu__icon"> <i data-lucide="tv"></i> </div>
                         <div class="side-menu__title"> Danh mục tin tức</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('admin.category.index', 'recruitment')}}" class="side-menu {{isset($page) ? $page =='category-requirement-manager'? 'side-menu--active' : '' : ''}}">
+                        <div class="side-menu__icon"> <i data-lucide="briefcase"></i> </div>
+                        <div class="side-menu__title">Vị trí tuyển dụng</div>
                     </a>
                 </li>
 

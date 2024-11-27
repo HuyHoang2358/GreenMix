@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item"><a href="{{route('admin.account.index')}}">Tài khoản</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.account.index')}}">Quản lý tài khoản</a></li>
             <li class="breadcrumb-item active" aria-current="page">
                 <a href="#"> {{ $isUpdate ? 'Cập nhật' : 'Thêm mới' }}</a>
         </li>
@@ -28,6 +28,7 @@
         <div class="intro-y box p-5 mt-2">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                 <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
+                    <i data-lucide="chevron-down"></i>
                     Thông tin tài khoản
                 </div>
                 <div class="mt-5">
