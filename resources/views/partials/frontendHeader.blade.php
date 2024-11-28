@@ -28,19 +28,12 @@
 
                 <!-- Languages -->
                 <div class="flex justify-end items-center gap-2">
-                    <div class="flex justify-start items-center gap-1 border-r border-white pr-2">
-                        <img src="{{ asset('images/icons/usa.png') }}" alt="flag-english" class="w-8 h-8">
-                        <p>English</p>
-                    </div>
-                    <div class="flex justify-start items-center gap-1 border-r border-white pr-2">
-                        <img src="{{ asset('images/icons/vietnam.png') }}" alt="flag-vn" class="w-8 h-8">
-                        <p>Tiếng việt</p>
-                    </div>
-
-                    <div class="flex justify-start items-center gap-1">
-                        <img src="{{ asset('images/icons/china.png') }}" alt="flag-china" class="w-8 h-8">
-                        <p>Chinese</p>
-                    </div>
+                    @foreach($languages as $lang)
+                        <div class="flex justify-start items-center gap-1 {{$loop->index+1 == count($languages) ? '' : 'border-r border-white'}} pr-2">
+                            <img src="{{ asset($lang->icon) }}" alt="flag-english" class="w-8 h-8">
+                            <p>{{$lang->name}}</p>
+                        </div>
+                    @endforeach
                 </div>
                 <!-- End Languages -->
             </div>
@@ -65,18 +58,19 @@
                         <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
                             href="#">Về green mix <i class="fa-solid fa-chevron-down"></i></a>
                         <div
-                            class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-right hidden">
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 1</a>
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 2</a>
-                            <a class="p-2 text-wrap hover:bg-gray-300" href="#">Submenu 3</a>
+                            class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-60 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Về chúng tôi</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Lịch sử phát triển</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Dự án tiêu biểu</a>
+                            <a class="p-2 text-wrap hover:bg-gray-300" href="#">Đối tác & Khách hàng</a>
                         </div>
                     </div>
                     <div class="relative dropdown group">
                         <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
                             href="#">Lĩnh vực kinh doanh <i class="fa-solid fa-chevron-down"></i></a>
                         <div
-                            class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-right hidden">
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 1</a>
+                            class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
+                            <a class="p-2 border-b hover:bg-gray-300" href="#"> </a>
                             <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 2</a>
                             <a class="p-2 text-wrap hover:bg-gray-300" href="#">Submenu 3</a>
                         </div>
@@ -85,17 +79,17 @@
                         <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
                             href="#">Truyền thông <i class="fa-solid fa-chevron-down"></i></a>
                         <div
-                            class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-right hidden">
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 1</a>
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 2</a>
-                            <a class="p-2 text-wrap hover:bg-gray-300" href="#">Submenu 3</a>
+                            class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Truyền thông về Green Mix</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Kiến thức xây dựng</a>
+                            <a class="p-2 text-wrap hover:bg-gray-300" href="#">Catalog</a>
                         </div>
                     </div>
                     <div class="flex hover:cursor-pointer hover:text-primary-dark justify-center items-center h-full">
-                        Tuyển dụng
+                        <a href="{{route('recruitment')}}">Tuyển dụng</a>
                     </div>
                     <div class="flex hover:cursor-pointer hover:text-primary-dark justify-center items-center h-full">
-                        Liên hệ
+                        <a href="{{route('contact')}}">Liên hệ</a>
                     </div>
                 </div>
             </div>
