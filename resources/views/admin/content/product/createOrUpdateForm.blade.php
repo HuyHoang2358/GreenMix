@@ -159,8 +159,7 @@
                     class="font-medium text-base flex items-center justify-between border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                     Bài viết sản phẩm
                     <div>
-                        <input class="mx-2" type="checkbox" id="togglePostFields" name="togglePostFields"
-                            @if (isset($item) && $item->post_id) checked @endif /> Liên kết bài viết
+                        <input class="mx-2" type="checkbox" id="togglePostFields" name="togglePostFields" checked/> Liên kết bài viết
                     </div>
                 </div>
                 <div id="postFields" class="hidden flex-col mt-5 required-form">

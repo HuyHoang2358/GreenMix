@@ -17,10 +17,9 @@ return new class extends Migration
             $table->string('slug', 255);
             $table->longText('images');
             $table->longText('description')->nullable();
-            $table->unsignedBigInteger('post_id');
+            $table->bigInteger('post_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('post_id')->references('id')->on('post')->onUpdate('restrict');
 
         });
     }
