@@ -61,19 +61,40 @@
             <!-- Link nav -->
             <div class="px-14">
                 <div class="uppercase flex gap-x-10 font-semibold h-full">
-                    <div class="flex justify-center items-center h-full gap-2">
-                        Về green mix <i class="fa-solid fa-chevron-down"></i>
+                    <div class="relative dropdown group">
+                        <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
+                            href="#">Về green mix <i class="fa-solid fa-chevron-down"></i></a>
+                        <div
+                            class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-right hidden">
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 1</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 2</a>
+                            <a class="p-2 text-wrap hover:bg-gray-300" href="#">Submenu 3</a>
+                        </div>
                     </div>
-                    <div class="flex justify-center items-center h-full gap-2">
-                        Lĩnh vực kinh doanh <i class="fa-solid fa-chevron-down"></i>
+                    <div class="relative dropdown group">
+                        <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
+                            href="#">Lĩnh vực kinh doanh <i class="fa-solid fa-chevron-down"></i></a>
+                        <div
+                            class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-right hidden">
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 1</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 2</a>
+                            <a class="p-2 text-wrap hover:bg-gray-300" href="#">Submenu 3</a>
+                        </div>
                     </div>
-                    <div class="flex justify-center items-center h-full gap-2">
-                        Truyền thông <i class="fa-solid fa-chevron-down"></i>
+                    <div class="relative dropdown group">
+                        <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
+                            href="#">Truyền thông <i class="fa-solid fa-chevron-down"></i></a>
+                        <div
+                            class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-right hidden">
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 1</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 2</a>
+                            <a class="p-2 text-wrap hover:bg-gray-300" href="#">Submenu 3</a>
+                        </div>
                     </div>
-                    <div class="flex justify-center items-center h-full">
+                    <div class="flex hover:cursor-pointer hover:text-primary-dark justify-center items-center h-full">
                         Tuyển dụng
                     </div>
-                    <div class="flex justify-center items-center h-full">
+                    <div class="flex hover:cursor-pointer hover:text-primary-dark justify-center items-center h-full">
                         Liên hệ
                     </div>
                 </div>
@@ -112,17 +133,63 @@
     <div id="mySidenav"
         class="sidenav h-full w-0 fixed z-50 top-0 right-0 bg-white overflow-x-hidden pt-10 duration-500">
         <a href="javascript:void(0)" class="closebtn absolute top-0 right-2 text-3xl" onclick="closeNav()">&times;</a>
-        <nav class="flex flex-col font-semibold">
-            <a class="uppercase border-y  p-3 min-w-[250px] flex justify-between" href="#"><i
+        <nav class="flex flex-col font-semibold min-w-[250px]">
+            <!--About us Accrodian button-->
+            <a class="accordion uppercase border-y p-3  flex justify-between duration-500" href="#"><i
                     class="fa-solid fa-chevron-down pt-1"></i> Về green mix</a>
-            <a class="uppercase border-b p-3 min-w-[250px] flex justify-between" href="#"><i
+            <!--About us Accrodian panel-->
+            <div class="panel overflow-hidden hidden font-normal border-b">
+                <div class="flex border-b justify-end items-center gap-1 p-2">
+                    <p>Submenu 1</p>
+                </div>
+                <div class="flex border-b justify-end items-center gap-1 p-2">
+                    <p>Submenu 2</p>
+                </div>
+                <div class="flex justify-end items-center gap-1 p-2">
+                    <p>Submenu 3 </p>
+                </div>
+            </div>
+            <!--End About us Accrodian panel-->
+
+            <!--Field Accrodian button-->
+            <a class="accordion uppercase border-y p-3  flex justify-between duration-500" href="#"><i
                     class="fa-solid fa-chevron-down pt-1"></i> Lĩnh vực kinh doanh</a>
-            <a class="uppercase border-b p-3 min-w-[250px] flex justify-between" href="#"><i
-                    class="fa-solid fa-chevron-down pt-1"></i>Truyền thông</a>
-            <a class="uppercase border-b p-3 min-w-[250px] flex justify-end" href="#">Tuyển dụng</a>
-            <a class="uppercase border-b p-3 min-w-[250px] flex justify-end" href="#">Liên hệ</a>
+            <!--Field Accrodian panel-->
+            <div class="panel overflow-hidden hidden font-normal border-b">
+                <div class="flex border-b justify-end items-center gap-1 p-2">
+                    <p>Submenu 1</p>
+                </div>
+                <div class="flex border-b justify-end items-center gap-1 p-2">
+                    <p>Submenu 2</p>
+                </div>
+                <div class="flex justify-end items-center gap-1 p-2">
+                    <p>Submenu 3 </p>
+                </div>
+            </div>
+            <!--End Field Accrodian panel-->
+
+            <!--Media Accrodian button-->
+            <a class="accordion uppercase border-y p-3  flex justify-between duration-500" href="#"><i
+                    class="fa-solid fa-chevron-down pt-1"></i> Truyền thông</a>
+            <!--Media Accrodian panel-->
+            <div class="panel overflow-hidden hidden font-normal border-b">
+                <div class="flex border-b justify-end items-center gap-1 p-2">
+                    <p>Submenu 1</p>
+                </div>
+                <div class="flex border-b justify-end items-center gap-1 p-2">
+                    <p>Submenu 2</p>
+                </div>
+                <div class="flex justify-end items-center gap-1 p-2">
+                    <p>Submenu 3 </p>
+                </div>
+            </div>
+            <!--Media Field Accrodian panel-->
+
+            <a class="uppercase border-b p-3 flex justify-end" href="#">Tuyển dụng</a>
+            <a class="uppercase border-b p-3 flex justify-end" href="#">Liên hệ</a>
+
             <!--Language Accrodian button-->
-            <a class="accordion uppercase border-b p-3 min-w-[250px] flex justify-between duration-500" href="#"><i
+            <a class="accordion uppercase border-b p-3 flex justify-between duration-500" href="#"><i
                     class="fa-solid fa-chevron-down pt-1"></i>Ngôn ngữ</a>
             <!--Language Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
@@ -140,6 +207,7 @@
                 </div>
             </div>
             <!--End Language Accrodian panel-->
+
         </nav>
         <div class="flex justify-center min-w-[250px] gap-3 p-5">
             <a href="#">
@@ -203,4 +271,10 @@
 
         });
     }
+
+    $('.dropdown').hover(
+        function() {
+            $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+        }
+    );
 </script>
