@@ -3,11 +3,12 @@
 return array (
   'web_name' => 'GreenMix',
   'company_name' => 'Công ty cổ phần đầu tư sx & Tm green Mix',
-  'hotline_1' => '09725556665',
-  'hotline_2' => '0982555555',
-  'facebook_url' => 'http://...',
-  'youtube_url' => 'http://///',
-  'tiktok_url' => 'http://///',
+  'top_hotline_1' => '0972 555 665',
+  'top_hotline_2' => '0982 555 555',
+  'facebook_url' => '#',
+  'youtube_url' => '#',
+  'tiktok_url' => '#',
   'email' => 'info.greenmixvietnam@gmail.com',
-  'image' => '/storage/files/21/vietnam.png',
+  'logo' => '/storage/files/shares/he-thong/green-mix-logo-new.png',
+  'favicon' => '/storage/files/shares/he-thong/green-mix-logo-new.png',
 );

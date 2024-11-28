@@ -14,7 +14,7 @@ class BannerController extends Controller
 {
     public function index(): Factory|Application|View
     {
-        $banners = Banner::orderBy('updated_at', 'desc')->paginate(5);
+        $banners = Banner::orderBy('order', 'ASC')->paginate(5);
         return view('admin.content.setting.banner.index', [
             'page' => 'setting-banner', // dùng để active menu
             'banners' => $banners,

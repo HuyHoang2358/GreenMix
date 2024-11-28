@@ -1,5 +1,5 @@
 @extends('layouts.appLayout')
-@section('title', 'Trang liên hệ')
+@section('title', 'Liên hệ')
 @section('seo')
 
 @endsection

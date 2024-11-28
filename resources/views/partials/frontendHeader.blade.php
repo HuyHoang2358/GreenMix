@@ -5,8 +5,8 @@
             <!-- Hotline -->
             <div class="flex justify-start items-center gap-2">
                 <p><i class="fa-solid fa-phone fa-beat-fade mr-2"></i> Hotline:</p>
-                <p class="font-semibold border-r border-white pr-2">0972 555 666</p>
-                <p class="font-semibold">0972 555 666</p>
+                <p class="font-semibold border-r border-white pr-2">{{Config::get('website.top_hotline_1')}}</p>
+                <p class="font-semibold">{{Config::get('website.top_hotline_2')}}</p>
             </div>
             <!-- End Hotline -->
 
@@ -14,13 +14,13 @@
             <div class="flex justify-end items-center gap-12">
                 <!-- Social icons -->
                 <div class="flex justify-end items-center gap-4 text-2xl">
-                    <a href="#">
+                    <a href="{{Config::get('website.facebook_url')}}">
                         <i class="fa-brands fa-facebook"></i>
                     </a>
-                    <a href="#">
+                    <a href="{{Config::get('website.youtube_url')}}">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
-                    <a href="#">
+                    <a href="{{Config::get('website.tiktok_url')}}">
                         <i class="fa-brands fa-tiktok"></i>
                     </a>
                 </div>
@@ -29,10 +29,10 @@
                 <!-- Languages -->
                 <div class="flex justify-end items-center gap-2">
                     @foreach($languages as $lang)
-                        <div class="flex justify-start items-center gap-1 {{$loop->index+1 == count($languages) ? '' : 'border-r border-white'}} pr-2">
+                        <button type="button" class="flex justify-start items-center gap-1 {{$loop->index+1 == count($languages) ? '' : 'border-r border-white'}} pr-2">
                             <img src="{{ asset($lang->icon) }}" alt="flag-english" class="w-8 h-8">
                             <p>{{$lang->name}}</p>
-                        </div>
+                        </button>
                     @endforeach
                 </div>
                 <!-- End Languages -->
@@ -47,9 +47,9 @@
 
         <div class="flex justify-between">
             <!-- Logo -->
-            <div class="px-12">
-                <img src="{{ asset('images/logo/green-mix-logo-new.png') }}" alt="">
-            </div>
+            <a class="px-12" href="{{url('/')}}">
+                <img src="{{ asset(Config::get('website.logo') ?? 'images/logo/green-mix-logo-new.png') }}" alt="">
+            </a>
 
             <!-- Link nav -->
             <div class="px-14">
@@ -67,12 +67,23 @@
                     </div>
                     <div class="relative dropdown group">
                         <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
-                            href="#">Lĩnh vực kinh doanh <i class="fa-solid fa-chevron-down"></i></a>
+                            href="{{route('business')}}">Lĩnh vực kinh doanh<i class="fa-solid fa-chevron-down"></i>
+                        </a>
                         <div
                             class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
-                            <a class="p-2 border-b hover:bg-gray-300" href="#"> </a>
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Submenu 2</a>
-                            <a class="p-2 text-wrap hover:bg-gray-300" href="#">Submenu 3</a>
+                            @foreach($menuFields as $menu)
+                                <a class="p-2 {{$loop->index + 1 == count($menuFields) ? '' : 'border-b' }} hover:bg-gray-300" href="{{route('business.detail', $menu->slug)}}">{{$menu->name}}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="relative dropdown group">
+                        <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
+                           href="{{route('product')}}">Sản phẩm<i class="fa-solid fa-chevron-down"></i></a>
+                        <div
+                            class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
+                            @foreach($menuProducts as $menu)
+                                <a class="p-2 {{$loop->index + 1 == count($menuProducts) ? '' : 'border-b' }} hover:bg-gray-300" href="{{route('product.detail', $menu->slug)}}">{{$menu->name}}</a>
+                            @endforeach
                         </div>
                     </div>
                     <div class="relative dropdown group">

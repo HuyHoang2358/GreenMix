@@ -1,10 +1,10 @@
 @extends('admin.layouts.adminApp')
-@section('title', 'lĩnh vực kinh doanh')
+@section('title', 'Quản lý lĩnh vực kinh doanh')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
-            <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang Quản trị viên</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.field.index')}}">Lĩnh vực kinh doanh</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.homepage')}}">Trang quản trị viên</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="#">Quản lý lĩnh vực kinh doanh</a></li>
         </ol>
     </nav>
 @endsection
@@ -19,7 +19,7 @@
         @include('admin.common.titleTable', [
             'title' => 'Quản lý lĩnh vực kinh doanh',
             'routeAdd' => route('admin.field.add'),
-            'titleButton' => 'Thêm mới lĩnh vực kinh doanh'
+            'titleButton' => 'Thêm mới lĩnh vực'
         ])
         <!-- End Table title -->
 

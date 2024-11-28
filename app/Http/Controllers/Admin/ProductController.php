@@ -46,34 +46,33 @@ class ProductController extends Controller
             $imageArray = [];
             if ($images) $imageArray = explode(',', $images); // Tách các phần tử trong mảng image thành các phần tử riêng lẻ dựa vào dấu ','
 
+            // Tạo mới bài viết
+            $post = Post::create([
+                'name' => $input['name'],
+                'title' => $input['name'],
+                'slug' =>  $input['slug'] ?? Str::slug($input['name']),
+                'description' => $input['description'] ?? '',
+                'content' => $input['content'],
+                'type_id' => 4,
+                'images' => json_encode($imageArray),
+                'seo_keyword' => $input['seo-keyword'],
+                'seo_title' => $input['seo-title'],
+                'seo_description' => $input['seo-description']
+            ]);
+
             // Tạo mới sản phẩm
             $product = Product::create([
                 'name' => $input['name'],
                 'slug' => $input['slug'] ?? Str::slug($input['name']),
                 'description' => $input['description'] ?? '',
                 'images' => json_encode($imageArray), // encode mảng image thành chuỗi json
+                'post_id' => $post->id
             ]);
 
-            if($request->input('togglePostFields')){
-                // Tạo mới bài viết
-                $post = Post::create([
-                    'name' => $input['name'],
-                    'title' => $input['name'],
-                    'slug' =>  $input['slug'] ?? Str::slug($input['name']),
-                    'description' => $input['description'] ?? '',
-                    'content' => $input['content'],
-                    'type_id' => 4,
-                    'images' => json_encode($imageArray),
-                    'seo_keyword' => $input['seo-keyword'],
-                    'seo_title' => $input['seo-title'],
-                    'seo_description' => $input['seo-description']
-                ]);
-                $product->post_id = $post->id;
-            }
             // Lưu sản phẩm và post vao database
             DB::commit();
 
-            return redirect()->route('admin.product.index')->with('success', 'Thêm mới sản phẩm thành công.');
+            return redirect()->route('admin.product.index')->with('success', 'Thêm mới sản phẩm thành công!');
 
         } catch (\Exception $e)
         {
@@ -103,88 +102,46 @@ class ProductController extends Controller
 
     }
 
-    public function update(Request $request, $id){
-
-        // TODO: hãy sửa lại cho đúng
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $input = $request->all();
         try {
+            // update field
             $product = Product::findOrFail($id);
+            $images = $input['images'];
+            $imageArray = [];
+            if ($images) $imageArray = explode(',', $images); // Tách các phần tử trong mảng image thành các phần tử riêng lẻ dựa vào dấu ','
+            $product->images =  json_encode($imageArray);
+            $product->name = $input['name'] ?? $product["name"];
+            $product->slug = $input["slug"] ?? Str::slug($input["name"]);
+            $product->description = $input['description'] ?? $product["description"];
 
-            $images = $request->input('images');
+            // update post
+            $post = Post::findOrFail($product->post_id);
+            $post->name = $input["name"] ?? $post["name"];
+            $post->title = $input["title"] ?? $post["title"];
+            $post->slug = $input["slug"] ?? Str::slug($input["name"]);
+            $post->description = $input['description'] ?? $post["description"];
+            $post->content = $input['content'] ?? $post["content"];
+            $post->images = json_encode($imageArray);
+            $post->seo_keyword = $input['seo_keyword'] ?? $post["seo_keyword"];
+            $post->seo_title = $input['seo_title'] ?? $post["seo_title"];
+            $post->seo_description = $input['seo_description'] ?? $post["seo_description"];
 
-            if ($images) {
-                $imageArray = explode(',', $images);
-            } else {
-                $imageArray = [];
-            }
-
-            $jsonEncodedImages = json_encode($imageArray);
-
-            $product->name = $request->input('name');
-            $product->slug = $request->input('slug') ?? Str::slug($request->input('name'));
-            $product->description = $request->input('description') ?? '';
-            $product->images = $jsonEncodedImages;
-
-            if($request->input('togglePostFields')){
-
-                $post = Post::find($product->post_id);
-
-                if($post){
-                    $post->title = $request->input('name');
-                    $post->images = $jsonEncodedImages;
-                    $post->name = $request->input('name');
-                    $post->slug = $request->input('slug') ?? Str::slug($request->input('name'));
-                    $post->type_id = 4;
-                    $post->description = $request->input('description') ?? '';
-                    $post->seo_title = $request->input('seo-title');
-                    $post->seo_keyword = $request->input('seo-keyword');
-                    $post->seo_description = $request->input('seo-description');
-                    $post->content = $request->input('content');
-                } else{
-                    DB::beginTransaction();
-
-                    $post = Post::create([
-                        'name' => $request->input('name'),
-                        'title' => $request->input('name'),
-                        'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
-                        'description' => $request->input('description') ?? '',
-                        'content' => $request->input('content'),
-                        'type_id' => 4,
-                        'images' => $jsonEncodedImages,
-                        'seo_keyword' => $request->input('seo-keyword'),
-                        'seo_title' => $request->input('seo-title'),
-                        'seo_description' => $request->input('seo-description')
-                    ]);
-
-                    $product->post_id = $post->id;
-
-                    DB::commit();
-                }
-
-            } else {
-                if($product->post_id){
-                    $post = Post::findOrFail($product->post_id);
-                    $product->post_id = null;
-                    $product->save();
-                    $post->delete();
-                }
-            }
 
             $product->save();
-            return redirect()->route('admin.product.index')->with('success', 'Cập nhật sản phẩm thành công.');
-
+            $post->save();
+            return redirect()->route('admin.field.index')->with('success', 'Cập nhật thông tin sản phẩm thành công.');
         } catch (\Exception $e)
         {
             DB::rollBack();
-            return redirect()->route('admin.product.index')->with('error', 'Cập nhật sản phẩm thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.field.index')->with('error', 'Cập nhật thông tin sản phẩm thất bại: ' . $e->getMessage());
         }
-
     }
 
-    public function destroy(Request $request){
-
-        // TODO: handle product -> delete post (Tham khảo category model)
+    public function destroy(Request $request): RedirectResponse
+    {
         $id = $request->input('del-object-id');
-
         try {
 
             $product = Product::findOrFail($id);

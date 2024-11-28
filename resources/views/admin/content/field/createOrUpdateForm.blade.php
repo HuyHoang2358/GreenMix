@@ -6,7 +6,7 @@
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item"><a href="{{ route('admin.field.index') }}">Quản lý lĩnh vực kinh doanh</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="#">{{ $isUpdate ? 'Cập nhật thông tin lĩnh vực kinh doanh' : 'Thêm mới thông tin lĩnh vực kinh doanh' }}</a>
+                <a href="#">{{ $isUpdate ? 'Cập nhật thông tin' : 'Thêm mới thông tin' }}</a>
             </li>
         </ol>
     </nav>

@@ -1,7 +1,7 @@
 <div class="grid md:grid-cols-4 bg-[#747474] p-8 md:px-80 md:py-12 text-white">
     <div class="col-span-2 md:px-24">
         <img src="{{config('website.logo')}}" alt="">
-        <h3 class="font-semibold text-base md:text-lg text-primary pt-3">CÔNG TY CỔ PHẦN ĐẦU TƯ SX & TM GREEN MIX</h3>
+        <h3 class="font-semibold text-base md:text-lg text-primary pt-3 uppercase">{{Config::get('website.company_name')}}</h3>
         @foreach($addresses as $address)
         <div class="py-2 text-sm md:text-base">
             <div class="flex gap-2">
@@ -38,11 +38,9 @@
         <div class="col-span-1">
             <h3 class="font-medium">DANH MỤC SẢN PHẨM</h3>
             <ul class="list-disc ml-6 pt-5 flex flex-col gap-3 text-sm">
-                <li>Dòng phụ gia hoá dẻo S300</li>
-                <li>Dòng phụ gia siêu dẻo S500</li>
-                <li>Dòng phụ gia siêu dẻo 3000H</li>
-                <li>Dòng phụ gia siêu dẻo 5000S</li>
-                <li>Dòng phụ gia loại F CP5000</li>
+                @foreach($footerProducts as $product)
+                    <li><a href="{{route('product.detail', $product->slug)}}" class="hover:text-primary">{{$product->name}}</a></li>
+                @endforeach
             </ul>
         </div>
         <div class="col-span-1 mt-10 md:mt-0">
@@ -60,5 +58,5 @@
     </div>
 </div>
 
-    
+
 
