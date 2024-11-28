@@ -8,13 +8,17 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $partners = Partner::all();
-        $addresses = Address::all(); // set dieu kiện để lấy ra các địa chỉ hiển thị
+      // set dieu kiện để lấy ra các địa chỉ hiển thị
         return view('homepage', [
             'partners' => $partners,
-            'addresses' => $addresses,
         ]);
+    }
+
+    public function contact(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('front.contact');
     }
 }
