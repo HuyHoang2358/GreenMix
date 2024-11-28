@@ -53,6 +53,9 @@ class HomeController extends Controller
     // Trang liên hệ
     public function contact(): Factory|Application|View
     {
-        return view('front.contact');
+        $addresses = Address::all();
+        return view('front.contact', [
+        'addresses' => $addresses,
+        ]);
     }
 }
