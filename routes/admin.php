@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [FieldController::class, 'store'])->name('admin.field.store');
         Route::get('/edit/{id}', [FieldController::class, 'edit'])->name('admin.field.edit');
         Route::post('/update/{id}', [FieldController::class, 'update'])->name('admin.field.update');
-        Route::get('/delete/{id}', [FieldController::class, 'destroy'])->name('admin.field.destroy');
+        Route::post('/delete/', [FieldController::class, 'destroy'])->name('admin.field.destroy');
     });
 
     // Quản lý tài khoản

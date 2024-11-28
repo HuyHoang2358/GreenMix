@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static create(array $array)
+ * @method static find($post_id)
+ * @method static findOrFail($post_id)
  */
 class Post extends Model
 {

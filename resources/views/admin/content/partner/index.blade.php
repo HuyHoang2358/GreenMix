@@ -12,6 +12,7 @@
 <!-- Define route for delete action -->
 @php($routeDelete = route('admin.partner.destroy'))
 
+
 @section('content')
 
     <div class="intro-y box">
