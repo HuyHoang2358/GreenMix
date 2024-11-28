@@ -16,6 +16,14 @@ class Product extends Model
 
     protected $table = "products";
 
+    public static function boot(): void
+    {
+        parent::boot();
+        static::deleting(function($product){
+            $product->post()->delete();
+        });
+    }
+
     protected $fillable = [
         'name',
         'slug',

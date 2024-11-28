@@ -54,7 +54,7 @@ class ProductController extends Controller
                 'images' => json_encode($imageArray), // encode mảng image thành chuỗi json
             ]);
 
-            if($input['togglePostFields']){
+            if($request->input('togglePostFields')){
                 // Tạo mới bài viết
                 $post = Post::create([
                     'name' => $input['name'],
@@ -104,6 +104,7 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, $id){
+
         // TODO: hãy sửa lại cho đúng
         try {
             $product = Product::findOrFail($id);
@@ -120,7 +121,7 @@ class ProductController extends Controller
 
             $product->name = $request->input('name');
             $product->slug = $request->input('slug') ?? Str::slug($request->input('name'));
-            $product->description = $request->input('description');
+            $product->description = $request->input('description') ?? '';
             $product->images = $jsonEncodedImages;
 
             if($request->input('togglePostFields')){
@@ -128,12 +129,12 @@ class ProductController extends Controller
                 $post = Post::find($product->post_id);
 
                 if($post){
-                    $post->title = $request->input('title');
-                    $post->images = $request->input('post-thumbnail');
-                    $post->name = $request->input('post-name');
-                    $post->slug = $request->input('post-slug') ?? Str::slug($request->input('post-name'));
+                    $post->title = $request->input('name');
+                    $post->images = $jsonEncodedImages;
+                    $post->name = $request->input('name');
+                    $post->slug = $request->input('slug') ?? Str::slug($request->input('name'));
                     $post->type_id = 4;
-                    $post->description = $request->input('post-description');
+                    $post->description = $request->input('description') ?? '';
                     $post->seo_title = $request->input('seo-title');
                     $post->seo_keyword = $request->input('seo-keyword');
                     $post->seo_description = $request->input('seo-description');
@@ -142,13 +143,13 @@ class ProductController extends Controller
                     DB::beginTransaction();
 
                     $post = Post::create([
-                        'name' => $request->input('post-name'),
-                        'title' => $request->input('title'),
-                        'slug' => $request->input('post-slug') ?? Str::slug($request->input('post-name')),
-                        'description' => $request->input('post-description'),
+                        'name' => $request->input('name'),
+                        'title' => $request->input('name'),
+                        'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
+                        'description' => $request->input('description') ?? '',
                         'content' => $request->input('content'),
                         'type_id' => 4,
-                        'images' => $request->input('post-thumbnail'),
+                        'images' => $jsonEncodedImages,
                         'seo_keyword' => $request->input('seo-keyword'),
                         'seo_title' => $request->input('seo-title'),
                         'seo_description' => $request->input('seo-description')
@@ -180,6 +181,7 @@ class ProductController extends Controller
     }
 
     public function destroy(Request $request){
+
         // TODO: handle product -> delete post (Tham khảo category model)
         $id = $request->input('del-object-id');
 

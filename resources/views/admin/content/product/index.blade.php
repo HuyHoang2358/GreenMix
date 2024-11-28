@@ -28,13 +28,13 @@
         <div class=" col-span-12 lg:col-span-12 mt-2">
             <div class="intro-y box py-2 px-4">
                 <div class="overflow-x-auto">
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-hover table-auto table-bordered">
                         <thead class="table-dark">
                             <tr>
                                 <th class="whitespace-nowrap text-center w-8">STT</th>
                                 <th class="whitespace-nowrap">Tên</th>
                                 <th class="whitespace-nowrap">Slug</th>
-                                <th class="whitespace-nowrap w-40 text-center">Hình ảnh</th>
+                                <th class="whitespace-nowrap w-96 text-center">Hình ảnh</th>
                                 <th class="whitespace-nowrap">Mô tả</th>
                                 <th class="whitespace-nowrap text-center w-24">Thao tác</th>
                             </tr>
@@ -73,7 +73,7 @@
                                     </td>
                                     <td>{!! $product->description !!}</td>
                                     <td>
-                                        <div class="flex justify-center items-center">
+                                        <div class="flex justify-center items-center gap-2">
                                             <!-- Edit button -->
                                             @include('admin.common.editButton', [
                                                 'routeEdit' => route('admin.product.edit', ['id' => $product->id])
