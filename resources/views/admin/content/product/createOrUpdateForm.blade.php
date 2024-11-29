@@ -199,7 +199,7 @@
                                 <div>
                                     <label for="content" class="form-label">Nội dung bài viết<span style="color: red;">
                                             *</span></label>
-                                    <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ isset($item->post) ? $item->post->content : '' }}</textarea>
+                                    <textarea required="required" id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ isset($item->post) ? $item->post->content : '' }}</textarea>
                                 </div>
                             </div>
                         </div>

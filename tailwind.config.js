@@ -15,14 +15,22 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                'primary' : '#27A965',
+                'primary': '#27A965',
                 'primary-dark': '#238351',
                 'light-primary': '#3EBA79',
                 'secondary': '#1C4B91',
-                'footer-gray': '#747474'
+                'footer-gray': '#747474',
+                'menu-gray': '#F9F9F9'
             }
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, function ({ addUtilities }) {
+        addUtilities({
+            '.accordion-active': {
+                backgroundColor: '#238351', // Use your primary color here
+                color: '#ffffff', // White text color
+            },
+        });
+    },],
 };

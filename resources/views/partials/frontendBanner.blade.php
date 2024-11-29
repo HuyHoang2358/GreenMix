@@ -22,22 +22,6 @@
         </div>
     </div>
     @endforeach
-    <!--Slide items-->
-    {{--<div class="mySlides fade">
-        <div class="relative min-h-[469px] sm:min-h-[50.625rem] overflow-clip bg-cover sm:bg-cover bg-[center_center]"
-            style="background-image: url('{{ $path2 }}');">
-            <div
-                class="absolute top-32 left-6 sm:top-1/4 sm:left-16 bg-white rounded-3xl bg-opacity-70 font-extrabold uppercase px-2 py-6 sm:py-12 sm:px-7">
-                <div
-                    class="text-xl sm:text-4xl mb-2 sm:mb-7 text-secondary whitespace-normal leading-tight max-w-64 sm:max-w-2xl">
-                    Đây là một dòng text khác mà tôi muốn nhắc đến
-                </div>
-                <button
-                    class="uppercase text-xs sm:text-2xl bg-primary-dark px-3 py-3 sm:px-7 sm:py-6 rounded-xl text-white">Xem
-                    thêm</button>
-            </div>
-        </div>
-    </div>--}}
 
     <a class="prev absolute top-1/2 left-2 transform -translate-y-1/2 p-4 font-bold text-3xl transition ease-in-out duration-500 rounded cursor-pointer select-none hover:bg-green-700/[0.7] hover:text-white" onclick="plusSlides(-1)"><i class="fa-solid fa-chevron-left"></i></a>
     <a class="next absolute top-1/2 right-2 transform -translate-y-1/2 p-4 font-bold text-3xl transition ease-in-out duration-500 rounded cursor-pointer select-none hover:bg-green-700/[0.7] hover:text-white" onclick="plusSlides(1)"><i class="fa-solid fa-chevron-right"></i></a>
