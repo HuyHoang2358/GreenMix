@@ -1,7 +1,7 @@
 @extends('layouts.appLayout')
 @section('title', 'Dòng sản phẩm')
 @section('seo')
-
+    
 @endsection
 @php
     $images = json_decode($product->images, true);

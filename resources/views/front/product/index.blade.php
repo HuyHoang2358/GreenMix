@@ -12,7 +12,7 @@
         </div>
         <!-- End Session 1: Title -->
 
-        <!-- Session 2: Business list-->
+        <!-- Session 2: product list-->
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-10">
             @foreach ($products as $product)
                 <!--A product card-->
@@ -42,18 +42,7 @@
             @endforeach
 
         </div>
-        <!-- End Session 2: Business list  -->
+        <!-- End Session 2: product list  -->
     </div>
-
-    <style>
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style>
-
 
 @endsection

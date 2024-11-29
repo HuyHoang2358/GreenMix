@@ -157,12 +157,8 @@
                 <div
                     class="font-medium text-base flex items-center justify-between border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                     Bài viết lĩnh vực kinh doanh
-                    <div>
-                        <input class="mx-2" type="checkbox" id="togglePostFields" name="togglePostFields"
-                               @if (isset($item) && $item->post_id) checked @endif /> Liên kết bài viết
-                    </div>
                 </div>
-                <div id="postFields" class="hidden flex-col mt-5 required-form">
+                <div id="postFields" class="flex-col mt-5 required-form">
                     {{-- BEGIN --}}
                     <div class="mt-5 grid grid-cols-2 gap-5">
                         <div class="intro-y box">
@@ -199,7 +195,7 @@
                                 <div>
                                     <label for="content" class="form-label">Nội dung bài viết<span style="color: red;">
                                             *</span></label>
-                                    <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ isset($item->post) ? $item->post->content : '' }}</textarea>
+                                    <textarea required id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ isset($item->post) ? $item->post->content : '' }}</textarea>
                                 </div>
                             </div>
                         </div>
