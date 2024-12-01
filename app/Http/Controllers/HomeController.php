@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Admin\Setting\BannerController;
 use App\Models\Address;
 use App\Models\Banner;
+use App\Models\DataUsers;
 use App\Models\Partner;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -57,5 +59,26 @@ class HomeController extends Controller
         return view('front.contact', [
         'addresses' => $addresses,
         ]);
+    }
+
+    public function dataUser(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $input = $request->all();
+        try {
+            DataUsers::create([
+                'name' => $input['name'],
+                'company' => $input['company'],
+                'phone' => $input['phone'],
+                'content' => $input['content'],
+                'status' => 1,
+            ]);
+
+            // Chuyển hướng về trang danh sách dự án và kèm theo thông báo thành công
+            return redirect()->route('home')->with('success', 'Thêm mới thông tin thành công!');
+
+        } catch (Exception $e) {
+            // Trường hợp có lỗi xảy ra, chuyển hướng về trang danh sách dự án và kèm theo thông báo lỗi
+            return redirect()->route('home')->with('error', 'Thêm mới thông tin thất bại: ' . $e->getMessage());
+        }
     }
 }

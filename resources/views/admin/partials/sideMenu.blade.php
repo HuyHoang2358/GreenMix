@@ -97,6 +97,13 @@
         </li>
 
         <li>
+            <a href="{{route('admin.dataUser.index')}}" class="side-menu {{isset($page) ? $page =='contact-manager'? 'side-menu--active' : '' : ''}}">
+                <div class="side-menu__icon"> <i data-lucide="github"></i> </div>
+                <div class="side-menu__title">Liên hệ</div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{route('admin.recruitment.index')}}" class="side-menu {{isset($page) ? $page =='recruitment-manager'? 'side-menu--active' : '' : ''}}">
                 <div class="side-menu__icon"> <i data-lucide="github"></i> </div>
                 <div class="side-menu__title">Tuyển dụng</div>
