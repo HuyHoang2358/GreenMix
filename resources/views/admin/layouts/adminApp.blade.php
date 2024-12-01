@@ -6,6 +6,13 @@
         <title>@yield('title') | GreenMix</title>
         @include('admin.partials.head')
         @include('admin.partials.tiny_MCE_ini')
+        <style>
+        
+            .form-control:invalid + .tox {
+                border: 1px solid #dc3545; /* Red border color for TinyMCE editor */
+            }
+            
+        </style>
 
     </head>
 

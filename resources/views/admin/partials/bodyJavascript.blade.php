@@ -59,25 +59,25 @@
         }
     });
 
-    // toggle post field on the product page
-    $('#togglePostFields').change(function() {
-        if ($(this).is(':checked')) {
-            $('#postFields').removeClass('hidden').addClass('flex');
-            $('#postFields input[name="post-thumbnail"]').attr('required', 'required');
-            $('#postFields input[name="post-name"]').attr('required', 'required');
-            $('#postFields input[name="title"]').attr('required', 'required');
-            $('#postFields input[name="post-description"]').attr('required', 'required');
-            $('#content').attr('required', 'required');
-        } else {
-            $('#postFields').removeClass('flex').addClass('hidden');
-            $('#postFields input[name="post-thumbnail"]').removeAttr('required');;
-            $('#postFields input[name="post-name"]').removeAttr('required');;
-            $('#postFields input[name="title"]').removeAttr('required');;
-            $('#postFields input[name="post-description"]').removeAttr('required');
-            $('#content').removeAttr('required');
-        }
-    });
-    //end toggle post field on the product page
+    // // toggle post field on the product page
+    // $('#togglePostFields').change(function() {
+    //     if ($(this).is(':checked')) {
+    //         $('#postFields').removeClass('hidden').addClass('flex');
+    //         $('#postFields input[name="post-thumbnail"]').attr('required', 'required');
+    //         $('#postFields input[name="post-name"]').attr('required', 'required');
+    //         $('#postFields input[name="title"]').attr('required', 'required');
+    //         $('#postFields input[name="post-description"]').attr('required', 'required');
+    //         $('#content').attr('required', 'required');
+    //     } else {
+    //         $('#postFields').removeClass('flex').addClass('hidden');
+    //         $('#postFields input[name="post-thumbnail"]').removeAttr('required');;
+    //         $('#postFields input[name="post-name"]').removeAttr('required');;
+    //         $('#postFields input[name="title"]').removeAttr('required');;
+    //         $('#postFields input[name="post-description"]').removeAttr('required');
+    //         $('#content').removeAttr('required');
+    //     }
+    // });
+    // //end toggle post field on the product page
 
     $(document).ready(function() {
 
@@ -167,30 +167,6 @@
                 e.preventDefault();
         });
         //end add readonly function for img tags
-
-        // $('.input-json-decoder').each(function() {
-        //     var imageInput = $(this);
-        //     var imageValue = imageInput.val();
-
-        //     console.log(imageValue);
-
-        //     try {
-        //         // Parse the JSON-encoded array
-        //         var imageArray = JSON.parse(imageValue);
-
-        //         // Check if the parsed value is an array
-        //         if (Array.isArray(imageArray)) {
-
-        //             var imageString = imageArray.join(', ');
-        //             imageInput.val(imageString);
-
-        //         }
-
-        //     } catch (e) {
-        //         console.error('Invalid JSON format:', e);
-        //     }
-
-        // });
 
     });
 
