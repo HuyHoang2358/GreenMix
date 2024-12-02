@@ -37,14 +37,9 @@
         <div class="col-span-1">
             <h3 class="font-medium">DANH MỤC SẢN PHẨM</h3>
             <ul class="list-disc ml-6 pt-5 flex flex-col gap-3 text-md">
-{{--                @foreach($footerProducts as $product)--}}
-{{--                    <li><a href="{{route('product.detail', $product->slug)}}" class="hover:text-primary">{{$product->name}}</a></li>--}}
-                    <li><a href="#" class="hover:text-primary">Dòng phụ gia hoá dẻo S300</a></li>
-                    <li><a href="#" class="hover:text-primary">Dòng phụ gia hoá dẻo S300</a></li>
-                    <li><a href="#" class="hover:text-primary">Dòng phụ gia hoá dẻo S300</a></li>
-                    <li><a href="#" class="hover:text-primary">Dòng phụ gia hoá dẻo S300</a></li>
-
-{{--                @endforeach--}}
+                @foreach($footerProducts as $product)
+                    <li><a href="{{route('product.detail', $product->slug)}}" class="hover:text-primary">{{$product->name}}</a></li>
+                @endforeach
             </ul>
         </div>
         <div class="col-span-1 mt-10 md:mt-0">

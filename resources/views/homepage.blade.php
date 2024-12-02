@@ -167,26 +167,6 @@
                         <img class="w-full h-full border-2 border-gray-300 shadow-xl transform" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);" src="{{asset($partner->logo)}}" alt="">
                     </div>
                 </a>
-                <a href="#">
-                    <div class="col-span-1 md:w-[230px] h-[120px]">
-                        <img class="w-full h-full border-2 border-gray-300 shadow-xl transform" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);" src="{{asset($partner->logo)}}" alt="">
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="col-span-1 md:w-[230px] h-[120px]">
-                        <img class="w-full h-full border-2 border-gray-300 shadow-xl transform" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);" src="{{asset($partner->logo)}}" alt="">
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="col-span-1 md:w-[230px] h-[120px]">
-                        <img class="w-full h-full border-2 border-gray-300 shadow-xl transform" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);" src="{{asset($partner->logo)}}" alt="">
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="col-span-1 md:w-[230px] h-[120px]">
-                        <img class="w-full h-full border-2 border-gray-300 shadow-xl transform" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);" src="{{asset($partner->logo)}}" alt="">
-                    </div>
-                </a>
             @endforeach
         </div>
     </div>
