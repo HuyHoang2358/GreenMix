@@ -24,9 +24,9 @@ class DataUserController extends Controller
             $dataUser->status = 2;
             $dataUser->save();
 
-            return redirect()->route('admin.dataUser.index')->with('success', 'Đã đánh dấu liên hệ thành công!');
+            return redirect()->route('admin.dataUser.index')->with('success', 'Đã đánh dấu xử lý xong!');
         } catch (Exception $e) {
-            return redirect()->route('admin.dataUser.index')->with('error', 'Đã đánh dấu liên hệ thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.dataUser.index')->with('error', 'Lỗi: ' . $e->getMessage());
         }
     }
 
