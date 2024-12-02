@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.homepage');
 
     //Quản lý liên hệ
-    Route::prefix('dataUser')->group(function (){
+    Route::prefix('user-contact')->group(function (){
         Route::get('/', [DataUserController::class, 'index'])->name('admin.dataUser.index'); //Trang dữ liệu ng dùng gửi từ homepage
         Route::get('/edit/{id}',[DataUserController::class, 'edit'])->name('admin.dataUser.edit');
         Route::post('/delete', [DataUserController::class, 'destroy'])->name('admin.dataUser.destroy');
@@ -162,6 +162,7 @@ Route::middleware('auth')->group(function () {
         })->name('admin.media.files.index');
     });
 
+    // Quản lý file
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });
