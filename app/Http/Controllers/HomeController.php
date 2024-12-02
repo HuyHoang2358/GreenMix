@@ -8,6 +8,8 @@ use App\Models\Banner;
 use App\Models\DataUsers;
 use App\Models\Partner;
 use Exception;
+use App\Models\Product;
+use App\Models\Field;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -31,24 +33,30 @@ class HomeController extends Controller
     // Trang lĩnh vực kinh doanh
     public function business(): Factory|Application|View
     {
-        return view('front.business.index');
+        $businesses = Field::with('post')->orderBy('updated_at', 'desc')->paginate(6);
+        return view('front.business.index', ['businesses' => $businesses]);
     }
 
     // Trang chi tiết lĩnh vực kinh doanh
     public function businessDetail($slug): Factory|Application|View
-    {
-        return view('front.business.detail');
+    {   
+        $business = Field::where('slug', $slug)->with('post')->first();
+        return view('front.business.detail', ['business' => $business]);
     }
 
     // Trang danh sách dòng sản phẩm
     public function product(): Factory|Application|View
-    {
-        return view('front.product.index');
+    {   
+        $products = Product::with('post')->orderBy('updated_at', 'desc')->paginate(6);
+
+        return view('front.product.index', ['products' => $products]);
     }
     // Trang chi tiết dòng sản phẩm
     public function productDetail($slug): Factory|Application|View
     {
-        return view('front.product.detail');
+        $product = Product::where('slug', $slug)->with('post')->first();
+
+        return view('front.product.detail', ['product' => $product]);
     }
 
 

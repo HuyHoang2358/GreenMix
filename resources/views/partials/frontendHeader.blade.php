@@ -5,8 +5,8 @@
             <!-- Hotline -->
             <div class="flex justify-start items-center gap-2">
                 <p><i class="fa-solid fa-phone fa-beat-fade mr-2"></i> Hotline:</p>
-                <p class="font-semibold border-r border-white pr-2">{{Config::get('website.top_hotline_1')}}</p>
-                <p class="font-semibold">{{Config::get('website.top_hotline_2')}}</p>
+                <p class="font-semibold border-r border-white pr-2">{{ Config::get('website.top_hotline_1') }}</p>
+                <p class="font-semibold">{{ Config::get('website.top_hotline_2') }}</p>
             </div>
             <!-- End Hotline -->
 
@@ -14,13 +14,13 @@
             <div class="flex justify-end items-center gap-12">
                 <!-- Social icons -->
                 <div class="flex justify-end items-center gap-4 text-2xl">
-                    <a href="{{Config::get('website.facebook_url')}}">
+                    <a href="{{ Config::get('website.facebook_url') }}">
                         <i class="fa-brands fa-facebook"></i>
                     </a>
-                    <a href="{{Config::get('website.youtube_url')}}">
+                    <a href="{{ Config::get('website.youtube_url') }}">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
-                    <a href="{{Config::get('website.tiktok_url')}}">
+                    <a href="{{ Config::get('website.tiktok_url') }}">
                         <i class="fa-brands fa-tiktok"></i>
                     </a>
                 </div>
@@ -28,10 +28,11 @@
 
                 <!-- Languages -->
                 <div class="flex justify-end items-center gap-2">
-                    @foreach($languages as $lang)
-                        <button type="button" class="flex justify-start items-center gap-1 {{$loop->index+1 == count($languages) ? '' : 'border-r border-white'}} pr-2">
+                    @foreach ($languages as $lang)
+                        <button type="button"
+                            class="flex justify-start items-center gap-1 {{ $loop->index + 1 == count($languages) ? '' : 'border-r border-white' }} pr-2">
                             <img src="{{ asset($lang->icon) }}" alt="flag-english" class="w-8 h-8">
-                            <p>{{$lang->name}}</p>
+                            <p>{{ $lang->name }}</p>
                         </button>
                     @endforeach
                 </div>
@@ -47,8 +48,9 @@
 
         <div class="flex justify-between">
             <!-- Logo -->
-            <a class="px-12" href="{{url('/')}}">
-                <img src="{{ asset(Config::get('website.logo') ?? 'images/logo/green-mix-logo-new.png') }}" alt="">
+            <a class="px-12" href="{{ url('/') }}">
+                <img src="{{ asset(Config::get('website.logo') ?? 'images/logo/green-mix-logo-new.png') }}"
+                    alt="">
             </a>
 
             <!-- Link nav -->
@@ -67,22 +69,24 @@
                     </div>
                     <div class="relative dropdown group">
                         <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
-                            href="{{route('business')}}">Lĩnh vực kinh doanh<i class="fa-solid fa-chevron-down"></i>
+                            href="{{ route('business') }}">Lĩnh vực kinh doanh<i class="fa-solid fa-chevron-down"></i>
                         </a>
                         <div
                             class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
-                            @foreach($menuFields as $menu)
-                                <a class="p-2 {{$loop->index + 1 == count($menuFields) ? '' : 'border-b' }} hover:bg-gray-300" href="{{route('business.detail', $menu->slug)}}">{{$menu->name}}</a>
+                            @foreach ($menuFields as $menu)
+                                <a class="p-2 {{ $loop->index + 1 == count($menuFields) ? '' : 'border-b' }} hover:bg-gray-300"
+                                    href="{{ route('business.detail', $menu->slug) }}">{{ $menu->name }}</a>
                             @endforeach
                         </div>
                     </div>
                     <div class="relative dropdown group">
                         <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
-                           href="{{route('product')}}">Sản phẩm<i class="fa-solid fa-chevron-down"></i></a>
+                            href="{{ route('product') }}">Sản phẩm<i class="fa-solid fa-chevron-down"></i></a>
                         <div
                             class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
-                            @foreach($menuProducts as $menu)
-                                <a class="p-2 {{$loop->index + 1 == count($menuProducts) ? '' : 'border-b' }} hover:bg-gray-300" href="{{route('product.detail', $menu->slug)}}">{{$menu->name}}</a>
+                            @foreach ($menuProducts as $menu)
+                                <a class="p-2 {{ $loop->index + 1 == count($menuProducts) ? '' : 'border-b' }} hover:bg-gray-300"
+                                    href="{{ route('product.detail', $menu->slug) }}">{{ $menu->name }}</a>
                             @endforeach
                         </div>
                     </div>
@@ -97,10 +101,10 @@
                         </div>
                     </div>
                     <div class="flex hover:cursor-pointer hover:text-primary-dark justify-center items-center h-full">
-                        <a href="{{route('recruitment')}}">Tuyển dụng</a>
+                        <a href="{{ route('recruitment') }}">Tuyển dụng</a>
                     </div>
                     <div class="flex hover:cursor-pointer hover:text-primary-dark justify-center items-center h-full">
-                        <a href="{{route('contact')}}">Liên hệ</a>
+                        <a href="{{ route('contact') }}">Liên hệ</a>
                     </div>
                 </div>
             </div>
@@ -121,7 +125,8 @@
     <div class="bg-primary-dark text-center py-2 px-5 flex justify-between text-white">
 
         <div>
-            <img class="w-32" src="{{ asset('images/logo/green-mix-logo.png') }}" alt="">
+            <img src="{{ asset(Config::get('website.logo') ?? 'images/logo/green-mix-logo-new.png') }}"
+                    alt="" class="w-32">
         </div>
 
         <button onclick="openNav()"><i class="fa-solid fa-bars"></i></button>
@@ -136,23 +141,26 @@
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden"></div>
 
     <div id="mySidenav"
-        class="sidenav h-full w-0 fixed z-50 top-0 right-0 bg-white overflow-x-hidden pt-10 duration-500">
+        class="sidenav h-full w-0 fixed z-50 top-0 right-0 bg-menu-gray overflow-x-hidden pt-10 duration-500">
         <a href="javascript:void(0)" class="closebtn absolute top-0 right-2 text-3xl" onclick="closeNav()">&times;</a>
         <nav class="flex flex-col font-semibold min-w-[250px]">
             <!--About us Accrodian button-->
-            <a class="accordion uppercase border-y p-3  flex justify-between duration-500" href="#"><i
+            <a class="accordion uppercase border-y p-3 flex justify-between duration-500" href="#"><i
                     class="fa-solid fa-chevron-down pt-1"></i> Về green mix</a>
             <!--About us Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
-                <div class="flex border-b justify-end items-center gap-1 p-2">
-                    <p>Submenu 1</p>
-                </div>
-                <div class="flex border-b justify-end items-center gap-1 p-2">
-                    <p>Submenu 2</p>
-                </div>
-                <div class="flex justify-end items-center gap-1 p-2">
-                    <p>Submenu 3 </p>
-                </div>
+                <a class="flex border-b justify-end items-center gap-1 p-2">
+                    Về chúng tôi
+                </a>
+                <a class="flex border-b justify-end items-center gap-1 p-2">
+                    Lịch sử phát triển
+                </a>
+                <a class="flex border-b justify-end items-center gap-1 p-2">
+                    Dự án tiêu biểu
+                </a>
+                <a class="flex border-b justify-end items-center gap-1 p-2">
+                    Đối tác & khách hàng
+                </a>
             </div>
             <!--End About us Accrodian panel-->
 
@@ -161,34 +169,41 @@
                     class="fa-solid fa-chevron-down pt-1"></i> Lĩnh vực kinh doanh</a>
             <!--Field Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
-                <div class="flex border-b justify-end items-center gap-1 p-2">
-                    <p>Submenu 1</p>
-                </div>
-                <div class="flex border-b justify-end items-center gap-1 p-2">
-                    <p>Submenu 2</p>
-                </div>
-                <div class="flex justify-end items-center gap-1 p-2">
-                    <p>Submenu 3 </p>
-                </div>
+                @foreach ($menuFields as $menu)
+                    <a class="flex border-b justify-end items-center gap-1 p-2"
+                        href="{{ route('business.detail', $menu->slug) }}">{{ $menu->name }}</a>
+                @endforeach
             </div>
             <!--End Field Accrodian panel-->
 
             <!--Media Accrodian button-->
             <a class="accordion uppercase border-y p-3  flex justify-between duration-500" href="#"><i
-                    class="fa-solid fa-chevron-down pt-1"></i> Truyền thông</a>
+                    class="fa-solid fa-chevron-down pt-1"></i> Sản phẩm</a>
             <!--Media Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
-                <div class="flex border-b justify-end items-center gap-1 p-2">
-                    <p>Submenu 1</p>
-                </div>
-                <div class="flex border-b justify-end items-center gap-1 p-2">
-                    <p>Submenu 2</p>
-                </div>
-                <div class="flex justify-end items-center gap-1 p-2">
-                    <p>Submenu 3 </p>
-                </div>
+                @foreach ($menuProducts as $menu)
+                    <a class="flex border-b justify-end items-center gap-1 p-2"
+                        href="{{ route('business.detail', $menu->slug) }}">{{ $menu->name }}</a>
+                @endforeach
             </div>
             <!--Media Field Accrodian panel-->
+
+            <!--About us Accrodian button-->
+            <a class="accordion uppercase border-y p-3 flex justify-between duration-500" href="#"><i
+                    class="fa-solid fa-chevron-down pt-1"></i> Truyền thông</a>
+            <!--About us Accrodian panel-->
+            <div class="panel overflow-hidden hidden font-normal border-b">
+                <a class="flex border-b justify-end items-center gap-1 p-2">
+                    Tin tức Green Mix
+                </a>
+                <a class="flex border-b justify-end items-center gap-1 p-2">
+                    Kiến thức xây dựng
+                </a>
+                <a class="flex border-b justify-end items-center gap-1 p-2">
+                    Catalog
+                </a>
+            </div>
+            <!--End About us Accrodian panel-->
 
             <a class="uppercase border-b p-3 flex justify-end" href="#">Tuyển dụng</a>
             <a class="uppercase border-b p-3 flex justify-end" href="#">Liên hệ</a>
@@ -198,18 +213,12 @@
                     class="fa-solid fa-chevron-down pt-1"></i>Ngôn ngữ</a>
             <!--Language Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
-                <div class="flex border-b justify-end items-center gap-1 p-2">
-                    <p>English</p>
-                    <img src="{{ asset('images/icons/usa.png') }}" alt="flag-english" class="w-5 h-5">
-                </div>
-                <div class="flex border-b justify-end items-center gap-1 p-2">
-                    <p>Tiếng việt</p>
-                    <img src="{{ asset('images/icons/vietnam.png') }}" alt="flag-vn" class="w-5 h-5">
-                </div>
-                <div class="flex justify-end items-center gap-1 p-2">
-                    <p>Chinese</p>
-                    <img src="{{ asset('images/icons/china.png') }}" alt="flag-china" class="w-5 h-5">
-                </div>
+                @foreach ($languages as $lang)
+                    <div class="flex justify-end items-center gap-1 p-2">
+                        <p>{{ $lang->name }}</p>
+                        <img src="{{ asset($lang->icon) }}" alt="flag-languague" class="w-5 h-5">
+                    </div>
+                @endforeach
             </div>
             <!--End Language Accrodian panel-->
 
@@ -230,7 +239,8 @@
                 Hotline: <br>
                 0972 555 666 - 0972 555 666
             </div>
-            <img src="{{ asset('images/logo/green-mix-logo.png') }}" alt="">
+            <img src="{{ asset(Config::get('website.logo') ?? 'images/logo/green-mix-logo-new.png') }}"
+                    alt="">
         </div>
     </div>
 </div>

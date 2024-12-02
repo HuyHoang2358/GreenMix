@@ -30,7 +30,6 @@
         <div class="intro-y box p-5 mt-2">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                 <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                    <i data-lucide="chevron-down"></i>
                     Thông tin sản phẩm
                 </div>
 
@@ -158,11 +157,8 @@
                 <div
                     class="font-medium text-base flex items-center justify-between border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                     Bài viết sản phẩm
-                    <div>
-                        <input class="mx-2" type="checkbox" id="togglePostFields" name="togglePostFields" checked/> Liên kết bài viết
-                    </div>
                 </div>
-                <div id="postFields" class="hidden flex-col mt-5 required-form">
+                <div id="postFields" class="flex-col mt-5 required-form">
                     {{-- BEGIN --}}
                     <div class="mt-5 grid grid-cols-2 gap-5">
                         <div class="intro-y box">
@@ -199,7 +195,7 @@
                                 <div>
                                     <label for="content" class="form-label">Nội dung bài viết<span style="color: red;">
                                             *</span></label>
-                                    <textarea id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ isset($item->post) ? $item->post->content : '' }}</textarea>
+                                    <textarea required="required" id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ isset($item->post) ? $item->post->content : '' }}</textarea>
                                 </div>
                             </div>
                         </div>
