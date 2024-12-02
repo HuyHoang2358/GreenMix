@@ -13,24 +13,22 @@
     <P class="text-center px-5 md:px-[600px] py-7 md:my-16">Với hơn 30+ năm kinh nghiệm trong lĩnh vực xây dựng và sản xuất phụ gia bê tông cao cấp Green Mix Việt Nam cung cấp giải pháp bằng các danh mục sản phẩm chuyên biệt cho từng hạng mục công trình xây dựng trên toàn quốc.</P>
 
     <div class="grid md:grid-cols-3 gap-16 px-7 mb-7 md:mb-0 md:px-32">
-        <a href="#">
-            <div class="col-span-1 shadow-lg shadow-gray-400">
-                <img src="{{asset('frontend/business_field/1.png')}}" alt="">
-                <p class="text-center text-white text-xl font-semibold bg-primary py-5 tracking-wider">PHỤ GIA BÊ TÔNG</p>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col-span-1 shadow-lg shadow-gray-400">
-                <img src="{{asset('frontend/business_field/2.png')}}" alt="">
-                <p class="text-center text-white text-xl font-semibold bg-primary py-5 tracking-wider">PHỤ GIA XI MĂNG</p>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col-span-1 shadow-lg shadow-gray-400">
-                <img src="{{asset('frontend/business_field/3.png')}}" alt="">
-                <p class="text-center text-white text-xl font-semibold bg-primary py-5 tracking-wider">SẢN PHẨM PHỤ TRỢ XÂY DỰNG</p>
-            </div>
-        </a>
+        @foreach($businesses as $business)
+            <a href="{{route('business.detail', $business->slug)}}">
+                @php
+                    $images = json_decode($business->images);
+                    if (count($images) > 0) {
+                        $business->images = $images[0];
+                    } else {
+                        $business->images = 'frontend/business_field/1.png';
+                    }
+                @endphp
+                <div class="col-span-1 shadow-lg shadow-gray-400">
+                    <img src="{{asset($business->images)}}" alt="{{$business->slug}}">
+                    <p class="text-center text-white text-xl font-semibold bg-primary py-5 tracking-wider uppercase">{{$business->name}}</p>
+                </div>
+            </a>
+        @endforeach
     </div>
     <!-- End Section Lĩnh vực kinh doanh -->
 

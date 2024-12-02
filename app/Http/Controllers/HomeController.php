@@ -21,10 +21,12 @@ class HomeController extends Controller
     {
         $partners = Partner::all();
         $banners = Banner::orderBy('order', 'ASC')->limit(6)->get();
+        $businesses = Field::with('post')->orderBy('updated_at', 'desc')->limit(3)->get();
       // set điều kiện để lấy ra các địa chỉ hiển thị
         return view('homepage', [
             'partners' => $partners,
             'banners' => $banners,
+            'businesses' => $businesses,
         ]);
     }
 
@@ -37,14 +39,14 @@ class HomeController extends Controller
 
     // Trang chi tiết lĩnh vực kinh doanh
     public function businessDetail($slug): Factory|Application|View
-    {   
+    {
         $business = Field::where('slug', $slug)->with('post')->first();
         return view('front.business.detail', ['business' => $business]);
     }
 
     // Trang danh sách dòng sản phẩm
     public function product(): Factory|Application|View
-    {   
+    {
         $products = Product::with('post')->orderBy('updated_at', 'desc')->paginate(6);
 
         return view('front.product.index', ['products' => $products]);
