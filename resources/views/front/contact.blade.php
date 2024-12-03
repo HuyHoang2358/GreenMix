@@ -4,14 +4,14 @@
 
 @endsection
 @section('content')
-    <div class="px-72">
+    <div class="px-52">
         <h3 class="text-xl font-semibold py-8">LIÊN HỆ ></h3>
-        <div class="grid grid-cols-3">
+        <div class="grid grid-cols-3 gap-12">
             @foreach($addresses as $address)
-            <div class="col-span-1 w-80">
+            <div class="col-span-1 w-full">
                 <h3 class="text-xl font-semibold pb-2 text-[#3B3B3B] border-b-[3px] border-primary-dark">{{$address -> name}}</h3>
                 <div class="text-md text-[#404040] flex flex-col gap-4 py-4">
-                    <div class="flex gap-2 items-center">
+                    <div class="flex gap-2 items-center h-12">
                         <i class="fa-solid fa-location-dot"></i>
                         <p>{{$address -> detail}}</p>
                     </div>

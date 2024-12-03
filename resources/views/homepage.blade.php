@@ -158,12 +158,12 @@
     <!-- End các dự án sử dụng -->
 
     <!-- Section đối tác công ty -->
-    <div class="px-7 md:px-56 py-10">
+    <div class="px-7 md:px-32 py-10">
         <h3 class="text-center font-bold text-3xl my-8 md:my-12 ">ĐỐI TÁC CÔNG TY</h3>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-7">
             @foreach($partners as $partner)
                 <a href="#">
-                    <div class="col-span-1 w-180 md:w-[250px] h-[120px]">
+                    <div class="col-span-1 md:w-[230px] h-[120px]">
                         <img class="w-full h-full border-2 border-gray-300 shadow-xl transform" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);" src="{{asset($partner->logo)}}" alt="">
                     </div>
                 </a>
