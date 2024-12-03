@@ -9,35 +9,38 @@
 
 
     <!-- Section Lĩnh vực kinh doanh -->
-    <h3 class="text-3xl font-bold text-center mt-16">LĨNH VỰC KINH DOANH</h3>
-    <P class="text-center px-5 md:px-[600px] py-7 md:my-16">Với hơn 30+ năm kinh nghiệm trong lĩnh vực xây dựng và sản xuất phụ gia bê tông cao cấp Green Mix Việt Nam cung cấp giải pháp bằng các danh mục sản phẩm chuyên biệt cho từng hạng mục công trình xây dựng trên toàn quốc.</P>
+    <div class="my-12">
+        <h3 class="text-3xl font-bold text-center">LĨNH VỰC KINH DOANH</h3>
+        <P class="text-left px-5 md:px-[25%] py-7">Với hơn 30+ năm kinh nghiệm trong lĩnh vực xây dựng và sản xuất phụ gia bê tông cao cấp Green Mix Việt Nam cung cấp giải pháp bằng các danh mục sản phẩm chuyên biệt cho từng hạng mục công trình xây dựng trên toàn quốc.</P>
 
-    <div class="grid md:grid-cols-3 gap-16 px-7 mb-7 md:mb-0 md:px-32">
-        @foreach($businesses as $business)
-            <a href="{{route('business.detail', $business->slug)}}">
-                @php
-                    $images = json_decode($business->images);
-                    if (count($images) > 0) {
-                        $business->images = $images[0];
-                    } else {
-                        $business->images = 'frontend/business_field/1.png';
-                    }
-                @endphp
-                <div class="col-span-1 shadow-lg shadow-gray-400">
-                    <img src="{{asset($business->images)}}" alt="{{$business->slug}}">
-                    <p class="text-center text-white text-xl font-semibold bg-primary py-5 tracking-wider uppercase">{{$business->name}}</p>
-                </div>
-            </a>
-        @endforeach
+        <div class="grid md:grid-cols-3 gap-16 px-7 py-4 mb-7 md:mb-0 md:px-32 mt-12">
+            @foreach($businesses as $business)
+                <a href="{{route('business.detail', $business->slug)}}">
+                    @php
+                        $images = json_decode($business->images);
+                        if (count($images) > 0) {
+                            $business->images = $images[0];
+                        } else {
+                            $business->images = 'frontend/business_field/1.png';
+                        }
+                    @endphp
+                    <div class="col-span-1 shadow-lg shadow-gray-400 overflow-hidden ">
+                        <img src="{{asset($business->images)}}" alt="{{$business->slug}}" class="w-full hover:scale-110">
+                        <p class="text-center text-white text-xl font-semibold bg-primary py-5 uppercase hover:bg-light-primary">{{$business->name}}</p>
+                    </div>
+                </a>
+            @endforeach
+        </div>
     </div>
+
     <!-- End Section Lĩnh vực kinh doanh -->
 
     <!-- Section Liên doanh dịch vụ -->
-    <div class="grid md:grid-cols-2 px-7 md:px-80 gap-8 md:gap-32 py-16 md:py-28 bg-[#F0F0F0] md:bg-white">
+    <div class="grid md:grid-cols-2 px-7 md:px-[12%] gap-4 md:gap-32 py-16 md:py-12 bg-[#F0F0F0] md:bg-white">
         <div class="col-span-1">
             <h3 class="text-2xl font-bold">Liên doanh tập đoàn</h3>
-            <p class="text-2xl md:text-3xl font-bold py-5">CANON GUANGZHOU MASTERIAL <br> và GREEN MIX VIỆT NAM</p>
-            <div>
+            <p class="text-2xl md:text-3xl font-bold py-2">CANON GUANGZHOU MASTERIAL <br> và GREEN MIX VIỆT NAM</p>
+            <div class="mt-4">
                 <div class="flex items-center border-b-2 border-gray-500 pl-5 mb-5 pb-2">
                     <p class="w-28 text-primary font-bold text-3xl">30+</p>
                     <p class="text-lg">Nắm kinh nghiệm</p>
@@ -60,14 +63,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-1 h-full flex items-center">
+        <div class="col-span-1  w-full h-full flex items-center">
             <img src="{{asset('frontend/other/1.png')}}" alt="">
         </div>
     </div>
     <!-- End liên doanh Dịch vụ -->
 
     <!-- Section các dự án sử dụng -->
-    <div class="bg-primary px-5 md:px-48 py-7">
+    <div class="bg-primary px-5 md:px-[12%] py-7">
         <div class="md:flex justify-between text-center">
             <p class="text-white font-bold text-2xl">Các dự án đang sử dụng <br>sản phẩm của Green Mix</p>
             <div class="flex gap-3 justify-center py-5 md:hidden">
@@ -158,13 +161,13 @@
     <!-- End các dự án sử dụng -->
 
     <!-- Section đối tác công ty -->
-    <div class="px-7 md:px-32 py-10">
+    <div class="px-7 md:px-32 py-10 my-20">
         <h3 class="text-center font-bold text-3xl my-8 md:my-12 ">ĐỐI TÁC CÔNG TY</h3>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-7">
             @foreach($partners as $partner)
-                <a href="#">
+                <a href="{{$partner->url ?? '#'}}">
                     <div class="col-span-1 md:w-[230px] h-[120px]">
-                        <img class="w-full h-full border-2 border-gray-300 shadow-xl transform" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);" src="{{asset($partner->logo)}}" alt="">
+                        <img class="w-full h-full shadow-lg hover:opacity-50 border border-gray-400" src="{{asset($partner->logo)}}" alt="">
                     </div>
                 </a>
             @endforeach

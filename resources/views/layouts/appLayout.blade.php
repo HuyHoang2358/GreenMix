@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title') | GreenMix </title>
+    <title>@yield('title') | {{Config::get('website.web_name')}} </title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('images/logo/favicon.ico')}}"  type="image/x-icon"/>
+    <link rel="shortcut icon" href="{{asset(Config::get('website.favicon'))}}"  type="image/x-icon"/>
 
     <!--Font-awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,6 +32,23 @@
     <!-- SEO -->
     @include('partials.frontendSeo')
 
+    <style>
+        body {
+          /* Tăng chiều cao để nội dung có thể cuộn */
+            margin: 0;
+            overflow-y: hidden; /* Ẩn thanh cuộn dọc */
+        }
+
+        /* Sử dụng pseudo-element để tạo khả năng cuộn */
+        html {
+            overflow-y: scroll; /* Giữ cho nội dung có thể cuộn */
+            scrollbar-width: none; /* Ẩn scrollbar trên Firefox */
+        }
+
+        ::-webkit-scrollbar {
+            display: none; /* Ẩn scrollbar trên Chrome, Edge, và Safari */
+        }
+    </style>
 </head>
 <body>
     <div class="app text-base">
@@ -40,7 +57,10 @@
         <!-- End Header -->
 
         <!-- Content -->
-        @yield('content')
+        <div class="pt-24">
+            @yield('content')
+        </div>
+
         <!-- EndContent -->
 
         <!-- Footer -->

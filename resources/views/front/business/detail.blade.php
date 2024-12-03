@@ -10,22 +10,23 @@
     <div class="bg-white px-5 sm:px-52 py-10 sm:py-10">
 
         <!-- Session 1: Title -->
-        <div class="title uppercase text-xl font-semibold mb-10">
-            Lĩnh vực kinh doanh <i class="fa-solid fa-chevron-right ml-2"></i>
-        </div>
+        @include('front.common.pageTitle', ['pageTitle' => 'Lĩnh vực kinh doanh'])
         <!-- End Session 1: Title -->
 
 
         <!-- Session 2: Image & Short Information -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 mb-10 gap-5">
-            <img src="{{ asset(reset($images)) }}" alt="" class="aspect-square">
+        <div class="grid grid-cols-1 sm:grid-cols-2 mb-10 gap-16 px-4 ">
+            <div class="col-span-1 ">
+                <img src="{{ asset(reset($images)) }}" alt="{{$business->slug}}" class="aspect-square w-full h-full">
+            </div>
+
             <div class="flex flex-col gap-5">
-                <p class="text-3xl font-semibold text-primary-dark capitalize">{{ $business->post->name }}</p>
+                <h2 class="text-3xl font-semibold text-primary-dark capitalize">{{ $business->name }}</h2>
                 <div class="border-2 rounded-xl px-5 py-7 text-lg">
                     {!! $business->post->content !!}
                 </div>
                 <div class="devider h-0.5 bg-gray-200"></div>
-                <button class="text-2xl bg-primary-dark font-semibold rounded-xl text-white py-7 uppercase">
+                <button class="text-xl bg-primary-dark font-semibold rounded-xl text-white py-7 uppercase">
                     Liên hệ tư vấn về lĩnh vực này
                 </button>
             </div>
