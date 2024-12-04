@@ -56,18 +56,18 @@
                 </div>
             </a>
             <ul class="{{isset($page) ? ( $page =='category-post-manager' || $page =='category-news-manager' || $page == 'category-knowledge-manager') ? 'side-menu__sub-open' : '' : ''}}">
-                <li>
+              {{--  <li>
                     <a href="{{route('admin.category.index', 'post')}}" class="side-menu {{isset($page) ? $page =='category-post-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="side-menu__title"> Danh mục bài viết </div>
                     </a>
-                </li>
-                <li>
+                </li>--}}
+                {{--<li>
                     <a href="{{route('admin.category.index', 'news')}}" class="side-menu {{isset($page) ? $page =='category-news-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="tv"></i> </div>
                         <div class="side-menu__title"> Danh mục truyền thông</div>
                     </a>
-                </li>
+                </li>--}}
                 <li>
                     <a href="{{route('admin.category.index', 'knowledge')}}" class="side-menu {{isset($page) ? $page =='category-knowledge-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="share-2"></i> </div>
@@ -80,7 +80,6 @@
                         <div class="side-menu__title">Vị trí tuyển dụng</div>
                     </a>
                 </li>
-
             </ul>
         </li>
 
@@ -92,16 +91,16 @@
                     <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                 </div>
             </a>
-            <ul class="{{isset($page) ? ($page =='post-news-manager' || $page =='post-knowledge-manager')? 'side-menu__sub-open' : '' : ''}}">
+            <ul class="{{isset($page) ? ($page =='post-post-manager' || $page =='post-knowledge-manager' || $page =='post-introduce-manager')? 'side-menu__sub-open' : '' : ''}}">
                 <li>
-                    <a href="{{route('admin.post.index', 'post')}}" class="side-menu {{isset($page) ? $page =='post-news-manager'? 'side-menu--active' : '' : ''}}">
+                    <a href="{{route('admin.post.index', 'introduce')}}" class="side-menu {{isset($page) ? $page =='post-introduce-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="side-menu__title"> Giới thiệu </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{route('admin.post.index', 'news')}}" class="side-menu {{isset($page) ? $page =='post-news-manager'? 'side-menu--active' : '' : ''}}">
+                    <a href="{{route('admin.post.index', 'post')}}" class="side-menu {{isset($page) ? $page =='post-post-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="tv"></i> </div>
                         <div class="side-menu__title"> Truyền thông </div>
                     </a>

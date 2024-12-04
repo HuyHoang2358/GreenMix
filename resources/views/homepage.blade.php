@@ -70,7 +70,7 @@
     <!-- End liên doanh Dịch vụ -->
 
     <!-- Section các dự án sử dụng -->
-    <div class="bg-primary px-5 md:px-48 py-10">
+    <div class="bg-primary px-5 md:px-48 py-10" id="project-using">
         <div>
             <div class="flex justify-start flex-col relative h-36 sm:h-auto text-center sm:text-start">
                 <p class="text-white font-bold text-2xl">Các dự án đang sử dụng <br>sản phẩm của Green Mix</p>
@@ -114,7 +114,7 @@
     <!-- End các dự án sử dụng -->
 
     <!-- Section đối tác công ty -->
-    <div class="px-7 md:px-32 py-10 my-20">
+    <div class="px-7 md:px-32 py-10 my-20" id="partners">
         <h3 class="text-center font-bold text-3xl my-8 md:my-12 ">ĐỐI TÁC CÔNG TY</h3>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-7">
             @foreach($partners as $partner)

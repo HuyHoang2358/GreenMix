@@ -7,6 +7,7 @@ use App\Models\Address;
 use App\Models\Banner;
 use App\Models\DataUsers;
 use App\Models\Partner;
+use App\Models\Post;
 use App\Models\Recruitment;
 use Exception;
 use App\Models\Product;
@@ -28,12 +29,12 @@ class HomeController extends Controller
         $projects = Project::all();
         $projectChunks = array_chunk($projects->toArray(), 4);
         $businesses = Field::with('post')->orderBy('updated_at', 'desc')->limit(3)->get();
-      
+
       // set điều kiện để lấy ra các địa chỉ hiển thị
         return view('homepage', [
             'partners' => $partners,
             'banners' => $banners,
-            'projects' =>  $projectChunks
+            'projects' =>  $projectChunks,
             'businesses' => $businesses,
         ]);
     }
@@ -65,6 +66,14 @@ class HomeController extends Controller
         return view('front.product.detail', ['product' => $product]);
     }
 
+    // Trang truyền thông
+    public function communication(): Factory|Application|View
+    {
+        $communications = Post::where('type_id', 2)->orderBy('updated_at', 'desc')->paginate(1);
+        return view('front.communication.index', ['communications' => $communications]);
+    }
+
+
     // Trang tuyển dụng
     public function recruitment(): Factory|Application|View
     {
@@ -72,7 +81,6 @@ class HomeController extends Controller
         $recruitments = Recruitment::orderBy('updated_at', 'desc')->paginate(6);
         return view('front.recruitment.index', ['recruitments' => $recruitments]);
     }
-
     // Trang chi tiết tuyển dụng
     public function recruitmentDetail($slug): Factory|Application|View
     {
@@ -88,7 +96,6 @@ class HomeController extends Controller
         'addresses' => $addresses,
         ]);
     }
-
     public function dataUser(Request $request): \Illuminate\Http\RedirectResponse
     {
         $input = $request->all();
@@ -108,5 +115,12 @@ class HomeController extends Controller
             // Trường hợp có lỗi xảy ra, chuyển hướng về trang danh sách dự án và kèm theo thông báo lỗi
             return redirect()->route('home')->with('error', 'Thêm mới thông tin thất bại: ' . $e->getMessage());
         }
+    }
+
+    // Trang xem chi tiết bài viết
+    public function postDetail($slug): Factory|Application|View
+    {
+        $post = Post::where('slug', $slug)->first();
+        return view('front.post.detail', ['post' => $post]);
     }
 }
