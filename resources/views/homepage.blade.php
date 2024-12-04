@@ -69,105 +69,44 @@
     <!-- End liên doanh Dịch vụ -->
 
     <!-- Section các dự án sử dụng -->
-    <div class="bg-primary px-5 md:px-48 py-7">
-        <div class="text-center">
-            <div class="flex justify-between">
+    <div class="bg-primary px-5 md:px-48 py-10">
+        <div>
+            <div class="flex justify-start flex-col relative h-36 sm:h-auto text-center sm:text-start">
                 <p class="text-white font-bold text-2xl">Các dự án đang sử dụng <br>sản phẩm của Green Mix</p>
-                <p class="text-white font-bold text-4xl flex items-center justify-center"> 100 <span class="translate-y-[-12px] text-2xl">+</span><span class="text-lg pl-3">dự án</span></p>
-            </div>
-            <div id="dots-container2" class="pt-3 flex gap-3 justify-center">
+                <div>
+                    <div class="dots-container2 pt-3 flex gap-3 justify-center">
+                    </div>
+                </div>
+                <p class="text-white font-bold text-4xl flex items-center justify-center absolute left-1/2 right-1/2 sm:left-auto sm:right-0 -bottom-1 sm:top-0"> 100 <span class="translate-y-[-12px] text-2xl">+</span><span class="text-lg pl-3 whitespace-nowrap">dự án</span></p>
             </div>
         </div>
     </div>
 
     <div class="mt-10 px-10 md:px-40 relative slideshow-container">
-        <div class="grid mySlides2 fade md:grid-cols-4 gap-10">
-            <a href="#">
-                <div class="col-span-1 relative group/item">
-                    <img src="{{asset('frontend/du_an/1.png')}}" alt="">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black via-0% to-transparent group-hover/item:block hidden group-hover/item:ease-in-out group-hover/item:duration-700"></div>
-                    <div class="absolute bottom-5 left-5 text-white">
-                        <p class="text-lg font-semibold">Dự Án VinHomes Vũ Yên</p>
-                        <div class="flex gap-2">
-                            <i class="fa-solid fa-location-dot text-xl"></i>
-                            <p class="text-sm flex items-end">Hải Phòng</p>
+        @foreach($projects as $chunks)
+            <div class="grid mySlides2 fade md:grid-cols-4 gap-10">
+                @foreach($chunks as $project)
+                    <a href="#" class="w-fit h-fit">
+                        <div class="col-span-1 relative group/item">
+                            <img src="{{asset($project["image"])}}" class="aspect-square w-96 h-80" alt="">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black via-0% to-transparent group-hover/item:block hidden group-hover/item:ease-in-out group-hover/item:duration-700"></div>
+                            <div class="absolute bottom-5 left-5 text-white">
+                                <p class="text-lg font-semibold">{{ $project["name"] }}</p>
+                                <div class="flex gap-2">
+                                    <i class="fa-solid fa-location-dot text-xl"></i>
+                                    <p class="text-sm flex items-end">{{ $project["address"] }}</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="col-span-1 relative group/item">
-                    <img src="{{asset('frontend/du_an/2.png')}}" alt="">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black via-0% to-transparent group-hover/item:block hidden group-hover/item:ease-in-out group-hover/item:duration-700"></div>
-                    <div class="absolute bottom-5 left-5 text-white">
-                        <p class="text-lg font-semibold">Dự Án Hầm Núi Phượng Hoàng</p>
-                        <div class="flex gap-2">
-                            <i class="fa-solid fa-location-dot text-xl"></i>
-                            <p class="text-sm flex items-end">Triệu Khánh, Trung Quốc</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="col-span-1 relative group/item">
-                    <img src="{{asset('frontend/du_an/3.png')}}" alt="">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black via-0% to-transparent group-hover/item:block hidden group-hover/item:ease-in-out group-hover/item:duration-700"></div>
-                    <div class="absolute bottom-5 left-5 text-white">
-                        <p class="text-lg font-semibold">Dự Án Đường Vành Đai 4</p>
-                        <div class="flex gap-2">
-                            <i class="fa-solid fa-location-dot text-xl"></i>
-                            <p class="text-sm flex items-end">Bắc Ninh</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="col-span-1 relative group/item">
-                    <img src="{{asset('frontend/du_an/4.png')}}" alt="">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black via-0% to-transparent group-hover/item:block hidden group-hover/item:ease-in-out group-hover/item:duration-700"></div>
-                    <div class="absolute bottom-5 left-5 text-white">
-                        <p class="text-lg font-semibold">Dự Án Đường Sắt Cao Tốc</p>
-                        <div class="flex gap-2">
-                            <i class="fa-solid fa-location-dot text-xl"></i>
-                            <p class="text-sm flex items-end">Tam Thủy, Trung Quốc</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="grid mySlides2 fade md:grid-cols-4 gap-10">
-            <a href="#">
-                <div class="col-span-1 relative group/item">
-                    <img src="{{asset('frontend/du_an/4.png')}}" alt="">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black via-0% to-transparent group-hover/item:block hidden group-hover/item:ease-in-out group-hover/item:duration-700"></div>
-                    <div class="absolute bottom-5 left-5 text-white">
-                        <p class="text-lg font-semibold">Dự Án Đường Sắt Cao Tốc</p>
-                        <div class="flex gap-2">
-                            <i class="fa-solid fa-location-dot text-xl"></i>
-                            <p class="text-sm flex items-end">Tam Thủy, Trung Quốc</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="col-span-1 relative group/item">
-                    <img src="{{asset('frontend/du_an/4.png')}}" alt="">
-                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-black via-0% to-transparent group-hover/item:block hidden group-hover/item:ease-in-out group-hover/item:duration-700"></div>
-                    <div class="absolute bottom-5 left-5 text-white">
-                        <p class="text-lg font-semibold">Dự Án Đường Sắt Cao Tốc</p>
-                        <div class="flex gap-2">
-                            <i class="fa-solid fa-location-dot text-xl"></i>
-                            <p class="text-sm flex items-end">Tam Thủy, Trung Quốc</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+                    </a>
+                @endforeach
+            </div>
+        @endforeach
 
         <a class="hover:cursor-pointer prev absolute left-12 top-[35%] md:block hidden" slide-id="1"><i class="fa-solid fa-angles-left text-3xl bg-primary text-white rounded-full px-5 py-4 hover:text-4xl"></i></a>
         <a class="hover:cursor-pointer next absolute right-12 top-[35%] md:block hidden" slide-id="1"><i class="fa-solid fa-angles-right text-3xl bg-primary text-white rounded-full px-5 py-4 hover:text-4xl"></i></a>
-        <div class="text-center">
+
+        <div class="text-center mt-5">
             <button class="px-7 py-2 text-white bg-primary rounded-xl w-fit md:hidden">Xem thêm</button>
         </div>
     </div>

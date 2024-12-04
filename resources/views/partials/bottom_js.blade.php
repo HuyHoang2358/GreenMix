@@ -3,7 +3,7 @@
         var slides = $('.mySlides');
         var slides2 = $('.mySlides2');
         var dotsContainer = $('#dots-container');
-        var dotsContainer2 = $('#dots-container2');
+        var dotsContainer2 = $('.dots-container2');
         var dotIndexMap = {};
 
         slides.each(function(index) {
@@ -124,4 +124,23 @@
         }
 
     });
+
+    function removeTag() {
+
+        if (window.innerWidth < 640) {
+            $('.dot-2-when-big').removeAttr('id');
+            $('.dot-2-when-small').attr('id', 'dots-container2');
+        } else {
+            console.log(window.innerWidth)
+            $('.dot-2-when-small').removeAttr('id');
+            $('.dot-2-when-big').attr('id', 'dots-container2');
+        }
+    }
+
+    // Initial check
+    removeTag();
+
+    // Listen for window resize
+    window.addEventListener('resize', removeTag,  { once: true });
+
 </script>

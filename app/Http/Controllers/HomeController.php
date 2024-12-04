@@ -8,6 +8,7 @@ use App\Models\Banner;
 use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Field;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -21,10 +22,14 @@ class HomeController extends Controller
     {
         $partners = Partner::all();
         $banners = Banner::orderBy('order', 'ASC')->limit(6)->get();
+        $projects = Project::all();
+        $projectChunks = array_chunk($projects->toArray(), 4);
+
       // set điều kiện để lấy ra các địa chỉ hiển thị
         return view('homepage', [
             'partners' => $partners,
             'banners' => $banners,
+            'projects' =>  $projectChunks
         ]);
     }
 
@@ -46,17 +51,14 @@ class HomeController extends Controller
     public function product(): Factory|Application|View
     {   
         $products = Product::with('post')->orderBy('updated_at', 'desc')->paginate(6);
-
         return view('front.product.index', ['products' => $products]);
     }
     // Trang chi tiết dòng sản phẩm
     public function productDetail($slug): Factory|Application|View
     {
         $product = Product::where('slug', $slug)->with('post')->first();
-
         return view('front.product.detail', ['product' => $product]);
     }
-
 
     // Trang liên hệ
     public function contact(): Factory|Application|View
