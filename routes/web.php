@@ -17,7 +17,6 @@ Route::post('/dataUser', [HomeController::class, 'dataUser'])->name('dataUser');
 Route::get('/tuyen-dung', [HomeController::class, 'recruitment'])->name('recruitment'); // Trang tuyển dụng
 Route::get('/tuyen-dung/{slug}', [HomeController::class, 'recruitmentDetail'])->name('recruitment.detail'); // Trang tuyển dụng
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

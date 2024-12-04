@@ -139,7 +139,7 @@
                                         Bắt buộc
                                     </div>
                                 </div>
-                                <div class="leading-relaxed text-slate-500 text-xs mt-3">Cung cấp chi tiết về công việc cho người ứng tuyển
+                                <div class="leading-relaxed text-slate-500 text-xs mt-3">Cung cấp chi tiết về sản phẩm
                                 </div>
                             </div>
                         </div>

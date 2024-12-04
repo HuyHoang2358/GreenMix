@@ -13,16 +13,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <style>
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style>
-
     <!-- Styles -->
     @yield('head')
 
@@ -31,6 +21,9 @@
 
     <!-- SEO -->
     @include('partials.frontendSeo')
+
+
+    @include('partials.top_style')
 
     <style>
         body {
@@ -49,6 +42,7 @@
             display: none; /* Ẩn scrollbar trên Chrome, Edge, và Safari */
         }
     </style>
+
 </head>
 <body>
     <div class="app text-base">
@@ -68,4 +62,7 @@
         <!-- End Footer -->
     </div>
 </body>
+
+@include('partials.bottom_js')
+
 </html>

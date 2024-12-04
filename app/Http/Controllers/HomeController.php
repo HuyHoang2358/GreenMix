@@ -11,6 +11,7 @@ use App\Models\Recruitment;
 use Exception;
 use App\Models\Product;
 use App\Models\Field;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -24,11 +25,15 @@ class HomeController extends Controller
     {
         $partners = Partner::all();
         $banners = Banner::orderBy('order', 'ASC')->limit(6)->get();
+        $projects = Project::all();
+        $projectChunks = array_chunk($projects->toArray(), 4);
         $businesses = Field::with('post')->orderBy('updated_at', 'desc')->limit(3)->get();
+      
       // set điều kiện để lấy ra các địa chỉ hiển thị
         return view('homepage', [
             'partners' => $partners,
             'banners' => $banners,
+            'projects' =>  $projectChunks
             'businesses' => $businesses,
         ]);
     }
@@ -59,7 +64,6 @@ class HomeController extends Controller
         $product = Product::where('slug', $slug)->with('post')->first();
         return view('front.product.detail', ['product' => $product]);
     }
-
 
     // Trang tuyển dụng
     public function recruitment(): Factory|Application|View

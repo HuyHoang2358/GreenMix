@@ -94,7 +94,6 @@ Route::middleware('auth')->group(function () {
 
     // Quản lý tài khoản
     Route::prefix('account')->group(function () {
-
         Route::get('/', [AccountController::class, 'index'])->name('admin.account.index');
         Route::get('/add', [AccountController::class, 'create'])->name('admin.account.add');
         Route::post('/store', [AccountController::class, 'store'])->name('admin.account.store');
