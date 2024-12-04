@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Admin\Setting\BannerController;
 use App\Models\Address;
 use App\Models\Banner;
+use App\Models\DataUsers;
 use App\Models\Partner;
+use App\Models\Recruitment;
+use Exception;
 use App\Models\Product;
 use App\Models\Field;
 use App\Models\Project;
@@ -24,12 +27,14 @@ class HomeController extends Controller
         $banners = Banner::orderBy('order', 'ASC')->limit(6)->get();
         $projects = Project::all();
         $projectChunks = array_chunk($projects->toArray(), 4);
-
+        $businesses = Field::with('post')->orderBy('updated_at', 'desc')->limit(3)->get();
+      
       // set điều kiện để lấy ra các địa chỉ hiển thị
         return view('homepage', [
             'partners' => $partners,
             'banners' => $banners,
             'projects' =>  $projectChunks
+            'businesses' => $businesses,
         ]);
     }
 
@@ -42,14 +47,14 @@ class HomeController extends Controller
 
     // Trang chi tiết lĩnh vực kinh doanh
     public function businessDetail($slug): Factory|Application|View
-    {   
+    {
         $business = Field::where('slug', $slug)->with('post')->first();
         return view('front.business.detail', ['business' => $business]);
     }
 
     // Trang danh sách dòng sản phẩm
     public function product(): Factory|Application|View
-    {   
+    {
         $products = Product::with('post')->orderBy('updated_at', 'desc')->paginate(6);
         return view('front.product.index', ['products' => $products]);
     }
@@ -60,9 +65,48 @@ class HomeController extends Controller
         return view('front.product.detail', ['product' => $product]);
     }
 
+    // Trang tuyển dụng
+    public function recruitment(): Factory|Application|View
+    {
+        // get all data from table recruitment
+        $recruitments = Recruitment::orderBy('updated_at', 'desc')->paginate(6);
+        return view('front.recruitment.index', ['recruitments' => $recruitments]);
+    }
+
+    // Trang chi tiết tuyển dụng
+    public function recruitmentDetail($slug): Factory|Application|View
+    {
+        $recruitment = Recruitment::where('slug', $slug)->first();
+        return view('front.recruitment.detail', ['recruitment' => $recruitment]);
+    }
+
     // Trang liên hệ
     public function contact(): Factory|Application|View
     {
-        return view('front.contact');
+        $addresses = Address::all();
+        return view('front.contact', [
+        'addresses' => $addresses,
+        ]);
+    }
+
+    public function dataUser(Request $request): \Illuminate\Http\RedirectResponse
+    {
+        $input = $request->all();
+        try {
+            DataUsers::create([
+                'name' => $input['name'],
+                'company' => $input['company'],
+                'phone' => $input['phone'],
+                'content' => $input['content'],
+                'status' => 1,
+            ]);
+
+            // Chuyển hướng về trang danh sách dự án và kèm theo thông báo thành công
+            return redirect()->route('home')->with('success', 'Thêm mới thông tin thành công!');
+
+        } catch (Exception $e) {
+            // Trường hợp có lỗi xảy ra, chuyển hướng về trang danh sách dự án và kèm theo thông báo lỗi
+            return redirect()->route('home')->with('error', 'Thêm mới thông tin thất bại: ' . $e->getMessage());
+        }
     }
 }

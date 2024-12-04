@@ -1,6 +1,6 @@
-<div class="hidden md:block">
+<div class="hidden md:block fixed w-full z-50 shadow-lg">
     <!-- Top header -->
-    <div class="bg-primary-dark text-center py-1 px-16 text-white">
+    <div class="bg-primary-dark text-center py-1.5 px-16 text-white">
         <div class="w-ful flex justify-between items-center">
             <!-- Hotline -->
             <div class="flex justify-start items-center gap-2">
@@ -44,18 +44,18 @@
     <!-- End Top header -->
 
     <!-- Menu -->
-    <div class="bg-white">
+    <div class="bg-white px-16 py-1">
 
         <div class="flex justify-between">
             <!-- Logo -->
-            <a class="px-12" href="{{ url('/') }}">
+            <a href="{{ url('/') }}">
                 <img src="{{ asset(Config::get('website.logo') ?? 'images/logo/green-mix-logo-new.png') }}"
-                    alt="">
+                    alt="greenMix-logo" class="max-w-48">
             </a>
 
-            <!-- Link nav -->
+            <!-- Menu Items -->
             <div class="px-14">
-                <div class="uppercase flex gap-x-10 font-semibold h-full">
+                <div class="uppercase flex gap-x-8 font-semibold h-full">
                     <div class="relative dropdown group">
                         <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
                             href="#">Về green mix <i class="fa-solid fa-chevron-down"></i></a>
@@ -108,7 +108,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>

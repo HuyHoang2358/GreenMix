@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static create(array $array)
  * @method static findOrFail($id)
  * @method static orderBy(string $string, string $string1)
+ * @method static where(string $string, $slug)
  */
 class Field extends Model
 {

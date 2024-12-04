@@ -144,7 +144,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <textarea id="recruitment-description" name="description" class="form-control h-64 resize-none"
+                            <textarea id="recruitment-description" name="description" class="form-control h-64 resize-none my-tinymce"
                                 placeholder="Nhập mô tả" required autofocus>{{ isset($item) ? $item->description : '' }}</textarea>
                         </div>
                     </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DataUserController;
 use App\Http\Controllers\Admin\FieldController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\PostController;
@@ -24,6 +25,14 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/', [AdminController::class, 'index'])->name('admin.homepage');
+
+    //Quản lý liên hệ
+    Route::prefix('user-contact')->group(function (){
+        Route::get('/', [DataUserController::class, 'index'])->name('admin.dataUser.index'); //Trang dữ liệu ng dùng gửi từ homepage
+        Route::get('/edit/{id}',[DataUserController::class, 'edit'])->name('admin.dataUser.edit');
+        Route::post('/delete', [DataUserController::class, 'destroy'])->name('admin.dataUser.destroy');
+    });
+
     // Quản lý bài viết
     Route::prefix('post')->group(function () {
         Route::get('/{type}', [PostController::class, 'index'])->name('admin.post.index');
@@ -152,6 +161,7 @@ Route::middleware('auth')->group(function () {
         })->name('admin.media.files.index');
     });
 
+    // Quản lý file
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });

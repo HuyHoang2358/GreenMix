@@ -1,10 +1,9 @@
-<script src="https://cdn.tiny.cloud/1/af6s904lyfpr5w3pids1ap9ei06381sfv7ne6e6eju3fpwis/tinymce/5/tinymce.min.js"
-    referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/gg1e9n4g1buqmn8sl1h7l4l1q35tdtxjb9lv09mqfxwb7i7v/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
     var editor_config = {
         path_absolute: "/",
-        selector: '#content',
+        selector: '#content,.my-tinymce',
         resize: false,
         height: 500,
         relative_urls: false,
@@ -19,7 +18,7 @@
             "insertdatetime media nonbreaking save table directionality",
             "emoticons template paste textpattern"
         ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | link image media",
         file_picker_callback: function(callback, value, meta) {
             var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName(
                 'body')[0].clientWidth;

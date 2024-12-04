@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('recruitment', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
+            $table->string('slug', 255);
             $table->date('start_date');
             $table->date('end_date');
             $table->unsignedBigInteger('category_id');

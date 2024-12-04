@@ -9,6 +9,6 @@ return array (
   'youtube_url' => '#',
   'tiktok_url' => '#',
   'email' => 'info.greenmixvietnam@gmail.com',
-  'logo' => '/storage/files/shares/green-mix-logo.png',
-  'favicon' => '/storage/files/shares/green-mix-logo-new.png',
+  'logo' => '/storage/files/shares/he-thong/logo-greenmix.png',
+  'favicon' => '/storage/files/shares/he-thong/favicon-GMX.png',
 );

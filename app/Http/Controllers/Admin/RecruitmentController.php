@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Str;
+
 class RecruitmentController extends Controller
 {
 
@@ -61,6 +63,7 @@ class RecruitmentController extends Controller
             // Create a new recruitment
             $recruitment = Recruitment::create([
                 'name' => $request->input('name'),
+                'slug' => Str::slug($request->input('name')),
                 'start_date' => $request->input('start_date'),
                 'end_date' => $request->input('end_date'),
                 'category_id' => $request->input('category'),
@@ -119,6 +122,7 @@ class RecruitmentController extends Controller
             $recruitment = Recruitment::findOrFail($id);
 
             $recruitment->name = $request->input('name');
+            $recruitment->slug = Str::slug($request->input('name'));
             $recruitment->start_date = $request->input('start_date');
             $recruitment->end_date = $request->input('end_date');
             $recruitment->category_id = $request->input('category');
