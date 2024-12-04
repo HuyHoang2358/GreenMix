@@ -7,6 +7,7 @@ use App\Models\Address;
 use App\Models\Banner;
 use App\Models\DataUsers;
 use App\Models\Partner;
+use App\Models\Recruitment;
 use Exception;
 use App\Models\Product;
 use App\Models\Field;
@@ -50,17 +51,30 @@ class HomeController extends Controller
     public function product(): Factory|Application|View
     {
         $products = Product::with('post')->orderBy('updated_at', 'desc')->paginate(6);
-
         return view('front.product.index', ['products' => $products]);
     }
     // Trang chi tiết dòng sản phẩm
     public function productDetail($slug): Factory|Application|View
     {
         $product = Product::where('slug', $slug)->with('post')->first();
-
         return view('front.product.detail', ['product' => $product]);
     }
 
+
+    // Trang tuyển dụng
+    public function recruitment(): Factory|Application|View
+    {
+        // get all data from table recruitment
+        $recruitments = Recruitment::orderBy('updated_at', 'desc')->paginate(6);
+        return view('front.recruitment.index', ['recruitments' => $recruitments]);
+    }
+
+    // Trang chi tiết tuyển dụng
+    public function recruitmentDetail($slug): Factory|Application|View
+    {
+        $recruitment = Recruitment::where('slug', $slug)->first();
+        return view('front.recruitment.detail', ['recruitment' => $recruitment]);
+    }
 
     // Trang liên hệ
     public function contact(): Factory|Application|View

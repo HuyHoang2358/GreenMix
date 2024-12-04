@@ -4,8 +4,8 @@
 
 @endsection
 @section('content')
-    <div class="px-52">
-        <h3 class="text-xl font-semibold py-8">LIÊN HỆ ></h3>
+    <div class="bg-white px-5 sm:px-52 py-10 sm:py-10">
+        @include('front.common.pageTitle', ['pageTitle' => 'Liên hệ'])
         <div class="grid grid-cols-3 gap-12">
             @foreach($addresses as $address)
             <div class="col-span-1 w-full">
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-5 bg-[#F8F8F8] px-72 py-10 mt-16">
+    <div class="grid grid-cols-5 bg-[#F8F8F8] px-72 pt-32 pb-12 mt-16" id="contact-form">
         <div class="col-span-3 pr-16">
             <h3 class="text-3xl font-bold text-[#353535]">Chúng tôi luôn sẵn sàng đồng hành cùng bạn trên mọi công trình lớn nhỏ trên toàn quốc.</h3>
             <div class="grid grid-cols-2 py-20">
