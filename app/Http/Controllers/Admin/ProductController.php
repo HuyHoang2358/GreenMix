@@ -131,11 +131,11 @@ class ProductController extends Controller
 
             $product->save();
             $post->save();
-            return redirect()->route('admin.field.index')->with('success', 'Cập nhật thông tin sản phẩm thành công.');
+            return redirect()->route('admin.product.index')->with('success', 'Cập nhật thông tin sản phẩm thành công.');
         } catch (\Exception $e)
         {
             DB::rollBack();
-            return redirect()->route('admin.field.index')->with('error', 'Cập nhật thông tin sản phẩm thất bại: ' . $e->getMessage());
+            return redirect()->route('admin.product.index')->with('error', 'Cập nhật thông tin sản phẩm thất bại: ' . $e->getMessage());
         }
     }
 

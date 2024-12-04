@@ -32,6 +32,13 @@
                 <div class="side-menu__title"> Quản lý đối tác </div>
             </a>
         </li>
+        <li>
+            <a href="{{route('admin.dataUser.index')}}" class="side-menu {{isset($page) ? $page =='contact-manager'? 'side-menu--active' : '' : ''}}">
+                <div class="side-menu__icon"> <i data-lucide="message-square"></i> </div>
+                <div class="side-menu__title">Liên hệ</div>
+            </a>
+        </li>
+
         <li class="side-nav__devider my-6"></li>
         <li>
             <a href="{{route('admin.product.index')}}" class="side-menu {{isset($page) ? $page =='product-manager'? 'side-menu--active' : '' : ''}}">
@@ -48,7 +55,7 @@
                     <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                 </div>
             </a>
-            <ul class="{{isset($page) ? ( $page =='category-post-manager' || $page =='category-news-manager') ? 'side-menu__sub-open' : '' : ''}}">
+            <ul class="{{isset($page) ? ( $page =='category-post-manager' || $page =='category-news-manager' || $page == 'category-knowledge-manager') ? 'side-menu__sub-open' : '' : ''}}">
                 <li>
                     <a href="{{route('admin.category.index', 'post')}}" class="side-menu {{isset($page) ? $page =='category-post-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
@@ -58,7 +65,13 @@
                 <li>
                     <a href="{{route('admin.category.index', 'news')}}" class="side-menu {{isset($page) ? $page =='category-news-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="tv"></i> </div>
-                        <div class="side-menu__title"> Danh mục tin tức</div>
+                        <div class="side-menu__title"> Danh mục truyền thông</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('admin.category.index', 'knowledge')}}" class="side-menu {{isset($page) ? $page =='category-knowledge-manager'? 'side-menu--active' : '' : ''}}">
+                        <div class="side-menu__icon"> <i data-lucide="share-2"></i> </div>
+                        <div class="side-menu__title"> Danh mục kiến thức</div>
                     </a>
                 </li>
                 <li>
@@ -81,9 +94,16 @@
             </a>
             <ul class="{{isset($page) ? ($page =='post-news-manager' || $page =='post-knowledge-manager')? 'side-menu__sub-open' : '' : ''}}">
                 <li>
-                    <a href="{{route('admin.post.index', 'news')}}" class="side-menu {{isset($page) ? $page =='post-news-manager'? 'side-menu--active' : '' : ''}}">
+                    <a href="{{route('admin.post.index', 'post')}}" class="side-menu {{isset($page) ? $page =='post-news-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="side-menu__title"> Tin tức </div>
+                        <div class="side-menu__title"> Giới thiệu </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('admin.post.index', 'news')}}" class="side-menu {{isset($page) ? $page =='post-news-manager'? 'side-menu--active' : '' : ''}}">
+                        <div class="side-menu__icon"> <i data-lucide="tv"></i> </div>
+                        <div class="side-menu__title"> Truyền thông </div>
                     </a>
                 </li>
 
@@ -96,12 +116,6 @@
             </ul>
         </li>
 
-        <li>
-            <a href="{{route('admin.dataUser.index')}}" class="side-menu {{isset($page) ? $page =='contact-manager'? 'side-menu--active' : '' : ''}}">
-                <div class="side-menu__icon"> <i data-lucide="github"></i> </div>
-                <div class="side-menu__title">Liên hệ</div>
-            </a>
-        </li>
 
         <li>
             <a href="{{route('admin.recruitment.index')}}" class="side-menu {{isset($page) ? $page =='recruitment-manager'? 'side-menu--active' : '' : ''}}">

@@ -7,25 +7,23 @@
 
     <div class="bg-white px-5 sm:px-52 py-10 sm:py-10">
         <!-- Session 1: Title -->
-        <div class="title uppercase text-xl font-semibold mb-10">
-            Danh mục sản phẩm <i class="fa-solid fa-chevron-right ml-2"></i>
-        </div>
+        @include('front.common.pageTitle', ['pageTitle' => 'Danh mục sản phẩm'])
         <!-- End Session 1: Title -->
 
         <!-- Session 2: product list-->
-        <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-10">
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-10  mb-12">
             @foreach ($products as $product)
                 <!--A product card-->
                 <a href="{{ route('product.detail', ['slug' => $product->slug]) }}"
-                    class="product-card group flex flex-col gap-2 hover:shadow-2xl hover:cursor-pointer duration-300 rounded-b-xl">
+                   class="product-card shadow group flex flex-col gap-2 hover:shadow-2xl duration-300  max-w-[320px] max-h-[320px]">
                     <div class="overflow-hidden shadow-primary-dark">
                         @php
                             $images = json_decode($product->images, true);
                         @endphp
                         <img src="{{ asset(reset($images)) }}" alt="Image"
-                            class="aspect-square transform transition-transform duration-300 group-hover:scale-110">
+                             class="aspect-square transform transition-transform duration-300 group-hover:scale-110 w-full h-full">
                     </div>
-                    <div class="px-2 pb-2">
+                    <div class="px-4 py-4">
                         <div class="capitalize font-semibold text-lg text-primary-dark">
                             {{ $product->name }}
                         </div>

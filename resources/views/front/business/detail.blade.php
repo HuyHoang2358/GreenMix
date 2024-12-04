@@ -26,9 +26,11 @@
                     {!! $business->post->content !!}
                 </div>
                 <div class="devider h-0.5 bg-gray-200"></div>
-                <button class="text-xl bg-primary-dark font-semibold rounded-xl text-white py-7 uppercase">
-                    Liên hệ tư vấn về lĩnh vực này
-                </button>
+                <a href="{{route('contact')}}" class="w-full">
+                    <button type="button" class="text-xl bg-primary-dark font-semibold rounded-xl text-white py-7 uppercase w-full">
+                        Liên hệ tư vấn về lĩnh vực này
+                    </button>
+                    </a>
             </div>
         </div>
         <!-- End Session 2: Image & Short Information -->
