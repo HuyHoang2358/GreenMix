@@ -17,9 +17,20 @@ Route::post('/dataUser', [HomeController::class, 'dataUser'])->name('dataUser');
 Route::get('/tuyen-dung', [HomeController::class, 'recruitment'])->name('recruitment'); // Trang tuyển dụng
 Route::get('/tuyen-dung/{slug}', [HomeController::class, 'recruitmentDetail'])->name('recruitment.detail'); // Trang tuyển dụng
 
+Route::get('/truyen-thong', [HomeController::class, 'communication'])->name('communication'); // Trang truyền thông
+Route::get('/truyen-thong/{slug}', [HomeController::class, 'communicationDetail'])->name('communication.detail'); // Trang truyền thông
+
+Route::get('/kien-thuc', [HomeController::class, 'knowledge'])->name('knowledge'); // Trang kiến thức
+Route::get('/kien-thuc/{slug}', [HomeController::class, 'knowledgeDetail'])->name('knowledge.detail'); // Trang kiến thức
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Xem chi tiết bài viết
+Route::get("/post/{slug}", [HomeController::class, 'postDetail'])->name('post.detail');
 
 
 

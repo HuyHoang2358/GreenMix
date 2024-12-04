@@ -9,7 +9,7 @@ trait GroupCategoryTrait
     {
         return match ($group) {
             'post' => 'Danh mục bài viết',
-            'news' => 'Danh mục tin tức',
+            'news' => 'Danh mục truyền thông',
             'knowledge' => 'Danh mục kiến thức',
             'recruitment' => 'Vị trí tuyển dụng',
             default => '',

@@ -61,10 +61,10 @@
                             href="#">Về green mix <i class="fa-solid fa-chevron-down"></i></a>
                         <div
                             class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-60 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Về chúng tôi</a>
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Lịch sử phát triển</a>
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Dự án tiêu biểu</a>
-                            <a class="p-2 text-wrap hover:bg-gray-300" href="#">Đối tác & Khách hàng</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="{{route('post.detail', ['slug'=> 'gioi-thieu-ve-greenmix'])}}">Về chúng tôi</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="{{route('post.detail', ['slug'=> 'lich-su-phat-trien'])}}">Lịch sử phát triển</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="{{url('/').'#project-using'}}">Dự án tiêu biểu</a>
+                            <a class="p-2 text-wrap hover:bg-gray-300" href="{{url('/').'#partners'}}">Đối tác & Khách hàng</a>
                         </div>
                     </div>
                     <div class="relative dropdown group">
@@ -95,7 +95,7 @@
                             href="#">Truyền thông <i class="fa-solid fa-chevron-down"></i></a>
                         <div
                             class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Truyền thông về Green Mix</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="{{route('communication')}}">Truyền thông về Green Mix</a>
                             <a class="p-2 border-b hover:bg-gray-300" href="#">Kiến thức xây dựng</a>
                             <a class="p-2 text-wrap hover:bg-gray-300" href="#">Catalog</a>
                         </div>

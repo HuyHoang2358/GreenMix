@@ -3,24 +3,35 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Traits\GroupCategoryTrait;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
 use App\Models\Post;
 use App\Models\News;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-
+use Illuminate\Http\RedirectResponse;
 class PostController extends Controller
 {
 
-    private $typeMap = [
+    use GroupCategoryTrait;
+    private array $typeMap = [
+        'introduce' => 0,
         'knowledge' => 1,
-        'recruitment' => 3,
-        'news' => 2,
+        'post' => 2,
         'product' => 4
     ];
+    private function getPageTitle($type): string
+    {
+        return match ($type) {
+            'introduce' => 'Bài viết giới thiệu',
+            'knowledge' => 'Bài viết Kiến thức',
+            'post' => 'Bài viết truyền thông',
+            'product' => 'Bài viết sản phẩm',
+            default => '',
+        };
+    }
 
     public function index($type): Factory|Application|View
     {
@@ -32,23 +43,26 @@ class PostController extends Controller
         return view('admin.content.post.index', [
             'page' => 'post-'.$type.'-manager', // dùng để active menu
             'type' => $type,
+            'title' => $this->getPageTitle($type),
             'posts' => $posts
         ]);
 
     }
 
-    public function create($type){
-
+    public function create($type): Factory|Application|View
+    {
         return view('admin.content.post.createOrUpdateForm', [
             'page' => 'post-'.$type.'-manager', // dùng để active menu
             'type' => $type,
-            'isUpdate' => false, 
-            'item' => null, 
+            'categories' => $this->getCategories($type),
+            'isUpdate' => false,
+            'item' => null,
         ]);
 
     }
 
-    public function store(Request $request, $type){
+    public function store(Request $request, $type): RedirectResponse
+    {
 
 
         // dd($request->all());
@@ -56,7 +70,6 @@ class PostController extends Controller
         $type_id = $this->typeMap[$type] ?? 0;
 
         try {
-
             $post = Post::create([
                 'name' => $request->input('name'),
                 'title' => $request->input('title'),
@@ -64,8 +77,7 @@ class PostController extends Controller
                 'description' => $request->input('post-description'),
                 'content' => $request->input('content'),
                 'type_id' => $type_id,
-                'content' => $request->input('content'),
-                'images' => $request->input('post-thumbnail'), 
+                'images' => $request->input('post-thumbnail'),
                 'seo_keyword' => $request->input('seo-keyword'),
                 'seo_title' => $request->input('seo-title'),
                 'seo_description' => $request->input('seo-description')
@@ -74,7 +86,7 @@ class PostController extends Controller
             //dd($request->input('post-thumbnail'));
 
             // Create a new News instance
-            if($type == 'news'){
+            if($type == 'knowledge'){
                 $news = News::create([
                     'name' => $request->input('name'),
                     'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
@@ -84,9 +96,9 @@ class PostController extends Controller
             }
 
             return redirect()->route('admin.post.index', ['type' => $type,])->with('success', 'Thêm mới bài viết thành công.');
-            
-        } catch (\Exception $e) 
-        {       
+
+        } catch (\Exception $e)
+        {
                 return redirect()->route('admin.post.index', ['type' => $type,])->with('error', 'Thêm mới bài viết thất bại: ' . $e->getMessage());
         }
 
@@ -95,10 +107,10 @@ class PostController extends Controller
     public function edit($type, $id){
 
         $post = Post::findOrFail($id);
-        return view('admin.content.post.createOrUpdateForm', [ 
+        return view('admin.content.post.createOrUpdateForm', [
             'type' => $type,
             'page' => 'post-'.$type.'-manager',
-            'isUpdate' => true, 
+            'isUpdate' => true,
             'item' => $post,
         ]);
 
@@ -110,7 +122,7 @@ class PostController extends Controller
         $type_id = $this->typeMap[$request->input('type')] ?? 0;
 
         try {
-            
+
             $post = Post::findOrFail($id);
 
             $post->title = $request->input('title');
@@ -126,9 +138,9 @@ class PostController extends Controller
 
             // Save the updated post
             $post->save();
-           
+
             return redirect()->route('admin.post.index', ['type' => $type,])->with('success', 'Cập nhật bài viết thành công.');
-            
+
         } catch (\Exception $e) {
             return redirect()->route('admin.post.index', ['type' => $type,])->with('error', 'Cập nhật bài viết thất bại: ' . $e->getMessage());
         }
@@ -138,7 +150,7 @@ class PostController extends Controller
     public function destroy(Request $request, $type){
 
         $id = $request->input('del-object-id');
-        
+
         try {
 
             $post = Post::findOrFail($id);

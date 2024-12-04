@@ -40,5 +40,9 @@ class AppServiceProvider extends ServiceProvider
             $view->with('menuFields', Field::all());
             $view->with('menuProducts', Product::all());
         });
+
+        View::composer('front.common.contactMe', function($view){
+            $view->with('addresses', Address::all());
+        });
     }
 }

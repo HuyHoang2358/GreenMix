@@ -6,7 +6,7 @@
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang quản trị viên</a></li>
             <li class="breadcrumb-item"><a href="{{ route('admin.post.index', ['type' => $type]) }}">Bài viết</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="#">
-                    {{ $isUpdate ? 'Cập nhật bài viết' : 'Thêm mới bài viết ' . ($type == 'news' ? 'tin tức' : ($type == 'knowledge' ? 'kiến thức' : ($type == 'product' ? 'sản phẩm' : 'tuyển dụng'))) }}</a>
+                    {{ $isUpdate ? 'Cập nhật bài viết' : 'Thêm mới bài viết ' . ($type == 'news' ? 'truyền thông' : ($type == 'knowledge' ? 'kiến thức' : ($type == 'product' ? 'sản phẩm' : 'tuyển dụng'))) }}</a>
             </li>
         </ol>
     </nav>
@@ -19,20 +19,11 @@
 
     <!-- Title page -->
     @include('admin.common.titleForm', [
-        'titleForm' => $isUpdate
-            ? 'Cập nhật bài viết'
-            : 'Thêm mới bài viết ' .
-                ($type == 'news'
-                    ? 'tin tức'
-                    : ($type == 'knowledge'
-                        ? 'kiến thức'
-                        : ($type == 'product'
-                            ? 'sản phẩm'
-                            : 'tuyển dụng'))),
+        'titleForm' => $isUpdate ? 'Cập nhật bài viết' : 'Thêm mới bài viết '
     ])
 
     <!-- Form update information -->
-    @php($actionRoute = $isUpdate ? route('admin.post.update', ['id' => $item->id, 'type' => $type]) : route('admin.post.store', ['type' => $type]))
+    @php($actionRoute = $isUpdate ? route('admin.post.update', ['id' => $item->id ?? 0, 'type' => $type]) : route('admin.post.store', ['type' => $type]))
 
     <!-- BEGIN: HTML Table Data -->
     <div class="intro-y col-span-12 lg:col-span-12 mt-2">
@@ -42,20 +33,21 @@
             <div class="intro-y box">
                 <div id="input" class="p-5 grid grid-cols-2 gap-5">
                     <div class="preview flex flex-col gap-2">
+                        <!-- Loại bài viết -->
                         <div>
-                            <label for="type" class="form-label">Loại bài viết<span style="color: red;">
-                                    *</span></label>
+                            <label for="type" class="form-label">Loại bài viết<span style="color: red;">*</span></label>
                             @if(isset($item))
                                 <select required id="type" name="type" type="text" class="form-control">
-                                    <option value="news" {{ $type == 'news' ? 'selected' : '' }}>Tin tức</option>
+                                    <option value="post" {{ $type == 'post' ? 'selected' : '' }}>Truyền thông</option>
                                     <option value="knowledge" {{ $type == 'knowledge' ? 'selected' : '' }}>Kiến thức</option>
-                                    <option value="recruitment" {{ $type == 'recruitment' ? 'selected' : '' }}>Tuyển dụng</option>
+                                    <option value="introduce" {{ $type == 'introduce' ? 'selected' : '' }}>Giới thiệu</option>
                                 </select>
                             @else
                                 <input readonly required id="type" name="type" type="text" class="form-control"
-                                value="{{ $type == 'news' ? 'Tin tức' : ($type == 'knowledge' ? 'Kiến thức' : ($type == 'product' ? 'Sản phẩm' : 'Tuyển dụng')) }}">
+                                value="{{ $type == 'post' ? 'Truyền thông' : ($type == 'knowledge' ? 'Kiến thức' : ($type == 'product' ? 'Sản phẩm' : 'Giới thiệu')) }}">
                             @endif
                         </div>
+                        <!-- Hình ảnh --->
                         <div>
                             <label for="image" class="form-label">Hình ảnh<span style="color: red;"> *</span></label>
                             <div id="image" class="input-group flex gap-2">
@@ -70,6 +62,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- preview images -->
                     <div>
                         <label for="holder">Hình ảnh xem trước</label>
                         <div style="margin-top:15px;" class="relative flex flex-row gap-2 items-center w-fit">
@@ -91,8 +85,10 @@
                     </div>
                 </div>
             </div>
+
             {{-- SECTION 2 --}}
             <div class="mt-5 grid grid-cols-2 gap-5">
+                <!-- Main information -->
                 <div class="intro-y box">
                     <div class="p-5 flex flex-col gap-2">
                         <div>
@@ -118,6 +114,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- SEO information -->
                 <div class="intro-y box">
                     <div class="p-5 flex flex-col gap-2">
                         <div>
@@ -152,10 +149,10 @@
                 </div>
             </div>
             {{-- END --}}
-        
+
             <!-- Buttons cancel and save -->
             @include('admin.common.cancelAndSaveButtons', ['routeCancel' => route('admin.post.index', ['type' => $type])])
-                
+
         </form>
     </div>
 
