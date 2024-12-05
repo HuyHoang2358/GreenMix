@@ -30,6 +30,4 @@ class Post extends Model
         'seo_description',
         'viewer'
     ];
-
-
 }

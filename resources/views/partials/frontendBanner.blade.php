@@ -3,12 +3,12 @@
     @foreach($banners as $banner)
     <!--Slide items-->
     <div class="mySlides fade">
-        <div class="relative min-h-screen overflow-clip bg-cover sm:bg-cover bg-[center_center]"
+        <div class="relative min-h-[350px] md:min-h-screen overflow-clip bg-cover sm:bg-cover bg-[center_center]"
             style="background-image: url('{{ asset($banner->path) }}')">
             <div
-                class="absolute top-40 left-6 sm:top-1/4 sm:left-16 bg-white rounded-3xl bg-opacity-70 font-extrabold px-2 py-6 sm:py-12 sm:px-7">
+                class="absolute top-20 md:top-40 left-10 md:left-6 sm:top-1/4 sm:left-16 bg-white rounded-3xl bg-opacity-70 font-extrabold px-2 py-6 sm:py-12 sm:px-7">
                 <div
-                    class="text-xl sm:text-3xl mb-2 sm:mb-7 text-secondary whitespace-normal max-w-64 sm:max-w-2xl leading-8 uppercase">
+                    class="text-xl md:text-3xl mb-2 sm:mb-7 text-secondary whitespace-normal max-w-64 sm:max-w-2xl leading-8 uppercase">
                     {{$banner->title}}
                 </div>
                 <a href="{{$banner->attach_link}}" target="_blank">

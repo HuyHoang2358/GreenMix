@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DataUserController;
 use App\Http\Controllers\Admin\FieldController;
+use App\Http\Controllers\Admin\KnowledgeController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
@@ -41,6 +42,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/{type}/edit/{id}', [PostController::class, 'edit'])->name('admin.post.edit');
         Route::post('/{type}/update/{id}', [PostController::class, 'update'])->name('admin.post.update');
         Route::post('/{type}/delete', [PostController::class, 'destroy'])->name('admin.post.destroy');
+    });
+
+    // Quản lý bài viết kiến thức
+    Route::prefix('knowledge')->group(function () {
+        Route::get('/', [KnowledgeController::class, 'index'])->name('admin.knowledge.index');
+        Route::get('/add', [KnowledgeController::class, 'create'])->name('admin.knowledge.add');
+        Route::post('/store', [KnowledgeController::class, 'store'])->name('admin.knowledge.store');
+        Route::get('/edit/{id}', [KnowledgeController::class, 'edit'])->name('admin.knowledge.edit');
+        Route::post('/update/{id}', [KnowledgeController::class, 'update'])->name('admin.knowledge.update');
+        Route::post('/delete', [KnowledgeController::class, 'destroy'])->name('admin.knowledge.destroy');
     });
     // Danh mục
     Route::prefix('category')->group(function () {

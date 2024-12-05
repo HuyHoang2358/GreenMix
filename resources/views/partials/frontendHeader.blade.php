@@ -96,7 +96,7 @@
                         <div
                             class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-72 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
                             <a class="p-2 border-b hover:bg-gray-300" href="{{route('communication')}}">Truyền thông về Green Mix</a>
-                            <a class="p-2 border-b hover:bg-gray-300" href="#">Kiến thức xây dựng</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="{{route('knowledge')}}">Kiến thức xây dựng</a>
                             <a class="p-2 text-wrap hover:bg-gray-300" href="#">Catalog</a>
                         </div>
                     </div>
@@ -119,21 +119,15 @@
 </div>
 
 <!-- Mobile menu -->
-<div class="block sm:hidden">
+<div class="block sm:hidden fixed z-50 w-full">
 
-    <div class="bg-primary-dark text-center py-2 px-5 flex justify-between text-white">
-
+    <div class="bg-primary-dark text-center py-2 flex justify-between text-white">
         <div>
-            <img src="{{ asset(Config::get('website.logo') ?? 'images/logo/green-mix-logo-new.png') }}"
-                    alt="" class="w-32">
+            <img src="{{ asset(Config::get('website.logo') ?? 'images/logo/green-mix-logo-new.png') }}" alt="greenMix-logo" class="w-32 bg-white py-2 px-2">
         </div>
-
-        <button onclick="openNav()"><i class="fa-solid fa-bars"></i></button>
-
+        <button onclick="openNav()"><i class="fa-solid fa-bars text-3xl pr-4"></i></button>
     </div>
-
 </div>
-
 <div class="relative">
 
     <!-- Opacity Black Layer -->
@@ -144,27 +138,27 @@
         <a href="javascript:void(0)" class="closebtn absolute top-0 right-2 text-3xl" onclick="closeNav()">&times;</a>
         <nav class="flex flex-col font-semibold min-w-[250px]">
             <!--About us Accrodian button-->
-            <a class="accordion uppercase border-y p-3 flex justify-between duration-500" href="#"><i
-                    class="fa-solid fa-chevron-down pt-1"></i> Về green mix</a>
+            <a class="accordion uppercase border-y p-3 flex justify-between duration-500">
+                <i class="fa-solid fa-chevron-down pt-1"></i> Về green mix</a>
             <!--About us Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
-                <a class="flex border-b justify-end items-center gap-1 p-2">
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('post.detail', ['slug'=> 'gioi-thieu-ve-greenmix'])}}">
                     Về chúng tôi
                 </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2">
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('post.detail', ['slug'=> 'lich-su-phat-trien'])}}">
                     Lịch sử phát triển
                 </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2">
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{url('/').'#project-using'}}">
                     Dự án tiêu biểu
                 </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2">
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{url('/').'#partners'}}">
                     Đối tác & khách hàng
                 </a>
             </div>
             <!--End About us Accrodian panel-->
 
             <!--Field Accrodian button-->
-            <a class="accordion uppercase border-y p-3  flex justify-between duration-500" href="#"><i
+            <a class="accordion uppercase border-y p-3  flex justify-between duration-500"><i
                     class="fa-solid fa-chevron-down pt-1"></i> Lĩnh vực kinh doanh</a>
             <!--Field Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
@@ -176,13 +170,13 @@
             <!--End Field Accrodian panel-->
 
             <!--Media Accrodian button-->
-            <a class="accordion uppercase border-y p-3  flex justify-between duration-500" href="#"><i
+            <a class="accordion uppercase border-y p-3  flex justify-between duration-500"><i
                     class="fa-solid fa-chevron-down pt-1"></i> Sản phẩm</a>
             <!--Media Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
                 @foreach ($menuProducts as $menu)
                     <a class="flex border-b justify-end items-center gap-1 p-2"
-                        href="{{ route('business.detail', $menu->slug) }}">{{ $menu->name }}</a>
+                        href="{{ route('product.detail', $menu->slug) }}">{{ $menu->name }}</a>
                 @endforeach
             </div>
             <!--Media Field Accrodian panel-->
@@ -192,20 +186,20 @@
                     class="fa-solid fa-chevron-down pt-1"></i> Truyền thông</a>
             <!--About us Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
-                <a class="flex border-b justify-end items-center gap-1 p-2">
-                    Tin tức Green Mix
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('communication')}}">
+                   Truyền thông về Green Mix
                 </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2">
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('knowledge')}}">
                     Kiến thức xây dựng
                 </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2">
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="#">
                     Catalog
                 </a>
             </div>
             <!--End About us Accrodian panel-->
 
-            <a class="uppercase border-b p-3 flex justify-end" href="#">Tuyển dụng</a>
-            <a class="uppercase border-b p-3 flex justify-end" href="#">Liên hệ</a>
+            <a class="uppercase border-b p-3 flex justify-end" href="{{ route('recruitment') }}">Tuyển dụng</a>
+            <a class="uppercase border-b p-3 flex justify-end" href="{{ route('contact') }}">Liên hệ</a>
 
             <!--Language Accrodian button-->
             <a class="accordion uppercase border-b p-3 flex justify-between duration-500" href="#"><i
@@ -222,24 +216,23 @@
             <!--End Language Accrodian panel-->
 
         </nav>
-        <div class="flex justify-center min-w-[250px] gap-3 p-5">
-            <a href="#">
+        <div class="flex justify-center min-w-[250px] gap-4 p-5 text-2xl mt-12">
+            <a href="{{ Config::get('website.facebook_url') }}" class="text-blue-700 hover:text-primary">
                 <i class="fa-brands fa-facebook"></i>
             </a>
-            <a href="#">
+            <a href="{{ Config::get('website.youtube_url') }}" class="text-red-600 hover:text-primary">
                 <i class="fa-brands fa-youtube"></i>
             </a>
-            <a href="#">
+            <a href="{{ Config::get('website.tiktok_url') }}" class="text-black hover:text-primary">
                 <i class="fa-brands fa-tiktok"></i>
             </a>
         </div>
         <div class="min-w-[250px]">
             <div class="text-sm text-center font-semibold">
-                Hotline: <br>
+                <span class="font-semibold text-lg"> Hotline:</span> <br>
                 0972 555 666 - 0972 555 666
             </div>
-            <img src="{{ asset(Config::get('website.logo') ?? 'images/logo/green-mix-logo-new.png') }}"
-                    alt="">
+            <img src="{{ asset(Config::get('website.logo') ?? 'images/logo/green-mix-logo-new.png') }}" alt="greenMix-logo" class=" w-full px-4">
         </div>
     </div>
 </div>

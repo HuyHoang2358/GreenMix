@@ -1,6 +1,6 @@
 <div class="w-full border border-primary my-8">
     <div class="bg-primary">
-        <h3 class="font-semibold text-white text-xl uppercase py-4 text-center">Liên hệ tư vấn</h3>
+        <h3 class="font-semibold text-white text-lg md:text-xl uppercase py-4 text-center">Liên hệ tư vấn</h3>
     </div>
     <div class="flex divide-y flex-col">
         <div class="py-2 px-4 flex justify-start items-center gap-2">

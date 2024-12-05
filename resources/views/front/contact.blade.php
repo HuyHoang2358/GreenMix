@@ -4,9 +4,9 @@
 
 @endsection
 @section('content')
-    <div class="bg-white px-5 sm:px-52 py-10 sm:py-10">
+    <div class="bg-white px-5 sm:px-[10%] py-6 md:py-10">
         @include('front.common.pageTitle', ['pageTitle' => 'Liên hệ'])
-        <div class="grid grid-cols-3 gap-12">
+        <div class="grid md:grid-cols-3 gap-4 md:gap-12">
             @foreach($addresses as $address)
             <div class="col-span-1 w-full">
                 <h3 class="text-xl font-semibold pb-2 text-[#3B3B3B] border-b-[3px] border-primary-dark">{{$address -> name}}</h3>
@@ -36,18 +36,18 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-5 bg-[#F8F8F8] px-72 pt-32 pb-12 mt-16" id="contact-form">
-        <div class="col-span-3 pr-16">
-            <h3 class="text-3xl font-bold text-[#353535]">Chúng tôi luôn sẵn sàng đồng hành cùng bạn trên mọi công trình lớn nhỏ trên toàn quốc.</h3>
-            <div class="grid grid-cols-2 py-20">
+    <div class="grid md:grid-cols-5 bg-[#F8F8F8] md:px-72 md:pt-32 md:pb-12 md:mt-16" id="contact-form">
+        <div class="col-span-1 md:col-span-3 md:pr-16 px-4">
+            <h3 class="text-2xl md:text-3xl font-bold text-[#353535]">Chúng tôi luôn sẵn sàng đồng hành cùng bạn trên mọi công trình lớn nhỏ trên toàn quốc.</h3>
+            <div class="grid grid-cols-3 py-4 md:py-20">
                 <div class="col-span-1">
                     <p class="font-bold text-xl pb-5">Follow Us</p>
                     <div>
 
                     </div>
                 </div>
-                <div class="col-span-1 text-[#404040]">
-                    <p class="font-bold text-xl text-black pb-5">Email</p>
+                <div class="col-span-2 text-[#404040]">
+                    <p class="font-bold text-xl text-black pb-2 md:pb-5">Email</p>
                     <p>Mọi yêu cầu xin vui lòng liên hệ về</p>
                     <div class="flex gap-2 items-center">
                         <i class="fa-solid fa-envelope"></i>
@@ -55,9 +55,11 @@
                     </div>
                 </div>
             </div>
-            <img class="w-80" src="{{config('website.logo')}}" alt="">
+            <div class="flex justify-center items-center py-12 ">
+                <img class="w-80" src="{{config('website.logo')}}" alt="greenMix-logo">
+            </div>
         </div>
-        <div class="col-span-2">
+        <div class="col-span-1 md:col-span-2">
             @include('front.common.contactUs')
         </div>
     </div>

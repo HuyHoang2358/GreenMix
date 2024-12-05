@@ -45,13 +45,13 @@
 
 </head>
 <body>
-    <div class="app text-base">
+    <div class="app text-sm md:text-base">
         <!-- Header -->
         @include('partials.frontendHeader')
         <!-- End Header -->
 
         <!-- Content -->
-        <div class="pt-24">
+        <div class="pt-12 md:pt-24">
             @yield('content')
         </div>
 

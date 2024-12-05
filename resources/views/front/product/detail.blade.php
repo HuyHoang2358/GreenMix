@@ -15,26 +15,25 @@
     $images = json_decode($product->images ?? '', true);
 @endphp
 @section('content')
-
-    <div class="bg-white px-5 sm:px-52 py-10 sm:py-10">
+    <div class="bg-white px-5 sm:px-[10%] py-6 md:py-10">
         <!-- Session 1: Title -->
-        <div class="flex justify-start items-center gap-2 mb-8 font-semibold text-primary">
+        <div class="flex justify-start items-center gap-2 mb-4 md:mb-8 font-semibold text-primary">
             <a href="{{url('/')}}" class="hover:text-gray-400"> Trang chủ</a>
             <i class="fa-solid fa-angle-right"></i>
             <a href="{{route('product')}}" class="hover:text-gray-400"> Dòng sản phẩm</a>
-            <i class="fa-solid fa-angle-right"></i>
-            <a href="#" class="text-gray-400">{{$product->name ?? ''}}</a>
+            <i class="fa-solid fa-angle-right hidden md:block"></i>
+            <a href="#" class="text-gray-400 hidden md:block">{{$product->name ?? ''}}</a>
         </div>
         <!-- End Session 1: Title -->
 
 
         <!-- Session 2: Image & Short Information -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 mb-10 gap-16 px-4">
-            <div class="col-span-1 ">
+        <div class="grid grid-cols-1 sm:grid-cols-2 mb-10 gap-4 md:gap-16">
+            <div class="col-span-1">
                 <img src="{{ asset(reset($images)) }}" alt="{{$product->slug}}" class="aspect-square w-full h-full">
             </div>
             <div class="flex flex-col gap-5">
-                <h1 class="text-3xl font-bold text-primary-dark capitalize">{{ $product->name }}</h1>
+                <h1 class="text-2xl md:text-3xl font-bold text-primary-dark capitalize">{{ $product->name }}</h1>
                 <p class="text-lg font-semibold">
                     Giá bán: <span class="uppercase text-red-600 font-normal"> Liên hệ </span></p>
                 <div class="border border-[#D3D3D3] rounded-lg p-4 text-[#5E5E5E] list-disc">
@@ -46,7 +45,7 @@
                 <div class="devider h-0.5 bg-gray-200"></div>
 
                 <a href="{{route('contact'). '#contact-form'}}" class="w-full">
-                    <button type="button" class="hover:bg-light-primary text-lg bg-primary-dark font-semibold rounded-xl text-white py-4 uppercase w-full">
+                    <button type="button" class="hover:bg-light-primary text-base md:text-lg bg-primary-dark font-semibold rounded-xl text-white py-4 uppercase w-full">
                         Liên hệ tư vấn sản phẩm
                     </button>
                 </a>
