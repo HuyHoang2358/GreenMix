@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 255);
             $table->date('start_date');
             $table->date('end_date');
-            $table->unsignedBigInteger('category_id');
+            $table->bigInteger('category_id');
             $table->string('address', 500);
             $table->unsignedInteger('num_people');
             $table->longText('description');
@@ -26,8 +26,6 @@ return new class extends Migration
             $table->string('slug', 255);
             $table->longText('image');
             $table->timestamps();
-
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('restrict');
         });
     }
 

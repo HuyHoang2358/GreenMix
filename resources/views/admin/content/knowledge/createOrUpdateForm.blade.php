@@ -4,9 +4,8 @@
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
             <li class="breadcrumb-item"><a href="{{ route('admin.homepage') }}">Trang quản trị viên</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.post.index', ['type' => $type]) }}">Bài viết</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="#">
-                    {{ $isUpdate ? 'Cập nhật bài viết' : 'Thêm mới bài viết ' . ($type == 'news' ? 'truyền thông' : ($type == 'knowledge' ? 'kiến thức' : ($type == 'product' ? 'sản phẩm' : 'tuyển dụng'))) }}</a>
+                    {{ $isUpdate ? 'Cập nhật bài viết kiến thức' : 'Thêm mới bài viết kiến thức' }}</a>
             </li>
         </ol>
     </nav>
@@ -19,11 +18,11 @@
 
     <!-- Title page -->
     @include('admin.common.titleForm', [
-        'titleForm' => $isUpdate ? 'Cập nhật bài viết' : 'Thêm mới bài viết '
+        'titleForm' => $isUpdate ? 'Cập nhật bài viết trang kiến thức' : 'Thêm mới bài viết kiến thức'
     ])
 
     <!-- Form update information -->
-    @php($actionRoute = $isUpdate ? route('admin.post.update', ['id' => $item->id ?? 0, 'type' => $type]) : route('admin.post.store', ['type' => $type]))
+    @php($actionRoute = $isUpdate ? route('admin.knowledge.update', ['id' => $item->id ?? 0]) : route('admin.knowledge.store'))
 
     <!-- BEGIN: HTML Table Data -->
     <div class="intro-y col-span-12 lg:col-span-12 mt-2">
@@ -33,19 +32,16 @@
             <div class="intro-y box">
                 <div id="input" class="p-5 grid grid-cols-2 gap-5">
                     <div class="preview flex flex-col gap-2">
-                        <!-- Loại bài viết -->
+                        <!-- Danh mục bài viết -->
                         <div>
-                            <label for="type" class="form-label">Loại bài viết<span style="color: red;">*</span></label>
-                            @if(isset($item))
-                                <select required id="type" name="type" type="text" class="form-control" disabled>
-                                    <option value="post" {{ $type == 'post' ? 'selected' : '' }}>Truyền thông</option>
-                                    <option value="knowledge" {{ $type == 'knowledge' ? 'selected' : '' }}>Kiến thức</option>
-                                    <option value="introduce" {{ $type == 'introduce' ? 'selected' : '' }}>Giới thiệu</option>
-                                </select>
-                            @else
-                                <input readonly required id="type" name="type" type="text" class="form-control" disabled
-                                value="{{ $type == 'post' ? 'Truyền thông' : ($type == 'knowledge' ? 'Kiến thức' : ($type == 'product' ? 'Sản phẩm' : 'Giới thiệu')) }}">
-                            @endif
+                            <label for="category_id" class="form-label">Danh mục bài viết<span style="color: red;">*</span></label>
+                            <select required id="category_id" name="category_id" type="text" class="form-control">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ isset($item) && $item->category_id == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <!-- Hình ảnh --->
@@ -59,7 +55,7 @@
                                     </a>
                                 </span>
                                 <input required id="post-thumbnail" class="form-control readonly" type="text"
-                                    name="post-thumbnail" placeholder="Thêm hình ảnh cho bài viết" value="{{ isset($item) ? $item->images : '' }}">
+                                    name="post-thumbnail" placeholder="Thêm hình ảnh cho bài viết" value="{{ isset($item) ? $item->post->images : '' }}">
                             </div>
                         </div>
                     </div>
@@ -71,8 +67,8 @@
                             <div id="holder">
                                 <div
                                     class="placeholder-text text-gray-600 flex items-center justify-center rounded bg-slate-300 w-48 h-28 overflow-hidden">
-                                    @if (isset($item) && $item->images)
-                                        <img class="h-28 w-48" src="{{ asset($item->images) }}" alt="">
+                                    @if (isset($item) && $item->post->images)
+                                        <img class="h-28 w-48" src="{{ asset($item->post->images) }}" alt="">
                                     @else
                                         Chưa có hình ảnh nào
                                     @endif
@@ -101,7 +97,7 @@
                             <label for="title" class="form-label">Tiêu đề bài viết <span style="color: red;">
                                     *</span></label>
                             <input required id="title" name="title" type="text" class="form-control"
-                                placeholder="Nhập tiêu đề" value="{{ isset($item) ? $item->title : '' }}">
+                                placeholder="Nhập tiêu đề" value="{{ isset($item) ? $item->post->title : '' }}">
                         </div>
                         <div>
                             <label for="slug" class="form-label">Slug bài viết</label>
@@ -111,7 +107,7 @@
                         <div>
                             <label for="description" class="form-label">Mô tả<span style="color: red;"> *</span></label>
                             <textarea required id="post-description" class="form-control h-20" name="post-description" placeholder="Nhập mô tả"
-                                style="resize: none;">{{ isset($item) ? $item->description : '' }}</textarea>
+                                style="resize: none;">{{ isset($item) ? $item->post->description : '' }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -121,17 +117,17 @@
                         <div>
                             <label for="seo-title" class="form-label">Tiêu đề SEO</label>
                             <input id="seo-title" name="seo-title" type="text" class="form-control"
-                                placeholder="Nhập tiêu đề seo" value="{{ isset($item) ? $item->seo_title : '' }}">
+                                placeholder="Nhập tiêu đề seo" value="{{ isset($item) ? $item->post->seo_title : '' }}">
                         </div>
                         <div>
                             <label for="seo-keyword" class="form-label">Từ khóa SEO</label>
                             <input id="seo-keyword" name="seo-keyword" type="text" class="form-control"
-                                placeholder="Nhập slug" value="{{ isset($item) ? $item->seo_keyword : '' }}">
+                                placeholder="Nhập slug" value="{{ isset($item) ? $item->post->seo_keyword : '' }}">
                         </div>
                         <div>
                             <label for="seo-description" class="form-label">Mô tả SEO</label>
                             <textarea id="seo-description" class="form-control h-40" name="seo-description" placeholder="Nhập mô tả"
-                                style="resize: none;">{{ isset($item) ? $item->seo_description : '' }}</textarea>
+                                style="resize: none;">{{ isset($item) ? $item->post->seo_description : '' }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -144,7 +140,7 @@
                         <div>
                             <label for="content" class="form-label">Nội dung bài viết<span style="color: red;">
                                     *</span></label>
-                            <textarea required id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ isset($item) ? $item->content : '' }}</textarea>
+                            <textarea required id="content" name="content" placeholder="Nhập nội dung" class="h-96 form-control">{{ isset($item) ? $item->post->content : '' }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -152,7 +148,7 @@
             {{-- END --}}
 
             <!-- Buttons cancel and save -->
-            @include('admin.common.cancelAndSaveButtons', ['routeCancel' => route('admin.post.index', ['type' => $type])])
+            @include('admin.common.cancelAndSaveButtons', ['routeCancel' => route('admin.knowledge.index')])
 
         </form>
     </div>

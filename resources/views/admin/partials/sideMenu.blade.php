@@ -107,7 +107,7 @@
                 </li>
 
                 <li>
-                    <a href="{{route('admin.post.index', 'knowledge')}}" class="side-menu {{isset($page) ? $page =='post-knowledge-manager'? 'side-menu--active' : '' : ''}}">
+                    <a href="{{route('admin.knowledge.index')}}" class="side-menu {{isset($page) ? $page =='post-knowledge-manager'? 'side-menu--active' : '' : ''}}">
                         <div class="side-menu__icon"> <i data-lucide="share-2"></i> </div>
                         <div class="side-menu__title"> Kiến thức </div>
                     </a>

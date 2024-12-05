@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Admin\Setting\BannerController;
 use App\Models\Address;
 use App\Models\Banner;
+use App\Models\Category;
 use App\Models\DataUsers;
+use App\Models\News;
 use App\Models\Partner;
 
 use App\Models\Post;
@@ -32,12 +34,17 @@ class HomeController extends Controller
         $projectChunks = array_chunk($projects->toArray(), 4);
         $businesses = Field::with('post')->orderBy('updated_at', 'desc')->limit(3)->get();
 
+        $communicationPosts = Post::where('type_id', 2)->orderBy('updated_at', 'desc')->limit(3)->get();
+        $knowledgePosts = News::orderBy('updated_at', 'desc')->limit(3)->get();
+
       // set điều kiện để lấy ra các địa chỉ hiển thị
         return view('homepage', [
             'partners' => $partners,
             'banners' => $banners,
             'projects' =>  $projectChunks,
             'businesses' => $businesses,
+            'communicationPosts' => $communicationPosts,
+            'knowledgePosts' => $knowledgePosts,
         ]);
     }
 
@@ -72,10 +79,27 @@ class HomeController extends Controller
     // Trang truyền thông
     public function communication(): Factory|Application|View
     {
-        $communications = Post::where('type_id', 2)->orderBy('updated_at', 'desc')->paginate(1);
+        $communications = Post::where('type_id', 2)->orderBy('updated_at', 'desc')->paginate(12);
         return view('front.communication.index', ['communications' => $communications]);
     }
-
+    // Trang chi tiết truyền thông
+    public function communicationDetail($slug): Factory|Application|View
+    {
+        $communication = Post::where('slug', $slug)->first();
+        return view('front.communication.detail', ['communication' => $communication]);
+    }
+    // Trang kiến thức
+    public function knowledge(): Factory|Application|View
+    {
+        $items = News::orderBy('updated_at', 'desc')->paginate(12);
+        return view('front.knowledge.index', ['items' => $items]);
+    }
+    // Trang chi tiết kiến thức
+    public function knowledgeDetail($slug): Factory|Application|View
+    {
+        $item = News::where('slug', $slug)->first();
+        return view('front.knowledge.detail', ['item' => $item]);
+    }
 
     // Trang tuyển dụng
     public function recruitment(): Factory|Application|View

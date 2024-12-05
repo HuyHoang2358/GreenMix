@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Models\Address;
 use App\Models\Field;
 use App\Models\Languague;
+use App\Models\News;
+use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -43,6 +45,11 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('front.common.contactMe', function($view){
             $view->with('addresses', Address::all());
+        });
+
+        View::composer('front.common.contactInfo', function($view){
+            $view->with('topCommunications', Post::where('type_id', 2)->orderBy('updated_at', 'desc')->limit(3)->get());
+            $view->with('topKnowledges', News::orderBy('updated_at', 'desc')->limit(3)->get());
         });
     }
 }

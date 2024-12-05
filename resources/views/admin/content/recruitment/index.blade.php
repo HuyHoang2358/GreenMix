@@ -100,7 +100,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td class="text-center" colspan="7">Hiện tại không có tin tuyển dụng nào!</td>
+                                    <td class="text-center" colspan="8">Hiện tại không có tin tuyển dụng nào!</td>
                                 </tr>
                             @endif
                         </tbody>

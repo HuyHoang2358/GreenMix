@@ -59,7 +59,7 @@
     </div>
     <div class="col-span-1 grid md:grid-cols-2 mt-10 md:mt-0">
         <div class="col-span-1">
-            <h3 class="font-semibold text-left">DANH MỤC SẢN PHẨM</h3>
+            <h3 class="font-semibold text-left text-bas">DANH MỤC SẢN PHẨM</h3>
             <ul class="list-disc ml-4 pt-5 flex flex-col gap-3 text-md">
                 @foreach($footerProducts as $product)
                     <li><a href="{{route('product.detail', $product->slug)}}" class="hover:text-primary">{{$product->name}}</a></li>
@@ -67,7 +67,7 @@
             </ul>
         </div>
         <div class="col-span-1 mt-10 md:mt-0">
-            <h3 class="pb-2 font-semibold">BẢN ĐỒ</h3>
+            <h3 class="pb-2 font-semibold text-base">BẢN ĐỒ</h3>
             @foreach($addresses as $address)
                 @if($address->is_show == 1)
                 <div class="py-3">
@@ -88,6 +88,7 @@
     </div>
 </div>
 <div class="bg-primary-dark h-12 w-full"></div>
+
 
 
 

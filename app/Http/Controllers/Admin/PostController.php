@@ -63,11 +63,7 @@ class PostController extends Controller
 
     public function store(Request $request, $type): RedirectResponse
     {
-
-
-        // dd($request->all());
-
-        $type_id = $this->typeMap[$type] ?? 0;
+        $type_id = $this->typeMap[$type];
 
         try {
             $post = Post::create([
@@ -83,18 +79,6 @@ class PostController extends Controller
                 'seo_description' => $request->input('seo-description')
             ]);
 
-            //dd($request->input('post-thumbnail'));
-
-            // Create a new News instance
-            if($type == 'knowledge'){
-                $news = News::create([
-                    'name' => $request->input('name'),
-                    'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
-                    // 'category_id' => $request->input('category'),
-                    'post_id' => $post->id,
-                ]);
-            }
-
             return redirect()->route('admin.post.index', ['type' => $type,])->with('success', 'Thêm mới bài viết thành công.');
 
         } catch (\Exception $e)
@@ -104,7 +88,8 @@ class PostController extends Controller
 
     }
 
-    public function edit($type, $id){
+    public function edit($type, $id): Factory|Application|View|\Illuminate\Contracts\Foundation\Application
+    {
 
         $post = Post::findOrFail($id);
         return view('admin.content.post.createOrUpdateForm', [
@@ -119,7 +104,7 @@ class PostController extends Controller
     public function update(Request $request, $type, $id){
 
 
-        $type_id = $this->typeMap[$request->input('type')] ?? 0;
+        $type_id = $this->typeMap[$type] ?? 0;
 
         try {
 
