@@ -73,6 +73,8 @@ class RecruitmentController extends Controller
                 'requirements' => $request->input('requirements'),
                 'benefit' => $request->input('benefit'),
                 'content' => $request->input('content'),
+                'slug' => $request->input('slug') ?? Str::slug($request->input('name')),
+                'image'=> $request->input('image')
             ]);
 
             return redirect()->route('admin.recruitment.index')->with('success', 'Thêm mới vị trí ứng tuyển thành công.');
