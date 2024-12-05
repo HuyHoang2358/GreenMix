@@ -11,4 +11,6 @@ return array (
   'email' => 'info.greenmixvietnam@gmail.com',
   'logo' => '/storage/files/shares/he-thong/logo-greenmix.png',
   'favicon' => '/storage/files/shares/he-thong/favicon-GMX.png',
+  'logo' => '/storage/files/shares/he-thong/green-mix-logo-new.png',
+  'favicon' => '/storage/files/shares/he-thong/green-mix-logo-new.png',
 );

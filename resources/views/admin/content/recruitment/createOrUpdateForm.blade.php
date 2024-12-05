@@ -154,7 +154,7 @@
                             </div>
                         </div>
                         <div class="w-full mt-3 xl:mt-0 flex-1">
-                            <textarea id="recruitment-requirement" name="requirements" class="form-control h-64 resize-none" placeholder="Nhập yêu cầu" required autofocus>{{ isset($item) ? $item->requirements : ''}}</textarea>
+                            <textarea id="recruitment-requirement" name="requirements" class="form-control h-64 resize-none my-tinymce " placeholder="Nhập yêu cầu" required autofocus>{{ isset($item) ? $item->requirements : ''}}</textarea>
                         </div>
                     </div>
 
@@ -188,6 +188,27 @@
                         </div>
                     </div>
 
+                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pb-3 first:mt-0 first:pt-0">
+                        <div class="form-label xl:w-64 xl:!mr-10">
+                            <div class="text-left">
+                                <div class="flex items-center">
+                                    <div class="font-medium">Slug</div>
+                                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">Không bắt buộc </div>
+                                </div>
+                                <div class="leading-relaxed text-slate-500 text-xs mt-3"> Hệ thống sẽ tự động tạo ra từ tên nếu không có giá trị</div>
+                            </div>
+                        </div>
+                        <div class="w-full mt-3 xl:mt-0 flex-1">
+                            <input id="language-slug" type="text" class="form-control" placeholder="Nhập slug" name="slug"
+                                   onkeyup="handleCountNumberCharacter('language-slug', 'number-character-language-slug', 100)"
+                                   value="{{$item ? $item->slug : ''}}"
+                            >
+                            <div class="form-help text-right">Tối đa <span id="number-character-language-slug">0</span>/100 ký tự</div>
+                        </div>
+                    </div>
+
+                    <!-- Ảnh  -->
+                    @include('admin.partials.stand_alone_lfm', ["inputImageName" => 'image', "selectedImage" => isset($item) ? $item->image : null])
                 </div>
 
             </div>

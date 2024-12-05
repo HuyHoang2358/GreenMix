@@ -7,7 +7,7 @@
 
     <div class="bg-white px-5 sm:px-52 py-10 sm:py-10">
         <!-- Session 1: Title -->
-        @include('front.common.pageTitle', ['pageTitle' => 'Tuyển dụng'])
+        @include('front.common.pageTitle', ['pageTitle' => 'Thông tin tuyển dụng'])
         <!-- End Session 1: Title -->
 
         <!-- Session 2: Business list-->
