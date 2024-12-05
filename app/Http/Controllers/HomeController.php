@@ -7,7 +7,9 @@ use App\Models\Address;
 use App\Models\Banner;
 use App\Models\DataUsers;
 use App\Models\Partner;
+
 use App\Models\Post;
+
 use App\Models\Recruitment;
 use Exception;
 use App\Models\Product;
@@ -65,6 +67,7 @@ class HomeController extends Controller
         $product = Product::where('slug', $slug)->with('post')->first();
         return view('front.product.detail', ['product' => $product]);
     }
+
 
     // Trang truyền thông
     public function communication(): Factory|Application|View

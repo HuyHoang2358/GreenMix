@@ -35,6 +35,8 @@
                                 <th class="whitespace-nowrap">Địa chỉ</th>
                                 <th class="whitespace-nowrap text-center">Số lượng</th>
                                 <th class="whitespace-nowrap text-center">Trạng thái</th>
+                                <th class="whitespace-nowrap text-center">Slug</th>
+                                <th class="whitespace-nowrap text-center">Hình ảnh</th>
                                 <th class="whitespace-nowrap text-center w-24">Thao tác</th>
                             </tr>
                         </thead>
@@ -74,6 +76,10 @@
                                                     Đang tuyển dụng
                                                 </span>
                                             @endif
+                                        </td>
+                                        <td>{{$recruitment -> slug}}</td>
+                                        <td>
+                                            <img src="{{$recruitment -> image}}" alt="" class="w-24">
                                         </td>
                                         <td>
                                             <div class="flex justify-center items-center gap-2">

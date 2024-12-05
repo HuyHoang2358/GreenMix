@@ -26,6 +26,8 @@ class Recruitment extends Model
         'description',
         'requirements',
         'benefit',
+        'content',
+        'image'
     ];
 
     public function category(){

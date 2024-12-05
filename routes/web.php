@@ -13,6 +13,7 @@ Route::get('/dong-san-pham/{slug}', [HomeController::class, 'productDetail'])->n
 
 
 Route::get('/lien-he', [HomeController::class, 'contact'])->name('contact'); // Trang liên hệ
+
 Route::post('/dataUser', [HomeController::class, 'dataUser'])->name('dataUser');
 Route::get('/tuyen-dung', [HomeController::class, 'recruitment'])->name('recruitment'); // Trang tuyển dụng
 Route::get('/tuyen-dung/{slug}', [HomeController::class, 'recruitmentDetail'])->name('recruitment.detail'); // Trang tuyển dụng
