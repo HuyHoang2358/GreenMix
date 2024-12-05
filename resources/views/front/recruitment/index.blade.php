@@ -17,7 +17,7 @@
                 <a href="{{ route('recruitment.detail', ['slug' => $item->slug]) }}"
                     class="product-card shadow-lg group flex flex-col gap-2 hover:shadow-2xl duration-300  max-w-[320px]">
                     <div class="overflow-hidden shadow-primary-dark border-b border-gray-200">
-                        <img src="{{ asset($item->category->icon) }}" alt="{{$item->slug}}"
+                        <img src="{{ asset($item->image) }}" alt="{{$item->slug}}"
                             class="aspect-square transform transition-transform duration-300 group-hover:scale-110 w-full max-h-[280px]">
                     </div>
                     <div class="px-4 py-4">
@@ -37,6 +37,11 @@
                 </a>
                 <!--End a businesses card-->
             @endforeach
+            @if(count($recruitments) == 0)
+                <div class="text-center col-span-3">
+                    <p class="text-lg font-normal">Chưa có thông tin tuyển dụng nào! Vui lòng quay lại sau</p>
+                </div>
+            @endif
 
         </div>
         <!-- End Session 2: Business list  -->
