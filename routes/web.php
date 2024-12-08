@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -33,5 +34,26 @@ Route::get('/dashboard', function () {
 // Xem chi tiết bài viết
 Route::get("/post/{slug}", [HomeController::class, 'postDetail'])->name('post.detail');
 
+
+// command
+Route::prefix('command')->group(function () {
+    Route::get('/clear-cache', function () {
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+
+        return "Cache cleared successfully";
+    });
+    Route::get('/optimize', function () {
+        Artisan::call('optimize');
+
+        return "Optimized successfully";
+    });
+
+    Route::get('/storage-link', function () {
+        Artisan::call('storage:link');
+
+        return "Storage link created successfully";
+    });
+});
 
 

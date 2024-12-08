@@ -16,8 +16,7 @@
 
 
 -- Dumping database structure for green_mix_db
-CREATE DATABASE IF NOT EXISTS `green_mix_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `green_mix_db`;
+USE `wr3xl0tvmy15_greenmix_db`;
 
 -- Dumping structure for table green_mix_db.addresses
 CREATE TABLE IF NOT EXISTS `addresses` (
