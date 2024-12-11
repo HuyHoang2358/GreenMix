@@ -17,7 +17,7 @@
         <li>
             <a href="{{route('admin.field.index')}}" class="side-menu {{isset($page) ? $page =='field-manager'? 'side-menu--active' : '' : ''}}">
                 <div class="side-menu__icon"> <i data-lucide="layers"></i> </div>
-                <div class="side-menu__title"> Lĩnh vực kinh doanh</div>
+                <div class="side-menu__title"> Lĩnh vực kinh doanh </div>
             </a>
         </li>
         <li>

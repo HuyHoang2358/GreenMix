@@ -18,7 +18,7 @@
     @include('admin.common.titleForm', ['titleForm' =>  'Thêm mới '. $type_name])
 
     <!-- Form create information -->
-    <form action="{{route('admin.category.store', $type)}}" method="post">
+    <form action="{{route('admin.category.store', $type)}}" method="POST">
         @csrf
         <div class="intro-y box p-5 mt-2">
             <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
