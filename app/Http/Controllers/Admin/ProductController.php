@@ -154,8 +154,6 @@ class ProductController extends Controller
             return redirect()->route('admin.product.index')->with('error', 'Xóa sản phẩm thất bại: ' . $e->getMessage());
 
         }
-
-
     }
 
 }

@@ -7,13 +7,11 @@
         @include('admin.partials.head')
         @include('admin.partials.tiny_MCE_ini')
         <style>
-        
             .form-control:invalid + .tox {
                 border: 1px solid #dc3545; /* Red border color for TinyMCE editor */
             }
-            
         </style>
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     </head>
 
     <body class="py-5 md:py-0 o">

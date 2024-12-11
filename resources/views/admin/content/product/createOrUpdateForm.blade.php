@@ -1,5 +1,5 @@
 @extends('admin.layouts.adminApp')
-@section('title', 'Thêm mới thông tin sản phẩm')
+@section('title', $isUpdate ? 'Cập nhật thông tin sản phẩm' : 'Thêm mới thông tin sản phẩm')
 @section('breadcrumb')
     <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
         <ol class="breadcrumb breadcrumb-light">
