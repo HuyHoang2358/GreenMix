@@ -1,9 +1,13 @@
 <meta name="resource-type" content="Document">
 <meta name="distribution" content="Global">
 <meta name="revisit-after" content="1 days">
-<meta name="robots" content="index, follow" />
+
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow" />
+<meta name="bingbot" content="noindex, nofollow" />
+{{--<meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">--}}
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 <meta name="author" content="{{Config::get('website.company_name')}}">

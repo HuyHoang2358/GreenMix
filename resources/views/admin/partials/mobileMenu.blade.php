@@ -1,13 +1,13 @@
 <div class="mobile-menu md:hidden px-3">
     <div class="mobile-menu-bar">
         <a href="" class="flex mr-auto">
-            <img alt="Midone - HTML Admin Template" class="w-6" src="{{asset('backend/dist/images/logo.svg')}}">
+            <img alt="GreenMix" class="w-6" src="{{asset('backend/dist/images/logo.svg')}}">
             <span class="logo__text text-white text-lg ml-3"> GreenMix </span>
         </a>
         <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
     </div>
-{{--    <div class="scrollable">--}}
-    <div>
+    <div class="scrollable">
+
         <a href="javascript:; html" class="mobile-menu-toggler"> <i data-lucide="x-circle" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
         <ul class="scrollable__content py-2">
             <li>

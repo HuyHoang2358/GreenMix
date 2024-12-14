@@ -25,7 +25,7 @@
                     </div>
                     <div class="intro-y box p-5 mt-12 sm:mt-5">
                         <div><span>{{count($addresses)}}</span> địa chỉ cửa hàng trên toàn quốc. Chọn xem thêm bên cạnh để hiển thị danh sách.</div>
-                        <iframe id="iframe-preview" src="" class="report-maps mt-5 bg-slate-200 rounded-md w-full"></iframe>
+                        <iframe id="iframe-preview" src="#" class="report-maps mt-5 bg-slate-200 rounded-md w-full"></iframe>
                     </div>
                 </div>
                 <!-- END: Official Store -->
@@ -146,6 +146,8 @@
                                                     <a href="{{route('admin.dataUser.index')}}"><button type="button" class="btn btn-secondary py-1 px-2">Xem thêm</button></a>
                                                 </div>
                                             </div>
+                                        @else
+                                            <div></div>
                                         @endif
                                     @endforeach
                                 </div>
