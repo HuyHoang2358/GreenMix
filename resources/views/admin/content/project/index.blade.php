@@ -33,6 +33,7 @@
                                 <th class="whitespace-nowrap">Tên</th>
                                 <th class="whitespace-nowrap w-40 text-center">Hình ảnh</th>
                                 <th class="whitespace-nowrap">Địa chỉ</th>
+                                <th class="whitespace-nowrap">Thứ tự hiển thị</th>
                                 <th class="whitespace-nowrap text-center w-24">Thao tác</th>
                             </tr>
                         </thead>
@@ -42,10 +43,12 @@
                                     <tr>
                                         <td class="text-center">{{ ($projects->currentPage() - 1 ) * $projects->perPage() + $loop->index + 1 }}</td>
                                         <td>{{ $project->name }}</td>
+                                        <td>{{ $project->slug }}</td>
                                         <td>
                                             <img class="h-20 w-40 rounded" src="{{ asset($project->image) }}" alt="post_{{ $project->name }}_image">
                                         </td>
                                         <td>{{ $project->address }}</td>
+                                        <td>{{ $project->order }}</td>
                                         <td>
                                             <div class="flex justify-center items-center gap-2">
                                                 <!-- Edit button -->
