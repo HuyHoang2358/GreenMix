@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('name', 255);
             $table->longText('address');
             $table->longText('image')->nullable();
-            $table->unsignedInteger('order')->nullable();
+            $table->unsignedInteger('order');
+            $table->bigInteger('post_id')->nullable();
+            $table->string('slug', 255);
             $table->timestamps();
         });
     }

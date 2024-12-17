@@ -11,7 +11,10 @@ Route::get('/linh-vuc-kinh-doanh/{slug}', [HomeController::class, 'businessDetai
 Route::get('/dong-san-pham', [HomeController::class, 'product'])->name('product'); // Trang dòng sản phẩm
 Route::get('/dong-san-pham/{slug}', [HomeController::class, 'productDetail'])->name('product.detail'); // Trang dòng sản phẩm chi tiết
 
+Route::get('/du-an', [HomeController::class, 'project'])->name('project'); // Trang  dự án
+Route::get('/du-an/{slug}', [HomeController::class, 'projectDetail'])->name('project.detail'); // Trang dự án chi tiết
 
+Route::get('/doi-tac', [HomeController::class, 'partner'])->name('partner'); // Trang  đôi tác
 
 Route::get('/lien-he', [HomeController::class, 'contact'])->name('contact'); // Trang liên hệ
 

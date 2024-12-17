@@ -75,6 +75,27 @@ class HomeController extends Controller
         return view('front.product.detail', ['product' => $product]);
     }
 
+    // Trang danh sách dự án
+    public function project(): View|\Illuminate\Foundation\Application|Factory|Application
+    {
+        $projects =Project::with('post')->orderBy('updated_at', 'desc')->paginate(6);
+        return view('front.project.index', [
+            'projects' => $projects,
+        ]);
+    }
+    // Trang chi tiết dự án
+    public function projectDetail($slug): Factory|Application|View
+    {
+        $project = Project::where('slug', $slug)->with('post')->first();
+        return view('front.project.detail', ['project' => $project]);
+    }
+
+    // Trang đối tác
+    public function partner(): View|\Illuminate\Foundation\Application|Factory|Application
+    {
+        $partners = Partner::orderBy('updated_at', 'desc')->get();
+        return view('front.partner.index', ['partners' => $partners]);
+    }
 
     // Trang truyền thông
     public function communication(): Factory|Application|View
@@ -88,6 +109,7 @@ class HomeController extends Controller
         $communication = Post::where('slug', $slug)->first();
         return view('front.communication.detail', ['communication' => $communication]);
     }
+
     // Trang kiến thức
     public function knowledge(): Factory|Application|View
     {
