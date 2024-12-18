@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home'); // Trang chủ
+
+
 Route::get('/linh-vuc-kinh-doanh', [HomeController::class, 'business'])->name('business'); // Trang lĩnh vực kinh doanh
 Route::get('/linh-vuc-kinh-doanh/{slug}', [HomeController::class, 'businessDetail'])->name('business.detail'); // Trang lĩnh vực kinh doanh
 
@@ -24,8 +26,6 @@ Route::get('/truyen-thong/{slug}', [HomeController::class, 'communicationDetail'
 
 Route::get('/kien-thuc', [HomeController::class, 'knowledge'])->name('knowledge'); // Trang kiến thức
 Route::get('/kien-thuc/{slug}', [HomeController::class, 'knowledgeDetail'])->name('knowledge.detail'); // Trang kiến thức
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');

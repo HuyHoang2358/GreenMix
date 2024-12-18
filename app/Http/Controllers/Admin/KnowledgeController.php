@@ -17,6 +17,12 @@ use Illuminate\Support\Str;
 class KnowledgeController extends Controller
 {
     use GroupCategoryTrait;
+    private array $typeMap = [
+        'introduce' => 0,
+        'knowledge' => 1,
+        'post' => 2,
+        'product' => 4
+    ];
     public function index(): Factory|Application|View
     {
         $posts = News::orderBy('updated_at', 'desc')->paginate(6);
