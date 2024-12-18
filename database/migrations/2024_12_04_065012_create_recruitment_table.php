@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('slug', 255);
             $table->longText('image');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('restrict');
         });
     }
 

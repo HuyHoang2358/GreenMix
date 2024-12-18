@@ -63,8 +63,8 @@
                             class="dropdown-content absolute group-hover:flex flex-col bg-white -bottom-15 right-0 z-10 w-60 drop-shadow-md border-t-4 border-primary-dark normal-case font-normal text-left hidden">
                             <a class="p-2 border-b hover:bg-gray-300" href="{{route('post.detail', ['slug'=> 'gioi-thieu-ve-greenmix'])}}">Về chúng tôi</a>
                             <a class="p-2 border-b hover:bg-gray-300" href="{{route('post.detail', ['slug'=> 'lich-su-phat-trien'])}}">Lịch sử phát triển</a>
-                            <a class="p-2 border-b hover:bg-gray-300" href="{{url('/').'#project-using'}}">Dự án tiêu biểu</a>
-                            <a class="p-2 text-wrap hover:bg-gray-300" href="{{url('/').'#partners'}}">Đối tác & Khách hàng</a>
+                            <a class="p-2 border-b hover:bg-gray-300" href="{{route('project', ['slug'=> 'Du-an-chi-tiet'])}}">Dự án tiêu biểu</a>
+                            <a class="p-2 text-wrap hover:bg-gray-300" href="{{route('partner', ['slug'=> 'Doi-tac-chi-tiet'])}}">Đối tác & Khách hàng</a>
                         </div>
                     </div>
                     <div class="relative dropdown group">
@@ -148,10 +148,10 @@
                 <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('post.detail', ['slug'=> 'lich-su-phat-trien'])}}">
                     Lịch sử phát triển
                 </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{url('/').'#project-using'}}">
-                    Dự án tiêu biểu
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('project', ['slug'=> 'Du-an-chi-tiet'])}}">
+                    Dự án tiêu biểu 1
                 </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{url('/').'#partners'}}">
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('partner', ['slug'=> 'Doi-tac-chi-tiet'])}}">
                     Đối tác & khách hàng
                 </a>
             </div>
