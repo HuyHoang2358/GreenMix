@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('images');
             $table->longText('description')->nullable();
             $table->bigInteger('post_id')->nullable();
+            $table->foreignId('field_id')->constrained('fields')->cascadeOnDelete();
             $table->timestamps();
 
 

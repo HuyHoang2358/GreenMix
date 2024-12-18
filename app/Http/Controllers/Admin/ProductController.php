@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Field;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
@@ -27,10 +28,13 @@ class ProductController extends Controller
 
     public function create():Factory|Application|View
     {
+        // Truyền danh sách lĩnh vực ra để chọn
+        $fields = Field::all();
         return view('admin.content.product.createOrUpdateForm',  [
             'page' => 'product-manager',
             'isUpdate' => false,
             'item' => null,
+            'fields' => $fields
         ]);
 
     }
@@ -66,7 +70,8 @@ class ProductController extends Controller
                 'slug' => $input['slug'] ?? Str::slug($input['name']),
                 'description' => $input['description'] ?? '',
                 'images' => json_encode($imageArray), // encode mảng image thành chuỗi json
-                'post_id' => $post->id
+                'post_id' => $post->id,
+                'field_id' => $input['field_id']
             ]);
 
             // Lưu sản phẩm và post vao database
@@ -93,11 +98,14 @@ class ProductController extends Controller
             $product->images = implode(',', $decodedImages);
         }
 
+        // Truyền danh sách lĩnh vực ra để chọn
+        $fields = Field::all();
         return view('admin.content.product.createOrUpdateForm', [
             'page' => 'product-manager',
             'item' => $product,
             'isUpdate' => true,
             'images' => $decodedImages,
+            'fields' => $fields
         ]);
 
     }
@@ -115,6 +123,8 @@ class ProductController extends Controller
             $product->name = $input['name'] ?? $product["name"];
             $product->slug = $input["slug"] ?? Str::slug($input["name"]);
             $product->description = $input['description'] ?? $product["description"];
+            $product->field_id = $input['field_id'] ?? $product["field_id"];
+            $product->save();
 
             // update post
             $post = Post::findOrFail($product->post_id);
@@ -129,7 +139,7 @@ class ProductController extends Controller
             $post->seo_description = $input['seo_description'] ?? $post["seo_description"];
 
 
-            $product->save();
+
             $post->save();
             return redirect()->route('admin.product.index')->with('success', 'Cập nhật thông tin sản phẩm thành công.');
         } catch (\Exception $e)

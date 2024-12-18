@@ -91,7 +91,7 @@ class HomeController extends Controller
     }
 
     // Trang đối tác
-    public function partner(): View|\Illuminate\Foundation\Application|Factory|Application
+    public function partner(): Factory|Application|View
     {
         $partners = Partner::orderBy('updated_at', 'desc')->get();
         return view('front.partner.index', ['partners' => $partners]);

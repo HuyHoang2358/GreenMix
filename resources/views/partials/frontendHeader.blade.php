@@ -79,7 +79,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="relative dropdown group">
+                   {{-- <div class="relative dropdown group">
                         <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
                             href="{{ route('product') }}">Sản phẩm<i class="fa-solid fa-chevron-down"></i></a>
                         <div
@@ -89,7 +89,7 @@
                                     href="{{ route('product.detail', $menu->slug) }}">{{ $menu->name }}</a>
                             @endforeach
                         </div>
-                    </div>
+                    </div>--}}
                     <div class="relative dropdown group">
                         <a class="group-hover:cursor-pointer group-hover:text-primary-dark h-full w-full flex justify-center items-center gap-2 "
                             href="#">Truyền thông <i class="fa-solid fa-chevron-down"></i></a>

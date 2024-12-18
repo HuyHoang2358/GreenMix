@@ -19,6 +19,13 @@
         </div>
         <!-- End Session 1: Title -->
 
+        <!-- SECTION : Product LIST -->
+
+        @foreach($business->products as $product)
+            <h3 class="text-red-600 ">Sản phẩm {{$loop->index + 1}} :  {{$product->name}} 1</h3>
+        @endforeach
+
+
         <!-- Session 2: Content -->
         <div class="w-full grid md:grid-cols-3 gap-8 mb-16">
             <div class="col-span-1 md:col-span-2 ">

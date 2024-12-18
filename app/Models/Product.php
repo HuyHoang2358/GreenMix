@@ -31,7 +31,8 @@ class Product extends Model
         'slug',
         'images',
         'description',
-        'post_id'
+        'post_id',
+        'field_id'
     ];
 
     public function post(): BelongsTo
@@ -39,4 +40,9 @@ class Product extends Model
         return $this->belongsTo(Post::class, 'post_id');
     }
 
+    // Mối quan hệ với bảng Field
+    public function field(): BelongsTo
+    {
+        return $this->belongsTo(Field::class, 'field_id');
+    }
 }
