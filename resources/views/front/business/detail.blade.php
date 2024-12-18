@@ -21,9 +21,9 @@
 
         <!-- SECTION : Product LIST -->
 
-        @foreach($business->products as $product)
-            <h3 class="text-red-600 ">Sản phẩm {{$loop->index + 1}} :  {{$product->name}} 1</h3>
-        @endforeach
+{{--        @foreach($business->products as $product)--}}
+{{--            <h3 class="text-red-600 ">Sản phẩmadfasdfa {{$loop->index + 1}} :  {{$product->name}} 1</h3>--}}
+{{--        @endforeach--}}
 
 
         <!-- Session 2: Content -->
@@ -38,6 +38,30 @@
                     </div>
                 </div>
 
+                <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-10 mb-12">
+                    @foreach ($fields  as $field)
+                        <!--A businesses card-->
+                        <a href="{{ route('business.detail', ['slug' => $field->slug]) }}"
+                           class="product-card shadow-lg group flex flex-col gap-2 hover:shadow-2xl duration-300  md:max-w-[320px]">
+                            <div class="overflow-hidden shadow-primary-dark">
+                                @php
+                                    $images = json_decode($field->images, true);
+                                @endphp
+                                <img src="{{ asset(reset($images)) }}" alt="{{$field->slug}}"
+                                     class="aspect-square transform transition-transform duration-300 group-hover:scale-110 w-full h-full max-h-[200px]">
+                            </div>
+                            <div class="px-4 py-4">
+                                <div class="capitalize font-semibold text-lg text-primary-dark">
+                                    {{ $field->post->name }}
+                                </div>
+                                <div class="text-sm font-normal mt-0.5 line-clamp-2">
+                                    {!! $field->post->description !!}
+                                </div>
+                            </div>
+                        </a>
+                        <!--End a businesses card-->
+                    @endforeach
+                </div>
             </div>
             <div class="col-span-1 md:max-w-[320px]">
                 <div class="border border-primary-dark mb-8 overflow-hidden">
@@ -45,6 +69,20 @@
                         <img src="{{asset($image)}}" alt="{{$business->slug}}" class="hover:scale-105 w-full h-full"/>
                         @break
                     @endforeach
+                </div>
+
+                <!-- Sản phẩm liên quan -->
+                <div class="w-full border border-primary mb-8">
+                    <div class="bg-primary">
+                        <h3 class="font-semibold text-white text-lg md:text-xl uppercase py-4 text-center">Sản phẩm liên quan</h3>
+                    </div>
+                    <div class="flex divide-y flex-col">
+                        @foreach($business-> products as $product)
+                            <div class="py-2 px-4 hover:bg-light-primary hover:text-white">
+                                <a href="{{route('product.detail', $product->slug)}}">{{$product->name}}</a>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 @include('front.common.contactInfo')

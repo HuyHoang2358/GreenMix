@@ -11,7 +11,7 @@
         <!-- End Session 1: Title -->
 
         <!-- Session 2: Đối tác Cty-->
-        <div class="px-4 md:px-32 py-10 my-4 md:my-20" id="partners">
+        <div class="px-4 py-10 my-4 md:my-20" id="partners">
             <div class="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-7">
                 @foreach($partners as $partner)
                     <a href="{{$partner->url ?? '#'}}">

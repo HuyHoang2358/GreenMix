@@ -31,6 +31,7 @@
                             <tr>
                                 <th class="whitespace-nowrap text-center w-8">STT</th>
                                 <th class="whitespace-nowrap">Tên</th>
+                                <th class="whitespace-nowrap">Slug</th>
                                 <th class="whitespace-nowrap w-40 text-center">Hình ảnh</th>
                                 <th class="whitespace-nowrap">Địa chỉ</th>
                                 <th class="whitespace-nowrap">Thứ tự hiển thị</th>
