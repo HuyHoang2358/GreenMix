@@ -49,9 +49,9 @@
                 ]
             @endphp
             <div class="mt-4">
-                @foreach($arr as $item)
+                @foreach($arr as $index => $item)
                     <div class="flex justify-start items-center border-b-2 border-gray-500 pl-5 mb-5 pb-2">
-                        <p class="w-24 text-primary font-bold text-3xl">{{$item["key"]}}+</p>
+                        <p class="w-24 text-primary font-bold text-3xl" id="{{$index + 1}}" data-target="{{$item["key"]}}">{{$item["key"]}}+</p>
                         <p class="text-base md:text-lg">{{$item["value"]}}</p>
                     </div>
                 @endforeach
@@ -190,5 +190,55 @@
         </div>
     </div>
     <!-- End tin tức -->
+
+    <script>
+        // Cấu hình chung
+        const duration = 2000; // Tổng thời gian hoạt hình (ms)
+        const frameRate = 60; // Số khung hình mỗi giây
+        const totalFrames = (duration / 1000) * frameRate;
+
+        // Hàm kiểm tra xem phần tử có trong khung nhìn hay không
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.bottom >= 0 &&
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+            );
+        }
+
+        // Hàm chạy animation cho từng số
+        function animateNumber(element) {
+            const targetNumber = parseInt(element.getAttribute("data-target")); // Lấy số mục tiêu từ data-target
+            const increment = targetNumber / totalFrames;
+            let currentNumber = 0;
+            let frame = 0;
+
+            function updateNumber() {
+                if (frame < totalFrames) {
+                    currentNumber += increment;
+                    element.textContent = Math.floor(currentNumber);
+                    frame++;
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    element.textContent = `${targetNumber}+`; // Thêm dấu "+" khi hoàn tất
+                }
+            }
+
+            updateNumber();
+        }
+
+        // Lắng nghe sự kiện cuộn
+        const animatedElements = document.querySelectorAll("[data-target]");
+        const hasAnimated = new Set(); // Theo dõi phần tử đã chạy animation
+
+        window.addEventListener("scroll", () => {
+            animatedElements.forEach((element) => {
+                if (!hasAnimated.has(element) && isInViewport(element)) {
+                    animateNumber(element);
+                    hasAnimated.add(element); // Đánh dấu đã chạy
+                }
+            });
+        });
+    </script>
 @endsection
 

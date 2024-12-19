@@ -45,15 +45,15 @@
                 <li class="font-light text-sm">{{config('website.email')}}</li>
             </ul>
         </div>
-        <div class="flex gap-5 md:gap-7 md:text-2xl items-center pt-2 md:pt-5 text-2xl">
-            <a href="{{ Config::get('website.facebook_url') }}" class="text-white hover:text-primary">
-                <i class="fa-brands fa-facebook"></i>
+        <div class="flex md:gap-7 md:text-2xl items-center pt-2 md:pt-5">
+            <a href="{{ Config::get('website.facebook_url') }}">
+                <img class="w-24 h-12" src="{{asset('images/logo/facebook.png')}}" alt="{{asset('images/logo/facebook.png')}}"></img>
             </a>
-            <a href="{{ Config::get('website.youtube_url') }}" class="text-white hover:text-primary">
-                <i class="fa-brands fa-youtube"></i>
+            <a href="{{ Config::get('website.youtube_url') }}">
+                <img class="w-20 h-10" src="{{asset('images/logo/youtube.png')}}" alt="{{asset('images/logo/youtube.png')}}"></img>
             </a>
-            <a href="{{ Config::get('website.tiktok_url') }}" class="text-white hover:text-primary">
-                <i class="fa-brands fa-tiktok"></i>
+            <a href="{{ Config::get('website.tiktok_url') }}">
+                <img class="w-20 h-12" src="{{asset('images/logo/tiktok.png')}}" alt="{{asset('images/logo/tiktok.png')}}"></img>
             </a>
         </div>
     </div>
