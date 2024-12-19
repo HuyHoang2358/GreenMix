@@ -64,7 +64,7 @@
                             <a class="p-2 border-b hover:bg-gray-300" href="{{route('post.detail', ['slug'=> 'gioi-thieu-ve-greenmix'])}}">Về chúng tôi</a>
                             <a class="p-2 border-b hover:bg-gray-300" href="{{route('post.detail', ['slug'=> 'lich-su-phat-trien'])}}">Lịch sử phát triển</a>
                             <a class="p-2 border-b hover:bg-gray-300" href="{{route('project', ['slug'=> 'Du-an-chi-tiet'])}}">Dự án tiêu biểu</a>
-                            <a class="p-2 text-wrap hover:bg-gray-300" href="{{route('partner', ['slug'=> 'Doi-tac-chi-tiet'])}}">Đối tác & Khách hàng</a>
+                            <a class="p-2 text-wrap hover:bg-gray-300" href="{{route('partner')}}">Đối tác & Khách hàng</a>
                         </div>
                     </div>
                     <div class="relative dropdown group">
@@ -142,18 +142,10 @@
                 <i class="fa-solid fa-chevron-down pt-1"></i> Về green mix</a>
             <!--About us Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
-                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('post.detail', ['slug'=> 'gioi-thieu-ve-greenmix'])}}">
-                    Về chúng tôi
-                </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('post.detail', ['slug'=> 'lich-su-phat-trien'])}}">
-                    Lịch sử phát triển
-                </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('project', ['slug'=> 'Du-an-chi-tiet'])}}">
-                    Dự án tiêu biểu 1
-                </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('partner', ['slug'=> 'Doi-tac-chi-tiet'])}}">
-                    Đối tác & khách hàng
-                </a>
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('post.detail', ['slug'=> 'gioi-thieu-ve-greenmix'])}}"> Về chúng tôi </a>
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('post.detail', ['slug'=> 'lich-su-phat-trien'])}}"> Lịch sử phát triển </a>
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('project.detail', ['slug'=> 'Du-an-chi-tiet'])}}"> Dự án tiêu biểu 1 </a>
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('partner')}}"> Đối tác & khách hàng </a>
             </div>
             <!--End About us Accrodian panel-->
 

@@ -34,7 +34,6 @@
                 </a>
                 <!--End a businesses card-->
             @endforeach
-
         </div>
         <!-- End Session 2: Business list  -->
     </div>

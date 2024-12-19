@@ -38,7 +38,6 @@
                 </a>
                 <!--End a product card-->
             @endforeach
-
         </div>
         <!-- End Session 2: product list  -->
     </div>

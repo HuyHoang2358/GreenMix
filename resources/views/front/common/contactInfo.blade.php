@@ -8,12 +8,10 @@
                 <a href="{{route('post.detail', $item->slug)}}">{{$item->name}}</a>
             </div>
         @endforeach
-
         @foreach($topKnowledges as $item)
             <div class="py-2 px-4 hover:bg-light-primary hover:text-white">
                 <a href="{{route('knowledge.detail', $item->slug)}}">{{$item->name}}</a>
             </div>
         @endforeach
-
     </div>
 </div>

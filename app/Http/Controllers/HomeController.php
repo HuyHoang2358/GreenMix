@@ -52,14 +52,22 @@ class HomeController extends Controller
     public function business(): Factory|Application|View
     {
         $businesses = Field::with('post')->orderBy('updated_at', 'desc')->paginate(6);
-        return view('front.business.index', ['businesses' => $businesses]);
+        return view('front.business.index', [
+            'businesses' => $businesses,
+        ]);
     }
 
     // Trang chi tiết lĩnh vực kinh doanh
     public function businessDetail($slug): Factory|Application|View
     {
         $business = Field::where('slug', $slug)->with('post')->first();
-        return view('front.business.detail', ['business' => $business]);
+        $fields = Field::orderBy('updated_at', 'desc')->with('post')->get()->reject(function ($field) use ($business) {
+            return $field->id === $business->id;
+        });
+        return view('front.business.detail', [
+            'business' => $business,
+            'fields' => $fields,
+        ]);
     }
 
     // Trang danh sách dòng sản phẩm
