@@ -13,15 +13,15 @@
             <!-- Right top header -->
             <div class="flex justify-end items-center gap-12">
                 <!-- Social icons -->
-                <div class="flex justify-end items-center gap-4 text-2xl">
+                <div class="flex justify-end items-center">
                     <a href="{{ Config::get('website.facebook_url') }}">
-                        <i class="fa-brands fa-facebook"></i>
+                        <img class="w-[54px] h-7" src="{{asset('images/logo/facebook.png')}}" alt="{{asset('images/logo/facebook.png')}}"></img>
                     </a>
                     <a href="{{ Config::get('website.youtube_url') }}">
-                        <i class="fa-brands fa-youtube"></i>
+                        <img class="w-12 h-6" src="{{asset('images/logo/youtube.png')}}" alt="{{asset('images/logo/youtube.png')}}"></img>
                     </a>
                     <a href="{{ Config::get('website.tiktok_url') }}">
-                        <i class="fa-brands fa-tiktok"></i>
+                        <img class="w-12 h-6" src="{{asset('images/logo/tiktok.png')}}" alt="{{asset('images/logo/tiktok.png')}}"></img>
                     </a>
                 </div>
                 <!-- End Social icons -->
@@ -208,15 +208,15 @@
             <!--End Language Accrodian panel-->
 
         </nav>
-        <div class="flex justify-center min-w-[250px] gap-4 p-5 text-2xl mt-12">
-            <a href="{{ Config::get('website.facebook_url') }}" class="text-blue-700 hover:text-primary">
-                <i class="fa-brands fa-facebook"></i>
+        <div class="flex justify-center py-10">
+            <a href="{{ Config::get('website.facebook_url') }}">
+                <img class="w-20 h-8" src="{{asset('images/logo/facebook.png')}}" alt="{{asset('images/logo/facebook.png')}}"></img>
             </a>
-            <a href="{{ Config::get('website.youtube_url') }}" class="text-red-600 hover:text-primary">
-                <i class="fa-brands fa-youtube"></i>
+            <a href="{{ Config::get('website.youtube_url') }}">
+                <img class="w-16 h-8" src="{{asset('images/logo/youtube.png')}}" alt="{{asset('images/logo/youtube.png')}}"></img>
             </a>
-            <a href="{{ Config::get('website.tiktok_url') }}" class="text-black hover:text-primary">
-                <i class="fa-brands fa-tiktok"></i>
+            <a href="{{ Config::get('website.tiktok_url') }}">
+                <img class="w-16 h-8" src="{{asset('images/logo/tiktok.png')}}" alt="{{asset('images/logo/tiktok.png')}}"></img>
             </a>
         </div>
         <div class="min-w-[250px]">

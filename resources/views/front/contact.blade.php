@@ -43,9 +43,15 @@
                 <div class="col-span-2">
                     <p class="font-bold text-xl pb-5">Follow Us</p>
                     <div class="flex">
-                        <img class="w-16 h-10" src="{{asset('images/logo/facebook.png')}}" alt="">
-                        <img class="w-16 h-10" src="{{asset('images/logo/youtube.png')}}" alt="">
-                        <img class="w-16 h-10" src="{{asset('images/logo/tiktok.png')}}" alt="">
+                        <a href={{ Config::get('website.facebook_url') }}"">
+                            <img class="w-[70px] h-10" src="{{asset('images/logo/facebook.png')}}" alt="">
+                        </a>
+                        <a href="{{ Config::get('website.youtube_url') }}">
+                            <img class="w-16 h-9" src="{{asset('images/logo/youtube.png')}}" alt="">
+                        </a>
+                        <a href="{{ Config::get('website.tiktok_url') }}">
+                            <img class="w-16 h-10" src="{{asset('images/logo/tiktok.png')}}" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="col-span-3 text-[#404040]">
