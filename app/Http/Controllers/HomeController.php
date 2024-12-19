@@ -61,11 +61,11 @@ class HomeController extends Controller
     public function businessDetail($slug): Factory|Application|View
     {
         $business = Field::where('slug', $slug)->with('post')->first();
-//        $products = Product::orderBy('updated_at', 'desc')->get();
-        $fields = Field::orderBy('updated_at', 'desc')->with('post')->get()->reject(function ($field) use ($business) { return $field->id === $business->id; });
+        $fields = Field::orderBy('updated_at', 'desc')->with('post')->get()->reject(function ($field) use ($business) {
+            return $field->id === $business->id;
+        });
         return view('front.business.detail', [
             'business' => $business,
-//            'products' => $products,
             'fields' => $fields,
         ]);
     }

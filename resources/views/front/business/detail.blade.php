@@ -32,23 +32,23 @@
                 </div>
 
                 <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-10 mb-12">
-                    @foreach ($fields  as $field)
+                    @foreach ( $business-> products as $product)
                         <!--A businesses card-->
-                        <a href="{{ route('business.detail', ['slug' => $field->slug]) }}"
+                        <a href="{{ route('product.detail', ['slug' => $product->slug]) }}"
                            class="product-card shadow-lg group flex flex-col gap-2 hover:shadow-2xl duration-300  md:max-w-[320px]">
                             <div class="overflow-hidden shadow-primary-dark">
                                 @php
-                                    $images = json_decode($field->images, true);
+                                    $images = json_decode($product->images, true);
                                 @endphp
-                                <img src="{{ asset(reset($images)) }}" alt="{{$field->slug}}"
+                                <img src="{{ asset(reset($images)) }}" alt="{{$product->slug}}"
                                      class="aspect-square transform transition-transform duration-300 group-hover:scale-110 w-full h-full max-h-[200px]">
                             </div>
                             <div class="px-4 py-4">
                                 <div class="capitalize font-semibold text-lg text-primary-dark">
-                                    {{ $field->post->name }}
+                                    {{ $product->post->name }}
                                 </div>
                                 <div class="text-sm font-normal mt-0.5 line-clamp-2">
-                                    {!! $field->post->description !!}
+                                    {!! $product->post->description !!}
                                 </div>
                             </div>
                         </a>
@@ -70,9 +70,9 @@
                         <h3 class="font-semibold text-white text-lg md:text-xl uppercase py-4 text-center">Sản phẩm liên quan</h3>
                     </div>
                     <div class="flex divide-y flex-col">
-                        @foreach($business-> products as $product)
+                        @foreach($fields  as $field)
                             <div class="py-2 px-4 hover:bg-light-primary hover:text-white">
-                                <a href="{{route('product.detail', $product->slug)}}">{{$product->name}}</a>
+                                <a href="{{route('business.detail', $field->slug)}}">{{$field->name}}</a>
                             </div>
                         @endforeach
                     </div>
