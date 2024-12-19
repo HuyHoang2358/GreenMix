@@ -67,7 +67,7 @@
                 <!-- Sản phẩm liên quan -->
                 <div class="w-full border border-primary mb-8">
                     <div class="bg-primary">
-                        <h3 class="font-semibold text-white text-lg md:text-xl uppercase py-4 text-center">Sản phẩm liên quan</h3>
+                        <h3 class="font-semibold text-white text-lg md:text-xl uppercase py-4 text-center">Lĩnh vực khác</h3>
                     </div>
                     <div class="flex divide-y flex-col">
                         @foreach($fields  as $field)
