@@ -53,7 +53,7 @@
                 <img class="w-20 h-10" src="{{asset('images/logo/youtube.png')}}" alt="{{asset('images/logo/youtube.png')}}"></img>
             </a>
             <a href="{{ Config::get('website.tiktok_url') }}">
-                <img class="w-20 h-10" src="{{asset('images/logo/tiktok.png')}}" alt="{{asset('images/logo/tiktok.png')}}"></img>
+                <img class="w-20 h-12" src="{{asset('images/logo/tiktok.png')}}" alt="{{asset('images/logo/tiktok.png')}}"></img>
             </a>
         </div>
     </div>

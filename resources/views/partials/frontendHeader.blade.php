@@ -144,7 +144,7 @@
             <div class="panel overflow-hidden hidden font-normal border-b">
                 <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('post.detail', ['slug'=> 'gioi-thieu-ve-greenmix'])}}"> Về chúng tôi </a>
                 <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('post.detail', ['slug'=> 'lich-su-phat-trien'])}}"> Lịch sử phát triển </a>
-                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('project.detail', ['slug'=> 'Du-an-chi-tiet'])}}"> Dự án tiêu biểu 1 </a>
+                <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('project', ['slug'=> 'Du-an-chi-tiet'])}}"> Dự án tiêu biểu </a>
                 <a class="flex border-b justify-end items-center gap-1 p-2" href="{{route('partner')}}"> Đối tác & khách hàng </a>
             </div>
             <!--End About us Accrodian panel-->
@@ -161,9 +161,6 @@
             </div>
             <!--End Field Accrodian panel-->
 
-            <!--Media Accrodian button-->
-            <a class="accordion uppercase border-y p-3  flex justify-between duration-500"><i
-                    class="fa-solid fa-chevron-down pt-1"></i> Sản phẩm</a>
             <!--Media Accrodian panel-->
             <div class="panel overflow-hidden hidden font-normal border-b">
                 @foreach ($menuProducts as $menu)

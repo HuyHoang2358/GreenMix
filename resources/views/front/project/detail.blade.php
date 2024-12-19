@@ -33,7 +33,6 @@
             <div class="col-span-1 md:max-w-[320px]">
                 <div class="border border-primary-dark mb-8 overflow-hidden">
                     <img src="{{ $project->image }}" alt="{{$project->slug}}" class="hover:scale-105 w-full h-full"/>
-
                 </div>
 
                 @include('front.common.contactInfo')
