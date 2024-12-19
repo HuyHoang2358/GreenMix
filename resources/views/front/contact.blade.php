@@ -37,16 +37,18 @@
     </div>
 
     <div class="grid md:grid-cols-5 bg-[#F8F8F8] md:px-72 md:pt-32 md:pb-12 md:mt-16" id="contact-form">
-        <div class="col-span-1 md:col-span-3 md:pr-16 px-4">
+        <div class="col-span-1 md:col-span-3">
             <h3 class="text-2xl md:text-3xl font-bold text-[#353535]">Chúng tôi luôn sẵn sàng đồng hành cùng bạn trên mọi công trình lớn nhỏ trên toàn quốc.</h3>
-            <div class="grid grid-cols-3 py-4 md:py-20">
-                <div class="col-span-1">
+            <div class="grid grid-cols-5 py-4 md:py-20">
+                <div class="col-span-2">
                     <p class="font-bold text-xl pb-5">Follow Us</p>
-                    <div>
-
+                    <div class="flex">
+                        <img class="w-16 h-10" src="{{asset('images/logo/facebook.png')}}" alt="">
+                        <img class="w-16 h-10" src="{{asset('images/logo/youtube.png')}}" alt="">
+                        <img class="w-16 h-10" src="{{asset('images/logo/tiktok.png')}}" alt="">
                     </div>
                 </div>
-                <div class="col-span-2 text-[#404040]">
+                <div class="col-span-3 text-[#404040]">
                     <p class="font-bold text-xl text-black pb-2 md:pb-5">Email</p>
                     <p>Mọi yêu cầu xin vui lòng liên hệ về</p>
                     <div class="flex gap-2 items-center">
